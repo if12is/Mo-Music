@@ -114,29 +114,7 @@ jobs:
           KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
           KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
-        run: |
-          set -euo pipefail
-          for secret_name in KEYSTORE_BASE64 KEYSTORE_PASSWORD KEY_ALIAS KEY_PASSWORD; do
-            if [[ -z "${!secret_name:-}" ]]; then
-              echo "::error::$secret_name is required. Temporary signing keys are forbidden."
-              exit 1
-            fi
-          done
-
-          printf '%s' "$KEYSTORE_BASE64" | tr -d '\r\n ' | base64 --decode > android/app/jossestrada.keystore
-          signing_sha256=$(keytool -list -v \
-            -keystore android/app/jossestrada.keystore \
-            -alias "$KEY_ALIAS" \
-            -storepass "$KEYSTORE_PASSWORD" \
-            | sed -n 's/.*SHA256: //p' | head -n 1 | tr -d ':' | tr '[:lower:]' '[:upper:]')
-          echo "Using repository signing keystore for Mo Music."
-
-          {
-            echo 'storeFile=jossestrada.keystore'
-            echo "storePassword=$KEYSTORE_PASSWORD"
-            echo "keyAlias=$KEY_ALIAS"
-            echo "keyPassword=$KEY_PASSWORD"
-          } > android/key.properties
+        run: bash .github/scripts/configure-android-signing.sh
       - run: flutter pub get
       - name: Build Android packages
         shell: bash
@@ -145,9 +123,15 @@ jobs:
           mkdir -p distribution/android
           flutter build apk --release --split-per-abi
           cp build/app/outputs/flutter-apk/*-release.apk distribution/android/
+          for apk in build/app/outputs/flutter-apk/app-*-release.apk; do
+            abi="$(basename "$apk" | sed -E 's/^app-(.+)-release\.apk$/\1/')"
+            cp "$apk" "distribution/android/MoMusic-android-${abi}.apk"
+          done
           flutter build apk --release
+          cp build/app/outputs/flutter-apk/app-release.apk distribution/android/app-release.apk
           cp build/app/outputs/flutter-apk/app-release.apk distribution/android/MoMusic-android-universal.apk
           flutter build appbundle --release
+          cp build/app/outputs/bundle/release/app-release.aab distribution/android/app-release.aab
           cp build/app/outputs/bundle/release/app-release.aab distribution/android/MoMusic-android.aab
       - uses: actions/upload-artifact@v4
         with:
@@ -184,6 +168,7 @@ jobs:
           set -euo pipefail
           mkdir -p distribution/linux
           tar -czf distribution/linux/MoMusic-linux-x64.tar.gz -C build/linux/x64/release/bundle .
+          cp distribution/linux/MoMusic-linux-x64.tar.gz distribution/linux/MoMusic_Linux_Portable.tar.gz
           flatpak remote-add --user --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo || true
           cd distribution/flatpak
           flatpak-builder --user --install-deps-from=flathub --force-clean --repo=repo build-dir com.josprox.EstrellaMusic.yml || true
@@ -219,14 +204,29 @@ jobs:
       - run: flutter pub get
       - name: Build Windows application
         run: flutter build windows --release
+      - name: Install Inno Setup
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+          $iscc = "C:\Program Files (x86)\Inno Setup 6\ISCC.exe"
+          if (-not (Test-Path $iscc)) {
+            choco install innosetup -y --no-progress
+          }
+          $arabic = "C:\Program Files (x86)\Inno Setup 6\Languages\Arabic.isl"
+          if (-not (Test-Path $arabic)) {
+            New-Item -ItemType Directory -Force -Path (Split-Path $arabic) | Out-Null
+            Invoke-WebRequest -Uri "https://raw.githubusercontent.com/jrsoftware/issrc/main/Files/Languages/Unofficial/Arabic.isl" -OutFile $arabic
+          }
       - name: Package Windows application
         shell: pwsh
         run: |
           $ErrorActionPreference = "Stop"
           New-Item -ItemType Directory -Force -Path distribution/windows | Out-Null
           & 'C:\Program Files (x86)\Inno Setup 6\ISCC.exe' /DMyAppVersion="${{ needs.detect-version.outputs.version }}" 'distribution/compilador.iss'
-          $installer = Get-Item distribution/MoMusic*.exe | Select-Object -First 1
-          Move-Item -Force $installer.FullName 'distribution/windows/MoMusic-windows-installer.exe'
+          Copy-Item -Force 'distribution/MoMusic-windows-installer.exe' 'distribution/windows/MoMusic-windows-installer.exe'
+          Copy-Item -Force 'distribution/MoMusic-windows-installer.exe' 'distribution/windows/MoMusicInstaller.exe'
+          Compress-Archive -Path 'build/windows/x64/runner/Release/*' -DestinationPath 'distribution/windows/MoMusic_Portable.zip' -Force
+          Copy-Item -Force 'distribution/windows/MoMusic_Portable.zip' 'distribution/windows/MoMusic-windows-portable.zip'
       - uses: actions/upload-artifact@v4
         with:
           name: mo-music-windows-${{ needs.detect-version.outputs.version }}-${{ needs.detect-version.outputs.build_number }}
@@ -268,6 +268,7 @@ jobs:
           mkdir -p distribution/apple/ios/Payload
           cp -R build/ios/iphoneos/Runner.app distribution/apple/ios/Payload/
           (cd distribution/apple/ios && zip -qry ../MoMusic-ios-unsigned.ipa Payload)
+          cp distribution/apple/MoMusic-ios-unsigned.ipa distribution/apple/MoMusic.ipa
           rm -rf distribution/apple/ios
       - name: Build macOS application
         run: flutter build macos --release
@@ -277,6 +278,7 @@ jobs:
           app_path="$(find build/macos/Build/Products/Release -maxdepth 1 -name '*.app' -print -quit)"
           test -n "$app_path"
           ditto -c -k --sequesterRsrc --keepParent "$app_path" distribution/apple/MoMusic-macos.zip
+          cp distribution/apple/MoMusic-macos.zip distribution/apple/MoMusic_macOS_Portable.zip
       - uses: actions/upload-artifact@v4
         with:
           name: mo-music-apple-${{ needs.detect-version.outputs.version }}-${{ needs.detect-version.outputs.build_number }}
@@ -298,7 +300,7 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ needs.detect-version.outputs.release_tag }}
-          draft: true
+          draft: false
           files: release-assets/*
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

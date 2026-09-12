@@ -171,19 +171,24 @@ Future<bool> newVersionCheck(String currentVersion) async {
             .get("https://api.github.com/repos/if12is/Mo-Music/tags"))
         .data;
     final availableVersion = tags[0]['name'] as String;
-    List currentVersion_ = currentVersion.substring(1).split(".");
-    List availableVersion_ = availableVersion.substring(1).split(".");
-    if (int.parse(availableVersion_[0]) > int.parse(currentVersion_[0])) {
-      return true;
-    } else if (int.parse(availableVersion_[1]) >
-            int.parse(currentVersion_[1]) &&
-        int.parse(availableVersion_[0]) == int.parse(currentVersion_[0])) {
-      return true;
-    } else if (int.parse(availableVersion_[2]) >
-            int.parse(currentVersion_[2]) &&
-        int.parse(availableVersion_[0]) == int.parse(currentVersion_[0]) &&
-        int.parse(availableVersion_[1]) == int.parse(currentVersion_[1])) {
-      return true;
+    final current = currentVersion.replaceFirst(RegExp(r'^[vV]'), '');
+    final available = availableVersion.replaceFirst(RegExp(r'^[vV]'), '');
+    final currentParts = current.split('.');
+    final availableParts = available.split('.');
+    final length = currentParts.length > availableParts.length
+        ? currentParts.length
+        : availableParts.length;
+    for (var i = 0; i < length; i++) {
+      final latestPart = i < availableParts.length
+          ? int.tryParse(availableParts[i].replaceAll(RegExp(r'[^0-9]'), '')) ??
+              0
+          : 0;
+      final currentPart = i < currentParts.length
+          ? int.tryParse(currentParts[i].replaceAll(RegExp(r'[^0-9]'), '')) ??
+              0
+          : 0;
+      if (latestPart > currentPart) return true;
+      if (latestPart < currentPart) return false;
     }
     return false;
   } catch (e) {

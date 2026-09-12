@@ -75,9 +75,7 @@ class UpdateController extends GetxController {
           if (version == null) continue;
           return {
             'Version': version.toString().replaceFirst(RegExp(r'^[vV]'), ''),
-            'Descarga': map['Descarga'] ??
-                map['html_url'] ??
-                AppIdentity.latestDownloadBase,
+            'Descarga': map['Descarga'] ?? AppIdentity.latestDownloadBase,
             'Notas': map['Notas'] ?? map['body'] ?? '',
           };
         }
@@ -125,13 +123,13 @@ class UpdateController extends GetxController {
     if (baseUrl == null) return null;
 
     if (GetPlatform.isAndroid) {
-      return '${baseUrl}${AppIdentity.androidApkName()}';
+      return '$baseUrl${AppIdentity.androidApkName()}';
     }
     if (GetPlatform.isWindows) {
-      return '${baseUrl}${AppIdentity.windowsInstallerName()}';
+      return '$baseUrl${AppIdentity.windowsInstallerName()}';
     }
-    if (GetPlatform.isLinux) return '${baseUrl}${AppIdentity.linuxTarballName()}';
-    if (GetPlatform.isMacOS) return '${baseUrl}${AppIdentity.macosZipName()}';
+    if (GetPlatform.isLinux) return '$baseUrl${AppIdentity.linuxTarballName()}';
+    if (GetPlatform.isMacOS) return '$baseUrl${AppIdentity.macosZipName()}';
 
     return data['Descarga'] as String? ?? AppIdentity.latestReleaseUrl;
   }
@@ -157,16 +155,23 @@ class UpdateController extends GetxController {
   /// Devuelve el directorio base de GitHub Releases terminado en '/'.
   /// Ejemplo: https://github.com/if12is/Mo-Music/releases/latest/download/
   String? _extractDownloadBase(String? rawUrl) {
-    if (rawUrl == null) return null;
+    if (rawUrl == null || rawUrl.trim().isEmpty) {
+      return AppIdentity.latestDownloadBase;
+    }
     try {
       final uri = Uri.parse(rawUrl);
-      final segments = uri.pathSegments.toList();
+      final segments = uri.pathSegments.where((s) => s.isNotEmpty).toList();
       final idx = segments.indexOf('download');
-      if (idx < 0) return '$rawUrl/';
-      final base = uri.replace(pathSegments: segments.sublist(0, idx + 1));
-      return '${base.toString()}/';
+      if (idx >= 0) {
+        final base = uri.replace(pathSegments: segments.sublist(0, idx + 1));
+        return '${base.toString().replaceFirst(RegExp(r'/+$'), '')}/';
+      }
+      if (segments.contains('releases') || segments.contains('tags')) {
+        return AppIdentity.latestDownloadBase;
+      }
+      return rawUrl.endsWith('/') ? rawUrl : '$rawUrl/';
     } catch (_) {
-      return null;
+      return AppIdentity.latestDownloadBase;
     }
   }
 

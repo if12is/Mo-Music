@@ -17,7 +17,8 @@ class ModificationList extends StatelessWidget {
     if (mode == OperationMode.arrange) {
       return Expanded(
         child: ReorderableListView.builder(
-            padding: const EdgeInsetsDirectional.only(end: 5, bottom: 200),
+            padding: const EdgeInsetsDirectional.only(end: 5, bottom: 200)
+                .resolve(Directionality.of(context)),
             itemBuilder: (context, index) => ListTile(
                   key: Key('$index'),
                   onTap: () {},

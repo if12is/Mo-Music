@@ -9,10 +9,27 @@ plugins {
     id("dev.flutter.flutter-gradle-plugin")
 }
 
-val keystorePropertiesFile = rootProject.file("key.properties")
 val keystoreProperties = Properties()
-if (keystorePropertiesFile.exists()) {
-    keystoreProperties.load(FileInputStream(keystorePropertiesFile))
+val uploadKeyProperties = rootProject.file("key.properties")
+val githubSideloadProperties = file("momusic-github.properties")
+when {
+    uploadKeyProperties.exists() ->
+        keystoreProperties.load(FileInputStream(uploadKeyProperties))
+    githubSideloadProperties.exists() ->
+        keystoreProperties.load(FileInputStream(githubSideloadProperties))
+}
+
+fun resolveStoreFile(): File {
+    val configured = keystoreProperties["storeFile"]?.toString()
+    if (!configured.isNullOrBlank()) {
+        val fromAppDir = file(configured)
+        if (fromAppDir.exists()) return fromAppDir
+        val fromAndroidDir = rootProject.file(configured)
+        if (fromAndroidDir.exists()) return fromAndroidDir
+    }
+    val sideload = file("momusic-github.jks")
+    if (sideload.exists()) return sideload
+    return file("../../../jossestrada.keystore")
 }
 
 android {
@@ -44,13 +61,13 @@ android {
 
     signingConfigs {
         create("release") {
-            storeFile = keystoreProperties["storeFile"]?.let { file(it.toString()) } ?: file("../../../jossestrada.keystore")
+            storeFile = resolveStoreFile()
             storePassword = keystoreProperties["storePassword"] as String?
             keyAlias = keystoreProperties["keyAlias"] as String?
             keyPassword = keystoreProperties["keyPassword"] as String?
         }
         getByName("debug") {
-            storeFile = keystoreProperties["storeFile"]?.let { file(it.toString()) } ?: file("../../../jossestrada.keystore")
+            storeFile = resolveStoreFile()
             storePassword = keystoreProperties["storePassword"] as String?
             keyAlias = keystoreProperties["keyAlias"] as String?
             keyPassword = keystoreProperties["keyPassword"] as String?

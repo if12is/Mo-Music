@@ -7,6 +7,11 @@ on:
     tags:
       - 'v*'
   workflow_dispatch:
+    inputs:
+      release_tag:
+        description: GitHub release tag to attach artifacts to
+        required: false
+        default: v2.5.0
 
 jobs:
   build-windows:
@@ -33,6 +38,20 @@ jobs:
           channel: 'stable'
           cache: true
 
+      - name: Install Inno Setup
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+          $iscc = "C:\Program Files (x86)\Inno Setup 6\ISCC.exe"
+          if (-not (Test-Path $iscc)) {
+            choco install innosetup -y --no-progress
+          }
+          $arabic = "C:\Program Files (x86)\Inno Setup 6\Languages\Arabic.isl"
+          if (-not (Test-Path $arabic)) {
+            New-Item -ItemType Directory -Force -Path (Split-Path $arabic) | Out-Null
+            Invoke-WebRequest -Uri "https://raw.githubusercontent.com/jrsoftware/issrc/main/Files/Languages/Unofficial/Arabic.isl" -OutFile $arabic
+          }
+
       - name: Install dependencies
         run: flutter pub get
 
@@ -44,30 +63,39 @@ jobs:
         run: |
           $Version = (Select-String -Path "pubspec.yaml" -Pattern "version:\s*(.*)").Matches.Groups[1].Value.Split("+")[0].Trim()
           & "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" /DMyAppVersion="$Version" "distribution/compilador.iss"
+          Copy-Item -Force "distribution/MoMusic-windows-installer.exe" "distribution/MoMusicInstaller.exe"
 
       - name: Package Portable ZIP
         shell: pwsh
         run: |
-          Compress-Archive -Path "build/windows/x64/runner/Release/*" -DestinationPath "distribution/MoMusic-windows-portable.zip" -Force
+          Compress-Archive -Path "build/windows/x64/runner/Release/*" -DestinationPath "distribution/MoMusic_Portable.zip" -Force
+          Copy-Item -Force "distribution/MoMusic_Portable.zip" "distribution/MoMusic-windows-portable.zip"
 
       - name: Upload Installer EXE
         uses: actions/upload-artifact@v4
         with:
           name: windows-installer
-          path: distribution/MoMusic-windows-installer.exe
+          path: |
+            distribution/MoMusic-windows-installer.exe
+            distribution/MoMusicInstaller.exe
 
       - name: Upload Portable ZIP
         uses: actions/upload-artifact@v4
         with:
           name: windows-portable-zip
-          path: distribution/MoMusic-windows-portable.zip
+          path: |
+            distribution/MoMusic_Portable.zip
+            distribution/MoMusic-windows-portable.zip
 
       - name: Upload binaries to GitHub Release
-        if: startsWith(github.ref, 'refs/tags/') || github.event_name == 'release'
+        if: startsWith(github.ref, 'refs/tags/') || github.event_name == 'release' || github.event_name == 'workflow_dispatch'
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: ${{ github.event.inputs.release_tag || github.event.release.tag_name || github.ref_name }}
           files: |
             distribution/MoMusic-windows-installer.exe
+            distribution/MoMusicInstaller.exe
+            distribution/MoMusic_Portable.zip
             distribution/MoMusic-windows-portable.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

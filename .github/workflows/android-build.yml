@@ -7,6 +7,11 @@ on:
     tags:
       - 'v*'
   workflow_dispatch:
+    inputs:
+      release_tag:
+        description: GitHub release tag to attach artifacts to
+        required: false
+        default: v2.5.0
 
 jobs:
   build-android:
@@ -58,73 +63,62 @@ jobs:
           KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
           KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
-        run: |
-          set -euo pipefail
-          for secret_name in KEYSTORE_BASE64 KEYSTORE_PASSWORD KEY_ALIAS KEY_PASSWORD; do
-            if [ -z "${!secret_name:-}" ]; then
-              echo "::error::$secret_name is required. Temporary signing keys are forbidden."
-              exit 1
-            fi
-          done
-
-          printf '%s' "$KEYSTORE_BASE64" | tr -d '\r\n ' | base64 --decode > android/app/jossestrada.keystore
-          signing_sha256=$(keytool -list -v \
-            -keystore android/app/jossestrada.keystore \
-            -alias "$KEY_ALIAS" \
-            -storepass "$KEYSTORE_PASSWORD" \
-            | sed -n 's/.*SHA256: //p' | head -n 1 | tr -d ':' | tr '[:lower:]' '[:upper:]')
-          echo "Using repository signing keystore for Mo Music."
-
-          {
-            echo "storeFile=jossestrada.keystore"
-            echo "storePassword=$KEYSTORE_PASSWORD"
-            echo "keyAlias=$KEY_ALIAS"
-            echo "keyPassword=$KEY_PASSWORD"
-          } > android/key.properties
+        run: bash .github/scripts/configure-android-signing.sh
 
       - name: Build Split APKs
         run: |
           flutter build apk --release --split-per-abi
           mkdir -p build-artifacts
           cp build/app/outputs/flutter-apk/*-release.apk build-artifacts/
+          for apk in build/app/outputs/flutter-apk/app-*-release.apk; do
+            abi="$(basename "$apk" | sed -E 's/^app-(.+)-release\.apk$/\1/')"
+            cp "$apk" "build-artifacts/MoMusic-android-${abi}.apk"
+          done
 
       - name: Build Universal APK
         run: |
           flutter clean
           flutter build apk --release
-          cp build/app/outputs/flutter-apk/app-release.apk build-artifacts/
+          cp build/app/outputs/flutter-apk/app-release.apk build-artifacts/app-release.apk
+          cp build/app/outputs/flutter-apk/app-release.apk build-artifacts/MoMusic-android-universal.apk
 
       - name: Build App Bundle (AAB)
         run: |
           flutter clean
           flutter build appbundle --release
-          cp build/app/outputs/bundle/release/app-release.aab build-artifacts/
+          cp build/app/outputs/bundle/release/app-release.aab build-artifacts/app-release.aab
+          cp build/app/outputs/bundle/release/app-release.aab build-artifacts/MoMusic-android.aab
 
       - name: Upload Split APKs
         uses: actions/upload-artifact@v4
         with:
           name: android-split-apks
-          path: build-artifacts/*-release.apk
+          path: |
+            build-artifacts/app-*-release.apk
+            build-artifacts/MoMusic-android-arm*.apk
+            build-artifacts/MoMusic-android-x86_64.apk
 
       - name: Upload Universal APK
         uses: actions/upload-artifact@v4
         with:
           name: android-universal-apk
-          path: build-artifacts/app-release.apk
+          path: |
+            build-artifacts/app-release.apk
+            build-artifacts/MoMusic-android-universal.apk
 
       - name: Upload App Bundle
         uses: actions/upload-artifact@v4
         with:
           name: android-app-bundle
-          path: build-artifacts/app-release.aab
+          path: |
+            build-artifacts/app-release.aab
+            build-artifacts/MoMusic-android.aab
 
       - name: Upload binaries to GitHub Release
-        if: startsWith(github.ref, 'refs/tags/') || github.event_name == 'release'
+        if: startsWith(github.ref, 'refs/tags/') || github.event_name == 'release' || github.event_name == 'workflow_dispatch'
         uses: softprops/action-gh-release@v2
         with:
-          files: |
-            build-artifacts/*-release.apk
-            build-artifacts/app-release.apk
-            build-artifacts/app-release.aab
+          tag_name: ${{ github.event.inputs.release_tag || github.event.release.tag_name || github.ref_name }}
+          files: build-artifacts/*
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
