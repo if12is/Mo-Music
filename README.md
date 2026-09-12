@@ -64,7 +64,7 @@ Mo Music is a modern offline-first Flutter music player. Arabic is the default l
 
 ```bash
 # 1) ارفع رقم الإصدار في pubspec.yaml مثل 2.5.0+74
-# 2) ادفع التغييرات إلى dev
+# 2) ادفع التغييرات إلى master
 # 3) أنشئ tag وأصدر Release في GitHub
 git tag v2.5.0
 git push origin v2.5.0
