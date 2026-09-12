@@ -12,7 +12,9 @@ import '../music_download_provider.dart';
 import '../music_discovery_provider.dart';
 import '../music_source_cache_control.dart';
 import 'package:estrella_music/utils/helpers/helper.dart';
+import 'package:estrella_music/generated/l10n.dart';
 import 'package:estrella_music/services/music/device_music_session.dart';
+import 'package:estrella_music/services/music/device_stream_resolver.dart';
 import 'package:estrella_music/services/music/music_service.dart';
 import 'public_ip_resolver.dart';
 
@@ -690,9 +692,7 @@ class StreamingProvider
     }
 
     if (!await _hasRemoteBackend()) {
-      throw const MusicProviderException(
-        'Could not resolve an online playback URL for this track.',
-      );
+      throw MusicProviderException(_playbackResolveError());
     }
 
     var clientIp = playbackContext.clientIp;
@@ -789,9 +789,7 @@ class StreamingProvider
     }
 
     if (!await _hasRemoteBackend()) {
-      throw const MusicProviderException(
-        'Could not resolve an online download URL for this track.',
-      );
+      throw MusicProviderException(_downloadResolveError());
     }
 
     var clientIp = playbackContext.clientIp;
@@ -914,14 +912,33 @@ class StreamingProvider
     String? requestedFormat,
   }) async {
     try {
-      final response = await DeviceMusicSession.resolve().player(sourceId);
-      return _playbackSourceFromPlayerResponse(
-        response,
+      return await DeviceStreamResolver.resolve().resolveSource(
+        sourceId,
         requestedFormat: requestedFormat,
+        parsePlayerResponse: (response) => _playbackSourceFromPlayerResponse(
+          response,
+          requestedFormat: requestedFormat,
+        ),
       );
     } catch (error) {
       printINFO('[StreamingProvider] Device player failed: $error');
       return null;
+    }
+  }
+
+  String _playbackResolveError() {
+    try {
+      return S.current.couldNotResolvePlayback;
+    } catch (_) {
+      return 'Could not resolve an online playback URL for this track.';
+    }
+  }
+
+  String _downloadResolveError() {
+    try {
+      return S.current.couldNotResolveDownload;
+    } catch (_) {
+      return 'Could not resolve an online download URL for this track.';
     }
   }
 
@@ -970,6 +987,14 @@ class StreamingProvider
     final targetFmt = selected ?? fallback;
     final streamUrl = targetFmt?['url']?.toString();
     if (targetFmt == null || streamUrl == null || streamUrl.isEmpty) {
+      final hls = streamingData['hlsManifestUrl']?.toString();
+      if (hls != null && hls.isNotEmpty) {
+        return PlaybackSource(
+          type: PlaybackSourceType.authorizedStream,
+          uri: Uri.parse(hls),
+          mimeType: 'application/x-mpegURL',
+        );
+      }
       return null;
     }
     final uri = Uri.parse(streamUrl);

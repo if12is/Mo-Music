@@ -1445,5 +1445,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "welcome_title": MessageLookupByLibrary.simpleMessage(
       "Tu música, a tu manera",
     ),
+    "couldNotResolvePlayback": MessageLookupByLibrary.simpleMessage(
+      "No se pudo reproducir esta pista en línea.",
+    ),
+    "couldNotResolveDownload": MessageLookupByLibrary.simpleMessage(
+      "No se pudo descargar esta pista.",
+    ),
   };
 }

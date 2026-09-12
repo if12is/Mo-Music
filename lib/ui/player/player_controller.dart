@@ -1319,9 +1319,23 @@ class PlayerController extends GetxController
   /// Called from audio handler in case audio is not playable
   /// or returned streamInfo null due to network error
   void notifyPlayError(String message) {
+    final localized = _localizePlayError(message);
     ScaffoldMessenger.of(Get.context!).showSnackBar(snackbar(
-        Get.context!, message == "networkError" ? message.t : message,
-        size: SanckBarSize.MEDIUM));
+        Get.context!, localized,
+        size: localized.length > 28 ? SanckBarSize.BIG : SanckBarSize.MEDIUM,
+        duration: const Duration(seconds: 3)));
+  }
+
+  String _localizePlayError(String message) {
+    if (message == 'networkError') return message.t;
+    final lower = message.toLowerCase();
+    if (lower.contains('could not resolve') ||
+        lower.contains('playback url') ||
+        lower.contains('download url') ||
+        lower.contains('sign in to confirm')) {
+      return S.current.couldNotResolvePlayback;
+    }
+    return message;
   }
 
   @override
