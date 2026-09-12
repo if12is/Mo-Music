@@ -1,78 +1,88 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:url_launcher/url_launcher.dart';
 
-import 'package:estrella_music/ui/screens/Home/home_screen_controller.dart';
-import 'common_dialog_widget.dart';
 import 'package:estrella_music/app_identity.dart';
 import 'package:estrella_music/generated/l10n.dart';
+import 'package:estrella_music/ui/screens/Home/home_screen_controller.dart';
+import 'package:estrella_music/ui/screens/Update/update_screen.dart';
+import 'common_dialog_widget.dart';
 
 class NewVersionDialog extends StatelessWidget {
   const NewVersionDialog({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return CommonDialog(
-      child: Container(
-        height: 320,
-        padding: const EdgeInsets.only(top: 40, bottom: 20),
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(24, 32, 24, 20),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
           children: [
+            Container(
+              width: 64,
+              height: 64,
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                color: AppIdentity.brandBlue,
+              ),
+              child: const Icon(Icons.system_update_alt_rounded,
+                  color: Colors.white, size: 30),
+            ),
+            const SizedBox(height: 16),
             Text(
               S.current.newVersionAvailable,
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            Padding(
-                padding: const EdgeInsets.symmetric(vertical: 20),
-                child: SizedBox.square(
-                  dimension: 100,
-                  child: FittedBox(
-                    child: FloatingActionButton(
-                      onPressed: () {
-                        launchUrl(
-                          Uri.parse(
-                            AppIdentity.latestReleaseUrl,
-                          ),
-                          mode: LaunchMode.externalApplication,
-                        );
-                      },
-                      child: const Icon(
-                        Icons.download,
-                        size: 30,
-                      ),
-                    ),
-                  ),
-                )),
-            Center(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  GetX<HomeScreenController>(builder: (controller) {
-                    return Checkbox(
-                        value: controller.showVersionDialog.isFalse,
-                        onChanged: (val) {
-                          controller.onChangeVersionVisibility(val ?? false);
-                        },
-                        shape: const CircleBorder());
-                  }),
-                  Text(S.current.dontShowInfoAgain)
-                ],
+              textAlign: TextAlign.center,
+              style: theme.textTheme.titleMedium?.copyWith(
+                fontWeight: FontWeight.w800,
               ),
             ),
-            Container(
-                decoration: BoxDecoration(
-                    color: Theme.of(context).textTheme.titleLarge!.color,
-                    borderRadius: BorderRadius.circular(10)),
-                child: InkWell(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 15.0, vertical: 10),
-                    child: Text(S.current.dismiss,
-                        style: TextStyle(color: Theme.of(context).canvasColor)),
+            const SizedBox(height: 8),
+            Text(
+              S.current.updateInAppSubtitle,
+              textAlign: TextAlign.center,
+              style: theme.textTheme.bodyMedium?.copyWith(
+                color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
+                height: 1.45,
+              ),
+            ),
+            const SizedBox(height: 20),
+            SizedBox(
+              width: double.infinity,
+              height: 48,
+              child: FilledButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  UpdateScreen.open();
+                },
+                style: FilledButton.styleFrom(
+                  backgroundColor: AppIdentity.brandBlue,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
                   ),
-                  onTap: () => Navigator.of(context).pop(),
-                ))
+                ),
+                child: Text(S.current.updateDownloadNow),
+              ),
+            ),
+            const SizedBox(height: 8),
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: Text(S.current.updateLater),
+            ),
+            GetX<HomeScreenController>(builder: (controller) {
+              return CheckboxListTile(
+                value: controller.showVersionDialog.isFalse,
+                onChanged: (val) {
+                  controller.onChangeVersionVisibility(val ?? false);
+                },
+                controlAffinity: ListTileControlAffinity.leading,
+                contentPadding: EdgeInsets.zero,
+                title: Text(
+                  S.current.dontShowInfoAgain,
+                  style: theme.textTheme.bodySmall,
+                ),
+              );
+            }),
           ],
         ),
       ),

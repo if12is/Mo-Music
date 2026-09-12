@@ -49,6 +49,8 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m13(statusCode) =>
       "No se pudo buscar usuarios (${statusCode}).";
 
+  static String m14(from, to) => "${from} → ${to}";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "CreateNewPlaylist": MessageLookupByLibrary.simpleMessage(
@@ -1451,5 +1453,27 @@ class MessageLookup extends MessageLookupByLibrary {
     "couldNotResolveDownload": MessageLookupByLibrary.simpleMessage(
       "No se pudo descargar esta pista.",
     ),
+    "updateNewVersionTitle": MessageLookupByLibrary.simpleMessage(
+      "Nueva versión",
+    ),
+    "updateInAppSubtitle": MessageLookupByLibrary.simpleMessage(
+      "Descarga e instala dentro de la app. Sin navegador.",
+    ),
+    "updateDownloadNow": MessageLookupByLibrary.simpleMessage(
+      "Descargar actualización",
+    ),
+    "updateDownloading": MessageLookupByLibrary.simpleMessage("Descargando…"),
+    "updateInstallNow": MessageLookupByLibrary.simpleMessage("Instalar ahora"),
+    "updateInstalling": MessageLookupByLibrary.simpleMessage("Instalando…"),
+    "updateLater": MessageLookupByLibrary.simpleMessage("Más tarde"),
+    "updateWhatsNew": MessageLookupByLibrary.simpleMessage("Novedades"),
+    "updateOpenFile": MessageLookupByLibrary.simpleMessage("Abrir archivo"),
+    "updateInstallFailed": MessageLookupByLibrary.simpleMessage(
+      "No se pudo iniciar el instalador.",
+    ),
+    "updateBannerSubtitle": MessageLookupByLibrary.simpleMessage(
+      "Descarga la actualización dentro de la app",
+    ),
+    "updateFromTo": m14,
   };
 }

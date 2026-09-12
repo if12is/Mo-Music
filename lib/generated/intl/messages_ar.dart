@@ -57,6 +57,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m17(error) => "تعذّر تجهيز الملف: ${error}";
 
+  static String m18(from, to) => "من ${from} إلى ${to}";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "CreateNewPlaylist": MessageLookupByLibrary.simpleMessage(
@@ -1566,5 +1568,23 @@ class MessageLookup extends MessageLookupByLibrary {
     "couldNotResolveDownload": MessageLookupByLibrary.simpleMessage(
       "تعذر تنزيل هذا المقطع.",
     ),
+    "updateNewVersionTitle": MessageLookupByLibrary.simpleMessage("إصدار جديد"),
+    "updateInAppSubtitle": MessageLookupByLibrary.simpleMessage(
+      "نزّل وثبّت من داخل التطبيق. بدون متصفح.",
+    ),
+    "updateDownloadNow": MessageLookupByLibrary.simpleMessage("تنزيل التحديث"),
+    "updateDownloading": MessageLookupByLibrary.simpleMessage("جارٍ التنزيل…"),
+    "updateInstallNow": MessageLookupByLibrary.simpleMessage("تثبيت الآن"),
+    "updateInstalling": MessageLookupByLibrary.simpleMessage("جارٍ التثبيت…"),
+    "updateLater": MessageLookupByLibrary.simpleMessage("لاحقًا"),
+    "updateWhatsNew": MessageLookupByLibrary.simpleMessage("ما الجديد"),
+    "updateOpenFile": MessageLookupByLibrary.simpleMessage("فتح الملف"),
+    "updateInstallFailed": MessageLookupByLibrary.simpleMessage(
+      "تعذر بدء التثبيت.",
+    ),
+    "updateBannerSubtitle": MessageLookupByLibrary.simpleMessage(
+      "نزّل التحديث من داخل التطبيق",
+    ),
+    "updateFromTo": m18,
   };
 }

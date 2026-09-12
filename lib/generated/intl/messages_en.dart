@@ -57,6 +57,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m17(error) => "Could not prepare profile: ${error}";
 
+  static String m18(from, to) => "${from} → ${to}";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "CreateNewPlaylist": MessageLookupByLibrary.simpleMessage(
@@ -1551,5 +1553,27 @@ class MessageLookup extends MessageLookupByLibrary {
     "couldNotResolveDownload": MessageLookupByLibrary.simpleMessage(
       "Could not download this track.",
     ),
+    "updateNewVersionTitle": MessageLookupByLibrary.simpleMessage(
+      "New version",
+    ),
+    "updateInAppSubtitle": MessageLookupByLibrary.simpleMessage(
+      "Download and install inside the app. No browser needed.",
+    ),
+    "updateDownloadNow": MessageLookupByLibrary.simpleMessage(
+      "Download update",
+    ),
+    "updateDownloading": MessageLookupByLibrary.simpleMessage("Downloading…"),
+    "updateInstallNow": MessageLookupByLibrary.simpleMessage("Install now"),
+    "updateInstalling": MessageLookupByLibrary.simpleMessage("Installing…"),
+    "updateLater": MessageLookupByLibrary.simpleMessage("Later"),
+    "updateWhatsNew": MessageLookupByLibrary.simpleMessage("What's new"),
+    "updateOpenFile": MessageLookupByLibrary.simpleMessage("Open file"),
+    "updateInstallFailed": MessageLookupByLibrary.simpleMessage(
+      "Could not start the installer.",
+    ),
+    "updateBannerSubtitle": MessageLookupByLibrary.simpleMessage(
+      "Download the update inside the app",
+    ),
+    "updateFromTo": m18,
   };
 }
