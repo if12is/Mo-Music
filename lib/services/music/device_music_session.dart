@@ -305,10 +305,6 @@ class DeviceMusicSession extends GetxService {
             _asMap(result['playabilityStatus'])['status']?.toString();
         sawLoginRequired = sawLoginRequired || status == 'LOGIN_REQUIRED';
         printINFO('Device player ${client.name} status=$status for $id');
-        if (status == 'LOGIN_REQUIRED') {
-          // Later clients on the same IP will almost always fail the same way.
-          break;
-        }
       } catch (error) {
         printINFO('Device player ${client.name} failed: $error');
       }

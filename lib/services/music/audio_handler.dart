@@ -199,10 +199,10 @@ class MyAudioHandler extends BaseAudioHandler with GetxServiceMixin {
           }
         } catch (_) {}
         final attempts = _playbackRecoveryAttempts[failedSong.id] ?? 0;
-        if (attempts >= 2) {
+        if (attempts >= 1) {
           isSongLoading = false;
           Get.find<PlayerController>()
-              .notifyPlayError(S.current.operationFailed);
+              .notifyPlayError(S.current.couldNotResolvePlayback);
           playbackState.add(playbackState.value.copyWith(
             processingState: AudioProcessingState.error,
             errorMessage: e.toString(),
@@ -211,17 +211,18 @@ class MyAudioHandler extends BaseAudioHandler with GetxServiceMixin {
         }
         _playbackRecoveryAttempts[failedSong.id] = attempts + 1;
         printINFO(
-            "Attempting to recover playback for song index $currentIndex at position $curPos");
+            "Retrying stream URL for song index $currentIndex at position $curPos");
         try {
           await customAction("playByIndex", {
             'index': currentIndex,
             'newUrl': true,
-            'forceCatalogRecovery': attempts > 0,
           });
-          await _player.seek(curPos);
-          playbackState.add(playbackState.value.copyWith(
-            updatePosition: curPos,
-          ));
+          if (curPos > Duration.zero) {
+            await _player.seek(curPos);
+            playbackState.add(playbackState.value.copyWith(
+              updatePosition: curPos,
+            ));
+          }
           await _player.play();
         } catch (recoveryErr) {
           printERROR("Auto recovery failed: $recoveryErr");
@@ -543,16 +544,8 @@ class MyAudioHandler extends BaseAudioHandler with GetxServiceMixin {
               processingState: AudioProcessingState.error,
               errorCode: 404,
               errorMessage: streamInfo.statusMSG));
-          // Auto-skip to the next song so the user isn't stuck on an
-          // unavailable track.
-          final nextIndex = _getNextSongIndex();
-          if (nextIndex != songIndex && queue.value.length > 1) {
-            printINFO(
-              'Auto-skipping unavailable song ${currentSong.id} to next',
-            );
-            await Future.delayed(const Duration(milliseconds: 500));
-            await customAction('playByIndex', {'index': nextIndex});
-          }
+          // Do not walk the queue. A failed stream URL used to reload, skip
+          // to the next missing track, and repeat for every song.
           return;
         }
         mediaItem.add(currentSong);
@@ -1030,6 +1023,13 @@ class MyAudioHandler extends BaseAudioHandler with GetxServiceMixin {
         if (streamInfo.playable) {
           return _ResolvedSongPlayback(song: song, streamInfo: streamInfo);
         }
+        if (_isStreamResolveFailure(streamInfo.statusMSG)) {
+          printINFO(
+            'Song ${song.id} has no playable stream '
+            '(${streamInfo.statusMSG}); not searching for a replacement',
+          );
+          return _ResolvedSongPlayback(song: song, streamInfo: streamInfo);
+        }
         printINFO(
           'Song ${song.id} is not playable (${streamInfo.statusMSG}); '
           'searching for a replacement with a new ID',
@@ -1097,6 +1097,19 @@ class MyAudioHandler extends BaseAudioHandler with GetxServiceMixin {
         ),
       );
     }
+  }
+
+  bool _isStreamResolveFailure(String message) {
+    final lower = message.toLowerCase();
+    return lower.contains('could not resolve') ||
+        lower.contains('couldnotresolve') ||
+        lower.contains('playback url') ||
+        lower.contains('download url') ||
+        lower.contains('musicproviderexception') ||
+        lower.contains('networkerror') ||
+        lower.contains('sign in to confirm') ||
+        lower.contains('login_required') ||
+        lower.contains('تعذر تشغيل');
   }
 
   Future<MediaItem?> _recoverSong(MediaItem song) async {
