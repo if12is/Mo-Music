@@ -2686,5 +2686,13 @@
   "deviceOnlineProfileName": "Online music",
   "@deviceOnlineProfileName": {
     "description": "deviceOnlineProfileName"
+  },
+  "couldNotResolvePlayback": "Could not play this track online.",
+  "@couldNotResolvePlayback": {
+    "description": "couldNotResolvePlayback"
+  },
+  "couldNotResolveDownload": "Could not download this track.",
+  "@couldNotResolveDownload": {
+    "description": "couldNotResolveDownload"
   }
 }

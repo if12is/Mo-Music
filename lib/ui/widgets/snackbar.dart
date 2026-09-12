@@ -1,6 +1,7 @@
 ﻿// ignore_for_file: constant_identifier_names
 
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 enum SanckBarSize { BIG, MEDIUM, SMALL }
 
@@ -19,6 +20,10 @@ SnackBar snackbar(BuildContext context, String text,
     content: Center(
       child: Text(
         text,
+        textAlign: TextAlign.center,
+        textDirection: Bidi.detectRtlDirectionality(text)
+            ? TextDirection.rtl
+            : TextDirection.ltr,
         style: TextStyle(
             color: Theme.of(context).brightness == Brightness.dark
                 ? Colors.white

@@ -49,6 +49,7 @@ import 'ui/screens/Library/library_controller.dart';
 import 'package:estrella_music/utils/desktop/system_tray.dart';
 import 'package:estrella_music/app_identity.dart';
 import 'package:estrella_music/services/music/device_music_session.dart';
+import 'package:estrella_music/services/music/device_stream_resolver.dart';
 import 'package:estrella_music/utils/helpers/update_check_flag_file.dart';
 
 import 'package:workmanager/workmanager.dart';
@@ -64,6 +65,7 @@ Future<void> main() async {
   // Provider restoration happens only after the global Joss Red session has
   // been restored, otherwise a saved eMusic profile would fail on every boot.
   Get.put(DeviceMusicSession(), permanent: true);
+  Get.put(DeviceStreamResolver(), permanent: true);
   if (AppIdentity.requireRemoteAccount) {
     await authService.restoreSession();
   } else {
