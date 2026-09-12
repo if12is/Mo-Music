@@ -62,7 +62,9 @@ Future<void> main() async {
   final authService = Get.put(AuthService(), permanent: true);
   // Provider restoration happens only after the global Joss Red session has
   // been restored, otherwise a saved eMusic profile would fail on every boot.
-  await authService.restoreSession();
+  if (AppIdentity.requireRemoteAccount) {
+    await authService.restoreSession();
+  }
   final providerManager = MusicProviderManager(
     localProviderId: LocalMusicProvider.providerId,
   );

@@ -7,6 +7,9 @@ class AppIdentity {
   static const String appNameAr = 'مو ميوزك';
   static const String shortName = 'Mo';
   static const String defaultLanguageCode = 'ar';
+  /// Login/register against a remote identity server is optional until
+  /// a custom Mo Music backend is configured.
+  static const bool requireRemoteAccount = false;
   static const String githubOwner = 'if12is';
   static const String githubRepo = 'Mo-Music';
   static const String githubSlug = '$githubOwner/$githubRepo';
@@ -24,7 +27,7 @@ class AppIdentity {
   static const String artifactPrefix = 'MoMusic';
   static const String androidApplicationId = 'com.if12is.momusic';
   static const String urlScheme = 'momusic';
-  static const String userAgent = 'MoMusic/2.5.0';
+  static const String userAgent = 'MoMusic/2.5.1';
   static const String homepage = githubUrl;
   static const String developerName = 'Ahmed Elsayed';
 

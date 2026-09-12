@@ -2480,5 +2480,179 @@
   "unknownDate": "Unknown",
   "@unknownDate": {
     "description": "unknownDate"
+  },
+  "localFirstPreparing": "Preparing local mode...",
+  "@localFirstPreparing": {
+    "description": "localFirstPreparing"
+  },
+  "bootstrapSyncingAccount": "Syncing your account",
+  "@bootstrapSyncingAccount": {
+    "description": "bootstrapSyncingAccount"
+  },
+  "bootstrapSyncingAccountDetails": "We are getting your account ready so you can enter with all your data from the first moment.",
+  "@bootstrapSyncingAccountDetails": {
+    "description": "bootstrapSyncingAccountDetails"
+  },
+  "welcomeDefaultLocalProfileName": "Local Music",
+  "@welcomeDefaultLocalProfileName": {
+    "description": "welcomeDefaultLocalProfileName"
+  },
+  "welcomeSetupPreparingTitle": "Preparing your experience",
+  "@welcomeSetupPreparingTitle": {
+    "description": "welcomeSetupPreparingTitle"
+  },
+  "welcomeSetupPreparingMessage": "We are preparing your experience...",
+  "@welcomeSetupPreparingMessage": {
+    "description": "welcomeSetupPreparingMessage"
+  },
+  "welcomeSetupConfiguringProfile": "Configuring music profile...",
+  "@welcomeSetupConfiguringProfile": {
+    "description": "welcomeSetupConfiguringProfile"
+  },
+  "welcomeSetupSyncingCloud": "Syncing with your eMusic cloud...",
+  "@welcomeSetupSyncingCloud": {
+    "description": "welcomeSetupSyncingCloud"
+  },
+  "welcomeSetupLoadingLocal": "Loading local library...",
+  "@welcomeSetupLoadingLocal": {
+    "description": "welcomeSetupLoadingLocal"
+  },
+  "welcomeSetupAlmostReady": "Almost ready...",
+  "@welcomeSetupAlmostReady": {
+    "description": "welcomeSetupAlmostReady"
+  },
+  "welcomeSetupPleaseWait": "This may take a few seconds. Please wait.",
+  "@welcomeSetupPleaseWait": {
+    "description": "welcomeSetupPleaseWait"
+  },
+  "welcomeProfileNameLabel": "Profile name",
+  "@welcomeProfileNameLabel": {
+    "description": "welcomeProfileNameLabel"
+  },
+  "welcomeCustomFolderOptional": "Custom folder (optional)",
+  "@welcomeCustomFolderOptional": {
+    "description": "welcomeCustomFolderOptional"
+  },
+  "welcomeCustomFolderSelected": "Folder: {path}",
+  "@welcomeCustomFolderSelected": {
+    "description": "welcomeCustomFolderSelected",
+    "placeholders": {
+      "path": {
+        "type": "String"
+      }
+    }
+  },
+  "welcomeServerUrlLabel": "Server URL (optional / custom)",
+  "@welcomeServerUrlLabel": {
+    "description": "welcomeServerUrlLabel"
+  },
+  "welcomeServerUrlHint": "https://your-server-or-recipe.com",
+  "@welcomeServerUrlHint": {
+    "description": "welcomeServerUrlHint"
+  },
+  "welcomeScanQrTooltip": "Scan server QR code",
+  "@welcomeScanQrTooltip": {
+    "description": "welcomeScanQrTooltip"
+  },
+  "welcomeStartListening": "Start listening",
+  "@welcomeStartListening": {
+    "description": "welcomeStartListening"
+  },
+  "welcomeSetupErrorTitle": "Setup",
+  "@welcomeSetupErrorTitle": {
+    "description": "welcomeSetupErrorTitle"
+  },
+  "welcomeSetupErrorMessage": "Could not prepare profile: {error}",
+  "@welcomeSetupErrorMessage": {
+    "description": "welcomeSetupErrorMessage",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "settingsDeleteAccount": "Delete account",
+  "@settingsDeleteAccount": {
+    "description": "settingsDeleteAccount"
+  },
+  "settingsDeleteAccountBody": "Permanent deletion of your account and personal data is managed securely through your profile portal.\n\nDo you want to open your profile portal to request deletion?",
+  "@settingsDeleteAccountBody": {
+    "description": "settingsDeleteAccountBody"
+  },
+  "settingsContinueToPortal": "Continue to portal",
+  "@settingsContinueToPortal": {
+    "description": "settingsContinueToPortal"
+  },
+  "authHintPassword": "Your password",
+  "@authHintPassword": {
+    "description": "authHintPassword"
+  },
+  "authHintPasswordCreate": "Create a secure password",
+  "@authHintPasswordCreate": {
+    "description": "authHintPasswordCreate"
+  },
+  "authHintPasswordConfirm": "Repeat your password",
+  "@authHintPasswordConfirm": {
+    "description": "authHintPasswordConfirm"
+  },
+  "authHintUsername": "your_username",
+  "@authHintUsername": {
+    "description": "authHintUsername"
+  },
+  "authHintFirstName": "Your first name",
+  "@authHintFirstName": {
+    "description": "authHintFirstName"
+  },
+  "authHintLastName": "Your last name",
+  "@authHintLastName": {
+    "description": "authHintLastName"
+  },
+  "authValidationEmailRequired": "Enter your email.",
+  "@authValidationEmailRequired": {
+    "description": "authValidationEmailRequired"
+  },
+  "authValidationEmailNoSpaces": "Email must not contain spaces.",
+  "@authValidationEmailNoSpaces": {
+    "description": "authValidationEmailNoSpaces"
+  },
+  "authValidationPasswordRequired": "Enter your password.",
+  "@authValidationPasswordRequired": {
+    "description": "authValidationPasswordRequired"
+  },
+  "authValidationUsernameMinLength": "Username must be at least 3 characters.",
+  "@authValidationUsernameMinLength": {
+    "description": "authValidationUsernameMinLength"
+  },
+  "authValidationUsernameNoSpaces": "Username must not contain spaces.",
+  "@authValidationUsernameNoSpaces": {
+    "description": "authValidationUsernameNoSpaces"
+  },
+  "authValidationUsernameNoDots": "Username must not contain dots.",
+  "@authValidationUsernameNoDots": {
+    "description": "authValidationUsernameNoDots"
+  },
+  "authValidationUsernameChars": "Use only letters, numbers, or underscore.",
+  "@authValidationUsernameChars": {
+    "description": "authValidationUsernameChars"
+  },
+  "authValidationFirstNameMinLength": "Enter your full first name.",
+  "@authValidationFirstNameMinLength": {
+    "description": "authValidationFirstNameMinLength"
+  },
+  "authValidationLastNameMinLength": "Enter your last name.",
+  "@authValidationLastNameMinLength": {
+    "description": "authValidationLastNameMinLength"
+  },
+  "authValidationPasswordMinLength": "Must be at least 8 characters.",
+  "@authValidationPasswordMinLength": {
+    "description": "authValidationPasswordMinLength"
+  },
+  "authValidationPasswordComplexity": "Include uppercase, lowercase, number, and symbol.",
+  "@authValidationPasswordComplexity": {
+    "description": "authValidationPasswordComplexity"
+  },
+  "authValidationPasswordMismatch": "Passwords do not match.",
+  "@authValidationPasswordMismatch": {
+    "description": "authValidationPasswordMismatch"
   }
 }

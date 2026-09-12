@@ -53,6 +53,10 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m15(date) => "Date: ${date}";
 
+  static String m16(path) => "Folder: ${path}";
+
+  static String m17(error) => "Could not prepare profile: ${error}";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "CreateNewPlaylist": MessageLookupByLibrary.simpleMessage(
@@ -1407,6 +1411,117 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "welcomeStreamingModeTitle": MessageLookupByLibrary.simpleMessage(
       "External streaming playback",
+    ),
+    "localFirstPreparing": MessageLookupByLibrary.simpleMessage(
+      "Preparing local mode...",
+    ),
+    "bootstrapSyncingAccount": MessageLookupByLibrary.simpleMessage(
+      "Syncing your account",
+    ),
+    "bootstrapSyncingAccountDetails": MessageLookupByLibrary.simpleMessage(
+      "We are getting your account ready so you can enter with all your data from the first moment.",
+    ),
+    "welcomeDefaultLocalProfileName": MessageLookupByLibrary.simpleMessage(
+      "Local Music",
+    ),
+    "welcomeSetupPreparingTitle": MessageLookupByLibrary.simpleMessage(
+      "Preparing your experience",
+    ),
+    "welcomeSetupPreparingMessage": MessageLookupByLibrary.simpleMessage(
+      "We are preparing your experience...",
+    ),
+    "welcomeSetupConfiguringProfile": MessageLookupByLibrary.simpleMessage(
+      "Configuring music profile...",
+    ),
+    "welcomeSetupSyncingCloud": MessageLookupByLibrary.simpleMessage(
+      "Syncing with your eMusic cloud...",
+    ),
+    "welcomeSetupLoadingLocal": MessageLookupByLibrary.simpleMessage(
+      "Loading local library...",
+    ),
+    "welcomeSetupAlmostReady": MessageLookupByLibrary.simpleMessage(
+      "Almost ready...",
+    ),
+    "welcomeSetupPleaseWait": MessageLookupByLibrary.simpleMessage(
+      "This may take a few seconds. Please wait.",
+    ),
+    "welcomeProfileNameLabel": MessageLookupByLibrary.simpleMessage(
+      "Profile name",
+    ),
+    "welcomeCustomFolderOptional": MessageLookupByLibrary.simpleMessage(
+      "Custom folder (optional)",
+    ),
+    "welcomeCustomFolderSelected": m16,
+    "welcomeServerUrlLabel": MessageLookupByLibrary.simpleMessage(
+      "Server URL (optional / custom)",
+    ),
+    "welcomeServerUrlHint": MessageLookupByLibrary.simpleMessage(
+      "https://your-server-or-recipe.com",
+    ),
+    "welcomeScanQrTooltip": MessageLookupByLibrary.simpleMessage(
+      "Scan server QR code",
+    ),
+    "welcomeStartListening": MessageLookupByLibrary.simpleMessage(
+      "Start listening",
+    ),
+    "welcomeSetupErrorTitle": MessageLookupByLibrary.simpleMessage("Setup"),
+    "welcomeSetupErrorMessage": m17,
+    "settingsDeleteAccount": MessageLookupByLibrary.simpleMessage(
+      "Delete account",
+    ),
+    "settingsDeleteAccountBody": MessageLookupByLibrary.simpleMessage(
+      "Permanent deletion of your account and personal data is managed securely through your profile portal.\n\nDo you want to open your profile portal to request deletion?",
+    ),
+    "settingsContinueToPortal": MessageLookupByLibrary.simpleMessage(
+      "Continue to portal",
+    ),
+    "authHintPassword": MessageLookupByLibrary.simpleMessage("Your password"),
+    "authHintPasswordCreate": MessageLookupByLibrary.simpleMessage(
+      "Create a secure password",
+    ),
+    "authHintPasswordConfirm": MessageLookupByLibrary.simpleMessage(
+      "Repeat your password",
+    ),
+    "authHintUsername": MessageLookupByLibrary.simpleMessage("your_username"),
+    "authHintFirstName": MessageLookupByLibrary.simpleMessage(
+      "Your first name",
+    ),
+    "authHintLastName": MessageLookupByLibrary.simpleMessage("Your last name"),
+    "authValidationEmailRequired": MessageLookupByLibrary.simpleMessage(
+      "Enter your email.",
+    ),
+    "authValidationEmailNoSpaces": MessageLookupByLibrary.simpleMessage(
+      "Email must not contain spaces.",
+    ),
+    "authValidationPasswordRequired": MessageLookupByLibrary.simpleMessage(
+      "Enter your password.",
+    ),
+    "authValidationUsernameMinLength": MessageLookupByLibrary.simpleMessage(
+      "Username must be at least 3 characters.",
+    ),
+    "authValidationUsernameNoSpaces": MessageLookupByLibrary.simpleMessage(
+      "Username must not contain spaces.",
+    ),
+    "authValidationUsernameNoDots": MessageLookupByLibrary.simpleMessage(
+      "Username must not contain dots.",
+    ),
+    "authValidationUsernameChars": MessageLookupByLibrary.simpleMessage(
+      "Use only letters, numbers, or underscore.",
+    ),
+    "authValidationFirstNameMinLength": MessageLookupByLibrary.simpleMessage(
+      "Enter your full first name.",
+    ),
+    "authValidationLastNameMinLength": MessageLookupByLibrary.simpleMessage(
+      "Enter your last name.",
+    ),
+    "authValidationPasswordMinLength": MessageLookupByLibrary.simpleMessage(
+      "Must be at least 8 characters.",
+    ),
+    "authValidationPasswordComplexity": MessageLookupByLibrary.simpleMessage(
+      "Include uppercase, lowercase, number, and symbol.",
+    ),
+    "authValidationPasswordMismatch": MessageLookupByLibrary.simpleMessage(
+      "Passwords do not match.",
     ),
   };
 }

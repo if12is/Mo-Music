@@ -482,9 +482,9 @@ class _WelcomeCard extends StatelessWidget {
                 color: const Color(0xFFFF8C42).withValues(alpha: 0.35),
               ),
             ),
-            child: const Text(
-              'No se detectó configuración del backend. Revisa el archivo .env antes de iniciar sesión.',
-              style: TextStyle(color: Colors.white, height: 1.4),
+            child: Text(
+              S.of(context).auth_brand_not_configured,
+              style: const TextStyle(color: Colors.white, height: 1.4),
             ),
           ),
         const SizedBox(height: 30),
@@ -584,13 +584,13 @@ class _LoginCard extends StatelessWidget {
             validator: (value) {
               final text = value?.trim() ?? '';
               if (text.isEmpty) {
-                return 'Ingresa tu correo.';
+                return S.of(context).authValidationEmailRequired;
               }
               if (text.contains(' ')) {
-                return 'El correo no debe llevar espacios.';
+                return S.of(context).authValidationEmailNoSpaces;
               }
               if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(text)) {
-                return 'Ingresa un correo válido.';
+                return S.of(context).auth_error_invalid_email;
               }
               return null;
             },
@@ -599,12 +599,12 @@ class _LoginCard extends StatelessWidget {
           _AuthTextField(
             controller: passwordController,
             label: S.of(context).password_text,
-            hint: 'Tu contraseña',
+            hint: S.of(context).authHintPassword,
             icon: Icons.lock_outline_rounded,
             obscureText: true,
             validator: (value) {
               if ((value ?? '').isEmpty) {
-                return 'Ingresa tu contraseña.';
+                return S.of(context).authValidationPasswordRequired;
               }
               return null;
             },
@@ -754,21 +754,21 @@ class _RegisterCard extends StatelessWidget {
           _AuthTextField(
             controller: usernameController,
             label: S.of(context).username,
-            hint: 'tu_usuario',
+            hint: S.of(context).authHintUsername,
             icon: Icons.person_outline,
             validator: (value) {
               final text = value?.trim() ?? '';
               if (text.length < 3) {
-                return 'El usuario debe tener al menos 3 caracteres.';
+                return S.of(context).authValidationUsernameMinLength;
               }
               if (text.contains(' ')) {
-                return 'El usuario no debe llevar espacios.';
+                return S.of(context).authValidationUsernameNoSpaces;
               }
               if (text.contains('.')) {
-                return 'El usuario no debe llevar puntos.';
+                return S.of(context).authValidationUsernameNoDots;
               }
               if (!RegExp(r'^[a-zA-Z0-9_]+$').hasMatch(text)) {
-                return 'Usa solo letras, números o guion bajo.';
+                return S.of(context).authValidationUsernameChars;
               }
               return null;
             },
@@ -777,11 +777,13 @@ class _RegisterCard extends StatelessWidget {
           _AuthTextField(
             controller: firstNameController,
             label: S.of(context).auth_first_name,
-            hint: 'Tu nombre',
+            hint: S.of(context).authHintFirstName,
             icon: Icons.badge_outlined,
             validator: (value) {
               final text = value?.trim() ?? '';
-              if (text.length < 3) return 'Ingresa tu nombre completo.';
+              if (text.length < 3) {
+                return S.of(context).authValidationFirstNameMinLength;
+              }
               return null;
             },
           ),
@@ -789,11 +791,13 @@ class _RegisterCard extends StatelessWidget {
           _AuthTextField(
             controller: lastNameController,
             label: S.of(context).auth_last_name,
-            hint: 'Tus apellidos',
+            hint: S.of(context).authHintLastName,
             icon: Icons.badge_rounded,
             validator: (value) {
               final text = value?.trim() ?? '';
-              if (text.length < 3) return 'Ingresa tus apellidos.';
+              if (text.length < 3) {
+                return S.of(context).authValidationLastNameMinLength;
+              }
               return null;
             },
           ),
@@ -807,7 +811,7 @@ class _RegisterCard extends StatelessWidget {
             validator: (value) {
               final text = value?.trim() ?? '';
               if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(text)) {
-                return 'Ingresa un correo válido.';
+                return S.of(context).auth_error_invalid_email;
               }
               return null;
             },
@@ -816,19 +820,21 @@ class _RegisterCard extends StatelessWidget {
           _AuthTextField(
             controller: passwordController,
             label: S.of(context).password_text,
-            hint: 'Crea una contraseña segura',
+            hint: S.of(context).authHintPasswordCreate,
             icon: Icons.lock_outline_rounded,
             obscureText: true,
             validator: (value) {
               final text = value ?? '';
-              if (text.length < 8) return 'Debe tener al menos 8 caracteres.';
+              if (text.length < 8) {
+                return S.of(context).authValidationPasswordMinLength;
+              }
               final hasUppercase = text.contains(RegExp(r'[A-Z]'));
               final hasLowercase = text.contains(RegExp(r'[a-z]'));
               final hasNumber = text.contains(RegExp(r'[0-9]'));
               final hasSymbol =
                   text.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'));
               if (!hasUppercase || !hasLowercase || !hasNumber || !hasSymbol) {
-                return 'Incluye mayúscula, minúscula, número y símbolo.';
+                return S.of(context).authValidationPasswordComplexity;
               }
               return null;
             },
@@ -837,12 +843,12 @@ class _RegisterCard extends StatelessWidget {
           _AuthTextField(
             controller: confirmController,
             label: S.of(context).auth_confirm_password,
-            hint: 'Repite tu contraseña',
+            hint: S.of(context).authHintPasswordConfirm,
             icon: Icons.lock_reset_rounded,
             obscureText: true,
             validator: (value) {
               if ((value ?? '') != passwordController.text) {
-                return 'Las contraseñas no coinciden.';
+                return S.of(context).authValidationPasswordMismatch;
               }
               return null;
             },

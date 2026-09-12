@@ -2478,5 +2478,179 @@
   "unknownDate": "غير معروف",
   "@unknownDate": {
     "description": "unknownDate"
+  },
+  "localFirstPreparing": "جارٍ تجهيز الوضع المحلي...",
+  "@localFirstPreparing": {
+    "description": "localFirstPreparing"
+  },
+  "bootstrapSyncingAccount": "جارٍ مزامنة حسابك",
+  "@bootstrapSyncingAccount": {
+    "description": "bootstrapSyncingAccount"
+  },
+  "bootstrapSyncingAccountDetails": "نجهّز حسابك لتدخل بكل بياناتك منذ اللحظة الأولى.",
+  "@bootstrapSyncingAccountDetails": {
+    "description": "bootstrapSyncingAccountDetails"
+  },
+  "welcomeDefaultLocalProfileName": "موسيقى محلية",
+  "@welcomeDefaultLocalProfileName": {
+    "description": "welcomeDefaultLocalProfileName"
+  },
+  "welcomeSetupPreparingTitle": "نجهّز تجربتك",
+  "@welcomeSetupPreparingTitle": {
+    "description": "welcomeSetupPreparingTitle"
+  },
+  "welcomeSetupPreparingMessage": "جارٍ تجهيز تجربتك...",
+  "@welcomeSetupPreparingMessage": {
+    "description": "welcomeSetupPreparingMessage"
+  },
+  "welcomeSetupConfiguringProfile": "جارٍ إعداد الملف الموسيقي...",
+  "@welcomeSetupConfiguringProfile": {
+    "description": "welcomeSetupConfiguringProfile"
+  },
+  "welcomeSetupSyncingCloud": "جارٍ المزامنة مع سحابة eMusic...",
+  "@welcomeSetupSyncingCloud": {
+    "description": "welcomeSetupSyncingCloud"
+  },
+  "welcomeSetupLoadingLocal": "جارٍ تحميل المكتبة المحلية...",
+  "@welcomeSetupLoadingLocal": {
+    "description": "welcomeSetupLoadingLocal"
+  },
+  "welcomeSetupAlmostReady": "على وشك الانتهاء...",
+  "@welcomeSetupAlmostReady": {
+    "description": "welcomeSetupAlmostReady"
+  },
+  "welcomeSetupPleaseWait": "قد يستغرق ذلك بضع ثوانٍ. يرجى الانتظار.",
+  "@welcomeSetupPleaseWait": {
+    "description": "welcomeSetupPleaseWait"
+  },
+  "welcomeProfileNameLabel": "اسم الملف",
+  "@welcomeProfileNameLabel": {
+    "description": "welcomeProfileNameLabel"
+  },
+  "welcomeCustomFolderOptional": "مجلد مخصص (اختياري)",
+  "@welcomeCustomFolderOptional": {
+    "description": "welcomeCustomFolderOptional"
+  },
+  "welcomeCustomFolderSelected": "المجلد: {path}",
+  "@welcomeCustomFolderSelected": {
+    "description": "welcomeCustomFolderSelected",
+    "placeholders": {
+      "path": {
+        "type": "String"
+      }
+    }
+  },
+  "welcomeServerUrlLabel": "رابط الخادم (اختياري / مخصص)",
+  "@welcomeServerUrlLabel": {
+    "description": "welcomeServerUrlLabel"
+  },
+  "welcomeServerUrlHint": "https://your-server-or-recipe.com",
+  "@welcomeServerUrlHint": {
+    "description": "welcomeServerUrlHint"
+  },
+  "welcomeScanQrTooltip": "مسح رمز QR للخادم",
+  "@welcomeScanQrTooltip": {
+    "description": "welcomeScanQrTooltip"
+  },
+  "welcomeStartListening": "ابدأ الاستماع",
+  "@welcomeStartListening": {
+    "description": "welcomeStartListening"
+  },
+  "welcomeSetupErrorTitle": "الإعداد",
+  "@welcomeSetupErrorTitle": {
+    "description": "welcomeSetupErrorTitle"
+  },
+  "welcomeSetupErrorMessage": "تعذّر تجهيز الملف: {error}",
+  "@welcomeSetupErrorMessage": {
+    "description": "welcomeSetupErrorMessage",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "settingsDeleteAccount": "حذف الحساب",
+  "@settingsDeleteAccount": {
+    "description": "settingsDeleteAccount"
+  },
+  "settingsDeleteAccountBody": "يُدار حذف حسابك وبياناتك الشخصية نهائيًا عبر بوابة ملفك بشكل آمن.\n\nهل تريد فتح بوابة ملفك لطلب الحذف؟",
+  "@settingsDeleteAccountBody": {
+    "description": "settingsDeleteAccountBody"
+  },
+  "settingsContinueToPortal": "المتابعة إلى البوابة",
+  "@settingsContinueToPortal": {
+    "description": "settingsContinueToPortal"
+  },
+  "authHintPassword": "كلمة المرور",
+  "@authHintPassword": {
+    "description": "authHintPassword"
+  },
+  "authHintPasswordCreate": "أنشئ كلمة مرور آمنة",
+  "@authHintPasswordCreate": {
+    "description": "authHintPasswordCreate"
+  },
+  "authHintPasswordConfirm": "أعد إدخال كلمة المرور",
+  "@authHintPasswordConfirm": {
+    "description": "authHintPasswordConfirm"
+  },
+  "authHintUsername": "اسم_المستخدم",
+  "@authHintUsername": {
+    "description": "authHintUsername"
+  },
+  "authHintFirstName": "اسمك الأول",
+  "@authHintFirstName": {
+    "description": "authHintFirstName"
+  },
+  "authHintLastName": "اسم العائلة",
+  "@authHintLastName": {
+    "description": "authHintLastName"
+  },
+  "authValidationEmailRequired": "أدخل بريدك الإلكتروني.",
+  "@authValidationEmailRequired": {
+    "description": "authValidationEmailRequired"
+  },
+  "authValidationEmailNoSpaces": "يجب ألا يحتوي البريد على مسافات.",
+  "@authValidationEmailNoSpaces": {
+    "description": "authValidationEmailNoSpaces"
+  },
+  "authValidationPasswordRequired": "أدخل كلمة المرور.",
+  "@authValidationPasswordRequired": {
+    "description": "authValidationPasswordRequired"
+  },
+  "authValidationUsernameMinLength": "يجب أن يكون اسم المستخدم 3 أحرف على الأقل.",
+  "@authValidationUsernameMinLength": {
+    "description": "authValidationUsernameMinLength"
+  },
+  "authValidationUsernameNoSpaces": "يجب ألا يحتوي اسم المستخدم على مسافات.",
+  "@authValidationUsernameNoSpaces": {
+    "description": "authValidationUsernameNoSpaces"
+  },
+  "authValidationUsernameNoDots": "يجب ألا يحتوي اسم المستخدم على نقاط.",
+  "@authValidationUsernameNoDots": {
+    "description": "authValidationUsernameNoDots"
+  },
+  "authValidationUsernameChars": "استخدم حروفًا أو أرقامًا أو شرطة سفلية فقط.",
+  "@authValidationUsernameChars": {
+    "description": "authValidationUsernameChars"
+  },
+  "authValidationFirstNameMinLength": "أدخل اسمك الأول كاملًا.",
+  "@authValidationFirstNameMinLength": {
+    "description": "authValidationFirstNameMinLength"
+  },
+  "authValidationLastNameMinLength": "أدخل اسم العائلة.",
+  "@authValidationLastNameMinLength": {
+    "description": "authValidationLastNameMinLength"
+  },
+  "authValidationPasswordMinLength": "يجب أن تكون 8 أحرف على الأقل.",
+  "@authValidationPasswordMinLength": {
+    "description": "authValidationPasswordMinLength"
+  },
+  "authValidationPasswordComplexity": "يجب أن تتضمن حرفًا كبيرًا وصغيرًا ورقمًا ورمزًا.",
+  "@authValidationPasswordComplexity": {
+    "description": "authValidationPasswordComplexity"
+  },
+  "authValidationPasswordMismatch": "كلمتا المرور غير متطابقتين.",
+  "@authValidationPasswordMismatch": {
+    "description": "authValidationPasswordMismatch"
   }
 }

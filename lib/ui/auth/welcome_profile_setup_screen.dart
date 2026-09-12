@@ -24,8 +24,7 @@ class _WelcomeProfileSetupScreenState extends State<WelcomeProfileSetupScreen> {
   String? _customFolder;
   bool _isSettingUp = false;
 
-  final TextEditingController _nameController =
-      TextEditingController(text: 'Música Local');
+  late final TextEditingController _nameController;
   final TextEditingController _serverUrlController = TextEditingController();
 
   MusicProviderManager get _providerManager => Get.find<MusicProviderManager>();
@@ -38,6 +37,10 @@ class _WelcomeProfileSetupScreenState extends State<WelcomeProfileSetupScreen> {
   void initState() {
     super.initState();
     _selectedProvider = _providerManager.localProviderId;
+    _nameController = TextEditingController(
+      text: S.current.welcomeDefaultLocalProfileName,
+    );
+    _setupStepMessage = S.current.welcomeSetupPreparingMessage;
   }
 
   @override
@@ -47,23 +50,23 @@ class _WelcomeProfileSetupScreenState extends State<WelcomeProfileSetupScreen> {
     super.dispose();
   }
 
-  String _setupStepMessage = 'Estamos preparando tu experiencia...';
+  late String _setupStepMessage;
 
   Future<void> _completeSetup() async {
     setState(() {
       _isSettingUp = true;
-      _setupStepMessage = 'Estamos preparando tu experiencia...';
+      _setupStepMessage = S.current.welcomeSetupPreparingMessage;
     });
     final profileManager = Get.find<ProfileManager>();
 
     try {
       final name = _nameController.text.trim().isEmpty
           ? (_isLocal(_selectedProvider)
-              ? 'Música Local'
+              ? S.current.welcomeDefaultLocalProfileName
               : _providerManager
                       .registrationFor(_selectedProvider)
                       ?.displayName ??
-                  'Streaming Externo')
+                  S.current.welcomeStreamingModeTitle)
           : _nameController.text.trim();
 
       final existing = profileManager.profiles.firstWhereOrNull(
@@ -71,7 +74,8 @@ class _WelcomeProfileSetupScreenState extends State<WelcomeProfileSetupScreen> {
       );
 
       if (mounted) {
-        setState(() => _setupStepMessage = 'Configurando perfil musical...');
+        setState(
+            () => _setupStepMessage = S.current.welcomeSetupConfiguringProfile);
       }
       await Future.delayed(const Duration(milliseconds: 350));
 
@@ -112,7 +116,7 @@ class _WelcomeProfileSetupScreenState extends State<WelcomeProfileSetupScreen> {
           Get.isRegistered<SyncService>()) {
         if (mounted) {
           setState(
-              () => _setupStepMessage = 'Sincronizando con tu nube eMusic...');
+              () => _setupStepMessage = S.current.welcomeSetupSyncingCloud);
         }
         try {
           await Get.find<SyncService>()
@@ -121,12 +125,13 @@ class _WelcomeProfileSetupScreenState extends State<WelcomeProfileSetupScreen> {
         } catch (_) {}
       } else {
         if (mounted) {
-          setState(() => _setupStepMessage = 'Cargando biblioteca local...');
+          setState(
+              () => _setupStepMessage = S.current.welcomeSetupLoadingLocal);
         }
       }
 
       if (mounted) {
-        setState(() => _setupStepMessage = 'Casi listo...');
+        setState(() => _setupStepMessage = S.current.welcomeSetupAlmostReady);
       }
       await ProfileSwitcher.refreshActiveContext();
       await Future.delayed(const Duration(milliseconds: 500));
@@ -134,7 +139,10 @@ class _WelcomeProfileSetupScreenState extends State<WelcomeProfileSetupScreen> {
       Get.offAll(() => const Home());
     } catch (e) {
       if (mounted) {
-        Get.snackbar('Configuración', 'Error al preparar perfil: $e');
+        Get.snackbar(
+          S.current.welcomeSetupErrorTitle,
+          S.current.welcomeSetupErrorMessage('$e'),
+        );
         setState(() => _isSettingUp = false);
       }
     }
@@ -177,10 +185,10 @@ class _WelcomeProfileSetupScreenState extends State<WelcomeProfileSetupScreen> {
                         ),
                       ),
                       const SizedBox(height: 32),
-                      const Text(
-                        'Estamos preparando tu experiencia',
+                      Text(
+                        S.current.welcomeSetupPreparingTitle,
                         textAlign: TextAlign.center,
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.white,
                           fontSize: 22,
                           fontWeight: FontWeight.bold,
@@ -202,7 +210,7 @@ class _WelcomeProfileSetupScreenState extends State<WelcomeProfileSetupScreen> {
                       ),
                       const SizedBox(height: 24),
                       Text(
-                        'Esto puede tardar unos segundos. Por favor, espera.',
+                        S.current.welcomeSetupPleaseWait,
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: Colors.white.withValues(alpha: 0.4),
@@ -360,7 +368,7 @@ class _WelcomeProfileSetupScreenState extends State<WelcomeProfileSetupScreen> {
                           controller: _nameController,
                           style: const TextStyle(color: Colors.white),
                           decoration: InputDecoration(
-                            labelText: 'Nombre de tu perfil',
+                            labelText: S.current.welcomeProfileNameLabel,
                             labelStyle: const TextStyle(color: Colors.white70),
                             prefixIcon: const Icon(Icons.badge_outlined,
                                 color: Colors.white70),
@@ -400,8 +408,10 @@ class _WelcomeProfileSetupScreenState extends State<WelcomeProfileSetupScreen> {
                             icon: const Icon(Icons.folder_open_rounded),
                             label: Text(
                               _customFolder != null
-                                  ? 'Carpeta: $_customFolder'
-                                  : 'Carpeta personalizada (opcional)',
+                                  ? S.current.welcomeCustomFolderSelected(
+                                      _customFolder!,
+                                    )
+                                  : S.current.welcomeCustomFolderOptional,
                               overflow: TextOverflow.ellipsis,
                             ),
                           ),
@@ -414,9 +424,8 @@ class _WelcomeProfileSetupScreenState extends State<WelcomeProfileSetupScreen> {
                                   controller: _serverUrlController,
                                   style: const TextStyle(color: Colors.white),
                                   decoration: InputDecoration(
-                                    labelText:
-                                        'URL del servidor (opcional / personalizado)',
-                                    hintText: 'https://tu-servidor-o-receta.com',
+                                    labelText: S.current.welcomeServerUrlLabel,
+                                    hintText: S.current.welcomeServerUrlHint,
                                     hintStyle: TextStyle(
                                       color: Colors.white.withValues(alpha: 0.3),
                                     ),
@@ -452,7 +461,7 @@ class _WelcomeProfileSetupScreenState extends State<WelcomeProfileSetupScreen> {
                                     borderRadius: BorderRadius.circular(16),
                                   ),
                                 ),
-                                tooltip: 'Escanear QR de servidor',
+                                tooltip: S.current.welcomeScanQrTooltip,
                                 icon: const Icon(Icons.qr_code_scanner_rounded,
                                     color: Color(0xFFFF9F1C)),
                                 onPressed: () async {
@@ -490,9 +499,9 @@ class _WelcomeProfileSetupScreenState extends State<WelcomeProfileSetupScreen> {
                                       color: Colors.white,
                                     ),
                                   )
-                                : const Text(
-                                    'Comenzar a escuchar',
-                                    style: TextStyle(
+                                : Text(
+                                    S.current.welcomeStartListening,
+                                    style: const TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -523,13 +532,11 @@ class _WelcomeProfileSetupScreenState extends State<WelcomeProfileSetupScreen> {
       onTap: () {
         setState(() {
           _selectedProvider = providerId;
-          if (_nameController.text == 'Mi Música' ||
-              _nameController.text == 'Música Local' ||
-              _nameController.text == 'eMusic Cloud' ||
-              _nameController.text == 'Streaming Externo') {
+          if (_nameController.text == S.current.welcomeDefaultLocalProfileName ||
+              _nameController.text == S.current.welcomeStreamingModeTitle) {
             _nameController.text = _isLocal(providerId)
-                ? 'Música Local'
-                : 'Streaming Externo';
+                ? S.current.welcomeDefaultLocalProfileName
+                : S.current.welcomeStreamingModeTitle;
           }
         });
       },

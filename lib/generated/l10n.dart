@@ -5793,6 +5793,375 @@ class S {
       args: [],
     );
   }
+
+  String get localFirstPreparing {
+    return Intl.message(
+      'Preparing local mode...',
+      name: 'localFirstPreparing',
+      desc: 'localFirstPreparing',
+      args: [],
+    );
+  }
+
+  String get bootstrapSyncingAccount {
+    return Intl.message(
+      'Syncing your account',
+      name: 'bootstrapSyncingAccount',
+      desc: 'bootstrapSyncingAccount',
+      args: [],
+    );
+  }
+
+  String get bootstrapSyncingAccountDetails {
+    return Intl.message(
+      'We are getting your account ready so you can enter with all your data from the first moment.',
+      name: 'bootstrapSyncingAccountDetails',
+      desc: 'bootstrapSyncingAccountDetails',
+      args: [],
+    );
+  }
+
+  String get welcomeDefaultLocalProfileName {
+    return Intl.message(
+      'Local Music',
+      name: 'welcomeDefaultLocalProfileName',
+      desc: 'welcomeDefaultLocalProfileName',
+      args: [],
+    );
+  }
+
+  String get welcomeSetupPreparingTitle {
+    return Intl.message(
+      'Preparing your experience',
+      name: 'welcomeSetupPreparingTitle',
+      desc: 'welcomeSetupPreparingTitle',
+      args: [],
+    );
+  }
+
+  String get welcomeSetupPreparingMessage {
+    return Intl.message(
+      'We are preparing your experience...',
+      name: 'welcomeSetupPreparingMessage',
+      desc: 'welcomeSetupPreparingMessage',
+      args: [],
+    );
+  }
+
+  String get welcomeSetupConfiguringProfile {
+    return Intl.message(
+      'Configuring music profile...',
+      name: 'welcomeSetupConfiguringProfile',
+      desc: 'welcomeSetupConfiguringProfile',
+      args: [],
+    );
+  }
+
+  String get welcomeSetupSyncingCloud {
+    return Intl.message(
+      'Syncing with your eMusic cloud...',
+      name: 'welcomeSetupSyncingCloud',
+      desc: 'welcomeSetupSyncingCloud',
+      args: [],
+    );
+  }
+
+  String get welcomeSetupLoadingLocal {
+    return Intl.message(
+      'Loading local library...',
+      name: 'welcomeSetupLoadingLocal',
+      desc: 'welcomeSetupLoadingLocal',
+      args: [],
+    );
+  }
+
+  String get welcomeSetupAlmostReady {
+    return Intl.message(
+      'Almost ready...',
+      name: 'welcomeSetupAlmostReady',
+      desc: 'welcomeSetupAlmostReady',
+      args: [],
+    );
+  }
+
+  String get welcomeSetupPleaseWait {
+    return Intl.message(
+      'This may take a few seconds. Please wait.',
+      name: 'welcomeSetupPleaseWait',
+      desc: 'welcomeSetupPleaseWait',
+      args: [],
+    );
+  }
+
+  String get welcomeProfileNameLabel {
+    return Intl.message(
+      'Profile name',
+      name: 'welcomeProfileNameLabel',
+      desc: 'welcomeProfileNameLabel',
+      args: [],
+    );
+  }
+
+  String get welcomeCustomFolderOptional {
+    return Intl.message(
+      'Custom folder (optional)',
+      name: 'welcomeCustomFolderOptional',
+      desc: 'welcomeCustomFolderOptional',
+      args: [],
+    );
+  }
+
+  String welcomeCustomFolderSelected(String path) {
+    return Intl.message(
+      'Folder: $path',
+      name: 'welcomeCustomFolderSelected',
+      desc: 'welcomeCustomFolderSelected',
+      args: [path],
+    );
+  }
+
+  String get welcomeServerUrlLabel {
+    return Intl.message(
+      'Server URL (optional / custom)',
+      name: 'welcomeServerUrlLabel',
+      desc: 'welcomeServerUrlLabel',
+      args: [],
+    );
+  }
+
+  String get welcomeServerUrlHint {
+    return Intl.message(
+      'https://your-server-or-recipe.com',
+      name: 'welcomeServerUrlHint',
+      desc: 'welcomeServerUrlHint',
+      args: [],
+    );
+  }
+
+  String get welcomeScanQrTooltip {
+    return Intl.message(
+      'Scan server QR code',
+      name: 'welcomeScanQrTooltip',
+      desc: 'welcomeScanQrTooltip',
+      args: [],
+    );
+  }
+
+  String get welcomeStartListening {
+    return Intl.message(
+      'Start listening',
+      name: 'welcomeStartListening',
+      desc: 'welcomeStartListening',
+      args: [],
+    );
+  }
+
+  String get welcomeSetupErrorTitle {
+    return Intl.message(
+      'Setup',
+      name: 'welcomeSetupErrorTitle',
+      desc: 'welcomeSetupErrorTitle',
+      args: [],
+    );
+  }
+
+  String welcomeSetupErrorMessage(String error) {
+    return Intl.message(
+      'Could not prepare profile: $error',
+      name: 'welcomeSetupErrorMessage',
+      desc: 'welcomeSetupErrorMessage',
+      args: [error],
+    );
+  }
+
+  String get settingsDeleteAccount {
+    return Intl.message(
+      'Delete account',
+      name: 'settingsDeleteAccount',
+      desc: 'settingsDeleteAccount',
+      args: [],
+    );
+  }
+
+  String get settingsDeleteAccountBody {
+    return Intl.message(
+      'Permanent deletion of your account and personal data is managed securely through your profile portal.\n\nDo you want to open your profile portal to request deletion?',
+      name: 'settingsDeleteAccountBody',
+      desc: 'settingsDeleteAccountBody',
+      args: [],
+    );
+  }
+
+  String get settingsContinueToPortal {
+    return Intl.message(
+      'Continue to portal',
+      name: 'settingsContinueToPortal',
+      desc: 'settingsContinueToPortal',
+      args: [],
+    );
+  }
+
+  String get authHintPassword {
+    return Intl.message(
+      'Your password',
+      name: 'authHintPassword',
+      desc: 'authHintPassword',
+      args: [],
+    );
+  }
+
+  String get authHintPasswordCreate {
+    return Intl.message(
+      'Create a secure password',
+      name: 'authHintPasswordCreate',
+      desc: 'authHintPasswordCreate',
+      args: [],
+    );
+  }
+
+  String get authHintPasswordConfirm {
+    return Intl.message(
+      'Repeat your password',
+      name: 'authHintPasswordConfirm',
+      desc: 'authHintPasswordConfirm',
+      args: [],
+    );
+  }
+
+  String get authHintUsername {
+    return Intl.message(
+      'your_username',
+      name: 'authHintUsername',
+      desc: 'authHintUsername',
+      args: [],
+    );
+  }
+
+  String get authHintFirstName {
+    return Intl.message(
+      'Your first name',
+      name: 'authHintFirstName',
+      desc: 'authHintFirstName',
+      args: [],
+    );
+  }
+
+  String get authHintLastName {
+    return Intl.message(
+      'Your last name',
+      name: 'authHintLastName',
+      desc: 'authHintLastName',
+      args: [],
+    );
+  }
+
+  String get authValidationEmailRequired {
+    return Intl.message(
+      'Enter your email.',
+      name: 'authValidationEmailRequired',
+      desc: 'authValidationEmailRequired',
+      args: [],
+    );
+  }
+
+  String get authValidationEmailNoSpaces {
+    return Intl.message(
+      'Email must not contain spaces.',
+      name: 'authValidationEmailNoSpaces',
+      desc: 'authValidationEmailNoSpaces',
+      args: [],
+    );
+  }
+
+  String get authValidationPasswordRequired {
+    return Intl.message(
+      'Enter your password.',
+      name: 'authValidationPasswordRequired',
+      desc: 'authValidationPasswordRequired',
+      args: [],
+    );
+  }
+
+  String get authValidationUsernameMinLength {
+    return Intl.message(
+      'Username must be at least 3 characters.',
+      name: 'authValidationUsernameMinLength',
+      desc: 'authValidationUsernameMinLength',
+      args: [],
+    );
+  }
+
+  String get authValidationUsernameNoSpaces {
+    return Intl.message(
+      'Username must not contain spaces.',
+      name: 'authValidationUsernameNoSpaces',
+      desc: 'authValidationUsernameNoSpaces',
+      args: [],
+    );
+  }
+
+  String get authValidationUsernameNoDots {
+    return Intl.message(
+      'Username must not contain dots.',
+      name: 'authValidationUsernameNoDots',
+      desc: 'authValidationUsernameNoDots',
+      args: [],
+    );
+  }
+
+  String get authValidationUsernameChars {
+    return Intl.message(
+      'Use only letters, numbers, or underscore.',
+      name: 'authValidationUsernameChars',
+      desc: 'authValidationUsernameChars',
+      args: [],
+    );
+  }
+
+  String get authValidationFirstNameMinLength {
+    return Intl.message(
+      'Enter your full first name.',
+      name: 'authValidationFirstNameMinLength',
+      desc: 'authValidationFirstNameMinLength',
+      args: [],
+    );
+  }
+
+  String get authValidationLastNameMinLength {
+    return Intl.message(
+      'Enter your last name.',
+      name: 'authValidationLastNameMinLength',
+      desc: 'authValidationLastNameMinLength',
+      args: [],
+    );
+  }
+
+  String get authValidationPasswordMinLength {
+    return Intl.message(
+      'Must be at least 8 characters.',
+      name: 'authValidationPasswordMinLength',
+      desc: 'authValidationPasswordMinLength',
+      args: [],
+    );
+  }
+
+  String get authValidationPasswordComplexity {
+    return Intl.message(
+      'Include uppercase, lowercase, number, and symbol.',
+      name: 'authValidationPasswordComplexity',
+      desc: 'authValidationPasswordComplexity',
+      args: [],
+    );
+  }
+
+  String get authValidationPasswordMismatch {
+    return Intl.message(
+      'Passwords do not match.',
+      name: 'authValidationPasswordMismatch',
+      desc: 'authValidationPasswordMismatch',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

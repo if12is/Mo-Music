@@ -10,6 +10,7 @@ import 'package:estrella_music/app_identity.dart';
 import 'package:estrella_music/generated/l10n.dart';
 import 'package:estrella_music/ui/screens/Update/update_screen.dart';
 import 'package:estrella_music/services/storage/sqlite_store.dart';
+import 'package:estrella_music/services/auth/local_first_bootstrap.dart';
 import 'account_bootstrap_screen.dart';
 import 'music_auth_screen.dart';
 import 'welcome_profile_setup_screen.dart';
@@ -23,8 +24,10 @@ class AuthGate extends StatefulWidget {
 
 class _AuthGateState extends State<AuthGate> {
   static const _accessPolicy = AuthenticationAccessPolicy();
+  static const _localFirstBootstrap = LocalFirstBootstrap();
   final isUpdateChecked = false.obs;
   final updateRequired = false.obs;
+  final localFirstReady = false.obs;
 
   @override
   void initState() {
@@ -37,7 +40,10 @@ class _AuthGateState extends State<AuthGate> {
     updateRequired.value = hasUpdate;
     isUpdateChecked.value = true;
 
-    if (!hasUpdate && !Get.find<AuthService>().isAuthenticated.value) {
+    if (LocalFirstBootstrap.isEnabled) {
+      await _localFirstBootstrap.ensureReady();
+      localFirstReady.value = true;
+    } else if (!hasUpdate && !Get.find<AuthService>().isAuthenticated.value) {
       await Get.find<AuthService>().restoreSession();
     }
     if (mounted) setState(() {});
@@ -48,10 +54,13 @@ class _AuthGateState extends State<AuthGate> {
     final authService = Get.find<AuthService>();
     final bootstrapService = Get.find<UserDataBootstrapService>();
     return Obx(() {
-      if (isUpdateChecked.isFalse) {
+      if (isUpdateChecked.isFalse ||
+          (LocalFirstBootstrap.isEnabled && localFirstReady.isFalse)) {
         return AccountBootstrapScreen(
           title: AppIdentity.localizedName(),
-          message: S.current.checkingUpdates,
+          message: LocalFirstBootstrap.isEnabled
+              ? S.current.localFirstPreparing
+              : S.current.checkingUpdates,
         );
       }
 
@@ -90,10 +99,10 @@ class _AuthGateState extends State<AuthGate> {
       if (profileManager.activeProfileMaySync &&
           bootstrapService.isPreparing.isTrue) {
         return AccountBootstrapScreen(
-          title: 'Sincronizando tu cuenta',
+          title: S.current.bootstrapSyncingAccount,
           message: bootstrapService.statusMessage.value,
           details: bootstrapService.lastError.value.isEmpty
-              ? 'Estamos dejando lista tu cuenta para que entres con todos tus datos desde el primer momento.'
+              ? S.current.bootstrapSyncingAccountDetails
               : bootstrapService.lastError.value,
           willReplaceLocalData: bootstrapService.willReplaceLocalData.value,
         );

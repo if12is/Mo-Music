@@ -53,6 +53,10 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m15(date) => "التاريخ: ${date}";
 
+  static String m16(path) => "المجلد: ${path}";
+
+  static String m17(error) => "تعذّر تجهيز الملف: ${error}";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "CreateNewPlaylist": MessageLookupByLibrary.simpleMessage(
@@ -1424,6 +1428,115 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "welcomeStreamingModeTitle": MessageLookupByLibrary.simpleMessage(
       "تشغيل البث الخارجي",
+    ),
+    "localFirstPreparing": MessageLookupByLibrary.simpleMessage(
+      "جارٍ تجهيز الوضع المحلي...",
+    ),
+    "bootstrapSyncingAccount": MessageLookupByLibrary.simpleMessage(
+      "جارٍ مزامنة حسابك",
+    ),
+    "bootstrapSyncingAccountDetails": MessageLookupByLibrary.simpleMessage(
+      "نجهّز حسابك لتدخل بكل بياناتك منذ اللحظة الأولى.",
+    ),
+    "welcomeDefaultLocalProfileName": MessageLookupByLibrary.simpleMessage(
+      "موسيقى محلية",
+    ),
+    "welcomeSetupPreparingTitle": MessageLookupByLibrary.simpleMessage(
+      "نجهّز تجربتك",
+    ),
+    "welcomeSetupPreparingMessage": MessageLookupByLibrary.simpleMessage(
+      "جارٍ تجهيز تجربتك...",
+    ),
+    "welcomeSetupConfiguringProfile": MessageLookupByLibrary.simpleMessage(
+      "جارٍ إعداد الملف الموسيقي...",
+    ),
+    "welcomeSetupSyncingCloud": MessageLookupByLibrary.simpleMessage(
+      "جارٍ المزامنة مع سحابة eMusic...",
+    ),
+    "welcomeSetupLoadingLocal": MessageLookupByLibrary.simpleMessage(
+      "جارٍ تحميل المكتبة المحلية...",
+    ),
+    "welcomeSetupAlmostReady": MessageLookupByLibrary.simpleMessage(
+      "على وشك الانتهاء...",
+    ),
+    "welcomeSetupPleaseWait": MessageLookupByLibrary.simpleMessage(
+      "قد يستغرق ذلك بضع ثوانٍ. يرجى الانتظار.",
+    ),
+    "welcomeProfileNameLabel": MessageLookupByLibrary.simpleMessage(
+      "اسم الملف",
+    ),
+    "welcomeCustomFolderOptional": MessageLookupByLibrary.simpleMessage(
+      "مجلد مخصص (اختياري)",
+    ),
+    "welcomeCustomFolderSelected": m16,
+    "welcomeServerUrlLabel": MessageLookupByLibrary.simpleMessage(
+      "رابط الخادم (اختياري / مخصص)",
+    ),
+    "welcomeServerUrlHint": MessageLookupByLibrary.simpleMessage(
+      "https://your-server-or-recipe.com",
+    ),
+    "welcomeScanQrTooltip": MessageLookupByLibrary.simpleMessage(
+      "مسح رمز QR للخادم",
+    ),
+    "welcomeStartListening": MessageLookupByLibrary.simpleMessage(
+      "ابدأ الاستماع",
+    ),
+    "welcomeSetupErrorTitle": MessageLookupByLibrary.simpleMessage("الإعداد"),
+    "welcomeSetupErrorMessage": m17,
+    "settingsDeleteAccount": MessageLookupByLibrary.simpleMessage(
+      "حذف الحساب",
+    ),
+    "settingsDeleteAccountBody": MessageLookupByLibrary.simpleMessage(
+      "يُدار حذف حسابك وبياناتك الشخصية نهائيًا عبر بوابة ملفك بشكل آمن.\n\nهل تريد فتح بوابة ملفك لطلب الحذف؟",
+    ),
+    "settingsContinueToPortal": MessageLookupByLibrary.simpleMessage(
+      "المتابعة إلى البوابة",
+    ),
+    "authHintPassword": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
+    "authHintPasswordCreate": MessageLookupByLibrary.simpleMessage(
+      "أنشئ كلمة مرور آمنة",
+    ),
+    "authHintPasswordConfirm": MessageLookupByLibrary.simpleMessage(
+      "أعد إدخال كلمة المرور",
+    ),
+    "authHintUsername": MessageLookupByLibrary.simpleMessage("اسم_المستخدم"),
+    "authHintFirstName": MessageLookupByLibrary.simpleMessage("اسمك الأول"),
+    "authHintLastName": MessageLookupByLibrary.simpleMessage("اسم العائلة"),
+    "authValidationEmailRequired": MessageLookupByLibrary.simpleMessage(
+      "أدخل بريدك الإلكتروني.",
+    ),
+    "authValidationEmailNoSpaces": MessageLookupByLibrary.simpleMessage(
+      "يجب ألا يحتوي البريد على مسافات.",
+    ),
+    "authValidationPasswordRequired": MessageLookupByLibrary.simpleMessage(
+      "أدخل كلمة المرور.",
+    ),
+    "authValidationUsernameMinLength": MessageLookupByLibrary.simpleMessage(
+      "يجب أن يكون اسم المستخدم 3 أحرف على الأقل.",
+    ),
+    "authValidationUsernameNoSpaces": MessageLookupByLibrary.simpleMessage(
+      "يجب ألا يحتوي اسم المستخدم على مسافات.",
+    ),
+    "authValidationUsernameNoDots": MessageLookupByLibrary.simpleMessage(
+      "يجب ألا يحتوي اسم المستخدم على نقاط.",
+    ),
+    "authValidationUsernameChars": MessageLookupByLibrary.simpleMessage(
+      "استخدم حروفًا أو أرقامًا أو شرطة سفلية فقط.",
+    ),
+    "authValidationFirstNameMinLength": MessageLookupByLibrary.simpleMessage(
+      "أدخل اسمك الأول كاملًا.",
+    ),
+    "authValidationLastNameMinLength": MessageLookupByLibrary.simpleMessage(
+      "أدخل اسم العائلة.",
+    ),
+    "authValidationPasswordMinLength": MessageLookupByLibrary.simpleMessage(
+      "يجب أن تكون 8 أحرف على الأقل.",
+    ),
+    "authValidationPasswordComplexity": MessageLookupByLibrary.simpleMessage(
+      "يجب أن تتضمن حرفًا كبيرًا وصغيرًا ورقمًا ورمزًا.",
+    ),
+    "authValidationPasswordMismatch": MessageLookupByLibrary.simpleMessage(
+      "كلمتا المرور غير متطابقتين.",
     ),
   };
 }

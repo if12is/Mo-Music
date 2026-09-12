@@ -867,18 +867,16 @@ class SettingsAccountScreen extends StatelessWidget {
                 side: BorderSide(color: cs.error.withValues(alpha: 0.5)),
               ),
               icon: const Icon(Icons.delete_forever_rounded),
-              label: const Text('Eliminar cuenta'),
+              label: Text(S.current.settingsDeleteAccount),
               onPressed: () => showDialog<void>(
                 context: context,
                 builder: (dialogCtx) => AlertDialog(
-                  title: const Text('Eliminar cuenta'),
-                  content: const Text(
-                    'La eliminación definitiva de tu cuenta y datos personales se gestiona de forma segura a través del portal de tu perfil en Joss Red.\n\n¿Deseas abrir tu perfil en joss.red para solicitar la baja?',
-                  ),
+                  title: Text(S.current.settingsDeleteAccount),
+                  content: Text(S.current.settingsDeleteAccountBody),
                   actions: [
                     TextButton(
                       onPressed: () => Navigator.of(dialogCtx).pop(),
-                      child: const Text('Cancelar'),
+                      child: Text(S.current.cancel),
                     ),
                     FilledButton(
                       style: FilledButton.styleFrom(backgroundColor: cs.error),
@@ -889,7 +887,7 @@ class SettingsAccountScreen extends StatelessWidget {
                           await launchUrl(uri, mode: LaunchMode.externalApplication);
                         }
                       },
-                      child: const Text('Continuar a joss.red'),
+                      child: Text(S.current.settingsContinueToPortal),
                     ),
                   ],
                 ),

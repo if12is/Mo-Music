@@ -2,7 +2,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:estrella_music/app_identity.dart';
 import 'package:estrella_music/services/storage/sqlite_store.dart';
 import 'package:palette_generator/palette_generator.dart';
@@ -151,7 +150,9 @@ class ThemeController extends GetxController {
               displayColor: colorScheme.onSurface,
               bodyColor: colorScheme.onSurface,
             );
-    final textTheme = GoogleFonts.cairoTextTheme(baseTextTheme).apply(
+    const bundledCairo = 'Cairo';
+    final textTheme = baseTextTheme.apply(
+      fontFamily: bundledCairo,
       displayColor: colorScheme.onSurface,
       bodyColor: colorScheme.onSurface,
     );
@@ -159,7 +160,7 @@ class ThemeController extends GetxController {
     return ThemeData(
       useMaterial3: true,
       colorScheme: colorScheme,
-      fontFamily: GoogleFonts.cairo().fontFamily,
+      fontFamily: bundledCairo,
       textTheme: textTheme,
       scaffoldBackgroundColor: colorScheme.surface,
       canvasColor: colorScheme.surface,
