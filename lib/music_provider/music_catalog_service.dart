@@ -11,6 +11,7 @@ import 'package:estrella_music/music_provider/models/playback_source.dart';
 import 'package:estrella_music/music_provider/models/provider_capabilities.dart';
 import 'package:estrella_music/music_provider/models/provider_entities.dart';
 import 'package:estrella_music/profiles/profile_manager.dart';
+import 'package:estrella_music/services/music/device_stream_resolver.dart';
 import 'package:estrella_music/services/storage/sqlite_store.dart';
 
 import 'music_provider.dart';
@@ -399,9 +400,14 @@ class MusicCatalogService extends GetxService {
         duration: track.duration,
         artUri: track.artworkUri?.scheme == 'data' ? null : track.artworkUri,
         extras: {
+          ...track.metadata,
           'providerId': track.identity.providerId,
           'profileId': track.identity.profileId,
           'sourceId': track.identity.sourceId,
+          'videoId': _firstNonEmpty([
+            track.metadata['videoId']?.toString(),
+            track.identity.sourceId,
+          ]),
           'url': track.filePath,
           'album': {'name': track.album},
           'artists': [
@@ -409,7 +415,6 @@ class MusicCatalogService extends GetxService {
           ],
           'length':
               track.duration == null ? null : _durationLabel(track.duration!),
-          ...track.metadata,
         },
       );
 
@@ -514,7 +519,12 @@ class MusicCatalogService extends GetxService {
       return null;
     }
     final uri = Uri.tryParse(data['url']?.toString() ?? '');
-    if (uri == null || !uri.hasScheme) {
+    if (uri == null ||
+        !uri.hasScheme ||
+        !DeviceStreamResolver.isProgressiveAudioUri(
+          uri,
+          mimeType: data['mimeType']?.toString(),
+        )) {
       await box.delete(key);
       return null;
     }
@@ -602,8 +612,21 @@ class MusicCatalogService extends GetxService {
   MusicIdentity identityFromMediaItem(MediaItem item) => MusicIdentity(
         providerId: item.extras?['providerId']?.toString() ?? activeProviderId,
         profileId: item.extras?['profileId']?.toString() ?? activeProfileId,
-        sourceId: item.extras?['sourceId']?.toString() ?? item.id,
+        sourceId: _firstNonEmpty([
+          item.extras?['sourceId']?.toString(),
+          item.extras?['videoId']?.toString(),
+          item.id,
+        ]),
       );
+
+  static String _firstNonEmpty(List<String?> values) {
+    for (final value in values) {
+      if (value != null && value.isNotEmpty && value != 'null') {
+        return value;
+      }
+    }
+    return '';
+  }
 
   void _assertActiveIdentity(MusicIdentity identity) {
     if (identity.providerId != activeProviderId ||

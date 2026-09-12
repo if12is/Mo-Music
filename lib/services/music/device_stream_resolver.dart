@@ -8,8 +8,10 @@ import 'package:estrella_music/services/music/device_music_session.dart';
 import 'package:estrella_music/utils/helpers/helper.dart';
 
 /// Resolves a progressive audio URL without a Joss Red session.
-/// Innertube clients first, then youtube_explode (original Harmony path),
-/// then public Piped/Invidious mirrors as a last resort.
+///
+/// Harmony Music plays `youtube_explode` `audioOnly` URLs with no extra
+/// headers. Innertube HLS and a fake ANDROID User-Agent both make just_audio
+/// fail, then the queue auto-skips. Keep that original path first.
 class DeviceStreamResolver extends GetxService {
   DeviceStreamResolver({Dio? client, YoutubeExplode? explode})
       : _dio = client ?? Dio(),
@@ -40,6 +42,20 @@ class DeviceStreamResolver extends GetxService {
     return resolver;
   }
 
+  /// just_audio can play progressive googlevideo URLs. HLS/m3u8 from Innertube
+  /// looks "playable" but reloads and then skips to the next missing track.
+  static bool isProgressiveAudioUri(Uri uri, {String? mimeType}) {
+    final mime = (mimeType ?? '').toLowerCase();
+    if (mime.contains('mpegurl') || mime.contains('x-mpegurl')) {
+      return false;
+    }
+    final path = uri.path.toLowerCase();
+    if (path.endsWith('.m3u8') || path.contains('/manifest/hls')) {
+      return false;
+    }
+    return uri.scheme == 'http' || uri.scheme == 'https';
+  }
+
   Future<PlaybackSource?> resolveSource(
     String sourceId, {
     String? requestedFormat,
@@ -49,19 +65,22 @@ class DeviceStreamResolver extends GetxService {
     final videoId = DeviceMusicSession.normalizeVideoId(sourceId);
     if (videoId.isEmpty) return null;
 
-    try {
-      final response = await DeviceMusicSession.resolve().player(videoId);
-      final parsed = parsePlayerResponse(response);
-      if (parsed != null) return parsed;
-    } catch (error) {
-      printINFO('[DeviceStreamResolver] Innertube player failed: $error');
-    }
-
     final explodeSource = await _resolveViaExplode(
       videoId,
       requestedFormat: requestedFormat,
     );
     if (explodeSource != null) return explodeSource;
+
+    try {
+      final response = await DeviceMusicSession.resolve().player(videoId);
+      final parsed = parsePlayerResponse(response);
+      if (parsed != null &&
+          isProgressiveAudioUri(parsed.uri, mimeType: parsed.mimeType)) {
+        return parsed.copyWithoutHeaders();
+      }
+    } catch (error) {
+      printINFO('[DeviceStreamResolver] Innertube player failed: $error');
+    }
 
     return _resolveViaPublicMirrors(
       videoId,
@@ -75,58 +94,66 @@ class DeviceStreamResolver extends GetxService {
   }) async {
     try {
       _explode ??= YoutubeExplode();
-      late final StreamManifest manifest;
-      try {
-        manifest = await _explode!.videos.streamsClient.getManifest(
-          videoId,
-          requireWatchPage: true,
-        );
-      } catch (error) {
-        printINFO(
-          '[DeviceStreamResolver] androidSdkless explode failed: $error',
-        );
-        manifest = await _explode!.videos.streamsClient.getManifest(
-          videoId,
-          ytClients: [
-            YoutubeApiClient.androidVr,
-            YoutubeApiClient.ios,
-          ],
-          requireWatchPage: true,
-        );
+      StreamManifest? manifest;
+      final attempts = <Future<StreamManifest> Function()>[
+        () => _explode!.videos.streamsClient.getManifest(videoId),
+        () => _explode!.videos.streamsClient.getManifest(
+              videoId,
+              ytClients: [
+                YoutubeApiClient.androidVr,
+                YoutubeApiClient.ios,
+              ],
+            ),
+        () => _explode!.videos.streamsClient.getManifest(
+              videoId,
+              ytClients: [YoutubeApiClient.tv],
+            ),
+      ];
+      for (final attempt in attempts) {
+        try {
+          final candidate = await attempt();
+          if (_hasProgressiveAudio(candidate)) {
+            manifest = candidate;
+            break;
+          }
+        } catch (error) {
+          printINFO('[DeviceStreamResolver] explode attempt failed: $error');
+        }
       }
-      final audio = manifest.audioOnly.toList();
+      if (manifest == null) return null;
+
+      final audio = manifest.audioOnly
+          .where(
+            (stream) => isProgressiveAudioUri(
+              stream.url,
+              mimeType: '${stream.codec}',
+            ),
+          )
+          .toList();
+      final muxed = manifest.muxed
+          .where(
+            (stream) => isProgressiveAudioUri(
+              stream.url,
+              mimeType: '${stream.codec}',
+            ),
+          )
+          .toList();
       final StreamInfo chosen;
       if (audio.isNotEmpty) {
-        final requested = (requestedFormat ?? '').toLowerCase();
-        final filtered = requested == 'm4a'
-            ? audio
-                .where((stream) =>
-                    '${stream.container}'.contains('mp4') ||
-                    stream.audioCodec.contains('mp4a'))
-                .toList()
-            : requested == 'opus'
-                ? audio
-                    .where((stream) =>
-                        '${stream.container}'.contains('webm') ||
-                        stream.audioCodec.contains('opus'))
-                    .toList()
-                : audio;
-        chosen = (filtered.isEmpty ? audio : filtered).withHighestBitrate();
-      } else if (manifest.muxed.isNotEmpty) {
-        chosen = manifest.muxed.withHighestBitrate();
+        chosen = _chooseHarmonyAudio(audio, requestedFormat);
+      } else if (muxed.isNotEmpty) {
+        chosen = muxed.withHighestBitrate();
       } else {
         return null;
       }
       final uri = chosen.url;
+      if (!isProgressiveAudioUri(uri, mimeType: '${chosen.codec}')) {
+        return null;
+      }
       final isOpus = '${chosen.codec}'.toLowerCase().contains('opus');
       return PlaybackSource(
         type: PlaybackSourceType.authorizedStream,
         uri: uri,
-        headers: {
-          'user-agent':
-              'com.google.android.youtube/20.10.38 (Linux; U; Android 11) gzip',
-          'accept': '*/*',
-        },
         mimeType: isOpus ? 'audio/webm' : 'audio/mp4',
         bitrate: chosen.bitrate.bitsPerSecond,
         contentLength: chosen.size.totalBytes,
@@ -136,6 +163,40 @@ class DeviceStreamResolver extends GetxService {
       printINFO('[DeviceStreamResolver] youtube_explode failed: $error');
       return null;
     }
+  }
+
+  static bool _hasProgressiveAudio(StreamManifest manifest) {
+    return manifest.audioOnly.any(
+          (stream) => isProgressiveAudioUri(
+            stream.url,
+            mimeType: '${stream.codec}',
+          ),
+        ) ||
+        manifest.muxed.any(
+          (stream) => isProgressiveAudioUri(
+            stream.url,
+            mimeType: '${stream.codec}',
+          ),
+        );
+  }
+
+  /// Harmony's StreamProvider prefers itag 251/140 (high) and 249/139 (low).
+  static StreamInfo _chooseHarmonyAudio(
+    List<StreamInfo> audio,
+    String? requestedFormat,
+  ) {
+    final requested = (requestedFormat ?? '').toLowerCase();
+    final preferredTags = requested == 'm4a'
+        ? const [140, 139]
+        : requested == 'opus'
+            ? const [251, 250, 249]
+            : const [251, 140, 250, 139];
+    for (final tag in preferredTags) {
+      for (final stream in audio.reversed) {
+        if (stream.tag == tag) return stream;
+      }
+    }
+    return audio.withHighestBitrate();
   }
 
   Future<PlaybackSource?> _resolveViaPublicMirrors(
@@ -255,7 +316,8 @@ class DeviceStreamResolver extends GetxService {
         fallbackBitrate = bitrate;
       }
       final matches = requested.isEmpty ||
-          (requested == 'm4a' && (mime.contains('mp4') || mime.contains('m4a'))) ||
+          (requested == 'm4a' &&
+              (mime.contains('mp4') || mime.contains('m4a'))) ||
           (requested == 'opus' && mime.contains('opus'));
       if (matches && bitrate > selectedBitrate) {
         selected = stream;
@@ -269,6 +331,7 @@ class DeviceStreamResolver extends GetxService {
     final uri = Uri.tryParse(url);
     if (uri == null) return null;
     final mime = _first(target, mimeKeys);
+    if (!isProgressiveAudioUri(uri, mimeType: mime)) return null;
     return PlaybackSource(
       type: PlaybackSourceType.authorizedStream,
       uri: uri,

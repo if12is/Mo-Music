@@ -29,4 +29,16 @@ class PlaybackSource {
   bool get isLocal => type == PlaybackSourceType.localFile;
   bool get isExpired =>
       expiresAt != null && !DateTime.now().isBefore(expiresAt!);
+
+  /// Harmony plays explode URLs with no extra headers. A mismatched
+  /// User-Agent on googlevideo makes just_audio 403 and skip the queue.
+  PlaybackSource copyWithoutHeaders() => PlaybackSource(
+        type: type,
+        uri: uri,
+        mimeType: mimeType,
+        expiresAt: expiresAt,
+        bitrate: bitrate,
+        contentLength: contentLength,
+        loudnessDb: loudnessDb,
+      );
 }

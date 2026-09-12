@@ -987,17 +987,17 @@ class StreamingProvider
     final targetFmt = selected ?? fallback;
     final streamUrl = targetFmt?['url']?.toString();
     if (targetFmt == null || streamUrl == null || streamUrl.isEmpty) {
-      final hls = streamingData['hlsManifestUrl']?.toString();
-      if (hls != null && hls.isNotEmpty) {
-        return PlaybackSource(
-          type: PlaybackSourceType.authorizedStream,
-          uri: Uri.parse(hls),
-          mimeType: 'application/x-mpegURL',
-        );
-      }
+      // HLS looks playable in Innertube but just_audio cannot start it, which
+      // reloads the player and then auto-skips to the next missing track.
       return null;
     }
     final uri = Uri.parse(streamUrl);
+    if (!DeviceStreamResolver.isProgressiveAudioUri(
+      uri,
+      mimeType: targetFmt['mimeType']?.toString(),
+    )) {
+      return null;
+    }
     final isOpus = (targetFmt['mimeType']?.toString() ?? '').contains('opus');
     return PlaybackSource(
       type: PlaybackSourceType.authorizedStream,
