@@ -21,13 +21,23 @@ class AppIdentity {
       'https://api.github.com/repos/$githubSlug/tags';
   static const String latestReleaseApiUrl =
       'https://api.github.com/repos/$githubSlug/releases/latest';
+
+  static String releaseDownloadBase(String version) {
+    final tag = version.startsWith('v') ? version : 'v$version';
+    return '$githubUrl/releases/download/$tag/';
+  }
+
+  static String releaseApiUrl(String version) {
+    final tag = version.startsWith('v') ? version : 'v$version';
+    return 'https://api.github.com/repos/$githubSlug/releases/tags/$tag';
+  }
   static const String defaultBranch = 'master';
   static const String updateManifestUrl =
       'https://raw.githubusercontent.com/$githubSlug/$defaultBranch/distribution/update-check.json';
   static const String artifactPrefix = 'MoMusic';
   static const String androidApplicationId = 'com.if12is.momusic';
   static const String urlScheme = 'momusic';
-  static const String userAgent = 'MoMusic/2.5.6';
+  static const String userAgent = 'MoMusic/2.5.7';
   static const String homepage = githubUrl;
   static const String developerName = 'Ahmed Elsayed';
 

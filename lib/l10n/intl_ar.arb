@@ -2748,5 +2748,13 @@
         "type": "String"
       }
     }
+  },
+  "updateFileNotReady": "التحديث غير جاهز بعد. حاول مرة أخرى بعد قليل.",
+  "@updateFileNotReady": {
+    "description": "updateFileNotReady"
+  },
+  "updateDownloadFailed": "تعذر تنزيل التحديث. تحقق من الاتصال وحاول مرة أخرى.",
+  "@updateDownloadFailed": {
+    "description": "updateDownloadFailed"
   }
 }
