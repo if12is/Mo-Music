@@ -34,7 +34,7 @@ class ResultWidget extends StatelessWidget {
                 SliverToBoxAdapter(
                   child: Padding(
                     padding:
-                        const EdgeInsets.only(left: 16, bottom: 8, top: 16),
+                        const EdgeInsetsDirectional.only(start: 16, bottom: 8, top: 16),
                     child: Text(
                       S.current.searchRes,
                       style: Theme.of(context).textTheme.titleLarge,
@@ -44,7 +44,7 @@ class ResultWidget extends StatelessWidget {
               if (!isv2Used)
                 SliverToBoxAdapter(
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 16, bottom: 16),
+                    padding: const EdgeInsetsDirectional.only(start: 16, bottom: 16),
                     child: Text(
                       "${S.current.for1} \"${searchResScrController.queryString.value}\"",
                       style: Theme.of(context).textTheme.titleMedium,
@@ -81,7 +81,7 @@ class ResultWidget extends StatelessWidget {
       slivers.add(
         SliverToBoxAdapter(
           child: Padding(
-            padding: const EdgeInsets.only(left: 20, top: 24, bottom: 12),
+            padding: const EdgeInsetsDirectional.only(start: 20, top: 24, bottom: 12),
             child: Text(
               key,
               style: Theme.of(context).textTheme.titleMedium?.copyWith(

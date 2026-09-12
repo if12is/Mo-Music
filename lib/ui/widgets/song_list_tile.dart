@@ -114,8 +114,8 @@ class SongListTile extends StatelessWidget with RemoveSongFromPlaylistMixin {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(AppSpacing.radiusMd),
                 ),
-                contentPadding: const EdgeInsets.only(
-                    top: 0, left: AppSpacing.md, right: AppSpacing.xl),
+                contentPadding: const EdgeInsetsDirectional.only(
+                    top: 0, start: AppSpacing.md, end: AppSpacing.xl),
                 leading: thumbReplacementWithIndex
                     ? SizedBox(
                         width: 28,

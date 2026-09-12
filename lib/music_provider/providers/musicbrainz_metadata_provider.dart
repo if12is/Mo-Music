@@ -24,7 +24,7 @@ class MusicBrainzMetadataProvider implements MusicMetadataSearchProvider {
   static const providerId = 'metadata.musicbrainz';
   static const _endpoint = 'https://musicbrainz.org/ws/2/recording';
   static const _userAgent =
-      'EstrellaMusic/2.4.0 (https://github.com/josprox/Estrella-Music)';
+      'MoMusic/2.5.0 (https://github.com/if12is/Mo-Music)';
   static const _cacheLifetime = Duration(minutes: 15);
 
   final Dio _client;

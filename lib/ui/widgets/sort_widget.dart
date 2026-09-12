@@ -161,7 +161,7 @@ class SortWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(left: titleLeftPadding),
+                      padding: EdgeInsetsDirectional.only(start: titleLeftPadding),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
@@ -285,7 +285,7 @@ class SortWidget extends StatelessWidget {
               if (controller.isSearchingEnabled.value)
                 Container(
                   height: 40,
-                  padding: const EdgeInsets.only(left: 5, right: 20),
+                  padding: const EdgeInsetsDirectional.only(start: 5, end: 20),
                   // color:
                   //     Theme.of(context).scaffoldBackgroundColor.withAlpha(125),
                   child: ColoredBox(

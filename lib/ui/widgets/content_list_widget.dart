@@ -36,9 +36,9 @@ class ContentListWidget extends StatelessWidget {
         children: [
           // â”€â”€ Section header â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
           Padding(
-            padding: const EdgeInsets.only(
-                left: AppSpacing.sm,
-                right: AppSpacing.sm,
+            padding: const EdgeInsetsDirectional.only(
+                start: AppSpacing.sm,
+                end: AppSpacing.sm,
                 bottom: AppSpacing.md),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -1403,7 +1403,7 @@
   "@permissionsAllow": {
     "description": "permissionsAllow"
   },
-  "permissionsConsentDescription": "Estrella Music では、音楽を管理し、すべての再生機能を提供するためにこれらの権限が必要です。",
+  "permissionsConsentDescription": "Mo Music では、音楽を管理し、すべての再生機能を提供するためにこれらの権限が必要です。",
   "@permissionsConsentDescription": {
     "description": "permissionsConsentDescription"
   },
@@ -2090,7 +2090,7 @@
   "@startupScreen": {
     "description": "startupScreen"
   },
-  "startupScreenDescription": "Estrella Music が最初に開くセクションを選択してください",
+  "startupScreenDescription": "Mo Music が最初に開くセクションを選択してください",
   "@startupScreenDescription": {
     "description": "startupScreenDescription"
   },
@@ -2361,7 +2361,7 @@
   "@welcome_intro": {
     "description": "welcome_intro"
   },
-  "welcome_subtitle": "これから Estrella Music を体験する方法を選択してください。",
+  "welcome_subtitle": "これから Mo Music を体験する方法を選択してください。",
   "@welcome_subtitle": {
     "description": "welcome_subtitle"
   },

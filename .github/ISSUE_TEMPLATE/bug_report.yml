@@ -8,9 +8,9 @@ body:
       value: |
         ### 🌐 Idiomas Soportados / Supported Languages / Idiomas Suportados
         > [!NOTE]
-        > Recibimos y atendemos incidencias escritas en **Español**, **English**, y **Português**.
-        > We accept issues in **Spanish**, **English**, and **Portuguese**.
-        > Aceitamos problemas em **Espanhol**, **Inglês** e **Português**.
+        > نستقبل البلاغات بالعربية والإنجليزية والإسبانية والبرتغالية.
+        > We accept issues in **Arabic**, **English**, **Spanish**, and **Portuguese**.
+        > Recibimos incidencias en **Árabe**, **Español**, **English** y **Português**.
 
   - type: textarea
     id: description

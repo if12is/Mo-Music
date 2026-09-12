@@ -287,7 +287,7 @@ class ArtistContentListScreen extends StatelessWidget {
                     final isDownloaded = box.containsKey(videoId);
                     if (!isDownloaded) return const SizedBox.shrink();
                     return Padding(
-                      padding: const EdgeInsets.only(right: 8),
+                      padding: const EdgeInsetsDirectional.only(end: 8),
                       child: Icon(
                         Icons.check_circle_rounded,
                         color: Theme.of(context).colorScheme.primary,

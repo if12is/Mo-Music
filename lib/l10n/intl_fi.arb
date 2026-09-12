@@ -196,11 +196,11 @@
   "@auth_register_success": {
     "description": "auth_register_success"
   },
-  "auth_welcome_subtitle": "Tervetuloa Estrella Musiciin",
+  "auth_welcome_subtitle": "Tervetuloa Mo Musiciin",
   "@auth_welcome_subtitle": {
     "description": "auth_welcome_subtitle"
   },
-  "auth_welcome_title": "Tervetuloa Estrella Musiciin",
+  "auth_welcome_title": "Tervetuloa Mo Musiciin",
   "@auth_welcome_title": {
     "description": "auth_welcome_title"
   },
@@ -1291,7 +1291,7 @@
   "@news_card_subtitle": {
     "description": "news_card_subtitle"
   },
-  "news_card_title": "Estrella Music on kehittynyt!",
+  "news_card_title": "Mo Music on kehittynyt!",
   "@news_card_title": {
     "description": "news_card_title"
   },
@@ -1403,7 +1403,7 @@
   "@permissionsAllow": {
     "description": "permissionsAllow"
   },
-  "permissionsConsentDescription": "Estrella Music tarvitsee nämä luvat hallitakseen musiikkiasi ja tarjotakseen kaikkia toistoominaisuuksia.",
+  "permissionsConsentDescription": "Mo Music tarvitsee nämä luvat hallitakseen musiikkiasi ja tarjotakseen kaikkia toistoominaisuuksia.",
   "@permissionsConsentDescription": {
     "description": "permissionsConsentDescription"
   },
@@ -1831,7 +1831,7 @@
   "@settings": {
     "description": "settings"
   },
-  "settings_about_desc": "Tietoja Estrella Musicista",
+  "settings_about_desc": "Tietoja Mo Musicista",
   "@settings_about_desc": {
     "description": "settings_about_desc"
   },
@@ -2090,7 +2090,7 @@
   "@startupScreen": {
     "description": "startupScreen"
   },
-  "startupScreenDescription": "Valitse osio, jonka Estrella Music avaa ensin",
+  "startupScreenDescription": "Valitse osio, jonka Mo Music avaa ensin",
   "@startupScreenDescription": {
     "description": "startupScreenDescription"
   },
@@ -2361,7 +2361,7 @@
   "@welcome_intro": {
     "description": "welcome_intro"
   },
-  "welcome_subtitle": "Valitse, miten haluat kokea Estrella Musicin tästä eteenpäin.",
+  "welcome_subtitle": "Valitse, miten haluat kokea Mo Musicin tästä eteenpäin.",
   "@welcome_subtitle": {
     "description": "welcome_subtitle"
   },

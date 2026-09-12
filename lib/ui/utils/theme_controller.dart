@@ -2,12 +2,14 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:estrella_music/app_identity.dart';
 import 'package:estrella_music/services/storage/sqlite_store.dart';
 import 'package:palette_generator/palette_generator.dart';
 import 'package:estrella_music/utils/helpers/helper.dart';
 
 class ThemeController extends GetxController {
-  final primaryColor = const Color(0xFF6C63FF).obs;
+  final primaryColor = AppIdentity.brandBlue.obs;
   final textColor = Colors.white.obs;
   final themedata = Rxn<ThemeData>();
 
@@ -142,16 +144,22 @@ class ThemeController extends GetxController {
       );
     }
 
-    // Material 3 typography (2021 spec)
-    final textTheme = Typography.material2021(platform: defaultTargetPlatform)
-        .black
-        .apply(
-            displayColor: colorScheme.onSurface,
-            bodyColor: colorScheme.onSurface);
+    // Cairo covers Arabic and Latin in one family, so RTL and English stay
+    // visually consistent with the Mo Music identity.
+    final baseTextTheme =
+        Typography.material2021(platform: defaultTargetPlatform).black.apply(
+              displayColor: colorScheme.onSurface,
+              bodyColor: colorScheme.onSurface,
+            );
+    final textTheme = GoogleFonts.cairoTextTheme(baseTextTheme).apply(
+      displayColor: colorScheme.onSurface,
+      bodyColor: colorScheme.onSurface,
+    );
 
     return ThemeData(
       useMaterial3: true,
       colorScheme: colorScheme,
+      fontFamily: GoogleFonts.cairo().fontFamily,
       textTheme: textTheme,
       scaffoldBackgroundColor: colorScheme.surface,
       canvasColor: colorScheme.surface,

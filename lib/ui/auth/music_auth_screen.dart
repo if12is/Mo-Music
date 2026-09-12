@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'package:estrella_music/app_identity.dart';
 import 'package:estrella_music/generated/l10n.dart';
 import 'package:estrella_music/services/auth/auth_service.dart';
 import 'widgets/animated_auth_background.dart';
@@ -397,7 +398,7 @@ class _BrandPanel extends StatelessWidget {
             ),
             const SizedBox(height: 28),
             Text(
-              'Estrella Music',
+              AppIdentity.localizedName(),
               style: Theme.of(context).textTheme.displaySmall?.copyWith(
                     color: Colors.white,
                     fontWeight: FontWeight.w800,

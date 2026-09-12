@@ -171,10 +171,10 @@ class MessageLookup extends MessageLookupByLibrary {
       "A fiók sikeresen létrehozva.",
     ),
     "auth_welcome_subtitle": MessageLookupByLibrary.simpleMessage(
-      "Üdvözöljük az Estrella Music oldalán",
+      "Üdvözöljük az Mo Music oldalán",
     ),
     "auth_welcome_title": MessageLookupByLibrary.simpleMessage(
-      "Üdvözöljük az Estrella Music oldalán",
+      "Üdvözöljük az Mo Music oldalán",
     ),
     "autoDownFavSong": MessageLookupByLibrary.simpleMessage(
       "Kedvelt dalok automatikus letöltése",
@@ -791,7 +791,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "100%-os szinkronizálás Joss Reddel, lejátszási listák a barátokkal és még sok más. Koppintson az újdonságok megtekintéséhez.",
     ),
     "news_card_title": MessageLookupByLibrary.simpleMessage(
-      "Az Estrella Music fejlődött!",
+      "Az Mo Music fejlődött!",
     ),
     "news_dialog_friends_desc": MessageLookupByLibrary.simpleMessage(
       "Barátok hozzáadásához, kérések elfogadásához vagy biztonsági profiljának kezeléséhez használja a Joss Red szolgáltatást a hivatalos platformjain:",
@@ -800,7 +800,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Barátok és fiókkezelés:",
     ),
     "news_dialog_title": MessageLookupByLibrary.simpleMessage(
-      "Estrella Music News",
+      "Mo Music News",
     ),
     "news_item_collab_desc": MessageLookupByLibrary.simpleMessage(
       "Hozz létre lejátszási listákat barátaiddal! Lejátszási lista létrehozásakor jelölje be az Együttműködés jelölőnégyzetet, és válassza ki barátait, akiket együtt szeretne szerkeszteni.",
@@ -863,7 +863,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "permissionsAllow": MessageLookupByLibrary.simpleMessage("Engedélyezze"),
     "permissionsConsentDescription": MessageLookupByLibrary.simpleMessage(
-      "Az Estrella Musicnak szüksége van ezekre az engedélyekre a zene kezeléséhez és az összes lejátszási funkció biztosításához.",
+      "Az Mo Musicnak szüksége van ezekre az engedélyekre a zene kezeléséhez és az összes lejátszási funkció biztosításához.",
     ),
     "permissionsConsentTitle": MessageLookupByLibrary.simpleMessage(
       "Engedélyek az induláshoz",
@@ -1114,7 +1114,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "settings": MessageLookupByLibrary.simpleMessage("Beállítások"),
     "settings_about_desc": MessageLookupByLibrary.simpleMessage(
-      "Az Estrella Musicról",
+      "Az Mo Musicról",
     ),
     "settings_about_sub": MessageLookupByLibrary.simpleMessage(
       "Verzió, nyílt forráskódú projekt és GitHub.",
@@ -1255,7 +1255,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Nyissa meg indításkor",
     ),
     "startupScreenDescription": MessageLookupByLibrary.simpleMessage(
-      "Válassza ki azt a részt, amelyet az Estrella Music először nyit meg",
+      "Válassza ki azt a részt, amelyet az Mo Music először nyit meg",
     ),
     "status": MessageLookupByLibrary.simpleMessage("Állapot"),
     "stopMusicOnTaskClear": MessageLookupByLibrary.simpleMessage(

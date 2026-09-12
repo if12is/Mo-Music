@@ -49,6 +49,10 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m13(statusCode) =>
       "تعذر البحث عن المستخدمين (_${statusCode}_).";
 
+  static String m14(message) => "خطأ في الشبكة: ${message}";
+
+  static String m15(date) => "التاريخ: ${date}";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "CreateNewPlaylist": MessageLookupByLibrary.simpleMessage(
@@ -159,10 +163,10 @@ class MessageLookup extends MessageLookupByLibrary {
       "تم إنشاء الحساب بنجاح.",
     ),
     "auth_welcome_subtitle": MessageLookupByLibrary.simpleMessage(
-      "مرحبا بكم في استريلا الموسيقى",
+      "مرحبا بكم في مو ميوزك",
     ),
     "auth_welcome_title": MessageLookupByLibrary.simpleMessage(
-      "مرحبا بكم في استريلا الموسيقى",
+      "مرحبا بكم في مو ميوزك",
     ),
     "autoDownFavSong": MessageLookupByLibrary.simpleMessage(
       "تنزيل الأغاني المفضلة تلقائيًا",
@@ -761,7 +765,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "مزامنة بنسبة 100% مع Joss Red وقوائم التشغيل مع الأصدقاء وغير ذلك الكثير. انقر لمعرفة ما هو الجديد.",
     ),
     "news_card_title": MessageLookupByLibrary.simpleMessage(
-      "لقد تطورت موسيقى استريلا!",
+      "لقد تطورت مو ميوزك!",
     ),
     "news_dialog_friends_desc": MessageLookupByLibrary.simpleMessage(
       "لإضافة أصدقاء أو قبول الطلبات أو إدارة ملف تعريف الأمان الخاص بك، يرجى استخدام Joss Red على منصاته الرسمية:",
@@ -770,7 +774,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "الأصدقاء وإدارة الحسابات:",
     ),
     "news_dialog_title": MessageLookupByLibrary.simpleMessage(
-      "أخبار الموسيقى استريلا",
+      "أخبار المو ميوزك",
     ),
     "news_item_collab_desc": MessageLookupByLibrary.simpleMessage(
       "إنشاء قوائم التشغيل مع أصدقائك! عند إنشاء قائمة تشغيل، حدد مربع الاختيار التعاوني واختر أصدقائك لتحريرها معًا.",
@@ -825,7 +829,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "permissionDenied": MessageLookupByLibrary.simpleMessage("تم رفض الإذن"),
     "permissionsAllow": MessageLookupByLibrary.simpleMessage("يسمح"),
     "permissionsConsentDescription": MessageLookupByLibrary.simpleMessage(
-      "تحتاج Estrella Music إلى هذه الأذونات لإدارة الموسيقى الخاصة بك وتقديم جميع ميزات التشغيل.",
+      "تحتاج Mo Music إلى هذه الأذونات لإدارة الموسيقى الخاصة بك وتقديم جميع ميزات التشغيل.",
     ),
     "permissionsConsentTitle": MessageLookupByLibrary.simpleMessage(
       "أذونات للبدء",
@@ -1054,7 +1058,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "settings": MessageLookupByLibrary.simpleMessage("إعدادات"),
     "settings_about_desc": MessageLookupByLibrary.simpleMessage(
-      "حول موسيقى استريلا",
+      "حول مو ميوزك",
     ),
     "settings_about_sub": MessageLookupByLibrary.simpleMessage(
       "الإصدار، مشروع مفتوح المصدر وGitHub.",
@@ -1187,7 +1191,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "فتح عند بدء التشغيل",
     ),
     "startupScreenDescription": MessageLookupByLibrary.simpleMessage(
-      "اختر القسم الذي تفتحه Estrella Music أولاً",
+      "اختر القسم الذي تفتحه Mo Music أولاً",
     ),
     "status": MessageLookupByLibrary.simpleMessage("الحالة"),
     "stopMusicOnTaskClear": MessageLookupByLibrary.simpleMessage(
@@ -1353,10 +1357,73 @@ class MessageLookup extends MessageLookupByLibrary {
       "لقد قمنا بتحديث منصتنا. تم تعطيل النظام القديم لتحميل النسخ الاحتياطية اليدوية. لديك الآن طريقتان واضحتان لإدارة مكتبة الموسيقى الخاصة بك.",
     ),
     "welcome_subtitle": MessageLookupByLibrary.simpleMessage(
-      "اختر الطريقة التي تريد بها تجربة موسيقى Estrella من الآن فصاعدًا.",
+      "اختر الطريقة التي تريد بها تجربة مو ميوزك من الآن فصاعدًا.",
     ),
     "welcome_title": MessageLookupByLibrary.simpleMessage(
       "الموسيقى الخاصة بك، طريقك",
+    ),
+    "updateAction": MessageLookupByLibrary.simpleMessage("تحديث"),
+    "updateCheckUnavailable": MessageLookupByLibrary.simpleMessage(
+      "تعذر التحقق من التحديثات من هذا المستودع.",
+    ),
+    "updateDownloadGithub": MessageLookupByLibrary.simpleMessage(
+      "تنزيل من GitHub",
+    ),
+    "updateDownloadUnavailable": MessageLookupByLibrary.simpleMessage(
+      "رابط التنزيل غير متاح.",
+    ),
+    "updateIosGuide": MessageLookupByLibrary.simpleMessage("دليل تثبيت iOS"),
+    "updateNetworkError": m14,
+    "updateNotificationChannel": MessageLookupByLibrary.simpleMessage(
+      "تحديثات مو ميوزك",
+    ),
+    "updateNotificationChannelDes": MessageLookupByLibrary.simpleMessage(
+      "يُعلمك عندما يكون التحديث جاهزًا للتثبيت",
+    ),
+    "updateReadyBody": MessageLookupByLibrary.simpleMessage(
+      "اضغط تثبيت داخل التطبيق لإكمال تحديث مو ميوزك.",
+    ),
+    "updateReadyTitle": MessageLookupByLibrary.simpleMessage("التحديث جاهز!"),
+    "checkingUpdates": MessageLookupByLibrary.simpleMessage(
+      "جارٍ التحقق من التحديثات...",
+    ),
+    "preparingApp": MessageLookupByLibrary.simpleMessage(
+      "لحظة واحدة، نجهّز مو ميوزك.",
+    ),
+    "validatingSession": MessageLookupByLibrary.simpleMessage(
+      "جارٍ التحقق من جلستك",
+    ),
+    "backupDateLabel": m15,
+    "backupJossMusic": MessageLookupByLibrary.simpleMessage(
+      "نسخة Joss Music الاحتياطية",
+    ),
+    "backupMoMusic": MessageLookupByLibrary.simpleMessage(
+      "نسخة مو ميوزك الاحتياطية",
+    ),
+    "unknownDate": MessageLookupByLibrary.simpleMessage("غير معروف"),
+    "welcomeDisclaimer": MessageLookupByLibrary.simpleMessage(
+      "تنبيه: البث الخارجي يُعدّه المستخدم. مو ميوزك يعمل افتراضيًا كمشغّل محلي دون إنترنت.",
+    ),
+    "welcomeLocalModeSubtitle": MessageLookupByLibrary.simpleMessage(
+      "شغّل الموسيقى المخزّنة على هذا الجهاز. لا يحتاج إلى إنترنت أو خوادم خارجية.",
+    ),
+    "welcomeLocalModeTitle": MessageLookupByLibrary.simpleMessage(
+      "الوضع المحلي (بدون إنترنت افتراضيًا)",
+    ),
+    "welcomeSelectHowToListen": MessageLookupByLibrary.simpleMessage(
+      "اختر كيف تريد الاستماع اليوم:",
+    ),
+    "welcomeSetupSubtitle": MessageLookupByLibrary.simpleMessage(
+      "جهّز تجربتك الموسيقية الأولى",
+    ),
+    "welcomeSetupTitle": MessageLookupByLibrary.simpleMessage(
+      "مرحبًا بك في مو ميوزك",
+    ),
+    "welcomeStreamingModeSubtitle": MessageLookupByLibrary.simpleMessage(
+      "اربط خادم وصفات أو بث خارجي.",
+    ),
+    "welcomeStreamingModeTitle": MessageLookupByLibrary.simpleMessage(
+      "تشغيل البث الخارجي",
     ),
   };
 }

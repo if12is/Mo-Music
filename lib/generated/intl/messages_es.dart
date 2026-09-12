@@ -173,10 +173,10 @@ class MessageLookup extends MessageLookupByLibrary {
       "Cuenta creada correctamente.",
     ),
     "auth_welcome_subtitle": MessageLookupByLibrary.simpleMessage(
-      "Bienvenidos a Estrella Music",
+      "Bienvenidos a Mo Music",
     ),
     "auth_welcome_title": MessageLookupByLibrary.simpleMessage(
-      "Bienvenidos a Estrella Music",
+      "Bienvenidos a Mo Music",
     ),
     "autoDownFavSong": MessageLookupByLibrary.simpleMessage(
       "Descarga automática de canciones favoritas",
@@ -813,7 +813,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Sincronización 100% con Joss Red, playlists con amigos y mucho más. Toca para ver lo nuevo.",
     ),
     "news_card_title": MessageLookupByLibrary.simpleMessage(
-      "¡Estrella Music ha evolucionado!",
+      "¡Mo Music ha evolucionado!",
     ),
     "news_dialog_friends_desc": MessageLookupByLibrary.simpleMessage(
       "Para añadir amigos, aceptar solicitudes o gestionar tu perfil de seguridad, por favor utiliza Joss Red en sus plataformas oficiales:",
@@ -822,7 +822,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Gestión de Amigos y Cuenta:",
     ),
     "news_dialog_title": MessageLookupByLibrary.simpleMessage(
-      "Novedades de Estrella Music",
+      "Novedades de Mo Music",
     ),
     "news_item_collab_desc": MessageLookupByLibrary.simpleMessage(
       "¡Crea listas de reproducción con tus amigos! Al crear una playlist, selecciona la casilla de Colaborativa y elige a tus amigos para que editen juntos.",
@@ -881,7 +881,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "permissionsAllow": MessageLookupByLibrary.simpleMessage("Permitir"),
     "permissionsConsentDescription": MessageLookupByLibrary.simpleMessage(
-      "Estrella Music necesita estos permisos para administrar tu música y ofrecer todas las funciones de reproducción.",
+      "Mo Music necesita estos permisos para administrar tu música y ofrecer todas las funciones de reproducción.",
     ),
     "permissionsConsentTitle": MessageLookupByLibrary.simpleMessage(
       "Permisos para comenzar",
@@ -1130,7 +1130,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "settings": MessageLookupByLibrary.simpleMessage("Ajustes"),
     "settings_about_desc": MessageLookupByLibrary.simpleMessage(
-      "Acerca de Estrella Music",
+      "Acerca de Mo Music",
     ),
     "settings_about_sub": MessageLookupByLibrary.simpleMessage(
       "Versión, proyecto de código abierto y GitHub.",
@@ -1267,7 +1267,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "startRadio": MessageLookupByLibrary.simpleMessage("Iniciar radio"),
     "startupScreen": MessageLookupByLibrary.simpleMessage("Abrir al iniciar"),
     "startupScreenDescription": MessageLookupByLibrary.simpleMessage(
-      "Elige la sección que Estrella Music abre primero",
+      "Elige la sección que Mo Music abre primero",
     ),
     "status": MessageLookupByLibrary.simpleMessage("Estado"),
     "stopMusicOnTaskClear": MessageLookupByLibrary.simpleMessage(
@@ -1440,7 +1440,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Hemos modernizado nuestra plataforma. El antiguo sistema de subir respaldos manuales ha sido desactivado. Ahora cuentas con dos modos claros para gestionar tu biblioteca musical.",
     ),
     "welcome_subtitle": MessageLookupByLibrary.simpleMessage(
-      "Elige cómo quieres experimentar Estrella Music de ahora en adelante.",
+      "Elige cómo quieres experimentar Mo Music de ahora en adelante.",
     ),
     "welcome_title": MessageLookupByLibrary.simpleMessage(
       "Tu música, a tu manera",

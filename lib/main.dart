@@ -47,6 +47,7 @@ import '/ui/utils/theme_controller.dart';
 import 'ui/screens/Home/home_screen_controller.dart';
 import 'ui/screens/Library/library_controller.dart';
 import 'package:estrella_music/utils/desktop/system_tray.dart';
+import 'package:estrella_music/app_identity.dart';
 import 'package:estrella_music/utils/helpers/update_check_flag_file.dart';
 
 import 'package:workmanager/workmanager.dart';
@@ -132,8 +133,7 @@ Future<void> main() async {
   }
 
   final appLang = appPrefs.get('currentAppLanguageCode') ??
-      Get.deviceLocale?.languageCode ??
-      "en";
+      AppIdentity.defaultLanguageCode;
   await S.load(Locale(appLang));
   BackgroundExecutionService.initialize();
   _setAppInitPrefs();
@@ -183,7 +183,7 @@ class MyApp extends StatelessWidget {
             actions: [
               TextButton(
                 onPressed: Get.back,
-                child: const Text('Entendido'),
+                child: Text(S.current.news_btn_dismiss),
               ),
             ],
           ),
@@ -200,7 +200,7 @@ class MyApp extends StatelessWidget {
     }
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
     return GetMaterialApp(
-        title: 'Estrella Music',
+        title: AppIdentity.appName,
         home: const PermissionConsentGate(child: AuthGate()),
         debugShowCheckedModeBanner: false,
         localizationsDelegates: const [
@@ -210,12 +210,15 @@ class MyApp extends StatelessWidget {
           GlobalCupertinoLocalizations.delegate,
         ],
         supportedLocales: S.delegate.supportedLocales,
-        locale: (SqliteStore.box("AppPrefs").get('currentAppLanguageCode') ==
-                    null ||
-                SqliteStore.box("AppPrefs")
-                    .get('autoLanguage', defaultValue: true))
-            ? Get.deviceLocale
-            : Locale(SqliteStore.box("AppPrefs").get('currentAppLanguageCode')),
+        locale: _resolveAppLocale(),
+        fallbackLocale: const Locale(AppIdentity.defaultLanguageCode),
+        localeResolutionCallback: (deviceLocale, supported) {
+          final resolved = _resolveAppLocale();
+          if (supported.any((item) => item.languageCode == resolved.languageCode)) {
+            return resolved;
+          }
+          return const Locale(AppIdentity.defaultLanguageCode);
+        },
         navigatorObservers: [LiquidRouteObserver.instance],
         builder: (context, child) {
           return DynamicColorBuilder(
@@ -269,6 +272,24 @@ class MyApp extends StatelessWidget {
           );
         });
   }
+}
+
+Locale _resolveAppLocale() {
+  final prefs = SqliteStore.box('AppPrefs');
+  final savedCode = prefs.get('currentAppLanguageCode');
+  final autoLanguage = prefs.get('autoLanguage', defaultValue: false) == true;
+  if (autoLanguage) {
+    final deviceCode = Get.deviceLocale?.languageCode;
+    if (deviceCode != null &&
+        S.delegate.supportedLocales
+            .any((locale) => locale.languageCode == deviceCode)) {
+      return Locale(deviceCode);
+    }
+  }
+  if (savedCode is String && savedCode.trim().isNotEmpty) {
+    return Locale(savedCode);
+  }
+  return const Locale(AppIdentity.defaultLanguageCode);
 }
 
 void startApplicationServices(MusicSqliteService musicDatabase) {
@@ -329,13 +350,14 @@ void _setAppInitPrefs() {
     'cacheSongs': false,
     'skipSilenceEnabled': false,
     'streamingQuality': 1,
-    'themePrimaryColor': 4278199603,
+    'themePrimaryColor': AppIdentity.brandBlue.toARGB32(),
     'discoverContentType': 'QP',
     'startupTabIndex': 0,
     'newVersionVisibility': updateCheckFlag,
     'cacheHomeScreenData': true,
     'restrorePlaybackSession': true,
-    'autoLanguage': true,
+    'autoLanguage': false,
+    'currentAppLanguageCode': AppIdentity.defaultLanguageCode,
     'app_first_run_timestamp': DateTime.now().toIso8601String(),
     'hasPendingSync': false,
     'linkedDeviceId': '',

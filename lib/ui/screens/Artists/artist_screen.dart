@@ -1583,7 +1583,7 @@ class _SpotifyArtistScreen extends StatelessWidget {
               itemCount: items.length,
               itemBuilder: (context, index) {
                 return Padding(
-                  padding: const EdgeInsets.only(right: 20),
+                  padding: const EdgeInsetsDirectional.only(end: 20),
                   child: _AlbumCard(
                     item: items[index],
                     isVideo: isVideo,

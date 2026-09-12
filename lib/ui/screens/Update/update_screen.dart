@@ -63,7 +63,7 @@ class UpdateScreen extends StatelessWidget {
                       // ── Título ────────────────────────────────────
                       Text(
                         data['Titulo'] ?? 'Nueva Versión',
-                        style: GoogleFonts.manrope(
+                        style: GoogleFonts.cairo(
                           fontSize: 32,
                           fontWeight: FontWeight.w900,
                           color: Colors.white,
@@ -86,7 +86,7 @@ class UpdateScreen extends StatelessWidget {
                         ),
                         child: Text(
                           data['Version'] ?? 'V-?',
-                          style: GoogleFonts.manrope(
+                          style: GoogleFonts.cairo(
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
                             color: Colors.blueAccent.shade100,
@@ -113,17 +113,17 @@ class UpdateScreen extends StatelessWidget {
                           data: data['Descripcion'] ?? '',
                           styleSheet:
                               MarkdownStyleSheet.fromTheme(theme).copyWith(
-                            p: GoogleFonts.manrope(
+                            p: GoogleFonts.cairo(
                               fontSize: 15,
                               color: Colors.white70,
                               height: 1.5,
                             ),
-                            h1: GoogleFonts.manrope(
+                            h1: GoogleFonts.cairo(
                               fontSize: 22,
                               fontWeight: FontWeight.bold,
                               color: Colors.white,
                             ),
-                            h2: GoogleFonts.manrope(
+                            h2: GoogleFonts.cairo(
                               fontSize: 19,
                               fontWeight: FontWeight.bold,
                               color: Colors.white,
@@ -281,7 +281,7 @@ class _FileNameChip extends StatelessWidget {
           const SizedBox(width: 6),
           Text(
             fileName,
-            style: GoogleFonts.manrope(
+            style: GoogleFonts.cairo(
               fontSize: 12,
               color: Colors.white38,
               fontWeight: FontWeight.w500,
@@ -343,7 +343,7 @@ class _BottomActionArea extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 12),
                 child: Text(
                   _platformNote,
-                  style: GoogleFonts.manrope(
+                  style: GoogleFonts.cairo(
                     fontSize: 12,
                     color: Colors.white38,
                   ),
@@ -367,14 +367,14 @@ class _BottomActionArea extends StatelessWidget {
           children: [
             Text(
               'Descargando...',
-              style: GoogleFonts.manrope(
+              style: GoogleFonts.cairo(
                 fontSize: 13,
                 color: Colors.white60,
               ),
             ),
             Text(
               '$pct%',
-              style: GoogleFonts.manrope(
+              style: GoogleFonts.cairo(
                 fontSize: 13,
                 fontWeight: FontWeight.w700,
                 color: UpdateScreen.accentColor,
@@ -417,7 +417,7 @@ class _BottomActionArea extends StatelessWidget {
           Expanded(
             child: Text(
               message,
-              style: GoogleFonts.manrope(
+              style: GoogleFonts.cairo(
                 fontSize: 12,
                 color: UpdateScreen.errorColor,
               ),
@@ -444,7 +444,7 @@ class _BottomActionArea extends StatelessWidget {
         ),
         label: Text(
           'DESCARGANDO...',
-          style: GoogleFonts.manrope(
+          style: GoogleFonts.cairo(
             fontSize: 16,
             fontWeight: FontWeight.w900,
             letterSpacing: 1.2,
@@ -462,7 +462,7 @@ class _BottomActionArea extends StatelessWidget {
         icon: const Icon(Icons.install_mobile_rounded, size: 24),
         label: Text(
           'INSTALAR AHORA',
-          style: GoogleFonts.manrope(
+          style: GoogleFonts.cairo(
             fontSize: 18,
             fontWeight: FontWeight.w900,
             letterSpacing: 1.2,
@@ -486,7 +486,7 @@ class _BottomActionArea extends StatelessWidget {
         ),
         label: Text(
           'INSTALANDO...',
-          style: GoogleFonts.manrope(
+          style: GoogleFonts.cairo(
             fontSize: 16,
             fontWeight: FontWeight.w900,
             letterSpacing: 1.2,
@@ -503,7 +503,7 @@ class _BottomActionArea extends StatelessWidget {
         icon: const Icon(Icons.refresh_rounded, size: 24),
         label: Text(
           'REINTENTAR',
-          style: GoogleFonts.manrope(
+          style: GoogleFonts.cairo(
             fontSize: 18,
             fontWeight: FontWeight.w900,
             letterSpacing: 1.2,
@@ -519,7 +519,7 @@ class _BottomActionArea extends StatelessWidget {
       icon: Icon(_platformIcon, size: 24),
       label: Text(
         controller.platformActionLabel.toUpperCase(),
-        style: GoogleFonts.manrope(
+        style: GoogleFonts.cairo(
           fontSize: 18,
           fontWeight: FontWeight.w900,
           letterSpacing: 1.2,

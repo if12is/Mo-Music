@@ -1,38 +1,36 @@
 <div align="center">
 
-<img src="icon.png" width="120" height="120" alt="Estrella Music" style="border-radius:28px"/>
+<img src="icon.png" width="120" height="120" alt="Mo Music" style="border-radius:28px"/>
 
-<h1>Estrella Music v2</h1>
+<h1>Mo Music</h1>
 
-<p><strong>Offline-First Cross-Platform Music Player · Flutter · Modular Music Providers</strong></p>
+<p><strong>مشغّل موسيقى متعدد المنصات · العربية أولًا · RTL · Flutter</strong></p>
+<p><strong>Offline-first cross-platform music player · Arabic-first · Flutter</strong></p>
 
-<!-- Badges -->
 <p>
-  <a href="https://github.com/josprox/Estrella-Music/releases/latest">
-    <img src="https://img.shields.io/github/v/release/josprox/Estrella-Music?style=for-the-badge&logo=github&logoColor=white&label=Release&color=FF719A" alt="Latest Release"/>
+  <a href="https://github.com/if12is/Mo-Music/releases/latest">
+    <img src="https://img.shields.io/github/v/release/if12is/Mo-Music?style=for-the-badge&logo=github&logoColor=white&label=Release&color=3332CE" alt="Latest Release"/>
   </a>
-  <a href="https://github.com/josprox/Estrella-Music/releases/latest">
-    <img src="https://img.shields.io/github/downloads/josprox/Estrella-Music/total?style=for-the-badge&logo=github&logoColor=white&color=7C3AED" alt="Total Downloads"/>
+  <a href="https://github.com/if12is/Mo-Music/releases/latest">
+    <img src="https://img.shields.io/github/downloads/if12is/Mo-Music/total?style=for-the-badge&logo=github&logoColor=white&color=5A59E6" alt="Total Downloads"/>
   </a>
   <a href="LICENSE">
     <img src="https://img.shields.io/badge/License-GPLv3-blue?style=for-the-badge&logo=gnu&logoColor=white" alt="License"/>
   </a>
-  <img src="https://img.shields.io/badge/Flutter-3.x-02569B?style=for-the-badge&logo=flutter&logoColor=white" alt="Flutter"/>
-  <img src="https://img.shields.io/badge/Platforms-Android%20·%20Windows%20·%20Linux%20·%20macOS%20·%20iOS-4CAF7D?style=for-the-badge&logo=flutter&logoColor=white" alt="Platforms"/>
+  <img src="https://img.shields.io/badge/Default%20language-Arabic-3332CE?style=for-the-badge" alt="Arabic"/>
 </p>
 
-<!-- Download buttons -->
 <p>
-  <a href="https://github.com/josprox/Estrella-Music/releases/latest/download/EstrellaMusic-android-universal.apk">
+  <a href="https://github.com/if12is/Mo-Music/releases/latest/download/MoMusic-android-universal.apk">
     <img src="https://img.shields.io/badge/Android-APK-3DDC84?style=for-the-badge&logo=android&logoColor=white" alt="Download Android"/>
   </a>
-  <a href="https://github.com/josprox/Estrella-Music/releases/latest/download/EstrellaMusic-windows-installer.exe">
+  <a href="https://github.com/if12is/Mo-Music/releases/latest/download/MoMusic-windows-installer.exe">
     <img src="https://img.shields.io/badge/Windows-Installer-0078D4?style=for-the-badge&logo=windows&logoColor=white" alt="Download Windows"/>
   </a>
-  <a href="https://github.com/josprox/Estrella-Music/releases/latest/download/EstrellaMusic-linux-x64.tar.gz">
+  <a href="https://github.com/if12is/Mo-Music/releases/latest/download/MoMusic-linux-x64.tar.gz">
     <img src="https://img.shields.io/badge/Linux-x64-FCC624?style=for-the-badge&logo=linux&logoColor=black" alt="Download Linux"/>
   </a>
-  <a href="https://github.com/josprox/Estrella-Music/releases/latest/download/EstrellaMusic-macos.zip">
+  <a href="https://github.com/if12is/Mo-Music/releases/latest/download/MoMusic-macos.zip">
     <img src="https://img.shields.io/badge/macOS-ZIP-000000?style=for-the-badge&logo=apple&logoColor=white" alt="Download macOS"/>
   </a>
 </p>
@@ -41,194 +39,61 @@
 
 ---
 
-## ✨ What is Estrella Music v2?
+## ما هو مو ميوزك؟
 
-**Estrella Music v2** is a modern, high-performance, **offline-first local music player** built with Flutter for Android, Windows, Linux, macOS, and iOS. 
+**مو ميوزك** مشغّل موسيقى حديث يعمل أولًا بدون إنترنت، مع هوية بصرية جديدة ولغة عربية افتراضية واتجاه RTL.
 
-Designed around a neutral, extensible **MusicProvider** architecture, Estrella Music works out-of-the-box as a powerful local audio manager that scans and organizes your device's audio files without requiring an active internet connection.
+Mo Music is a modern offline-first Flutter music player. Arabic is the default language, Cairo is the bilingual UI font, and in-app updates come from **this repository** (`if12is/Mo-Music`), not from the original upstream project.
 
-> 🔒 **Identity by Joss Red**: The app requires a global Joss Red account session for profile management, friend lists, and encrypted backups.
->
-> ⚠️ **Disclaimer of Liability**: External streaming reproductions and community recipe servers are user-configured external sources. Estrella Music and its developers assume no responsibility for external content or third-party usage.
+## الهوية
 
----
+- الاسم: **Mo Music** / **مو ميوزك**
+- اللون: `#3332CE`
+- الخط: **Cairo** (عربي + إنجليزي)
+- التحديثات: `https://github.com/if12is/Mo-Music/releases`
 
-## 🏗️ Project Architecture & Ecosystem Separation
+## التحديثات والإصدارات
 
-This repository and ecosystem consist of three distinct components:
+التطبيق يتحقق من الإصدارات عبر:
 
-```
-┌────────────────────────────────────────┐       JWT / Auth       ┌──────────────────────────────┐
-│       Estrella Music (Flutter)         │ ─────────────────────► │          Joss Red            │
-│  ────────────────────────────────────  │                        │   Primary Identity & Auth    │
-│  • Default Offline-First Music Player  │                        │   User Profiles · Backups    │
-│  • Smart local audio scanning & tags   │                        │   Friends & Social Features  │
-│  • Neutral Multi-Profile Player        │                        └──────────────────────────────┘
-│  • External Recipe / URL / QR Support  │
-└────────────────────────────────────────┘
-                    │ (Optional Sync / Streaming)
-                    ▼
-       ┌──────────────────────────┐
-       │     EMusic (Secondary)   │
-       │  Standalone Cloud Backend│
-       │  Music Sync & Shared Queues
-       └──────────────────────────┘
-```
+1. `UPDATE_CHECK_URL` إن وُجد في `.env`
+2. `distribution/update-check.json` في هذا المستودع
+3. GitHub Releases/Tags الخاصة بـ `if12is/Mo-Music`
 
-1. **Flutter App (`/`) [Core Project]**: The default client application and real user experience. Operates as an offline-first local audio player with intelligent metadata enrichment, playlist management, and dynamic theme engine.
-2. **Joss Red [Primary Identity Service]**: The core backend responsible for authentication, JWT verification, profile updates, encrypted backups, friends, and permissions.
-3. **`EMusic/` [Secondary Standalone Service]**: A secondary, optional Joss backend dedicated to cloud music synchronization, co-listening, and legacy streaming. **EMusic is NOT part of the core Flutter client**.
-
----
-
-## 🚀 Key Features
-
-<table>
-<tr>
-<td width="50%">
-
-### 🎧 Local Playback (Default Mode)
-- **100% Offline-first local player**: No internet needed for audio playback.
-- **Smart Directory Indexer**: Filters out noise (voice notes, WhatsApp audio, ringtones).
-- **Composite Metadata Provider**: Enriches tags & high-resolution album artwork (iTunes & MusicBrainz).
-- **Directory Sidecar Artwork**: Auto-detects `cover.jpg`, `folder.png`, embedded tags.
-- **High-Fidelity Audio**: Gapless playback, equalizer, skip silence, persistent queue.
-- **Synced Lyrics**: Time-synced and plain lyrics via LRCLIB.
-
-</td>
-<td width="50%">
-
-### 🌐 Modular Providers & Streaming
-- **Neutral MusicProvider Contract**: Decoupled player core.
-- **External Streaming & Recipes (Stremio-style)**: Connect custom recipe servers or community endpoints.
-- **QR Code & URL Scanner**: Import custom server endpoints instantly via camera or clipboard.
-- **Multi-Profile Support**: Switch between multiple local and external profiles seamlessly.
-- **Joss Red Cloud Backups**: Securely back up playlists and settings to your Joss Red account.
-
-</td>
-</tr>
-</table>
-
----
-
-## 📲 Connect External Streaming Server (QR & URL)
-
-To connect the external streaming server (`https://emusic.joss.red`), you can scan this QR code directly using the in-app camera scanner or enter the URL manually:
-
-<div align="center">
-
-<img src="assets/qr_emusic.png" width="190" height="190" alt="QR EMusic Server" style="border-radius:14px; margin: 12px 0; border: 1px solid rgba(255,255,255,0.15);"/>
-
-```text
-https://emusic.joss.red
-```
-
-<p><em>Inside the app: Select <strong>External Streaming Playback</strong> → Tap the <strong>Scan QR</strong> button and point your camera at this code.</em></p>
-
-</div>
-
----
-
-## 📸 Screenshots
-
-<div align="center">
-<p><em>Library, Wrap & Stats Screens</em></p>
-
-<table>
-  <tr>
-    <td><img src="assets/screenshots/v1_wrapped_artist.png" height="340" alt="Top Artist"/></td>
-    <td><img src="assets/screenshots/v1_top_artists.png" height="340" alt="Top Artists List"/></td>
-    <td><img src="assets/screenshots/v1_wrapped_song.png" height="340" alt="Song of the Year"/></td>
-    <td><img src="assets/screenshots/v1_top_songs.png" height="340" alt="Top Songs"/></td>
-    <td><img src="assets/screenshots/v1_stats.png" height="340" alt="Your Stats"/></td>
-    <td><img src="assets/screenshots/v1_wrapped_end.png" height="340" alt="Wrapped 2025"/></td>
-  </tr>
-</table>
-</div>
-
----
-
-## 🛠 Tech Stack
-
-| Layer | Technology |
-|---|---|
-| **Framework** | [Flutter](https://flutter.dev) 3.x · Dart |
-| **Architecture** | Neutral `MusicProvider` (`LocalMusicProvider`, `EMusicProvider`, Custom) |
-| **State Management** | [GetX](https://pub.dev/packages/get) |
-| **Mobile Audio** | `just_audio` · `audio_service` |
-| **Desktop Audio** | `media_kit` via `just_audio_media_kit` |
-| **Local Storage & State** | Hive (local state, downloads & offline caching) · SQLite (profiles & outbox) |
-| **Identity & Sessions** | **Joss Red** (JWT · profiles · cloud backups · friends) |
-| **QR & Scanner** | `mobile_scanner` |
-| **Lyrics & Metadata** | LRCLIB · iTunes API · MusicBrainz |
-| **Build & Release** | GitHub Actions multi-platform CI/CD |
-
----
-
-## 📥 Installation
-
-### Android / Windows / Linux / macOS
-
-Download the latest release for your platform:
-
-| Platform | File | Notes |
-|---|---|---|
-| 🤖 **Android** | `EstrellaMusic-android-universal.apk` | Universal APK — also available split by ABI |
-| 🪟 **Windows** | `EstrellaMusic-windows-installer.exe` | Inno Setup installer |
-| 🐧 **Linux** | `EstrellaMusic-linux-x64.tar.gz` | Requires `libmpv` + `libgtk-3` |
-| 🍎 **macOS** | `EstrellaMusic-macos.zip` | Extract & drag to Applications. If Gatekeeper blocks it: **right-click → Open** |
-| 🐙 **All** | [GitHub Releases →](https://github.com/josprox/Estrella-Music/releases/latest) | |
-
----
-
-### 🍏 iPhone / iOS — Automatic Signing with SideStore
-
-To install the `.ipa` without weekly revokes:
-
-1. **Install SideStore** following [sidestore.io](https://sidestore.io).
-2. **Install the App:**
-   - Download `EstrellaMusic-ios-unsigned.ipa` on your iPhone → **Files**.
-   - SideStore → **My Apps** → **`+`** → select the `.ipa` file.
-3. **Auto-renewal:** Open SideStore on Wi-Fi once a week to renew signatures automatically.
-
----
-
-### 🧑‍💻 Build from source
+لنشر إصدار جديد:
 
 ```bash
-# 1. Clone
-git clone https://github.com/josprox/Estrella-Music.git
-cd Estrella-Music
+# 1) ارفع رقم الإصدار في pubspec.yaml مثل 2.5.0+74
+# 2) ادفع التغييرات إلى dev
+# 3) أنشئ tag وأصدر Release في GitHub
+git tag v2.5.0
+git push origin v2.5.0
+```
 
-# 2. Environment
+إنشاء Release في GitHub يشغّل بناء المنصات ويرفع ملفات:
+
+| المنصة | الملف |
+|---|---|
+| Android | `MoMusic-android-universal.apk` |
+| Windows | `MoMusic-windows-installer.exe` |
+| Linux | `MoMusic-linux-x64.tar.gz` |
+| macOS | `MoMusic-macos.zip` |
+| iOS | `MoMusic-ios-unsigned.ipa` |
+
+يمكن أيضًا تشغيل workflow `Publish update manifest` لتحديث `distribution/update-check.json`.
+
+## البناء من المصدر
+
+```bash
+git clone https://github.com/if12is/Mo-Music.git
+cd Mo-Music
 cp .env.example .env
-# Edit .env — configure API endpoints if needed
-
-# 3. Dependencies
 flutter pub get
-
-# 4. Run
 flutter run
 ```
 
----
+## الترخيص
 
-## 📜 License & Authorship
+مرخّص تحت **GNU GPL v3.0**. راجع [CREDITS.md](CREDITS.md) لإقرارات المشاريع الأصلية.
 
-**Copyright © 2026 Joss Estrada (JOSPROX). All rights reserved.**
-
-Licensed under the **[GNU General Public License v3.0](LICENSE)**.
-
-- You may not use modified versions for non-free or commercial purposes.
-- You may not publish modified versions on closed-source stores without authorization.
-- See [CREDITS.md](CREDITS.md) for full third-party acknowledgments.
-
-*This project is an independent open-source audio player and is not affiliated with external streaming platforms. All trademarks belong to their respective owners.*
-
----
-
-<div align="center">
-
-Made with ❤️ by **[JOSPROX](https://github.com/josprox)**
-
-</div>
+Made by **Ahmed Elsayed** · [if12is/Mo-Music](https://github.com/if12is/Mo-Music)

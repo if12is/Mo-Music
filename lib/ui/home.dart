@@ -143,8 +143,8 @@ class Home extends StatelessWidget {
                               color: Theme.of(context).canvasColor,
                               child: Center(
                                   child: Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 15.0, right: 15),
+                                padding: const EdgeInsetsDirectional.only(
+                                    start: 15.0, end: 15),
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,

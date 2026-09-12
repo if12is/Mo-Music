@@ -18,8 +18,8 @@ class LyricsDialog extends StatelessWidget {
       child: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(
-                bottom: 10.0, top: 20, left: 20, right: 20),
+            padding: const EdgeInsetsDirectional.only(
+                bottom: 10.0, top: 20, start: 20, end: 20),
             child: Row(
               children: [
                 const Expanded(child: LyricsSwitch()),

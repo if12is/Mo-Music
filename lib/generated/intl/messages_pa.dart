@@ -1199,7 +1199,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "ਸਟਾਰਟਅੱਪ \'ਤੇ ਖੋਲ੍ਹੋ",
     ),
     "startupScreenDescription": MessageLookupByLibrary.simpleMessage(
-      "ਉਹ ਭਾਗ ਚੁਣੋ ਜੋ Estrella Music ਪਹਿਲਾਂ ਖੁੱਲ੍ਹਦਾ ਹੈ",
+      "ਉਹ ਭਾਗ ਚੁਣੋ ਜੋ Mo Music ਪਹਿਲਾਂ ਖੁੱਲ੍ਹਦਾ ਹੈ",
     ),
     "status": MessageLookupByLibrary.simpleMessage("ਸਥਿਤੀ"),
     "stopMusicOnTaskClear": MessageLookupByLibrary.simpleMessage(

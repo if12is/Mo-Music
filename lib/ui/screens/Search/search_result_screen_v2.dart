@@ -45,14 +45,14 @@ class SearchResultScreenBN extends StatelessWidget {
                       child: Column(
                         children: [
                           Align(
-                            alignment: Alignment.centerLeft,
+                            alignment: AlignmentDirectional.centerStart,
                             child: Text(
                               S.current.searchRes,
                               style: Theme.of(context).textTheme.titleLarge,
                             ),
                           ),
                           Align(
-                            alignment: Alignment.centerLeft,
+                            alignment: AlignmentDirectional.centerStart,
                             child: Obx(
                               () => Text(
                                 "${S.current.for1} \"${searchResScrController.queryString.value}\"",
@@ -86,7 +86,7 @@ class SearchResultScreenBN extends StatelessWidget {
                                 filterName;
 
                         return Padding(
-                          padding: const EdgeInsets.only(right: 8),
+                          padding: const EdgeInsetsDirectional.only(end: 8),
                           child: ActionChip(
                             backgroundColor: isSelected
                                 ? Theme.of(context).colorScheme.primary

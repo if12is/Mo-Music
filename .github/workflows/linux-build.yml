@@ -21,7 +21,7 @@ jobs:
       - name: Create .env file
         run: |
           if [ -z "${{ secrets.ENV_FILE }}" ]; then
-            echo "API_URL=https://emusic.josprox.com" > .env
+            echo "UPDATE_CHECK_URL=https://raw.githubusercontent.com/if12is/Mo-Music/dev/distribution/update-check.json" > .env
           else
             echo "${{ secrets.ENV_FILE }}" > .env
           fi
@@ -49,28 +49,28 @@ jobs:
           cd distribution/flatpak
           flatpak-builder --user --install-deps-from=flathub --force-clean --repo=repo build-dir com.josprox.EstrellaMusic.yml || true
           if [ -d repo ]; then
-            flatpak build-bundle repo EstrellaMusic.flatpak com.josprox.EstrellaMusic || true
-            if [ -f EstrellaMusic.flatpak ]; then
-              mv EstrellaMusic.flatpak ../EstrellaMusic_Linux.flatpak
+            flatpak build-bundle repo MoMusic.flatpak com.josprox.EstrellaMusic || true
+            if [ -f MoMusic.flatpak ]; then
+              mv MoMusic.flatpak ../MoMusic-linux-x64.flatpak
             fi
           fi
 
       - name: Package Portable Tarball
         run: |
           mkdir -p distribution
-          tar -czvf distribution/EstrellaMusic_Linux_Portable.tar.gz -C build/linux/x64/release/bundle .
+          tar -czvf distribution/MoMusic-linux-x64.tar.gz -C build/linux/x64/release/bundle .
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
         with:
           name: linux-packages
-          path: distribution/EstrellaMusic_Linux*
+          path: distribution/MoMusic-linux*
 
       - name: Upload binaries to GitHub Release
         if: startsWith(github.ref, 'refs/tags/') || github.event_name == 'release'
         uses: softprops/action-gh-release@v2
         with:
-          files: distribution/EstrellaMusic_Linux*
+          files: distribution/MoMusic-linux*
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

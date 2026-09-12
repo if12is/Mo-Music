@@ -148,10 +148,10 @@ class MessageLookup extends MessageLookupByLibrary {
       "계정이 성공적으로 생성되었습니다.",
     ),
     "auth_welcome_subtitle": MessageLookupByLibrary.simpleMessage(
-      "Estrella Music에 오신 것을 환영합니다.",
+      "Mo Music에 오신 것을 환영합니다.",
     ),
     "auth_welcome_title": MessageLookupByLibrary.simpleMessage(
-      "Estrella Music에 오신 것을 환영합니다.",
+      "Mo Music에 오신 것을 환영합니다.",
     ),
     "autoDownFavSong": MessageLookupByLibrary.simpleMessage("좋아하는 노래 자동 다운로드"),
     "autoDownFavSongDes": MessageLookupByLibrary.simpleMessage(
@@ -632,7 +632,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Joss Red와의 100% 동기화, 친구들과의 재생 목록 등. 새로운 소식을 보려면 탭하세요.",
     ),
     "news_card_title": MessageLookupByLibrary.simpleMessage(
-      "Estrella Music이 진화했습니다!",
+      "Mo Music이 진화했습니다!",
     ),
     "news_dialog_friends_desc": MessageLookupByLibrary.simpleMessage(
       "친구를 추가하고, 요청을 수락하고, 보안 프로필을 관리하려면 공식 플랫폼에서 Joss Red를 사용하세요.",
@@ -682,7 +682,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "permissionDenied": MessageLookupByLibrary.simpleMessage("허가가 거부되었습니다"),
     "permissionsAllow": MessageLookupByLibrary.simpleMessage("허용하다"),
     "permissionsConsentDescription": MessageLookupByLibrary.simpleMessage(
-      "Estrella Music은 음악을 관리하고 모든 재생 기능을 제공하려면 이러한 권한이 필요합니다.",
+      "Mo Music은 음악을 관리하고 모든 재생 기능을 제공하려면 이러한 권한이 필요합니다.",
     ),
     "permissionsConsentTitle": MessageLookupByLibrary.simpleMessage(
       "시작하기 위한 권한",
@@ -861,7 +861,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "setDiscoverContent": MessageLookupByLibrary.simpleMessage("탐색할 컨텐츠를 설정"),
     "settings": MessageLookupByLibrary.simpleMessage("설정"),
     "settings_about_desc": MessageLookupByLibrary.simpleMessage(
-      "Estrella Music 소개",
+      "Mo Music 소개",
     ),
     "settings_about_sub": MessageLookupByLibrary.simpleMessage(
       "버전, 오픈 소스 프로젝트 및 GitHub.",
@@ -976,7 +976,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "startRadio": MessageLookupByLibrary.simpleMessage("라디오 시작"),
     "startupScreen": MessageLookupByLibrary.simpleMessage("시작 시 열기"),
     "startupScreenDescription": MessageLookupByLibrary.simpleMessage(
-      "Estrella Music이 먼저 열리는 섹션을 선택하세요.",
+      "Mo Music이 먼저 열리는 섹션을 선택하세요.",
     ),
     "status": MessageLookupByLibrary.simpleMessage("상태"),
     "stopMusicOnTaskClear": MessageLookupByLibrary.simpleMessage(
@@ -1124,7 +1124,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "우리는 플랫폼을 현대화했습니다. 수동 백업을 업로드하는 이전 시스템이 비활성화되었습니다. 이제 음악 라이브러리를 관리하는 두 가지 명확한 방법이 있습니다.",
     ),
     "welcome_subtitle": MessageLookupByLibrary.simpleMessage(
-      "지금부터 Estrella Music을 어떻게 경험하고 싶은지 선택하세요.",
+      "지금부터 Mo Music을 어떻게 경험하고 싶은지 선택하세요.",
     ),
     "welcome_title": MessageLookupByLibrary.simpleMessage("나만의 음악, 나만의 방식"),
   };

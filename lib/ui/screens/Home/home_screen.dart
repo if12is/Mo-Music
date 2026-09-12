@@ -115,7 +115,7 @@ class Body extends StatelessWidget {
 
     if (homeScreenController.tabIndex.value == 0) {
       return Padding(
-        padding: EdgeInsets.only(left: leftPadding),
+        padding: EdgeInsetsDirectional.only(start: leftPadding),
         child: Stack(
           children: [
             GestureDetector(
@@ -333,7 +333,7 @@ class _NetworkError extends StatelessWidget {
       height: MediaQuery.of(context).size.height - 180,
       child: Column(children: [
         Align(
-          alignment: Alignment.topLeft,
+          alignment: AlignmentDirectional.topStart,
           child: Text(S.current.home, style: tt.headlineSmall),
         ),
         Expanded(

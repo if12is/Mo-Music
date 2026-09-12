@@ -6,6 +6,9 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:estrella_music/app_identity.dart';
+import 'package:estrella_music/generated/l10n.dart';
+import 'package:estrella_music/services/system/update_service.dart';
 
 /// Estados posibles del proceso de descarga/instalación.
 enum DownloadState { idle, downloading, done, installing, error }
@@ -49,25 +52,58 @@ class UpdateController extends GetxController {
   // Datos de actualización
   // ──────────────────────────────────────────────
 
+  Future<Map<String, dynamic>?> _loadUpdateInfo() async {
+    final dio = Dio();
+    final candidates = <String>{
+      if ((dotenv.env['UPDATE_CHECK_URL'] ?? '').trim().isNotEmpty)
+        dotenv.env['UPDATE_CHECK_URL']!.trim(),
+      AppIdentity.updateManifestUrl,
+      AppIdentity.latestReleaseApiUrl,
+    };
+
+    for (final url in candidates) {
+      try {
+        final response = await dio.get(url);
+        if (response.statusCode != 200) continue;
+        final data = response.data;
+        if (data is Map) {
+          final map = Map<String, dynamic>.from(data);
+          final version = map['Version'] ??
+              map['version'] ??
+              map['tag_name'] ??
+              map['name'];
+          if (version == null) continue;
+          return {
+            'Version': version.toString().replaceFirst(RegExp(r'^[vV]'), ''),
+            'Descarga': map['Descarga'] ??
+                map['html_url'] ??
+                AppIdentity.latestDownloadBase,
+            'Notas': map['Notas'] ?? map['body'] ?? '',
+          };
+        }
+      } catch (_) {}
+    }
+
+    final latest = await UpdateService.fetchLatestVersion();
+    if (latest == null) return null;
+    return {
+      'Version': latest,
+      'Descarga': AppIdentity.latestDownloadBase,
+      'Notas': '',
+    };
+  }
+
   Future<void> fetchUpdateInfo() async {
     try {
       isLoading(true);
       error('');
 
-      final String? checkUpdates = dotenv.env['UPDATE_CHECK_URL'];
-      if (checkUpdates == null) {
-        error('Update check URL not found in .env');
+      final info = await _loadUpdateInfo();
+      if (info == null) {
+        error(S.current.updateCheckUnavailable);
         return;
       }
-
-      final dio = Dio();
-      final response = await dio.get(checkUpdates);
-
-      if (response.statusCode == 200) {
-        updateInfo.value = Map<String, dynamic>.from(response.data as Map);
-      } else {
-        error('Error fetching update info: ${response.statusCode}');
-      }
+      updateInfo.value = info;
     } catch (e) {
       error(e.toString());
     } finally {
@@ -89,38 +125,37 @@ class UpdateController extends GetxController {
     if (baseUrl == null) return null;
 
     if (GetPlatform.isAndroid) {
-      return '${baseUrl}EstrellaMusic-android-universal.apk';
+      return '${baseUrl}${AppIdentity.androidApkName()}';
     }
     if (GetPlatform.isWindows) {
-      return '${baseUrl}EstrellaMusic-windows-installer.exe';
+      return '${baseUrl}${AppIdentity.windowsInstallerName()}';
     }
-    if (GetPlatform.isLinux) return '${baseUrl}EstrellaMusic-linux-x64.tar.gz';
-    if (GetPlatform.isMacOS) return '${baseUrl}EstrellaMusic-macos.zip';
+    if (GetPlatform.isLinux) return '${baseUrl}${AppIdentity.linuxTarballName()}';
+    if (GetPlatform.isMacOS) return '${baseUrl}${AppIdentity.macosZipName()}';
 
-    // iOS: la URL original sirve para abrir la guía de instalación
-    return data['Descarga'] as String?;
+    return data['Descarga'] as String? ?? AppIdentity.latestReleaseUrl;
   }
 
   /// Nombre del archivo que se descargará en la plataforma actual.
   String get platformFileName {
-    if (GetPlatform.isAndroid) return 'EstrellaMusic-android-universal.apk';
-    if (GetPlatform.isWindows) return 'EstrellaMusic-windows-installer.exe';
-    if (GetPlatform.isLinux) return 'EstrellaMusic-linux-x64.tar.gz';
-    if (GetPlatform.isMacOS) return 'EstrellaMusic-macos.zip';
-    return 'EstrellaMusic';
+    if (GetPlatform.isAndroid) return AppIdentity.androidApkName();
+    if (GetPlatform.isWindows) return AppIdentity.windowsInstallerName();
+    if (GetPlatform.isLinux) return AppIdentity.linuxTarballName();
+    if (GetPlatform.isMacOS) return AppIdentity.macosZipName();
+    return AppIdentity.artifactPrefix;
   }
 
   /// Etiqueta legible del botón de acción principal según plataforma.
   String get platformActionLabel {
-    if (GetPlatform.isIOS) return 'Guía de instalación iOS';
+    if (GetPlatform.isIOS) return S.current.updateIosGuide;
     if (GetPlatform.isLinux || GetPlatform.isMacOS) {
-      return 'Descargar desde GitHub';
+      return S.current.updateDownloadGithub;
     }
-    return 'Actualizar';
+    return S.current.updateAction;
   }
 
   /// Devuelve el directorio base de GitHub Releases terminado en '/'.
-  /// Ejemplo: https://github.com/josprox/Estrella-Music/releases/latest/download/
+  /// Ejemplo: https://github.com/if12is/Mo-Music/releases/latest/download/
   String? _extractDownloadBase(String? rawUrl) {
     if (rawUrl == null) return null;
     try {
@@ -140,23 +175,15 @@ class UpdateController extends GetxController {
   // ──────────────────────────────────────────────
 
   Future<void> startUpdate() async {
-    // Android e iOS → abre Google Play o la tienda de aplicaciones oficial
     if (GetPlatform.isAndroid) {
-      const playStoreUrl = 'market://details?id=com.josprox.emusic';
-      const webPlayStoreUrl = 'https://play.google.com/store/apps/details?id=com.josprox.emusic';
-      final playUri = Uri.parse(playStoreUrl);
-      if (await canLaunchUrl(playUri)) {
-        await launchUrl(playUri, mode: LaunchMode.externalApplication);
-      } else {
-        await _openBrowser(webPlayStoreUrl);
-      }
+      final url = platformDownloadUrl ?? AppIdentity.latestReleaseUrl;
+      await _openBrowser(url);
       return;
     }
 
     if (GetPlatform.isIOS) {
       final data = updateInfo.value;
-      final url = data?['Descarga'] as String? ??
-          'https://github.com/josprox/Estrella-Music/releases/latest';
+      final url = data?['Descarga'] as String? ?? AppIdentity.latestReleaseUrl;
       await _openBrowser(url);
       return;
     }
@@ -210,7 +237,7 @@ class UpdateController extends GetxController {
   Future<void> _downloadInApp() async {
     final url = platformDownloadUrl;
     if (url == null) {
-      downloadError('URL de descarga no disponible.');
+      downloadError(S.current.updateDownloadUnavailable);
       downloadState.value = DownloadState.error;
       return;
     }
@@ -252,7 +279,7 @@ class UpdateController extends GetxController {
         await _showDownloadCompleteNotification();
       }
     } on DioException catch (e) {
-      downloadError('Error de red: ${e.message}');
+      downloadError(S.current.updateNetworkError(e.message ?? ''));
       downloadState.value = DownloadState.error;
     } catch (e) {
       downloadError(e.toString());
@@ -265,21 +292,20 @@ class UpdateController extends GetxController {
   // ──────────────────────────────────────────────
 
   Future<void> _showDownloadCompleteNotification() async {
-    const androidDetails = AndroidNotificationDetails(
-      'em_update_channel',
-      'Actualizaciones de Estrella Music',
-      channelDescription:
-          'Notifica cuando hay una actualización lista para instalar',
+    final androidDetails = AndroidNotificationDetails(
+      'mo_update_channel',
+      S.current.updateNotificationChannel,
+      channelDescription: S.current.updateNotificationChannelDes,
       importance: Importance.high,
       priority: Priority.high,
       icon: '@mipmap/ic_launcher',
       playSound: true,
     );
-    const notifDetails = NotificationDetails(android: androidDetails);
+    final notifDetails = NotificationDetails(android: androidDetails);
     await _notifications.show(
       1001,
-      '¡Actualización lista!',
-      'Toca "Instalar" en la app para completar la actualización de Estrella Music.',
+      S.current.updateReadyTitle,
+      S.current.updateReadyBody,
       notifDetails,
     );
   }

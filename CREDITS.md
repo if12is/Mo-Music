@@ -1,54 +1,38 @@
 # Credits & Acknowledgments
 
-**Estrella Music v2** is a collaborative effort built on the shoulders of giants. This document formally recognizes the developers and technologies that made this project possible.
+**Mo Music** is an independent fork with a new identity, Arabic as the default language, and updates published from [if12is/Mo-Music](https://github.com/if12is/Mo-Music).
 
 ---
 
-## 👨‍💻 Primary Authorship & Distribution
+## Maintainer
 
-### **Lead Developer & Maintainer**
-- **Joss Estrada (JOSPROX)**: Architect of the "v2" evolution, responsible for branding, legacy migration systems, premium update gates, backend integration, and the overall Material 3 UI refinement.
-
----
-
-## 🏗️ Core Engines & Base Projects
-
-### **Base Flutter Engine**
-- [**Harmony Music**](https://github.com/anandnet/Harmony-Music): The foundational Flutter engine used for this distribution. Multi-platform music streaming capabilities.
-
-### **Inspirational Projects**
-- [**InnerTune**](https://github.com/z-huang/InnerTune): Original Material 3 UI/UX concepts for music clients.
-- [**ViMusic**](https://github.com/vfsfitvnm/ViMusic): Breakthrough concepts in lightweight music streaming.
-
-### **Legacy Version**
-- [**Estrella Music Kotlin**](https://github.com/josprox/Joss-Music): The original project that defined the vision and user base for this evolution.
+- **Ahmed Elsayed**: Mo Music branding, Arabic-first localization, RTL, and release/update workflow for this repository.
 
 ---
 
-## 🛠️ Technology Stack
+## Upstream projects
 
-We would like to thank the following libraries and their maintainers:
+This distribution still stands on the shoulders of the original open-source engines:
 
-- **Flutter & Dart**: The core framework.
-- **GetX**: High-performance state management.
-- **just_audio**: Powerful audio player for Android.
-- **media_kit**: Cross-platform audio playback (Windows/Linux).
-- **Hive**: Lightweight and blazing fast offline database.
-- **OneSignal**: Push notifications and cloud synchronization.
-- **Dio**: HTTP networking.
-- **LRCLIB**: API for synced and plain lyrics.
+- [**Harmony Music**](https://github.com/anandnet/Harmony-Music): Foundational Flutter player engine.
+- [**Estrella Music**](https://github.com/josprox/Estrella-Music): Previous branded distribution of that engine.
+- [**InnerTune**](https://github.com/z-huang/InnerTune) and [**ViMusic**](https://github.com/vfsfitvnm/ViMusic): UI and streaming ideas.
 
 ---
 
-## 🌍 Community & Translations
+## Technology
 
-- **Weblate Contributors**: Thank you to everyone who helped localize this app into dozens of languages.
-- **Beta Testers**: Your feedback has been invaluable in making Estrella Music v2 stable and feature-rich.
+- Flutter & Dart
+- GetX
+- just_audio / media_kit
+- Hive / SQLite
+- Google Fonts — Cairo
+- LRCLIB, iTunes API, MusicBrainz
 
 ---
 
-## ⚖️ License Notice
+## License
 
-This project is distributed under the **GNU GPL v3.0**. Please refer to the [LICENSE](LICENSE) file for the full legal text. 
+Distributed under the **GNU GPL v3.0**. See [LICENSE](LICENSE).
 
-Copyright © 2026 Joss Estrada (JOSPROX). All rights reserved.
+Copyright © 2026 Mo Music.

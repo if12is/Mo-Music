@@ -69,7 +69,7 @@ class DiscordRpcService {
             key: "music_player",
             text: (album != null && album.isNotEmpty)
                 ? album.substring(0, min(127, album.length))
-                : "Estrella Music",
+                : "Mo Music",
           ),
           smallAsset: DiscordAsset(
             key: isPlaying ? "play" : "pause",

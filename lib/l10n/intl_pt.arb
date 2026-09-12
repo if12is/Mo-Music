@@ -196,11 +196,11 @@
   "@auth_register_success": {
     "description": "auth_register_success"
   },
-  "auth_welcome_subtitle": "Bem-vindo à Estrella Music",
+  "auth_welcome_subtitle": "Bem-vindo à Mo Music",
   "@auth_welcome_subtitle": {
     "description": "auth_welcome_subtitle"
   },
-  "auth_welcome_title": "Bem-vindo à Estrella Music",
+  "auth_welcome_title": "Bem-vindo à Mo Music",
   "@auth_welcome_title": {
     "description": "auth_welcome_title"
   },
@@ -1291,7 +1291,7 @@
   "@news_card_subtitle": {
     "description": "news_card_subtitle"
   },
-  "news_card_title": "Estrella Music evoluiu!",
+  "news_card_title": "Mo Music evoluiu!",
   "@news_card_title": {
     "description": "news_card_title"
   },
@@ -1403,7 +1403,7 @@
   "@permissionsAllow": {
     "description": "permissionsAllow"
   },
-  "permissionsConsentDescription": "Estrella Music precisa dessas permissões para gerenciar suas músicas e oferecer todos os recursos de reprodução.",
+  "permissionsConsentDescription": "Mo Music precisa dessas permissões para gerenciar suas músicas e oferecer todos os recursos de reprodução.",
   "@permissionsConsentDescription": {
     "description": "permissionsConsentDescription"
   },
@@ -1831,7 +1831,7 @@
   "@settings": {
     "description": "settings"
   },
-  "settings_about_desc": "Sobre Estrella Music",
+  "settings_about_desc": "Sobre Mo Music",
   "@settings_about_desc": {
     "description": "settings_about_desc"
   },
@@ -2090,7 +2090,7 @@
   "@startupScreen": {
     "description": "startupScreen"
   },
-  "startupScreenDescription": "Escolha a seção que Estrella Music abre primeiro",
+  "startupScreenDescription": "Escolha a seção que Mo Music abre primeiro",
   "@startupScreenDescription": {
     "description": "startupScreenDescription"
   },
@@ -2361,7 +2361,7 @@
   "@welcome_intro": {
     "description": "welcome_intro"
   },
-  "welcome_subtitle": "Escolha como deseja experimentar o Estrella Music a partir de agora.",
+  "welcome_subtitle": "Escolha como deseja experimentar o Mo Music a partir de agora.",
   "@welcome_subtitle": {
     "description": "welcome_subtitle"
   },

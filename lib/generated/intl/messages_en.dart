@@ -49,6 +49,10 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m13(statusCode) =>
       "Could not search for users (${statusCode}).";
 
+  static String m14(message) => "Network error: ${message}";
+
+  static String m15(date) => "Date: ${date}";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "CreateNewPlaylist": MessageLookupByLibrary.simpleMessage(
@@ -167,10 +171,10 @@ class MessageLookup extends MessageLookupByLibrary {
       "Account created successfully.",
     ),
     "auth_welcome_subtitle": MessageLookupByLibrary.simpleMessage(
-      "Welcome to Estrella Music",
+      "Welcome to Mo Music",
     ),
     "auth_welcome_title": MessageLookupByLibrary.simpleMessage(
-      "Welcome to Estrella Music",
+      "Welcome to Mo Music",
     ),
     "autoDownFavSong": MessageLookupByLibrary.simpleMessage(
       "Auto download favorite songs",
@@ -761,7 +765,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "100% synchronization with Joss Red, playlists with friends and much more. ",
     ),
     "news_card_title": MessageLookupByLibrary.simpleMessage(
-      "Estrella Music has evolved!",
+      "Mo Music has evolved!",
     ),
     "news_dialog_friends_desc": MessageLookupByLibrary.simpleMessage(
       "To add friends, accept requests or manage your security profile, please use Joss Red on its official platforms:",
@@ -770,7 +774,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Friends and Account Management:",
     ),
     "news_dialog_title": MessageLookupByLibrary.simpleMessage(
-      "Estrella Music News",
+      "Mo Music News",
     ),
     "news_item_collab_desc": MessageLookupByLibrary.simpleMessage(
       "Create playlists with your friends! ",
@@ -823,7 +827,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "permissionsAllow": MessageLookupByLibrary.simpleMessage("Allow"),
     "permissionsConsentDescription": MessageLookupByLibrary.simpleMessage(
-      "Estrella Music needs these permissions to manage your music and offer all playback features.",
+      "Mo Music needs these permissions to manage your music and offer all playback features.",
     ),
     "permissionsConsentTitle": MessageLookupByLibrary.simpleMessage(
       "Permissions to get started",
@@ -1050,7 +1054,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "settings": MessageLookupByLibrary.simpleMessage("Settings"),
     "settings_about_desc": MessageLookupByLibrary.simpleMessage(
-      "About Estrella Music",
+      "About Mo Music",
     ),
     "settings_about_sub": MessageLookupByLibrary.simpleMessage(
       "Version, open source project and GitHub.",
@@ -1177,7 +1181,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "startRadio": MessageLookupByLibrary.simpleMessage("Start radio"),
     "startupScreen": MessageLookupByLibrary.simpleMessage("Open on startup"),
     "startupScreenDescription": MessageLookupByLibrary.simpleMessage(
-      "Choose the section that Estrella Music opens first",
+      "Choose the section that Mo Music opens first",
     ),
     "status": MessageLookupByLibrary.simpleMessage("Status"),
     "stopMusicOnTaskClear": MessageLookupByLibrary.simpleMessage(
@@ -1338,10 +1342,71 @@ class MessageLookup extends MessageLookupByLibrary {
       "We have modernized our platform. ",
     ),
     "welcome_subtitle": MessageLookupByLibrary.simpleMessage(
-      "Choose how you want to experience Estrella Music from now on.",
+      "Choose how you want to experience Mo Music from now on.",
     ),
     "welcome_title": MessageLookupByLibrary.simpleMessage(
       "Your music, your way",
+    ),
+    "updateAction": MessageLookupByLibrary.simpleMessage("Update"),
+    "updateCheckUnavailable": MessageLookupByLibrary.simpleMessage(
+      "Could not check for updates from this repository.",
+    ),
+    "updateDownloadGithub": MessageLookupByLibrary.simpleMessage(
+      "Download from GitHub",
+    ),
+    "updateDownloadUnavailable": MessageLookupByLibrary.simpleMessage(
+      "Download URL is not available.",
+    ),
+    "updateIosGuide": MessageLookupByLibrary.simpleMessage(
+      "iOS installation guide",
+    ),
+    "updateNetworkError": m14,
+    "updateNotificationChannel": MessageLookupByLibrary.simpleMessage(
+      "Mo Music updates",
+    ),
+    "updateNotificationChannelDes": MessageLookupByLibrary.simpleMessage(
+      "Notifies when an update is ready to install",
+    ),
+    "updateReadyBody": MessageLookupByLibrary.simpleMessage(
+      "Tap Install in the app to finish updating Mo Music.",
+    ),
+    "updateReadyTitle": MessageLookupByLibrary.simpleMessage("Update ready!"),
+    "checkingUpdates": MessageLookupByLibrary.simpleMessage(
+      "Checking for updates...",
+    ),
+    "preparingApp": MessageLookupByLibrary.simpleMessage(
+      "One moment, we are preparing Mo Music.",
+    ),
+    "validatingSession": MessageLookupByLibrary.simpleMessage(
+      "Validating your session",
+    ),
+    "backupDateLabel": m15,
+    "backupJossMusic": MessageLookupByLibrary.simpleMessage("Joss Music backup"),
+    "backupMoMusic": MessageLookupByLibrary.simpleMessage("Mo Music backup"),
+    "unknownDate": MessageLookupByLibrary.simpleMessage("Unknown"),
+    "welcomeDisclaimer": MessageLookupByLibrary.simpleMessage(
+      "Notice: External streaming is user-configured. Mo Music works by default as a local offline player.",
+    ),
+    "welcomeLocalModeSubtitle": MessageLookupByLibrary.simpleMessage(
+      "Play music stored on this device. No internet or external servers required.",
+    ),
+    "welcomeLocalModeTitle": MessageLookupByLibrary.simpleMessage(
+      "Local mode (offline by default)",
+    ),
+    "welcomeSelectHowToListen": MessageLookupByLibrary.simpleMessage(
+      "Choose how you want to listen today:",
+    ),
+    "welcomeSetupSubtitle": MessageLookupByLibrary.simpleMessage(
+      "Set up your starting music experience",
+    ),
+    "welcomeSetupTitle": MessageLookupByLibrary.simpleMessage(
+      "Welcome to Mo Music",
+    ),
+    "welcomeStreamingModeSubtitle": MessageLookupByLibrary.simpleMessage(
+      "Connect an external recipe or streaming server.",
+    ),
+    "welcomeStreamingModeTitle": MessageLookupByLibrary.simpleMessage(
+      "External streaming playback",
     ),
   };
 }

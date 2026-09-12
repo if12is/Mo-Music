@@ -1,6 +1,8 @@
 # AGENTS.md
 
-Guia operativa para agentes y desarrolladores que trabajen en Estrella Music / EMusic.
+Guia operativa para agentes y desarrolladores que trabajen en Mo Music (cliente Flutter) y EMusic.
+
+La identidad publica del cliente es **Mo Music / مو ميوزك**. El repositorio de publicacion y actualizaciones es `if12is/Mo-Music`, no el proyecto original. La arquitectura interna (Joss Red + EMusic + Flutter) se mantiene.
 
 ## Jerarquia real del proyecto
 

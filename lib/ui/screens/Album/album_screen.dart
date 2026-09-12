@@ -130,7 +130,7 @@ class AlbumScreen extends StatelessWidget {
                         // Offline banner chip
                         Obx(() => albumController.isOffline.isTrue
                             ? const Padding(
-                                padding: EdgeInsets.only(right: 8),
+                                padding: EdgeInsetsDirectional.only(end: 8),
                                 child: Chip(
                                   label: Text('Sin conexión',
                                       style: TextStyle(
@@ -149,7 +149,7 @@ class AlbumScreen extends StatelessWidget {
                 ),
                 Expanded(
                   child: Align(
-                    alignment: Alignment.centerLeft,
+                    alignment: AlignmentDirectional.centerStart,
                     child: ConstrainedBox(
                       constraints: const BoxConstraints(
                         maxWidth: 800,
@@ -172,8 +172,8 @@ class AlbumScreen extends StatelessWidget {
                             itemBuilder: (_, index) {
                               if (index == 0) {
                                 return Padding(
-                                  padding: EdgeInsets.only(
-                                      left:
+                                  padding: EdgeInsetsDirectional.only(
+                                      start:
                                           GetPlatform.isDesktop ? 15.0 : 10.0),
                                   child: SizedBox(
                                       height: 40,
@@ -372,8 +372,8 @@ class AlbumScreen extends StatelessWidget {
                                         ? 60
                                         : 40,
                                     child: Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 15.0, right: 10),
+                                      padding: const EdgeInsetsDirectional.only(
+                                          start: 15.0, end: 10),
                                       child: Obx(
                                         () => SortWidget(
                                           tag: albumController
@@ -426,7 +426,7 @@ class AlbumScreen extends StatelessWidget {
 
                               return Padding(
                                 padding:
-                                    const EdgeInsets.only(left: 20.0, right: 5),
+                                    const EdgeInsetsDirectional.only(start: 20.0, end: 5),
                                 child: Obx(() {
                                   final song =
                                       albumController.songList[index - 3];
@@ -492,7 +492,7 @@ class AlbumScreen extends StatelessWidget {
         );
       },
       child: Padding(
-        padding: const EdgeInsets.only(left: 25.0, bottom: 10, right: 30),
+        padding: const EdgeInsetsDirectional.only(start: 25.0, bottom: 10, end: 30),
         child: SingleChildScrollView(
           physics: const NeverScrollableScrollPhysics(),
           child: Column(

@@ -35,11 +35,11 @@ Future<AudioHandler> initAudioService() async {
     builder: () => MyAudioHandler(),
     config: const AudioServiceConfig(
       // Used when the current item has no album artwork (or Android cannot
-      // load it).  Keep this tied to Estrella Music's launcher identity, not
+      // load it).  Keep this tied to Mo Music's launcher identity, not
       // the inherited monochrome resource.
       androidNotificationIcon: 'mipmap/launcher_icon',
-      androidNotificationChannelId: 'com.mycompany.myapp.audio',
-      androidNotificationChannelName: 'Estrella Music Notification',
+      androidNotificationChannelId: 'com.if12is.momusic.audio',
+      androidNotificationChannelName: 'Mo Music Notification',
       androidNotificationOngoing: false,
       androidStopForegroundOnPause: false,
     ),
@@ -74,7 +74,7 @@ class MyAudioHandler extends BaseAudioHandler with GetxServiceMixin {
 
   MyAudioHandler() {
     if (GetPlatform.isWindows || GetPlatform.isLinux) {
-      JustAudioMediaKit.title = 'Estrella Music';
+      JustAudioMediaKit.title = 'Mo Music';
       JustAudioMediaKit.protocolWhitelist = const ['http', 'https', 'file'];
     }
     _mediaLibrary = MediaLibrary();

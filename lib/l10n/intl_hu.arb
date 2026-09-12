@@ -196,11 +196,11 @@
   "@auth_register_success": {
     "description": "auth_register_success"
   },
-  "auth_welcome_subtitle": "Üdvözöljük az Estrella Music oldalán",
+  "auth_welcome_subtitle": "Üdvözöljük az Mo Music oldalán",
   "@auth_welcome_subtitle": {
     "description": "auth_welcome_subtitle"
   },
-  "auth_welcome_title": "Üdvözöljük az Estrella Music oldalán",
+  "auth_welcome_title": "Üdvözöljük az Mo Music oldalán",
   "@auth_welcome_title": {
     "description": "auth_welcome_title"
   },
@@ -1291,7 +1291,7 @@
   "@news_card_subtitle": {
     "description": "news_card_subtitle"
   },
-  "news_card_title": "Az Estrella Music fejlődött!",
+  "news_card_title": "Az Mo Music fejlődött!",
   "@news_card_title": {
     "description": "news_card_title"
   },
@@ -1303,7 +1303,7 @@
   "@news_dialog_section_friends": {
     "description": "news_dialog_section_friends"
   },
-  "news_dialog_title": "Estrella Music News",
+  "news_dialog_title": "Mo Music News",
   "@news_dialog_title": {
     "description": "news_dialog_title"
   },
@@ -1403,7 +1403,7 @@
   "@permissionsAllow": {
     "description": "permissionsAllow"
   },
-  "permissionsConsentDescription": "Az Estrella Musicnak szüksége van ezekre az engedélyekre a zene kezeléséhez és az összes lejátszási funkció biztosításához.",
+  "permissionsConsentDescription": "Az Mo Musicnak szüksége van ezekre az engedélyekre a zene kezeléséhez és az összes lejátszási funkció biztosításához.",
   "@permissionsConsentDescription": {
     "description": "permissionsConsentDescription"
   },
@@ -1831,7 +1831,7 @@
   "@settings": {
     "description": "settings"
   },
-  "settings_about_desc": "Az Estrella Musicról",
+  "settings_about_desc": "Az Mo Musicról",
   "@settings_about_desc": {
     "description": "settings_about_desc"
   },
@@ -2090,7 +2090,7 @@
   "@startupScreen": {
     "description": "startupScreen"
   },
-  "startupScreenDescription": "Válassza ki azt a részt, amelyet az Estrella Music először nyit meg",
+  "startupScreenDescription": "Válassza ki azt a részt, amelyet az Mo Music először nyit meg",
   "@startupScreenDescription": {
     "description": "startupScreenDescription"
   },

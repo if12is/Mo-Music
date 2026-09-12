@@ -166,10 +166,10 @@ class MessageLookup extends MessageLookupByLibrary {
       "Účet byl úspěšně vytvořen.",
     ),
     "auth_welcome_subtitle": MessageLookupByLibrary.simpleMessage(
-      "Vítejte v Estrella Music",
+      "Vítejte v Mo Music",
     ),
     "auth_welcome_title": MessageLookupByLibrary.simpleMessage(
-      "Vítejte v Estrella Music",
+      "Vítejte v Mo Music",
     ),
     "autoDownFavSong": MessageLookupByLibrary.simpleMessage(
       "Automaticky stáhnout oblíbené skladby",
@@ -780,7 +780,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "100% synchronizace s Joss Red, seznamy skladeb s přáteli a mnoho dalšího. Klepnutím zobrazíte, co je nového.",
     ),
     "news_card_title": MessageLookupByLibrary.simpleMessage(
-      "Estrella Music se vyvinula!",
+      "Mo Music se vyvinula!",
     ),
     "news_dialog_friends_desc": MessageLookupByLibrary.simpleMessage(
       "Chcete-li přidat přátele, přijímat žádosti nebo spravovat svůj bezpečnostní profil, použijte Joss Red na jeho oficiálních platformách:",
@@ -789,7 +789,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Přátelé a správa účtu:",
     ),
     "news_dialog_title": MessageLookupByLibrary.simpleMessage(
-      "Estrella Music News",
+      "Mo Music News",
     ),
     "news_item_collab_desc": MessageLookupByLibrary.simpleMessage(
       "Vytvářejte seznamy skladeb se svými přáteli! Při vytváření seznamu skladeb zaškrtněte políčko Spolupráce a vyberte přátele, které chcete společně upravovat.",
@@ -844,7 +844,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "permissionsAllow": MessageLookupByLibrary.simpleMessage("Povolit"),
     "permissionsConsentDescription": MessageLookupByLibrary.simpleMessage(
-      "Estrella Music potřebuje tato oprávnění, aby mohla spravovat vaši hudbu a nabízet všechny funkce přehrávání.",
+      "Mo Music potřebuje tato oprávnění, aby mohla spravovat vaši hudbu a nabízet všechny funkce přehrávání.",
     ),
     "permissionsConsentTitle": MessageLookupByLibrary.simpleMessage(
       "Oprávnění začít",
@@ -1089,7 +1089,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "settings": MessageLookupByLibrary.simpleMessage("Nastavení"),
     "settings_about_desc": MessageLookupByLibrary.simpleMessage(
-      "O Estrella Music",
+      "O Mo Music",
     ),
     "settings_about_sub": MessageLookupByLibrary.simpleMessage(
       "Verze, open source projekt a GitHub.",
@@ -1224,7 +1224,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Otevřete při spuštění",
     ),
     "startupScreenDescription": MessageLookupByLibrary.simpleMessage(
-      "Vyberte sekci, kterou Estrella Music otevře jako první",
+      "Vyberte sekci, kterou Mo Music otevře jako první",
     ),
     "status": MessageLookupByLibrary.simpleMessage("Stav"),
     "stopMusicOnTaskClear": MessageLookupByLibrary.simpleMessage(
@@ -1389,7 +1389,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Modernizovali jsme naši platformu. Starý systém nahrávání ručních záloh byl deaktivován. Nyní máte dva jasné způsoby, jak spravovat svou hudební knihovnu.",
     ),
     "welcome_subtitle": MessageLookupByLibrary.simpleMessage(
-      "Vyberte si, jak chcete od této chvíle zažít Estrella Music.",
+      "Vyberte si, jak chcete od této chvíle zažít Mo Music.",
     ),
     "welcome_title": MessageLookupByLibrary.simpleMessage(
       "Vaše hudba, vaše cesta",

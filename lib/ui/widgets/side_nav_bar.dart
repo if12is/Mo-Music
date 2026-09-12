@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:estrella_music/ui/screens/Home/home_screen_controller.dart';
+import 'package:estrella_music/app_identity.dart';
 import 'package:estrella_music/generated/l10n.dart';
 import 'package:estrella_music/ui/screens/Settings/settings_screen.dart';
 import 'package:estrella_music/ui/navigator.dart';
@@ -199,7 +200,7 @@ class _SideNavBarState extends State<SideNavBar> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Estrella Music',
+                        AppIdentity.localizedName(),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(

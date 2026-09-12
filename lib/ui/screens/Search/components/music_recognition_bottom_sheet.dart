@@ -164,9 +164,9 @@ class _MusicRecognitionBottomSheetState
             : 0.0;
 
         return Container(
-          padding: EdgeInsets.only(
-            left: 24.0,
-            right: 24.0,
+          padding: EdgeInsetsDirectional.only(
+            start: 24.0,
+            end: 24.0,
             top: 24.0,
             bottom: 24.0 + extraBottomPadding,
           ),

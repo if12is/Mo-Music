@@ -26,7 +26,7 @@ class BackupDialog extends StatelessWidget {
       child: Container(
         height: GetPlatform.isAndroid ? 350 : 300,
         padding:
-            const EdgeInsets.only(top: 20, bottom: 30, left: 20, right: 20),
+            const EdgeInsetsDirectional.only(top: 20, bottom: 30, start: 20, end: 20),
         child: Stack(
           children: [
             Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
@@ -170,7 +170,7 @@ class BackupDialogController extends GetxController {
     backupRunning.value = true;
     try {
       final fileName =
-          'estrellamusic_backup_${DateTime.now().millisecondsSinceEpoch}.hmb';
+          'momusic_backup_${DateTime.now().millisecondsSinceEpoch}.hmb';
 
       if (GetPlatform.isAndroid) {
         // En Android moderno (Scoped Storage), escribir directamente en una ruta arbitraria obtenida por FilePicker
@@ -182,7 +182,7 @@ class BackupDialogController extends GetxController {
             XFile(tempFile.path,
                 name: fileName, mimeType: 'application/octet-stream')
           ],
-          subject: 'Estrella Music Backup',
+          subject: 'Mo Music Backup',
         );
         isbackupCompleted.value = true;
       } else {

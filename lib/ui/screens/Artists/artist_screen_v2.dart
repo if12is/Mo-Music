@@ -68,8 +68,8 @@ class ArtistScreenBN extends StatelessWidget {
               : [
                   AboutArtist(
                     artistScreenController: artistScreenController,
-                    padding: const EdgeInsets.only(
-                        top: 10, left: 15, right: 5, bottom: 200),
+                    padding: const EdgeInsetsDirectional.only(
+                        top: 10, start: 15, end: 5, bottom: 200),
                   ),
                   ...["Songs", "Videos", "Albums", "Singles"].map(
                     (item) {
@@ -81,7 +81,7 @@ class ArtistScreenBN extends StatelessWidget {
                         return const Center(child: LoadingIndicator());
                       }
                       return Padding(
-                        padding: const EdgeInsets.only(left: 15.0, right: 5),
+                        padding: const EdgeInsetsDirectional.only(start: 15.0, end: 5),
                         child: SeparateTabItemWidget(
                           artistControllerTag: tag,
                           hideTitle: true,

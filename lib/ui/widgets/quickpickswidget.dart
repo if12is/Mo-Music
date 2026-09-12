@@ -26,7 +26,7 @@ class QuickPicksWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Align(
-              alignment: Alignment.centerLeft,
+              alignment: AlignmentDirectional.centerStart,
               child: Text(
                 content.title.t,
                 style: Theme.of(context).textTheme.headlineSmall?.copyWith(
@@ -89,7 +89,7 @@ class QuickPicksWidget extends StatelessWidget {
                           child: Material(
                             type: MaterialType.transparency,
                             child: ListTile(
-                                contentPadding: const EdgeInsets.only(left: 5),
+                                contentPadding: const EdgeInsetsDirectional.only(start: 5),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(12),
                                 ),

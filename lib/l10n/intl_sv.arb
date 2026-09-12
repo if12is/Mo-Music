@@ -196,11 +196,11 @@
   "@auth_register_success": {
     "description": "auth_register_success"
   },
-  "auth_welcome_subtitle": "Välkommen till Estrella Music",
+  "auth_welcome_subtitle": "Välkommen till Mo Music",
   "@auth_welcome_subtitle": {
     "description": "auth_welcome_subtitle"
   },
-  "auth_welcome_title": "Välkommen till Estrella Music",
+  "auth_welcome_title": "Välkommen till Mo Music",
   "@auth_welcome_title": {
     "description": "auth_welcome_title"
   },
@@ -1291,7 +1291,7 @@
   "@news_card_subtitle": {
     "description": "news_card_subtitle"
   },
-  "news_card_title": "Estrella Music har utvecklats!",
+  "news_card_title": "Mo Music har utvecklats!",
   "@news_card_title": {
     "description": "news_card_title"
   },
@@ -1403,7 +1403,7 @@
   "@permissionsAllow": {
     "description": "permissionsAllow"
   },
-  "permissionsConsentDescription": "Estrella Music behöver dessa behörigheter för att hantera din musik och erbjuda alla uppspelningsfunktioner.",
+  "permissionsConsentDescription": "Mo Music behöver dessa behörigheter för att hantera din musik och erbjuda alla uppspelningsfunktioner.",
   "@permissionsConsentDescription": {
     "description": "permissionsConsentDescription"
   },
@@ -1831,7 +1831,7 @@
   "@settings": {
     "description": "settings"
   },
-  "settings_about_desc": "Om Estrella Music",
+  "settings_about_desc": "Om Mo Music",
   "@settings_about_desc": {
     "description": "settings_about_desc"
   },
@@ -2090,7 +2090,7 @@
   "@startupScreen": {
     "description": "startupScreen"
   },
-  "startupScreenDescription": "Välj avsnittet som Estrella Music öppnar först",
+  "startupScreenDescription": "Välj avsnittet som Mo Music öppnar först",
   "@startupScreenDescription": {
     "description": "startupScreenDescription"
   },
@@ -2361,7 +2361,7 @@
   "@welcome_intro": {
     "description": "welcome_intro"
   },
-  "welcome_subtitle": "Välj hur du vill uppleva Estrella Music från och med nu.",
+  "welcome_subtitle": "Välj hur du vill uppleva Mo Music från och med nu.",
   "@welcome_subtitle": {
     "description": "welcome_subtitle"
   },

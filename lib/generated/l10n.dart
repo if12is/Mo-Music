@@ -514,20 +514,20 @@ class S {
     );
   }
 
-  /// `Welcome to Estrella Music`
+  /// `Welcome to Mo Music`
   String get auth_welcome_subtitle {
     return Intl.message(
-      'Welcome to Estrella Music',
+      'Welcome to Mo Music',
       name: 'auth_welcome_subtitle',
       desc: 'auth_welcome_subtitle',
       args: [],
     );
   }
 
-  /// `Welcome to Estrella Music`
+  /// `Welcome to Mo Music`
   String get auth_welcome_title {
     return Intl.message(
-      'Welcome to Estrella Music',
+      'Welcome to Mo Music',
       name: 'auth_welcome_title',
       desc: 'auth_welcome_title',
       args: [],
@@ -2994,10 +2994,10 @@ class S {
     );
   }
 
-  /// `Estrella Music has evolved!`
+  /// `Mo Music has evolved!`
   String get news_card_title {
     return Intl.message(
-      'Estrella Music has evolved!',
+      'Mo Music has evolved!',
       name: 'news_card_title',
       desc: 'news_card_title',
       args: [],
@@ -3024,10 +3024,10 @@ class S {
     );
   }
 
-  /// `Estrella Music News`
+  /// `Mo Music News`
   String get news_dialog_title {
     return Intl.message(
-      'Estrella Music News',
+      'Mo Music News',
       name: 'news_dialog_title',
       desc: 'news_dialog_title',
       args: [],
@@ -3264,10 +3264,10 @@ class S {
     );
   }
 
-  /// `Estrella Music needs these permissions to manage your music and offer all playback features.`
+  /// `Mo Music needs these permissions to manage your music and offer all playback features.`
   String get permissionsConsentDescription {
     return Intl.message(
-      'Estrella Music needs these permissions to manage your music and offer all playback features.',
+      'Mo Music needs these permissions to manage your music and offer all playback features.',
       name: 'permissionsConsentDescription',
       desc: 'permissionsConsentDescription',
       args: [],
@@ -4284,10 +4284,10 @@ class S {
     );
   }
 
-  /// `About Estrella Music`
+  /// `About Mo Music`
   String get settings_about_desc {
     return Intl.message(
-      'About Estrella Music',
+      'About Mo Music',
       name: 'settings_about_desc',
       desc: 'settings_about_desc',
       args: [],
@@ -4879,10 +4879,10 @@ class S {
     );
   }
 
-  /// `Choose the section that Estrella Music opens first`
+  /// `Choose the section that Mo Music opens first`
   String get startupScreenDescription {
     return Intl.message(
-      'Choose the section that Estrella Music opens first',
+      'Choose the section that Mo Music opens first',
       name: 'startupScreenDescription',
       desc: 'startupScreenDescription',
       args: [],
@@ -5549,10 +5549,10 @@ class S {
     );
   }
 
-  /// `Choose how you want to experience Estrella Music from now on.`
+  /// `Choose how you want to experience Mo Music from now on.`
   String get welcome_subtitle {
     return Intl.message(
-      'Choose how you want to experience Estrella Music from now on.',
+      'Choose how you want to experience Mo Music from now on.',
       name: 'welcome_subtitle',
       desc: 'welcome_subtitle',
       args: [],
@@ -5568,6 +5568,231 @@ class S {
       args: [],
     );
   }
+
+  String get updateCheckUnavailable {
+    return Intl.message(
+      'Could not check for updates from this repository.',
+      name: 'updateCheckUnavailable',
+      desc: 'updateCheckUnavailable',
+      args: [],
+    );
+  }
+
+  String get updateIosGuide {
+    return Intl.message(
+      'iOS installation guide',
+      name: 'updateIosGuide',
+      desc: 'updateIosGuide',
+      args: [],
+    );
+  }
+
+  String get updateDownloadGithub {
+    return Intl.message(
+      'Download from GitHub',
+      name: 'updateDownloadGithub',
+      desc: 'updateDownloadGithub',
+      args: [],
+    );
+  }
+
+  String get updateAction {
+    return Intl.message(
+      'Update',
+      name: 'updateAction',
+      desc: 'updateAction',
+      args: [],
+    );
+  }
+
+  String get updateDownloadUnavailable {
+    return Intl.message(
+      'Download URL is not available.',
+      name: 'updateDownloadUnavailable',
+      desc: 'updateDownloadUnavailable',
+      args: [],
+    );
+  }
+
+  String updateNetworkError(String message) {
+    return Intl.message(
+      'Network error: $message',
+      name: 'updateNetworkError',
+      desc: 'updateNetworkError',
+      args: [message],
+    );
+  }
+
+  String get updateNotificationChannel {
+    return Intl.message(
+      'Mo Music updates',
+      name: 'updateNotificationChannel',
+      desc: 'updateNotificationChannel',
+      args: [],
+    );
+  }
+
+  String get updateNotificationChannelDes {
+    return Intl.message(
+      'Notifies when an update is ready to install',
+      name: 'updateNotificationChannelDes',
+      desc: 'updateNotificationChannelDes',
+      args: [],
+    );
+  }
+
+  String get updateReadyTitle {
+    return Intl.message(
+      'Update ready!',
+      name: 'updateReadyTitle',
+      desc: 'updateReadyTitle',
+      args: [],
+    );
+  }
+
+  String get updateReadyBody {
+    return Intl.message(
+      'Tap Install in the app to finish updating Mo Music.',
+      name: 'updateReadyBody',
+      desc: 'updateReadyBody',
+      args: [],
+    );
+  }
+
+  String get checkingUpdates {
+    return Intl.message(
+      'Checking for updates...',
+      name: 'checkingUpdates',
+      desc: 'checkingUpdates',
+      args: [],
+    );
+  }
+
+  String get validatingSession {
+    return Intl.message(
+      'Validating your session',
+      name: 'validatingSession',
+      desc: 'validatingSession',
+      args: [],
+    );
+  }
+
+  String get preparingApp {
+    return Intl.message(
+      'One moment, we are preparing Mo Music.',
+      name: 'preparingApp',
+      desc: 'preparingApp',
+      args: [],
+    );
+  }
+
+  String get welcomeSetupTitle {
+    return Intl.message(
+      'Welcome to Mo Music',
+      name: 'welcomeSetupTitle',
+      desc: 'welcomeSetupTitle',
+      args: [],
+    );
+  }
+
+  String get welcomeSetupSubtitle {
+    return Intl.message(
+      'Set up your starting music experience',
+      name: 'welcomeSetupSubtitle',
+      desc: 'welcomeSetupSubtitle',
+      args: [],
+    );
+  }
+
+  String get welcomeSelectHowToListen {
+    return Intl.message(
+      'Choose how you want to listen today:',
+      name: 'welcomeSelectHowToListen',
+      desc: 'welcomeSelectHowToListen',
+      args: [],
+    );
+  }
+
+  String get welcomeLocalModeTitle {
+    return Intl.message(
+      'Local mode (offline by default)',
+      name: 'welcomeLocalModeTitle',
+      desc: 'welcomeLocalModeTitle',
+      args: [],
+    );
+  }
+
+  String get welcomeLocalModeSubtitle {
+    return Intl.message(
+      'Play music stored on this device. No internet or external servers required.',
+      name: 'welcomeLocalModeSubtitle',
+      desc: 'welcomeLocalModeSubtitle',
+      args: [],
+    );
+  }
+
+  String get welcomeStreamingModeTitle {
+    return Intl.message(
+      'External streaming playback',
+      name: 'welcomeStreamingModeTitle',
+      desc: 'welcomeStreamingModeTitle',
+      args: [],
+    );
+  }
+
+  String get welcomeStreamingModeSubtitle {
+    return Intl.message(
+      'Connect an external recipe or streaming server.',
+      name: 'welcomeStreamingModeSubtitle',
+      desc: 'welcomeStreamingModeSubtitle',
+      args: [],
+    );
+  }
+
+  String get welcomeDisclaimer {
+    return Intl.message(
+      'Notice: External streaming is user-configured. Mo Music works by default as a local offline player.',
+      name: 'welcomeDisclaimer',
+      desc: 'welcomeDisclaimer',
+      args: [],
+    );
+  }
+
+  String get backupMoMusic {
+    return Intl.message(
+      'Mo Music backup',
+      name: 'backupMoMusic',
+      desc: 'backupMoMusic',
+      args: [],
+    );
+  }
+
+  String get backupJossMusic {
+    return Intl.message(
+      'Joss Music backup',
+      name: 'backupJossMusic',
+      desc: 'backupJossMusic',
+      args: [],
+    );
+  }
+
+  String backupDateLabel(String date) {
+    return Intl.message(
+      'Date: $date',
+      name: 'backupDateLabel',
+      desc: 'backupDateLabel',
+      args: [date],
+    );
+  }
+
+  String get unknownDate {
+    return Intl.message(
+      'Unknown',
+      name: 'unknownDate',
+      desc: 'unknownDate',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
@@ -5575,8 +5800,8 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
 
   List<Locale> get supportedLocales {
     return const <Locale>[
-      Locale.fromSubtags(languageCode: 'en'),
       Locale.fromSubtags(languageCode: 'ar'),
+      Locale.fromSubtags(languageCode: 'en'),
       Locale.fromSubtags(languageCode: 'be'),
       Locale.fromSubtags(languageCode: 'bg'),
       Locale.fromSubtags(languageCode: 'bn'),

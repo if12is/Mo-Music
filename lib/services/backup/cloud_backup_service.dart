@@ -44,7 +44,7 @@ class CloudBackupFile {
     }
 
     // 2. Fallback: extraer la fecha del nombre del archivo
-    // Soporta el formato propio: estrellamusic_2024-05-08T143022123456.hmb
+    // Soporta el formato propio: momusic_2024-05-08T143022123456.hmb
     // y patrones genéricos como: backup_20240508_143022.dat
     final name = fileIdFileName.isNotEmpty ? fileIdFileName : fileName;
 
@@ -103,8 +103,9 @@ class CloudBackupFile {
 }
 
 class CloudBackupService extends GetxService {
-  static const defaultAppName = 'estrellamusic_backup';
+  static const defaultAppName = 'momusic_backup';
   static const legacyMusicAppName = 'jossmusic_backup';
+  static const estrellaMusicAppName = 'estrellamusic_backup';
 
   final Dio _dio = Dio(
     BaseOptions(

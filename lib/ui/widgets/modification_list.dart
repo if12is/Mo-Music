@@ -17,12 +17,12 @@ class ModificationList extends StatelessWidget {
     if (mode == OperationMode.arrange) {
       return Expanded(
         child: ReorderableListView.builder(
-            padding: const EdgeInsets.only(right: 5, bottom: 200),
+            padding: const EdgeInsetsDirectional.only(end: 5, bottom: 200),
             itemBuilder: (context, index) => ListTile(
                   key: Key('$index'),
                   onTap: () {},
                   contentPadding:
-                      const EdgeInsets.only(top: 0, left: 5, right: 40),
+                      const EdgeInsetsDirectional.only(top: 0, start: 5, end: 40),
                   leading: ImageWidget(
                     size: 55,
                     song: items[index],
@@ -63,7 +63,7 @@ class ModificationList extends StatelessWidget {
         mode == OperationMode.delete) {
       return Expanded(
         child: ListView.builder(
-          padding: const EdgeInsets.only(right: 5, bottom: 200),
+          padding: const EdgeInsetsDirectional.only(end: 5, bottom: 200),
           itemCount: items.length,
           itemBuilder: (context, index) => ListTile(
             onTap: () {
@@ -71,7 +71,7 @@ class ModificationList extends StatelessWidget {
                   !screenController.additionalOperationTempMap[index]!;
               screenController.checkIfAllSelected();
             },
-            contentPadding: const EdgeInsets.only(top: 0, left: 5, right: 30),
+            contentPadding: const EdgeInsetsDirectional.only(top: 0, start: 5, end: 30),
             leading: SizedBox(
               width: 100,
               child: Row(

@@ -21,7 +21,7 @@ jobs:
       - name: Create .env file
         run: |
           if [ -z "${{ secrets.ENV_FILE }}" ]; then
-            echo "API_URL=https://emusic.josprox.com" > .env
+            echo "UPDATE_CHECK_URL=https://raw.githubusercontent.com/if12is/Mo-Music/dev/distribution/update-check.json" > .env
           else
             echo "${{ secrets.ENV_FILE }}" > .env
           fi
@@ -52,18 +52,18 @@ jobs:
         run: |
           mkdir -p distribution
           cd build/macos/Build/Products/Release
-          zip -r ../../../../../distribution/EstrellaMusic_macOS_Portable.zip estrellamusic.app
+          zip -r ../../../../../distribution/MoMusic-macos.zip "Mo Music.app" || zip -r ../../../../../distribution/MoMusic-macos.zip *.app
 
       - name: Upload Portable ZIP
         uses: actions/upload-artifact@v4
         with:
           name: macos-portable-zip
-          path: distribution/EstrellaMusic_macOS_Portable.zip
+          path: distribution/MoMusic-macos.zip
 
       - name: Upload binaries to GitHub Release
         if: startsWith(github.ref, 'refs/tags/') || github.event_name == 'release'
         uses: softprops/action-gh-release@v2
         with:
-          files: distribution/EstrellaMusic_macOS_Portable.zip
+          files: distribution/MoMusic-macos.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

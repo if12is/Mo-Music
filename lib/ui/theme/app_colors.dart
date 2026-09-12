@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 /// All UI files must reference these tokens — never hardcode colors.
 abstract class AppColors {
   // ─── Brand seed ────────────────────────────────────────────────────────────
-  /// Default seed used when no dynamic color or song palette is active.
-  static const Color seed = Color(0xFF6750A4); // M3 baseline purple-violet
+  /// Electric indigo sampled from the Mo Music logo.
+  static const Color seed = Color(0xFF3332CE);
 
   // ─── Gradients (accent use only — e.g. logo, onboarding) ─────────────────
   static const LinearGradient primaryGradient = LinearGradient(
-    colors: [Color(0xFF6750A4), Color(0xFF9E56D4)],
+    colors: [Color(0xFF3332CE), Color(0xFF5A59E6)],
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
   );
@@ -18,8 +18,8 @@ abstract class AppColors {
   static const LinearGradient primaryGradientDark = primaryGradient;
 
   // ─── Legacy gradient start/end (kept for glass_morphism.dart compat) ──────
-  static const Color accentGradientStart = Color(0xFF6750A4);
-  static const Color accentGradientEnd = Color(0xFF9E56D4);
+  static const Color accentGradientStart = Color(0xFF3332CE);
+  static const Color accentGradientEnd = Color(0xFF5A59E6);
 
   // ─── Legacy text tokens (kept for app_typography.dart compat) ─────────────
   /// Use colorScheme.onSurface in new code instead.

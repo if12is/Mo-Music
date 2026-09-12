@@ -1403,7 +1403,7 @@
   "@permissionsAllow": {
     "description": "permissionsAllow"
   },
-  "permissionsConsentDescription": "Estrella Music memerlukan izin ini untuk mengelola musik Anda dan menawarkan semua fitur pemutaran.",
+  "permissionsConsentDescription": "Mo Music memerlukan izin ini untuk mengelola musik Anda dan menawarkan semua fitur pemutaran.",
   "@permissionsConsentDescription": {
     "description": "permissionsConsentDescription"
   },
@@ -2090,7 +2090,7 @@
   "@startupScreen": {
     "description": "startupScreen"
   },
-  "startupScreenDescription": "Pilih bagian yang pertama kali dibuka oleh Estrella Music",
+  "startupScreenDescription": "Pilih bagian yang pertama kali dibuka oleh Mo Music",
   "@startupScreenDescription": {
     "description": "startupScreenDescription"
   },
@@ -2361,7 +2361,7 @@
   "@welcome_intro": {
     "description": "welcome_intro"
   },
-  "welcome_subtitle": "Pilih bagaimana Anda ingin menikmati Estrella Music mulai sekarang.",
+  "welcome_subtitle": "Pilih bagaimana Anda ingin menikmati Mo Music mulai sekarang.",
   "@welcome_subtitle": {
     "description": "welcome_subtitle"
   },

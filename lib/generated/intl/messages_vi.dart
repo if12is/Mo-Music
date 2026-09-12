@@ -167,10 +167,10 @@ class MessageLookup extends MessageLookupByLibrary {
       "Tài khoản được tạo thành công.",
     ),
     "auth_welcome_subtitle": MessageLookupByLibrary.simpleMessage(
-      "Chào mừng đến với Estrella Music",
+      "Chào mừng đến với Mo Music",
     ),
     "auth_welcome_title": MessageLookupByLibrary.simpleMessage(
-      "Chào mừng đến với Estrella Music",
+      "Chào mừng đến với Mo Music",
     ),
     "autoDownFavSong": MessageLookupByLibrary.simpleMessage(
       "Tự động tải xuống những bài hát được thích",
@@ -859,7 +859,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "permissionsAllow": MessageLookupByLibrary.simpleMessage("Cho phép"),
     "permissionsConsentDescription": MessageLookupByLibrary.simpleMessage(
-      "Estrella Music cần những quyền này để quản lý nhạc của bạn và cung cấp tất cả các tính năng phát lại.",
+      "Mo Music cần những quyền này để quản lý nhạc của bạn và cung cấp tất cả các tính năng phát lại.",
     ),
     "permissionsConsentTitle": MessageLookupByLibrary.simpleMessage(
       "Quyền để bắt đầu",
@@ -1096,7 +1096,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "settings": MessageLookupByLibrary.simpleMessage("Cài đặt"),
     "settings_about_desc": MessageLookupByLibrary.simpleMessage(
-      "Giới thiệu về Estrella Music",
+      "Giới thiệu về Mo Music",
     ),
     "settings_about_sub": MessageLookupByLibrary.simpleMessage(
       "Phiên bản, dự án nguồn mở và GitHub.",
@@ -1233,7 +1233,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "startRadio": MessageLookupByLibrary.simpleMessage("Bắt đầu đài phát"),
     "startupScreen": MessageLookupByLibrary.simpleMessage("Mở khi khởi động"),
     "startupScreenDescription": MessageLookupByLibrary.simpleMessage(
-      "Chọn phần Estrella Music mở đầu tiên",
+      "Chọn phần Mo Music mở đầu tiên",
     ),
     "status": MessageLookupByLibrary.simpleMessage("Trạng thái"),
     "stopMusicOnTaskClear": MessageLookupByLibrary.simpleMessage(
@@ -1404,7 +1404,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Chúng tôi đã hiện đại hóa nền tảng của mình. Hệ thống tải lên bản sao lưu thủ công cũ đã bị vô hiệu hóa. Bây giờ bạn có hai cách rõ ràng để quản lý thư viện nhạc của mình.",
     ),
     "welcome_subtitle": MessageLookupByLibrary.simpleMessage(
-      "Chọn cách bạn muốn trải nghiệm Estrella Music kể từ bây giờ.",
+      "Chọn cách bạn muốn trải nghiệm Mo Music kể từ bây giờ.",
     ),
     "welcome_title": MessageLookupByLibrary.simpleMessage(
       "Âm nhạc của bạn, theo cách của bạn",

@@ -861,7 +861,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "permissionDenied": MessageLookupByLibrary.simpleMessage("Izin ditolak"),
     "permissionsAllow": MessageLookupByLibrary.simpleMessage("Mengizinkan"),
     "permissionsConsentDescription": MessageLookupByLibrary.simpleMessage(
-      "Estrella Music memerlukan izin ini untuk mengelola musik Anda dan menawarkan semua fitur pemutaran.",
+      "Mo Music memerlukan izin ini untuk mengelola musik Anda dan menawarkan semua fitur pemutaran.",
     ),
     "permissionsConsentTitle": MessageLookupByLibrary.simpleMessage(
       "Izin untuk memulai",
@@ -1239,7 +1239,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "startRadio": MessageLookupByLibrary.simpleMessage("Mulai radio"),
     "startupScreen": MessageLookupByLibrary.simpleMessage("Buka saat startup"),
     "startupScreenDescription": MessageLookupByLibrary.simpleMessage(
-      "Pilih bagian yang pertama kali dibuka oleh Estrella Music",
+      "Pilih bagian yang pertama kali dibuka oleh Mo Music",
     ),
     "status": MessageLookupByLibrary.simpleMessage("Status"),
     "stopMusicOnTaskClear": MessageLookupByLibrary.simpleMessage(
@@ -1410,7 +1410,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Kami telah memodernisasi platform kami. Sistem lama yang mengunggah cadangan manual telah dinonaktifkan. Anda sekarang memiliki dua cara yang jelas untuk mengelola perpustakaan musik Anda.",
     ),
     "welcome_subtitle": MessageLookupByLibrary.simpleMessage(
-      "Pilih bagaimana Anda ingin menikmati Estrella Music mulai sekarang.",
+      "Pilih bagaimana Anda ingin menikmati Mo Music mulai sekarang.",
     ),
     "welcome_title": MessageLookupByLibrary.simpleMessage(
       "Musik Anda, cara Anda",

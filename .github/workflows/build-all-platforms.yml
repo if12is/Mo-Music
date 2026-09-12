@@ -73,7 +73,7 @@ jobs:
           if [[ -n "$ENV_FILE_CONTENT" ]]; then
             printf '%s' "$ENV_FILE_CONTENT" > .env
           else
-            printf '%s\n' 'API_URL=https://emusic.joss.red' > .env
+            printf '%s\n' 'UPDATE_CHECK_URL=https://raw.githubusercontent.com/if12is/Mo-Music/dev/distribution/update-check.json' > .env
           fi
       - run: flutter pub get
       - run: dart analyze lib
@@ -98,7 +98,7 @@ jobs:
         env:
           ENV_FILE_CONTENT: ${{ secrets.ENV_FILE }}
         run: |
-          if [[ -n "$ENV_FILE_CONTENT" ]]; then printf '%s' "$ENV_FILE_CONTENT" > .env; else printf '%s\n' 'API_URL=https://emusic.joss.red' > .env; fi
+          if [[ -n "$ENV_FILE_CONTENT" ]]; then printf '%s' "$ENV_FILE_CONTENT" > .env; else printf '%s\n' 'UPDATE_CHECK_URL=https://raw.githubusercontent.com/if12is/Mo-Music/dev/distribution/update-check.json' > .env; fi
       - name: Configure Firebase
         shell: bash
         env:
@@ -129,11 +129,7 @@ jobs:
             -alias "$KEY_ALIAS" \
             -storepass "$KEYSTORE_PASSWORD" \
             | sed -n 's/.*SHA256: //p' | head -n 1 | tr -d ':' | tr '[:lower:]' '[:upper:]')
-          expected_sha256='DBF27FF8DB0F765CC1FC0762B37557AFFA53378AC14020E2FB588140B0A61945'
-          if [[ "$signing_sha256" != "$expected_sha256" ]]; then
-            echo "::error::KEYSTORE_BASE64 does not contain the Estrella Music release certificate."
-            exit 1
-          fi
+          echo "Using repository signing keystore for Mo Music."
 
           {
             echo 'storeFile=jossestrada.keystore'
@@ -150,12 +146,12 @@ jobs:
           flutter build apk --release --split-per-abi
           cp build/app/outputs/flutter-apk/*-release.apk distribution/android/
           flutter build apk --release
-          cp build/app/outputs/flutter-apk/app-release.apk distribution/android/EstrellaMusic-android-universal.apk
+          cp build/app/outputs/flutter-apk/app-release.apk distribution/android/MoMusic-android-universal.apk
           flutter build appbundle --release
-          cp build/app/outputs/bundle/release/app-release.aab distribution/android/EstrellaMusic-android.aab
+          cp build/app/outputs/bundle/release/app-release.aab distribution/android/MoMusic-android.aab
       - uses: actions/upload-artifact@v4
         with:
-          name: estrella-music-android-${{ needs.detect-version.outputs.version }}-${{ needs.detect-version.outputs.build_number }}
+          name: mo-music-android-${{ needs.detect-version.outputs.version }}-${{ needs.detect-version.outputs.build_number }}
           path: distribution/android/*
           if-no-files-found: error
 
@@ -178,7 +174,7 @@ jobs:
         env:
           ENV_FILE_CONTENT: ${{ secrets.ENV_FILE }}
         run: |
-          if [[ -n "$ENV_FILE_CONTENT" ]]; then printf '%s' "$ENV_FILE_CONTENT" > .env; else printf '%s\n' 'API_URL=https://emusic.joss.red' > .env; fi
+          if [[ -n "$ENV_FILE_CONTENT" ]]; then printf '%s' "$ENV_FILE_CONTENT" > .env; else printf '%s\n' 'UPDATE_CHECK_URL=https://raw.githubusercontent.com/if12is/Mo-Music/dev/distribution/update-check.json' > .env; fi
       - run: flutter pub get
       - name: Build Linux application
         run: flutter build linux --release
@@ -187,20 +183,20 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p distribution/linux
-          tar -czf distribution/linux/EstrellaMusic-linux-x64.tar.gz -C build/linux/x64/release/bundle .
+          tar -czf distribution/linux/MoMusic-linux-x64.tar.gz -C build/linux/x64/release/bundle .
           flatpak remote-add --user --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo || true
           cd distribution/flatpak
           flatpak-builder --user --install-deps-from=flathub --force-clean --repo=repo build-dir com.josprox.EstrellaMusic.yml || true
           if [ -d repo ]; then
-            flatpak build-bundle repo EstrellaMusic-linux-x64.flatpak com.josprox.EstrellaMusic || true
-            if [ -f EstrellaMusic-linux-x64.flatpak ]; then
-              mv EstrellaMusic-linux-x64.flatpak ../linux/
+            flatpak build-bundle repo MoMusic-linux-x64.flatpak com.josprox.EstrellaMusic || true
+            if [ -f MoMusic-linux-x64.flatpak ]; then
+              mv MoMusic-linux-x64.flatpak ../linux/
             fi
           fi
 
       - uses: actions/upload-artifact@v4
         with:
-          name: estrella-music-linux-${{ needs.detect-version.outputs.version }}-${{ needs.detect-version.outputs.build_number }}
+          name: mo-music-linux-${{ needs.detect-version.outputs.version }}-${{ needs.detect-version.outputs.build_number }}
           path: distribution/linux/*
           if-no-files-found: error
 
@@ -219,7 +215,7 @@ jobs:
         env:
           ENV_FILE_CONTENT: ${{ secrets.ENV_FILE }}
         run: |
-          if [[ -n "$ENV_FILE_CONTENT" ]]; then printf '%s' "$ENV_FILE_CONTENT" > .env; else printf '%s\n' 'API_URL=https://emusic.joss.red' > .env; fi
+          if [[ -n "$ENV_FILE_CONTENT" ]]; then printf '%s' "$ENV_FILE_CONTENT" > .env; else printf '%s\n' 'UPDATE_CHECK_URL=https://raw.githubusercontent.com/if12is/Mo-Music/dev/distribution/update-check.json' > .env; fi
       - run: flutter pub get
       - name: Build Windows application
         run: flutter build windows --release
@@ -229,11 +225,11 @@ jobs:
           $ErrorActionPreference = "Stop"
           New-Item -ItemType Directory -Force -Path distribution/windows | Out-Null
           & 'C:\Program Files (x86)\Inno Setup 6\ISCC.exe' /DMyAppVersion="${{ needs.detect-version.outputs.version }}" 'distribution/compilador.iss'
-          $installer = Get-Item distribution/EstrellaMusic*.exe | Select-Object -First 1
-          Move-Item -Force $installer.FullName 'distribution/windows/EstrellaMusic-windows-installer.exe'
+          $installer = Get-Item distribution/MoMusic*.exe | Select-Object -First 1
+          Move-Item -Force $installer.FullName 'distribution/windows/MoMusic-windows-installer.exe'
       - uses: actions/upload-artifact@v4
         with:
-          name: estrella-music-windows-${{ needs.detect-version.outputs.version }}-${{ needs.detect-version.outputs.build_number }}
+          name: mo-music-windows-${{ needs.detect-version.outputs.version }}-${{ needs.detect-version.outputs.build_number }}
           path: distribution/windows/*
           if-no-files-found: error
 
@@ -254,7 +250,7 @@ jobs:
         env:
           ENV_FILE_CONTENT: ${{ secrets.ENV_FILE }}
         run: |
-          if [[ -n "$ENV_FILE_CONTENT" ]]; then printf '%s' "$ENV_FILE_CONTENT" > .env; else printf '%s\n' 'API_URL=https://emusic.joss.red' > .env; fi
+          if [[ -n "$ENV_FILE_CONTENT" ]]; then printf '%s' "$ENV_FILE_CONTENT" > .env; else printf '%s\n' 'UPDATE_CHECK_URL=https://raw.githubusercontent.com/if12is/Mo-Music/dev/distribution/update-check.json' > .env; fi
       - run: flutter pub get
       - name: Patch audiotags podspec
         shell: bash
@@ -271,7 +267,7 @@ jobs:
         run: |
           mkdir -p distribution/apple/ios/Payload
           cp -R build/ios/iphoneos/Runner.app distribution/apple/ios/Payload/
-          (cd distribution/apple/ios && zip -qry ../EstrellaMusic-ios-unsigned.ipa Payload)
+          (cd distribution/apple/ios && zip -qry ../MoMusic-ios-unsigned.ipa Payload)
           rm -rf distribution/apple/ios
       - name: Build macOS application
         run: flutter build macos --release
@@ -280,10 +276,10 @@ jobs:
         run: |
           app_path="$(find build/macos/Build/Products/Release -maxdepth 1 -name '*.app' -print -quit)"
           test -n "$app_path"
-          ditto -c -k --sequesterRsrc --keepParent "$app_path" distribution/apple/EstrellaMusic-macos.zip
+          ditto -c -k --sequesterRsrc --keepParent "$app_path" distribution/apple/MoMusic-macos.zip
       - uses: actions/upload-artifact@v4
         with:
-          name: estrella-music-apple-${{ needs.detect-version.outputs.version }}-${{ needs.detect-version.outputs.build_number }}
+          name: mo-music-apple-${{ needs.detect-version.outputs.version }}-${{ needs.detect-version.outputs.build_number }}
           path: distribution/apple/*
           if-no-files-found: error
 

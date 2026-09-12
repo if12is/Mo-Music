@@ -13,7 +13,7 @@ import 'package:http/http.dart' as http;
 import 'notification_service.dart';
 
 const _channelId = 'estrella_music_notifications';
-const _channelName = 'Notificaciones de Estrella Music';
+const _channelName = 'إشعارات مو ميوزك';
 const _channelDescription = 'Mensajes enviados desde la plataforma Joss';
 
 bool _isExpiredTemporary(Map<String, dynamic> data) {

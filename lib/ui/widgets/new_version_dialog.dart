@@ -4,6 +4,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import 'package:estrella_music/ui/screens/Home/home_screen_controller.dart';
 import 'common_dialog_widget.dart';
+import 'package:estrella_music/app_identity.dart';
 import 'package:estrella_music/generated/l10n.dart';
 
 class NewVersionDialog extends StatelessWidget {
@@ -31,7 +32,7 @@ class NewVersionDialog extends StatelessWidget {
                       onPressed: () {
                         launchUrl(
                           Uri.parse(
-                            'https://github.com/josprox/Estrella-Music/releases/latest',
+                            AppIdentity.latestReleaseUrl,
                           ),
                           mode: LaunchMode.externalApplication,
                         );

@@ -616,7 +616,7 @@ class FullLyricsPage extends StatelessWidget {
               children: [
                 const LyricsWidget(
                   padding:
-                      EdgeInsets.only(top: 24, bottom: 64, left: 16, right: 16),
+                      EdgeInsetsDirectional.only(top: 24, bottom: 64, start: 16, end: 16),
                   isFull: true,
                 ),
                 Positioned(

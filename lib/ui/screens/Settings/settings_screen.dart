@@ -20,6 +20,7 @@ import 'package:estrella_music/ui/widgets/snackbar.dart';
 import '/ui/utils/theme_controller.dart';
 import 'components/custom_expansion_tile.dart';
 import 'settings_screen_controller.dart';
+import 'package:estrella_music/app_identity.dart';
 import 'package:estrella_music/generated/l10n.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -63,7 +64,7 @@ class SettingsScreen extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Estrella Music',
+                      Text(AppIdentity.localizedName(),
                           style: tt.titleSmall
                               ?.copyWith(fontWeight: FontWeight.w800)),
                       Text(ctrl.currentVersion.value,
@@ -142,7 +143,7 @@ class SettingsScreen extends StatelessWidget {
                       child: ListTile(
                         onTap: () => launchUrl(
                             Uri.parse(
-                                'https://github.com/josprox/Estrella-Music/releases/latest'),
+                                AppIdentity.latestReleaseUrl),
                             mode: LaunchMode.externalApplication),
                         leading: Icon(Icons.download_rounded,
                             color: cs.onPrimaryContainer),
@@ -276,7 +277,7 @@ class ThemeSelectorDialog extends StatelessWidget {
               padding:
                   const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
               child: Align(
-                alignment: Alignment.centerLeft,
+                alignment: AlignmentDirectional.centerStart,
                 child: Text(
                   S.current.themeMode,
                   style: Theme.of(context)
@@ -309,7 +310,7 @@ class ThemeSelectorDialog extends StatelessWidget {
             ),
             const SizedBox(height: 12),
             Align(
-              alignment: Alignment.centerRight,
+              alignment: AlignmentDirectional.centerEnd,
               child: TextButton(
                 onPressed: () => Navigator.of(context).pop(),
                 child: Text(S.current.cancel),
@@ -338,7 +339,7 @@ class DiscoverContentSelectorDialog extends StatelessWidget {
               padding:
                   const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
               child: Align(
-                alignment: Alignment.centerLeft,
+                alignment: AlignmentDirectional.centerStart,
                 child: Text(
                   S.current.setDiscoverContent,
                   style: Theme.of(context)
@@ -367,7 +368,7 @@ class DiscoverContentSelectorDialog extends StatelessWidget {
                 value: "BOLI"),
             const SizedBox(height: 12),
             Align(
-              alignment: Alignment.centerRight,
+              alignment: AlignmentDirectional.centerEnd,
               child: TextButton(
                 onPressed: () => Navigator.of(context).pop(),
                 child: Text(S.current.cancel),
@@ -476,7 +477,7 @@ class SettingsAppearanceScreen extends StatelessWidget {
                       .toList(),
                   selectedItemBuilder: (ctx) => langMap.entries
                       .map<Widget>((e) => Container(
-                            alignment: Alignment.centerRight,
+                            alignment: AlignmentDirectional.centerEnd,
                             constraints: const BoxConstraints(minWidth: 50),
                             child: Text(e.value),
                           ))
@@ -554,7 +555,7 @@ class SettingsContentScreen extends StatelessWidget {
                     value: ctrl.startupTabIndex.value,
                     selectedItemBuilder: (context) => startupOptions.values
                         .map((label) => Align(
-                              alignment: Alignment.centerRight,
+                              alignment: AlignmentDirectional.centerEnd,
                               child: Text(
                                 label,
                                 maxLines: 1,
@@ -995,7 +996,7 @@ class SettingsAboutScreen extends StatelessWidget {
             leadingIcon: Icons.code_rounded,
             isThreeLine: true,
             onTap: () => launchUrl(
-                Uri.parse('https://github.com/josprox/Estrella-Music'),
+                Uri.parse(AppIdentity.githubUrl),
                 mode: LaunchMode.externalApplication),
             trailing: const Icon(Icons.open_in_new_rounded),
           ),

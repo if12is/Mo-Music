@@ -7,6 +7,7 @@ import 'package:estrella_music/music_provider/music_provider_manager.dart';
 import 'package:estrella_music/profiles/profile_manager.dart';
 import 'package:estrella_music/ui/home.dart';
 import 'package:estrella_music/ui/profiles/profile_switcher.dart';
+import 'package:estrella_music/generated/l10n.dart';
 import 'package:estrella_music/ui/widgets/qr_server_scanner_dialog.dart';
 import 'widgets/animated_auth_background.dart';
 
@@ -267,22 +268,22 @@ class _WelcomeProfileSetupScreenState extends State<WelcomeProfileSetupScreen> {
                               ),
                             ),
                             const SizedBox(width: 16),
-                            const Expanded(
+                            Expanded(
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'Bienvenido a Estrella Music',
-                                    style: TextStyle(
+                                    S.current.welcomeSetupTitle,
+                                    style: const TextStyle(
                                       color: Colors.white,
                                       fontSize: 22,
                                       fontWeight: FontWeight.w800,
                                     ),
                                   ),
-                                  SizedBox(height: 2),
+                                  const SizedBox(height: 2),
                                   Text(
-                                    'Configura tu experiencia musical inicial',
-                                    style: TextStyle(
+                                    S.current.welcomeSetupSubtitle,
+                                    style: const TextStyle(
                                       color: Colors.white70,
                                       fontSize: 13,
                                     ),
@@ -293,9 +294,9 @@ class _WelcomeProfileSetupScreenState extends State<WelcomeProfileSetupScreen> {
                           ],
                         ),
                         const SizedBox(height: 24),
-                        const Text(
-                          'Selecciona cómo quieres escuchar hoy:',
-                          style: TextStyle(
+                        Text(
+                          S.current.welcomeSelectHowToListen,
+                          style: const TextStyle(
                             color: Colors.white,
                             fontSize: 15,
                             fontWeight: FontWeight.w700,
@@ -307,11 +308,11 @@ class _WelcomeProfileSetupScreenState extends State<WelcomeProfileSetupScreen> {
                           _buildOptionCard(
                             providerId: providerId,
                             title: _isLocal(providerId)
-                                ? 'Modo local (Por defecto offline)'
-                                : 'Reproducción de streaming externo',
+                                ? S.current.welcomeLocalModeTitle
+                                : S.current.welcomeStreamingModeTitle,
                             subtitle: _isLocal(providerId)
-                                ? 'Reproductor local de tu dispositivo. No requiere internet ni servidores externos.'
-                                : 'Conecta un servidor de recetas o streaming externo (estilo Stremio).',
+                                ? S.current.welcomeLocalModeSubtitle
+                                : S.current.welcomeStreamingModeSubtitle,
                             icon: _isLocal(providerId)
                                 ? Icons.phone_android_rounded
                                 : Icons.cloud_done_rounded,
@@ -343,7 +344,7 @@ class _WelcomeProfileSetupScreenState extends State<WelcomeProfileSetupScreen> {
                               const SizedBox(width: 10),
                               Expanded(
                                 child: Text(
-                                  'Aviso: Las reproducciones externas no nos hacemos responsables de cómo se usen. Estrella Music funciona por defecto como reproductor local offline.',
+                                  S.current.welcomeDisclaimer,
                                   style: TextStyle(
                                     color: Colors.white.withValues(alpha: 0.85),
                                     fontSize: 12,

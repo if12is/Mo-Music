@@ -1403,7 +1403,7 @@
   "@permissionsAllow": {
     "description": "permissionsAllow"
   },
-  "permissionsConsentDescription": "আপনার সঙ্গীত পরিচালনা করতে এবং সমস্ত প্লেব্যাক বৈশিষ্ট্য অফার করতে Estrella Music-এর এই অনুমতিগুলির প্রয়োজন৷",
+  "permissionsConsentDescription": "আপনার সঙ্গীত পরিচালনা করতে এবং সমস্ত প্লেব্যাক বৈশিষ্ট্য অফার করতে Mo Music-এর এই অনুমতিগুলির প্রয়োজন৷",
   "@permissionsConsentDescription": {
     "description": "permissionsConsentDescription"
   },
@@ -2090,7 +2090,7 @@
   "@startupScreen": {
     "description": "startupScreen"
   },
-  "startupScreenDescription": "Estrella Music যে বিভাগটি প্রথমে খোলে সেটি বেছে নিন",
+  "startupScreenDescription": "Mo Music যে বিভাগটি প্রথমে খোলে সেটি বেছে নিন",
   "@startupScreenDescription": {
     "description": "startupScreenDescription"
   },

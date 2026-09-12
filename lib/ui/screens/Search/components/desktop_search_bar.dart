@@ -58,7 +58,7 @@ class DesktopSearchBar extends StatelessWidget {
                   : const SizedBox.shrink())
             ],
             padding: const WidgetStatePropertyAll<EdgeInsetsGeometry>(
-                EdgeInsets.only(left: 15, right: 15)),
+                EdgeInsetsDirectional.only(start: 15, end: 15)),
           ),
         ),
         Padding(

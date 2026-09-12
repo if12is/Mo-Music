@@ -24,7 +24,7 @@ class TranslationService {
     final dio = Dio(BaseOptions(
       connectTimeout: const Duration(seconds: 4),
       receiveTimeout: const Duration(seconds: 4),
-      headers: const {'User-Agent': 'EstrellaMusic/2.0'},
+      headers: const {'User-Agent': 'MoMusic/2.5.0'},
     ));
 
     Map<String, String>? parseLyrics(dynamic value) {
@@ -221,7 +221,7 @@ class TranslationService {
     final dio = Dio(BaseOptions(
       connectTimeout: const Duration(seconds: 6),
       receiveTimeout: const Duration(seconds: 6),
-      headers: const {'User-Agent': 'EstrellaMusic/2.0'},
+      headers: const {'User-Agent': 'MoMusic/2.5.0'},
     ));
 
     // 1. Search LRCLIB

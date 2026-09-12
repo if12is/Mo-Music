@@ -167,10 +167,10 @@ class MessageLookup extends MessageLookupByLibrary {
       "حساب با موفقیت ایجاد شد.",
     ),
     "auth_welcome_subtitle": MessageLookupByLibrary.simpleMessage(
-      "به Estrella Music خوش آمدید",
+      "به Mo Music خوش آمدید",
     ),
     "auth_welcome_title": MessageLookupByLibrary.simpleMessage(
-      "به Estrella Music خوش آمدید",
+      "به Mo Music خوش آمدید",
     ),
     "autoDownFavSong": MessageLookupByLibrary.simpleMessage(
       "دانلود خودکار موسیقی های مورد علاقه",
@@ -833,7 +833,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "permissionDenied": MessageLookupByLibrary.simpleMessage("اجازه رد شد"),
     "permissionsAllow": MessageLookupByLibrary.simpleMessage("اجازه دهید"),
     "permissionsConsentDescription": MessageLookupByLibrary.simpleMessage(
-      "Estrella Music برای مدیریت موسیقی شما و ارائه تمام ویژگی های پخش به این مجوزها نیاز دارد.",
+      "Mo Music برای مدیریت موسیقی شما و ارائه تمام ویژگی های پخش به این مجوزها نیاز دارد.",
     ),
     "permissionsConsentTitle": MessageLookupByLibrary.simpleMessage(
       "مجوز برای شروع",
@@ -1207,7 +1207,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "در هنگام راه اندازی باز کنید",
     ),
     "startupScreenDescription": MessageLookupByLibrary.simpleMessage(
-      "ابتدا قسمتی را که Estrella Music باز می کند انتخاب کنید",
+      "ابتدا قسمتی را که Mo Music باز می کند انتخاب کنید",
     ),
     "status": MessageLookupByLibrary.simpleMessage("وضعیت"),
     "stopMusicOnTaskClear": MessageLookupByLibrary.simpleMessage(

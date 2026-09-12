@@ -121,7 +121,7 @@ class LyricsWidget extends StatelessWidget {
           childWidget = SelectableText.rich(
             TextSpan(children: spans),
             textAlign: currentAlign == LyricAlign.LEFT
-                ? TextAlign.left
+                ? TextAlign.start
                 : TextAlign.center,
           );
         } else {
@@ -130,7 +130,7 @@ class LyricsWidget extends StatelessWidget {
           childWidget = SelectableText(
             displayedText,
             textAlign: currentAlign == LyricAlign.LEFT
-                ? TextAlign.left
+                ? TextAlign.start
                 : TextAlign.center,
             style: playerController.isDesktopLyricsDialogOpen
                 ? Theme.of(context).textTheme.titleMedium!.copyWith(

@@ -165,10 +165,10 @@ class MessageLookup extends MessageLookupByLibrary {
       "Konto opprettet.",
     ),
     "auth_welcome_subtitle": MessageLookupByLibrary.simpleMessage(
-      "Velkommen til Estrella Music",
+      "Velkommen til Mo Music",
     ),
     "auth_welcome_title": MessageLookupByLibrary.simpleMessage(
-      "Velkommen til Estrella Music",
+      "Velkommen til Mo Music",
     ),
     "autoDownFavSong": MessageLookupByLibrary.simpleMessage(
       "Automatisk nedlasting av favorittsanger",
@@ -779,7 +779,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "100 % synkronisering med Joss Red, spillelister med venner og mye mer. Trykk for å se hva som er nytt.",
     ),
     "news_card_title": MessageLookupByLibrary.simpleMessage(
-      "Estrella Music har utviklet seg!",
+      "Mo Music har utviklet seg!",
     ),
     "news_dialog_friends_desc": MessageLookupByLibrary.simpleMessage(
       "For å legge til venner, godta forespørsler eller administrere sikkerhetsprofilen din, vennligst bruk Joss Red på dens offisielle plattformer:",
@@ -788,7 +788,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Venner og kontoadministrasjon:",
     ),
     "news_dialog_title": MessageLookupByLibrary.simpleMessage(
-      "Estrella Music News",
+      "Mo Music News",
     ),
     "news_item_collab_desc": MessageLookupByLibrary.simpleMessage(
       "Lag spillelister med vennene dine! Når du oppretter en spilleliste, merker du av for Collaborative og velger vennene dine å redigere sammen.",
@@ -847,7 +847,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "permissionsAllow": MessageLookupByLibrary.simpleMessage("Tillate"),
     "permissionsConsentDescription": MessageLookupByLibrary.simpleMessage(
-      "Estrella Music trenger disse tillatelsene for å administrere musikken din og tilby alle avspillingsfunksjoner.",
+      "Mo Music trenger disse tillatelsene for å administrere musikken din og tilby alle avspillingsfunksjoner.",
     ),
     "permissionsConsentTitle": MessageLookupByLibrary.simpleMessage(
       "Tillatelser til å komme i gang",
@@ -1082,7 +1082,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "settings": MessageLookupByLibrary.simpleMessage("Innstillinger"),
     "settings_about_desc": MessageLookupByLibrary.simpleMessage(
-      "Om Estrella Music",
+      "Om Mo Music",
     ),
     "settings_about_sub": MessageLookupByLibrary.simpleMessage(
       "Versjon, åpen kildekode-prosjekt og GitHub.",
@@ -1215,7 +1215,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "startRadio": MessageLookupByLibrary.simpleMessage("Start radio"),
     "startupScreen": MessageLookupByLibrary.simpleMessage("Åpne ved oppstart"),
     "startupScreenDescription": MessageLookupByLibrary.simpleMessage(
-      "Velg delen som Estrella Music åpner først",
+      "Velg delen som Mo Music åpner først",
     ),
     "status": MessageLookupByLibrary.simpleMessage("Status"),
     "stopMusicOnTaskClear": MessageLookupByLibrary.simpleMessage(
@@ -1380,7 +1380,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Vi har modernisert plattformen vår. Det gamle systemet for opplasting av manuelle sikkerhetskopier er deaktivert. Du har nå to klare måter å administrere musikkbiblioteket på.",
     ),
     "welcome_subtitle": MessageLookupByLibrary.simpleMessage(
-      "Velg hvordan du vil oppleve Estrella Music fra nå av.",
+      "Velg hvordan du vil oppleve Mo Music fra nå av.",
     ),
     "welcome_title": MessageLookupByLibrary.simpleMessage(
       "Musikken din, din måte",

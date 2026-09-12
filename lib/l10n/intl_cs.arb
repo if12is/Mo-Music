@@ -196,11 +196,11 @@
   "@auth_register_success": {
     "description": "auth_register_success"
   },
-  "auth_welcome_subtitle": "Vítejte v Estrella Music",
+  "auth_welcome_subtitle": "Vítejte v Mo Music",
   "@auth_welcome_subtitle": {
     "description": "auth_welcome_subtitle"
   },
-  "auth_welcome_title": "Vítejte v Estrella Music",
+  "auth_welcome_title": "Vítejte v Mo Music",
   "@auth_welcome_title": {
     "description": "auth_welcome_title"
   },
@@ -1291,7 +1291,7 @@
   "@news_card_subtitle": {
     "description": "news_card_subtitle"
   },
-  "news_card_title": "Estrella Music se vyvinula!",
+  "news_card_title": "Mo Music se vyvinula!",
   "@news_card_title": {
     "description": "news_card_title"
   },
@@ -1303,7 +1303,7 @@
   "@news_dialog_section_friends": {
     "description": "news_dialog_section_friends"
   },
-  "news_dialog_title": "Estrella Music News",
+  "news_dialog_title": "Mo Music News",
   "@news_dialog_title": {
     "description": "news_dialog_title"
   },
@@ -1403,7 +1403,7 @@
   "@permissionsAllow": {
     "description": "permissionsAllow"
   },
-  "permissionsConsentDescription": "Estrella Music potřebuje tato oprávnění, aby mohla spravovat vaši hudbu a nabízet všechny funkce přehrávání.",
+  "permissionsConsentDescription": "Mo Music potřebuje tato oprávnění, aby mohla spravovat vaši hudbu a nabízet všechny funkce přehrávání.",
   "@permissionsConsentDescription": {
     "description": "permissionsConsentDescription"
   },
@@ -1831,7 +1831,7 @@
   "@settings": {
     "description": "settings"
   },
-  "settings_about_desc": "O Estrella Music",
+  "settings_about_desc": "O Mo Music",
   "@settings_about_desc": {
     "description": "settings_about_desc"
   },
@@ -2090,7 +2090,7 @@
   "@startupScreen": {
     "description": "startupScreen"
   },
-  "startupScreenDescription": "Vyberte sekci, kterou Estrella Music otevře jako první",
+  "startupScreenDescription": "Vyberte sekci, kterou Mo Music otevře jako první",
   "@startupScreenDescription": {
     "description": "startupScreenDescription"
   },
@@ -2361,7 +2361,7 @@
   "@welcome_intro": {
     "description": "welcome_intro"
   },
-  "welcome_subtitle": "Vyberte si, jak chcete od této chvíle zažít Estrella Music.",
+  "welcome_subtitle": "Vyberte si, jak chcete od této chvíle zažít Mo Music.",
   "@welcome_subtitle": {
     "description": "welcome_subtitle"
   },

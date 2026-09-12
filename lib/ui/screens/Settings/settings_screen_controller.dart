@@ -11,6 +11,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:permission_handler/permission_handler.dart';
 
+import 'package:estrella_music/app_identity.dart';
 import 'package:estrella_music/utils/helpers/update_check_flag_file.dart';
 import 'package:estrella_music/utils/helpers/helper.dart';
 import 'package:estrella_music/music_provider/music_catalog_service.dart';
@@ -37,7 +38,7 @@ class SettingsScreenController extends GetxController {
   final discoverContentType = "QP".obs;
   final isNewVersionAvailable = false.obs;
   final stopPlyabackOnSwipeAway = false.obs;
-  final currentAppLanguageCode = "en".obs;
+  final currentAppLanguageCode = AppIdentity.defaultLanguageCode.obs;
   final downloadLocationPath = "".obs;
   final exportLocationPath = "".obs;
   final downloadingFormat = "".obs;
@@ -93,8 +94,7 @@ class SettingsScreenController extends GetxController {
   Future<void> _setInitValue() async {
     final isDesktop = GetPlatform.isDesktop;
     final appLang = setBox.get('currentAppLanguageCode') ??
-        Get.deviceLocale?.languageCode ??
-        "en";
+        AppIdentity.defaultLanguageCode;
     currentAppLanguageCode.value = appLang == "zh_Hant"
         ? "zh-TW"
         : appLang == "zh_Hans"

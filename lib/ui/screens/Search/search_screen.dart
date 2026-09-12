@@ -101,8 +101,8 @@ class _ExpressiveTitleSliver extends StatelessWidget {
       }
       return SliverToBoxAdapter(
         child: Padding(
-          padding: const EdgeInsets.only(
-              left: 20.0, right: 20.0, top: 24.0, bottom: 8.0),
+          padding: const EdgeInsetsDirectional.only(
+              start: 20.0, end: 20.0, top: 24.0, bottom: 8.0),
           child: Text(
             S.current.search,
             style: Theme.of(context).textTheme.displaySmall?.copyWith(
@@ -398,7 +398,7 @@ class _CategoryCardState extends State<_CategoryCard> {
                   Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: Align(
-                      alignment: Alignment.bottomLeft,
+                      alignment: AlignmentDirectional.bottomStart,
                       child: Text(
                         widget.category.name,
                         style: const TextStyle(
@@ -441,8 +441,8 @@ class _RecentSearchesHeaderSliver extends StatelessWidget {
       }
       return SliverToBoxAdapter(
         child: Padding(
-          padding: const EdgeInsets.only(
-              left: 20.0, right: 20.0, top: 20.0, bottom: 8.0),
+          padding: const EdgeInsetsDirectional.only(
+              start: 20.0, end: 20.0, top: 20.0, bottom: 8.0),
           child: Text(
             S.current.recentSearches,
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
@@ -575,7 +575,7 @@ class _SearchResultsSliver extends StatelessWidget {
         return SliverToBoxAdapter(
           child: Center(
             child: Padding(
-              padding: const EdgeInsets.only(top: 40.0, left: 24, right: 24),
+              padding: const EdgeInsetsDirectional.only(top: 40.0, start: 24, end: 24),
               child: InkWell(
                 onTap: () {
                   controller.filterLinks(

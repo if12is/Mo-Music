@@ -858,7 +858,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "permissionsAllow": MessageLookupByLibrary.simpleMessage("Toestaan"),
     "permissionsConsentDescription": MessageLookupByLibrary.simpleMessage(
-      "Estrella Music heeft deze machtigingen nodig om je muziek te beheren en alle afspeelfuncties aan te bieden.",
+      "Mo Music heeft deze machtigingen nodig om je muziek te beheren en alle afspeelfuncties aan te bieden.",
     ),
     "permissionsConsentTitle": MessageLookupByLibrary.simpleMessage(
       "Machtigingen om aan de slag te gaan",
@@ -1244,7 +1244,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Openen bij opstarten",
     ),
     "startupScreenDescription": MessageLookupByLibrary.simpleMessage(
-      "Kies de sectie die Estrella Music als eerste opent",
+      "Kies de sectie die Mo Music als eerste opent",
     ),
     "status": MessageLookupByLibrary.simpleMessage("Status"),
     "stopMusicOnTaskClear": MessageLookupByLibrary.simpleMessage(
@@ -1411,7 +1411,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "We hebben ons platform gemoderniseerd. Het oude systeem voor het uploaden van handmatige back-ups is uitgeschakeld. Je hebt nu twee duidelijke manieren om je muziekbibliotheek te beheren.",
     ),
     "welcome_subtitle": MessageLookupByLibrary.simpleMessage(
-      "Kies zelf hoe jij Estrella Music voortaan wilt beleven.",
+      "Kies zelf hoe jij Mo Music voortaan wilt beleven.",
     ),
     "welcome_title": MessageLookupByLibrary.simpleMessage(
       "Jouw muziek, jouw manier",

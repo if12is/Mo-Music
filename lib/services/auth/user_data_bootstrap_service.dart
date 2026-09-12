@@ -113,14 +113,21 @@ class UserDataBootstrapService extends GetxService {
       willReplaceLocalData.value = hasLocalData;
 
       statusMessage.value = 'Buscando backups de tu cuenta...';
-      final estrellaBackups = await _cloudBackupService.listBackups(
+      final moMusicBackups = await _cloudBackupService.listBackups(
         appName: CloudBackupService.defaultAppName,
+      );
+      final estrellaBackups = await _cloudBackupService.listBackups(
+        appName: CloudBackupService.estrellaMusicAppName,
       );
       final jossBackups = await _cloudBackupService.listBackups(
         appName: CloudBackupService.legacyMusicAppName,
       );
 
-      final allRecentBackups = [...estrellaBackups, ...jossBackups];
+      final allRecentBackups = [
+        ...moMusicBackups,
+        ...estrellaBackups,
+        ...jossBackups
+      ];
 
       if (allRecentBackups.isNotEmpty) {
         // Find if the latest backup was already processed
@@ -171,7 +178,7 @@ class UserDataBootstrapService extends GetxService {
 
     try {
       final isLegacy = backup.appName == CloudBackupService.legacyMusicAppName;
-      final label = isLegacy ? 'Joss Music' : 'Estrella Music';
+      final label = isLegacy ? 'Joss Music' : 'Mo Music';
 
       statusMessage.value = 'Descargando tu respaldo de $label...';
       final bytes = await _cloudBackupService.downloadBackupBytes(backup);
@@ -296,7 +303,7 @@ class UserDataBootstrapService extends GetxService {
       return;
     }
     final appPrefs = SqliteStore.box('AppPrefs');
-    final autoLanguage = appPrefs.get('autoLanguage', defaultValue: true);
+    final autoLanguage = appPrefs.get('autoLanguage', defaultValue: false);
     final languageCode = appPrefs.get('currentAppLanguageCode');
     if (!autoLanguage &&
         languageCode is String &&

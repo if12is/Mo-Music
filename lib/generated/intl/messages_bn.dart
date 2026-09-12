@@ -851,7 +851,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "permissionsAllow": MessageLookupByLibrary.simpleMessage("অনুমতি দিন"),
     "permissionsConsentDescription": MessageLookupByLibrary.simpleMessage(
-      "আপনার সঙ্গীত পরিচালনা করতে এবং সমস্ত প্লেব্যাক বৈশিষ্ট্য অফার করতে Estrella Music-এর এই অনুমতিগুলির প্রয়োজন৷",
+      "আপনার সঙ্গীত পরিচালনা করতে এবং সমস্ত প্লেব্যাক বৈশিষ্ট্য অফার করতে Mo Music-এর এই অনুমতিগুলির প্রয়োজন৷",
     ),
     "permissionsConsentTitle": MessageLookupByLibrary.simpleMessage(
       "শুরু করার অনুমতি",
@@ -1213,7 +1213,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "startRadio": MessageLookupByLibrary.simpleMessage("রেডিও শুরু করুন"),
     "startupScreen": MessageLookupByLibrary.simpleMessage("স্টার্টআপে খুলুন"),
     "startupScreenDescription": MessageLookupByLibrary.simpleMessage(
-      "Estrella Music যে বিভাগটি প্রথমে খোলে সেটি বেছে নিন",
+      "Mo Music যে বিভাগটি প্রথমে খোলে সেটি বেছে নিন",
     ),
     "status": MessageLookupByLibrary.simpleMessage("অবস্থা"),
     "stopMusicOnTaskClear": MessageLookupByLibrary.simpleMessage(

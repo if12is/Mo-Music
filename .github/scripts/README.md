@@ -1,6 +1,6 @@
 # GitHub Scripts
 
-This directory contains utility scripts for managing the Estrella Music repository.
+This directory contains utility scripts for managing the Mo Music repository.
 
 ## close_search_issues.sh
 

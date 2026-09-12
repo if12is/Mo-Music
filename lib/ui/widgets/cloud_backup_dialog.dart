@@ -187,7 +187,7 @@ class CloudBackupDialogController extends GetxController {
           .replaceAll('.', '_');
       await _cloudBackupService.uploadBackupBytes(
         bytes: bytes,
-        fileName: 'estrellamusic_$timestamp.hmb',
+        fileName: 'momusic_$timestamp.hmb',
       );
       await refreshBackups();
       if (!context.mounted) return;

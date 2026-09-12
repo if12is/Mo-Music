@@ -68,7 +68,8 @@ class _QrServerScannerDialogState extends State<QrServerScannerDialog> {
       }
     } catch (_) {}
 
-    if (raw.startsWith('estrellamusic://') ||
+    if (raw.startsWith('momusic://') ||
+        raw.startsWith('estrellamusic://') ||
         raw.startsWith('estrella://') ||
         raw.startsWith('emusic://')) {
       try {

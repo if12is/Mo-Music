@@ -3,17 +3,17 @@
   <id>com.josprox.EstrellaMusic</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0-only</project_license>
-  <name>Estrella Music</name>
-  <summary>Cross-platform music streaming and cloud sync player</summary>
+  <name>Mo Music</name>
+  <summary>Arabic-first cross-platform music player</summary>
   <description>
     <p>
-      Estrella Music is a feature-rich, cross-platform music streaming application supporting local playback, cloud synchronization via Joss Red, co-listening, and lyrics.
+      Mo Music is a feature-rich, cross-platform music player with Arabic as the default language, RTL support, local playback, and optional cloud synchronization.
     </p>
   </description>
   <launchable type="desktop-id">com.josprox.EstrellaMusic.desktop</launchable>
-  <url type="homepage">https://github.com/josprox/Estrella-Music</url>
+  <url type="homepage">https://github.com/if12is/Mo-Music</url>
   <provides>
-    <binary>estrellamusic</binary>
+    <binary>momusic</binary>
   </provides>
   <content_rating type="oars-1.1"/>
 </component>

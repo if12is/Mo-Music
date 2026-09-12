@@ -289,7 +289,7 @@ class ListWidget extends StatelessWidget with RemoveSongFromPlaylistMixin {
           Get.toNamed(ScreenNavigationSetup.artistScreen,
               id: ScreenNavigationSetup.id, arguments: [false, artists[index]]);
         },
-        contentPadding: const EdgeInsets.only(top: 0, bottom: 0, left: 5),
+        contentPadding: const EdgeInsetsDirectional.only(top: 0, bottom: 0, start: 5),
         leading: ImageWidget(
           size: 90,
           artist: artists[index],
@@ -341,7 +341,7 @@ class ListWidget extends StatelessWidget with RemoveSongFromPlaylistMixin {
               ),
               Expanded(
                   child: Padding(
-                padding: const EdgeInsets.only(right: 10.0),
+                padding: const EdgeInsetsDirectional.only(end: 10.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,

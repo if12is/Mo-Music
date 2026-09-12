@@ -175,10 +175,10 @@ class MessageLookup extends MessageLookupByLibrary {
       "Обліковий запис успішно створено.",
     ),
     "auth_welcome_subtitle": MessageLookupByLibrary.simpleMessage(
-      "Ласкаво просимо до Estrella Music",
+      "Ласкаво просимо до Mo Music",
     ),
     "auth_welcome_title": MessageLookupByLibrary.simpleMessage(
-      "Ласкаво просимо до Estrella Music",
+      "Ласкаво просимо до Mo Music",
     ),
     "autoDownFavSong": MessageLookupByLibrary.simpleMessage(
       "Автоматичне завантаження улюблених пісень",
@@ -799,7 +799,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "100% синхронізація з Joss Red, плейлисти з друзями та багато іншого. Торкніться, щоб побачити, що нового.",
     ),
     "news_card_title": MessageLookupByLibrary.simpleMessage(
-      "Estrella Music розвинулася!",
+      "Mo Music розвинулася!",
     ),
     "news_dialog_friends_desc": MessageLookupByLibrary.simpleMessage(
       "Щоб додати друзів, прийняти запити або керувати своїм профілем безпеки, використовуйте Joss Red на його офіційних платформах:",
@@ -867,7 +867,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "permissionsAllow": MessageLookupByLibrary.simpleMessage("Дозволити"),
     "permissionsConsentDescription": MessageLookupByLibrary.simpleMessage(
-      "Estrella Music потрібні ці дозволи, щоб керувати вашою музикою та запропонувати всі функції відтворення.",
+      "Mo Music потрібні ці дозволи, щоб керувати вашою музикою та запропонувати всі функції відтворення.",
     ),
     "permissionsConsentTitle": MessageLookupByLibrary.simpleMessage(
       "Дозволи для початку",
@@ -1100,7 +1100,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "settings": MessageLookupByLibrary.simpleMessage("Налаштування"),
     "settings_about_desc": MessageLookupByLibrary.simpleMessage(
-      "Про Estrella Music",
+      "Про Mo Music",
     ),
     "settings_about_sub": MessageLookupByLibrary.simpleMessage(
       "Версія, проект з відкритим кодом і GitHub.",
@@ -1233,7 +1233,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Відкрити під час запуску",
     ),
     "startupScreenDescription": MessageLookupByLibrary.simpleMessage(
-      "Виберіть розділ, який Estrella Music відкривається першим",
+      "Виберіть розділ, який Mo Music відкривається першим",
     ),
     "status": MessageLookupByLibrary.simpleMessage("Статус"),
     "stopMusicOnTaskClear": MessageLookupByLibrary.simpleMessage(
@@ -1400,7 +1400,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Ми модернізували нашу платформу. Стара система завантаження резервних копій вручну була вимкнена. Тепер у вас є два зрозумілих способи керування музичною бібліотекою.",
     ),
     "welcome_subtitle": MessageLookupByLibrary.simpleMessage(
-      "Виберіть, як відтепер ви бажаєте слухати Estrella Music.",
+      "Виберіть, як відтепер ви бажаєте слухати Mo Music.",
     ),
     "welcome_title": MessageLookupByLibrary.simpleMessage(
       "Ваша музика, ваш шлях",

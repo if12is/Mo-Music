@@ -38,7 +38,7 @@ void main() {
     expect(adapter.requestCount, 1, reason: 'repeated queries use local cache');
     expect(adapter.lastAuthorization, isNull,
         reason: 'public lookup must not receive Joss Red credentials');
-    expect(adapter.lastUserAgent, contains('EstrellaMusic/2.4.0'));
+    expect(adapter.lastUserAgent, contains('MoMusic/2.5.0'));
   });
 
   test('serializes simultaneous lookups and shares the cached response',

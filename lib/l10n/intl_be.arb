@@ -196,11 +196,11 @@
   "@auth_register_success": {
     "description": "auth_register_success"
   },
-  "auth_welcome_subtitle": "Сардэчна запрашаем у Estrella Music",
+  "auth_welcome_subtitle": "Сардэчна запрашаем у Mo Music",
   "@auth_welcome_subtitle": {
     "description": "auth_welcome_subtitle"
   },
-  "auth_welcome_title": "Сардэчна запрашаем у Estrella Music",
+  "auth_welcome_title": "Сардэчна запрашаем у Mo Music",
   "@auth_welcome_title": {
     "description": "auth_welcome_title"
   },
@@ -1291,7 +1291,7 @@
   "@news_card_subtitle": {
     "description": "news_card_subtitle"
   },
-  "news_card_title": "Estrella Music развілася!",
+  "news_card_title": "Mo Music развілася!",
   "@news_card_title": {
     "description": "news_card_title"
   },
@@ -1403,7 +1403,7 @@
   "@permissionsAllow": {
     "description": "permissionsAllow"
   },
-  "permissionsConsentDescription": "Estrella Music патрэбны гэтыя дазволы, каб кіраваць вашай музыкай і прапаноўваць усе функцыі прайгравання.",
+  "permissionsConsentDescription": "Mo Music патрэбны гэтыя дазволы, каб кіраваць вашай музыкай і прапаноўваць усе функцыі прайгравання.",
   "@permissionsConsentDescription": {
     "description": "permissionsConsentDescription"
   },
@@ -1831,7 +1831,7 @@
   "@settings": {
     "description": "settings"
   },
-  "settings_about_desc": "Пра Estrella Music",
+  "settings_about_desc": "Пра Mo Music",
   "@settings_about_desc": {
     "description": "settings_about_desc"
   },
@@ -2090,7 +2090,7 @@
   "@startupScreen": {
     "description": "startupScreen"
   },
-  "startupScreenDescription": "Выберыце раздзел, які Estrella Music адкрываецца першым",
+  "startupScreenDescription": "Выберыце раздзел, які Mo Music адкрываецца першым",
   "@startupScreenDescription": {
     "description": "startupScreenDescription"
   },
@@ -2361,7 +2361,7 @@
   "@welcome_intro": {
     "description": "welcome_intro"
   },
-  "welcome_subtitle": "Выберыце, як вы хочаце адчуваць Estrella Music з гэтага часу.",
+  "welcome_subtitle": "Выберыце, як вы хочаце адчуваць Mo Music з гэтага часу.",
   "@welcome_subtitle": {
     "description": "welcome_subtitle"
   },

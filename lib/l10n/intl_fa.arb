@@ -196,11 +196,11 @@
   "@auth_register_success": {
     "description": "auth_register_success"
   },
-  "auth_welcome_subtitle": "به Estrella Music خوش آمدید",
+  "auth_welcome_subtitle": "به Mo Music خوش آمدید",
   "@auth_welcome_subtitle": {
     "description": "auth_welcome_subtitle"
   },
-  "auth_welcome_title": "به Estrella Music خوش آمدید",
+  "auth_welcome_title": "به Mo Music خوش آمدید",
   "@auth_welcome_title": {
     "description": "auth_welcome_title"
   },
@@ -1403,7 +1403,7 @@
   "@permissionsAllow": {
     "description": "permissionsAllow"
   },
-  "permissionsConsentDescription": "Estrella Music برای مدیریت موسیقی شما و ارائه تمام ویژگی های پخش به این مجوزها نیاز دارد.",
+  "permissionsConsentDescription": "Mo Music برای مدیریت موسیقی شما و ارائه تمام ویژگی های پخش به این مجوزها نیاز دارد.",
   "@permissionsConsentDescription": {
     "description": "permissionsConsentDescription"
   },
@@ -2090,7 +2090,7 @@
   "@startupScreen": {
     "description": "startupScreen"
   },
-  "startupScreenDescription": "ابتدا قسمتی را که Estrella Music باز می کند انتخاب کنید",
+  "startupScreenDescription": "ابتدا قسمتی را که Mo Music باز می کند انتخاب کنید",
   "@startupScreenDescription": {
     "description": "startupScreenDescription"
   },

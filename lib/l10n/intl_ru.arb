@@ -196,11 +196,11 @@
   "@auth_register_success": {
     "description": "auth_register_success"
   },
-  "auth_welcome_subtitle": "Добро пожаловать в Estrella Music",
+  "auth_welcome_subtitle": "Добро пожаловать в Mo Music",
   "@auth_welcome_subtitle": {
     "description": "auth_welcome_subtitle"
   },
-  "auth_welcome_title": "Добро пожаловать в Estrella Music",
+  "auth_welcome_title": "Добро пожаловать в Mo Music",
   "@auth_welcome_title": {
     "description": "auth_welcome_title"
   },
@@ -1291,7 +1291,7 @@
   "@news_card_subtitle": {
     "description": "news_card_subtitle"
   },
-  "news_card_title": "Estrella Music изменилась!",
+  "news_card_title": "Mo Music изменилась!",
   "@news_card_title": {
     "description": "news_card_title"
   },
@@ -1403,7 +1403,7 @@
   "@permissionsAllow": {
     "description": "permissionsAllow"
   },
-  "permissionsConsentDescription": "Estrella Music необходимы эти разрешения для управления вашей музыкой и предоставления всех функций воспроизведения.",
+  "permissionsConsentDescription": "Mo Music необходимы эти разрешения для управления вашей музыкой и предоставления всех функций воспроизведения.",
   "@permissionsConsentDescription": {
     "description": "permissionsConsentDescription"
   },
@@ -2090,7 +2090,7 @@
   "@startupScreen": {
     "description": "startupScreen"
   },
-  "startupScreenDescription": "Выберите раздел, который Estrella Music откроет первым.",
+  "startupScreenDescription": "Выберите раздел, который Mo Music откроет первым.",
   "@startupScreenDescription": {
     "description": "startupScreenDescription"
   },
@@ -2361,7 +2361,7 @@
   "@welcome_intro": {
     "description": "welcome_intro"
   },
-  "welcome_subtitle": "Выберите, как вы хотите теперь слушать Estrella Music.",
+  "welcome_subtitle": "Выберите, как вы хотите теперь слушать Mo Music.",
   "@welcome_subtitle": {
     "description": "welcome_subtitle"
   },

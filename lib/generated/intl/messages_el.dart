@@ -174,10 +174,10 @@ class MessageLookup extends MessageLookupByLibrary {
       "Ο λογαριασμός δημιουργήθηκε με επιτυχία.",
     ),
     "auth_welcome_subtitle": MessageLookupByLibrary.simpleMessage(
-      "Καλώς ήρθατε στο Estrella Music",
+      "Καλώς ήρθατε στο Mo Music",
     ),
     "auth_welcome_title": MessageLookupByLibrary.simpleMessage(
-      "Καλώς ήρθατε στο Estrella Music",
+      "Καλώς ήρθατε στο Mo Music",
     ),
     "autoDownFavSong": MessageLookupByLibrary.simpleMessage(
       "Αυτόματη λήψη αγαπημένων τραγουδιών",
@@ -816,7 +816,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "100% συγχρονισμός με τον Joss Red, playlist με φίλους και πολλά άλλα. Πατήστε για να δείτε τι νέο υπάρχει.",
     ),
     "news_card_title": MessageLookupByLibrary.simpleMessage(
-      "Η Estrella Music έχει εξελιχθεί!",
+      "Η Mo Music έχει εξελιχθεί!",
     ),
     "news_dialog_friends_desc": MessageLookupByLibrary.simpleMessage(
       "Για να προσθέσετε φίλους, να αποδεχτείτε αιτήματα ή να διαχειριστείτε το προφίλ ασφαλείας σας, χρησιμοποιήστε το Joss Red στις επίσημες πλατφόρμες του:",
@@ -825,7 +825,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Διαχείριση φίλων και λογαριασμού:",
     ),
     "news_dialog_title": MessageLookupByLibrary.simpleMessage(
-      "Estrella Music News",
+      "Mo Music News",
     ),
     "news_item_collab_desc": MessageLookupByLibrary.simpleMessage(
       "Δημιουργήστε λίστες αναπαραγωγής με τους φίλους σας! Όταν δημιουργείτε μια λίστα αναπαραγωγής, επιλέξτε το πλαίσιο ελέγχου Συνεργασία και επιλέξτε τους φίλους σας για επεξεργασία μαζί.",
@@ -886,7 +886,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "permissionsAllow": MessageLookupByLibrary.simpleMessage("Επιτρέπω"),
     "permissionsConsentDescription": MessageLookupByLibrary.simpleMessage(
-      "Η Estrella Music χρειάζεται αυτές τις άδειες για να διαχειριστεί τη μουσική σας και να προσφέρει όλες τις δυνατότητες αναπαραγωγής.",
+      "Η Mo Music χρειάζεται αυτές τις άδειες για να διαχειριστεί τη μουσική σας και να προσφέρει όλες τις δυνατότητες αναπαραγωγής.",
     ),
     "permissionsConsentTitle": MessageLookupByLibrary.simpleMessage(
       "Άδειες για να ξεκινήσετε",
@@ -1135,7 +1135,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "settings": MessageLookupByLibrary.simpleMessage("Ρυθμίσεις"),
     "settings_about_desc": MessageLookupByLibrary.simpleMessage(
-      "Σχετικά με την Estrella Music",
+      "Σχετικά με την Mo Music",
     ),
     "settings_about_sub": MessageLookupByLibrary.simpleMessage(
       "Έκδοση, έργο ανοιχτού κώδικα και GitHub.",
@@ -1276,7 +1276,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Άνοιγμα κατά την εκκίνηση",
     ),
     "startupScreenDescription": MessageLookupByLibrary.simpleMessage(
-      "Επιλέξτε την ενότητα που ανοίγει πρώτα το Estrella Music",
+      "Επιλέξτε την ενότητα που ανοίγει πρώτα το Mo Music",
     ),
     "status": MessageLookupByLibrary.simpleMessage("Κατάσταση"),
     "stopMusicOnTaskClear": MessageLookupByLibrary.simpleMessage(
@@ -1451,7 +1451,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Έχουμε εκσυγχρονίσει την πλατφόρμα μας. Το παλιό σύστημα μη αυτόματης μεταφόρτωσης αντιγράφων ασφαλείας έχει απενεργοποιηθεί. Τώρα έχετε δύο ξεκάθαρους τρόπους διαχείρισης της μουσικής σας βιβλιοθήκης.",
     ),
     "welcome_subtitle": MessageLookupByLibrary.simpleMessage(
-      "Επιλέξτε πώς θέλετε να ζήσετε την εμπειρία της Estrella Music από τώρα και στο εξής.",
+      "Επιλέξτε πώς θέλετε να ζήσετε την εμπειρία της Mo Music από τώρα και στο εξής.",
     ),
     "welcome_title": MessageLookupByLibrary.simpleMessage(
       "Η μουσική σου, ο τρόπος σου",

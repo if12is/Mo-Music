@@ -122,7 +122,7 @@ class SleepTimerBottomSheet extends StatelessWidget {
                     size: SanckBarSize.BIG));
               },
               leading: Padding(
-                padding: const EdgeInsets.only(left: 10.0),
+                padding: const EdgeInsetsDirectional.only(start: 10.0),
                 child: Text(
                   "$dur ${S.current.minutes}",
                   style: Theme.of(context).textTheme.titleMedium,
@@ -136,7 +136,7 @@ class SleepTimerBottomSheet extends StatelessWidget {
         playerController.sleepEndOfSong();
       },
       leading: Padding(
-        padding: const EdgeInsets.only(left: 10.0),
+        padding: const EdgeInsetsDirectional.only(start: 10.0),
         child: Text(
           S.current.endOfThisSong,
           style: Theme.of(context).textTheme.titleMedium,

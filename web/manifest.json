@@ -1,11 +1,11 @@
 {
-     "name": "Estrella Music",
-     "short_name": "Estrella Music",
+     "name": "Mo Music",
+     "short_name": "Mo Music",
      "start_url": ".",
      "display": "standalone",
-     "background_color": "#hexcode",
-     "theme_color": "#hexcode",
-     "description": "A new Flutter project.",
+     "background_color": "#3332CE",
+     "theme_color": "#3332CE",
+     "description": "Mo Music, a cross-platform music player.",
      "orientation": "portrait-primary",
      "prefer_related_applications": false,
      "icons": [

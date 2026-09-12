@@ -168,10 +168,10 @@ class MessageLookup extends MessageLookupByLibrary {
       "Tili luotu onnistuneesti.",
     ),
     "auth_welcome_subtitle": MessageLookupByLibrary.simpleMessage(
-      "Tervetuloa Estrella Musiciin",
+      "Tervetuloa Mo Musiciin",
     ),
     "auth_welcome_title": MessageLookupByLibrary.simpleMessage(
-      "Tervetuloa Estrella Musiciin",
+      "Tervetuloa Mo Musiciin",
     ),
     "autoDownFavSong": MessageLookupByLibrary.simpleMessage(
       "Suosikkikappaleiden automaattinen lataus",
@@ -784,7 +784,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "100 % synkronointi Joss Redin kanssa, soittolistat ystävien kanssa ja paljon muuta. Napauta nähdäksesi mitä uutta.",
     ),
     "news_card_title": MessageLookupByLibrary.simpleMessage(
-      "Estrella Music on kehittynyt!",
+      "Mo Music on kehittynyt!",
     ),
     "news_dialog_friends_desc": MessageLookupByLibrary.simpleMessage(
       "Jos haluat lisätä ystäviä, hyväksyä pyyntöjä tai hallita suojausprofiiliasi, käytä Joss Rediä sen virallisilla alustoilla:",
@@ -846,7 +846,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "permissionDenied": MessageLookupByLibrary.simpleMessage("Lupa evätty"),
     "permissionsAllow": MessageLookupByLibrary.simpleMessage("Salli"),
     "permissionsConsentDescription": MessageLookupByLibrary.simpleMessage(
-      "Estrella Music tarvitsee nämä luvat hallitakseen musiikkiasi ja tarjotakseen kaikkia toistoominaisuuksia.",
+      "Mo Music tarvitsee nämä luvat hallitakseen musiikkiasi ja tarjotakseen kaikkia toistoominaisuuksia.",
     ),
     "permissionsConsentTitle": MessageLookupByLibrary.simpleMessage(
       "Luvat aloittaaksesi",
@@ -1089,7 +1089,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "settings": MessageLookupByLibrary.simpleMessage("Asetukset"),
     "settings_about_desc": MessageLookupByLibrary.simpleMessage(
-      "Tietoja Estrella Musicista",
+      "Tietoja Mo Musicista",
     ),
     "settings_about_sub": MessageLookupByLibrary.simpleMessage(
       "Versio, avoimen lähdekoodin projekti ja GitHub.",
@@ -1232,7 +1232,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Avaa käynnistyksen yhteydessä",
     ),
     "startupScreenDescription": MessageLookupByLibrary.simpleMessage(
-      "Valitse osio, jonka Estrella Music avaa ensin",
+      "Valitse osio, jonka Mo Music avaa ensin",
     ),
     "status": MessageLookupByLibrary.simpleMessage("Tila"),
     "stopMusicOnTaskClear": MessageLookupByLibrary.simpleMessage(
@@ -1401,7 +1401,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Olemme modernisoineet alustamme. Vanha manuaalisten varmuuskopioiden latausjärjestelmä on poistettu käytöstä. Sinulla on nyt kaksi selkeää tapaa hallita musiikkikirjastoasi.",
     ),
     "welcome_subtitle": MessageLookupByLibrary.simpleMessage(
-      "Valitse, miten haluat kokea Estrella Musicin tästä eteenpäin.",
+      "Valitse, miten haluat kokea Mo Musicin tästä eteenpäin.",
     ),
     "welcome_title": MessageLookupByLibrary.simpleMessage(
       "Sinun musiikkisi, sinun tapasi",

@@ -678,7 +678,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "permissionDenied": MessageLookupByLibrary.simpleMessage("許可が拒否されました"),
     "permissionsAllow": MessageLookupByLibrary.simpleMessage("許可する"),
     "permissionsConsentDescription": MessageLookupByLibrary.simpleMessage(
-      "Estrella Music では、音楽を管理し、すべての再生機能を提供するためにこれらの権限が必要です。",
+      "Mo Music では、音楽を管理し、すべての再生機能を提供するためにこれらの権限が必要です。",
     ),
     "permissionsConsentTitle": MessageLookupByLibrary.simpleMessage(
       "開始するための権限",
@@ -976,7 +976,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "startRadio": MessageLookupByLibrary.simpleMessage("ラジオで開始"),
     "startupScreen": MessageLookupByLibrary.simpleMessage("起動時に開く"),
     "startupScreenDescription": MessageLookupByLibrary.simpleMessage(
-      "Estrella Music が最初に開くセクションを選択してください",
+      "Mo Music が最初に開くセクションを選択してください",
     ),
     "status": MessageLookupByLibrary.simpleMessage("状態"),
     "stopMusicOnTaskClear": MessageLookupByLibrary.simpleMessage(
@@ -1124,7 +1124,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "私たちはプラットフォームを最新化しました。手動バックアップをアップロードする古いシステムは無効になりました。音楽ライブラリを管理するための 2 つの明確な方法が用意されました。",
     ),
     "welcome_subtitle": MessageLookupByLibrary.simpleMessage(
-      "これから Estrella Music を体験する方法を選択してください。",
+      "これから Mo Music を体験する方法を選択してください。",
     ),
     "welcome_title": MessageLookupByLibrary.simpleMessage("あなたの音楽をあなたの方法で"),
   };

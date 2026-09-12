@@ -17,7 +17,7 @@ class SongsLibraryWidget extends StatelessWidget {
     return Center(
       child: Padding(
         padding:
-            const EdgeInsets.only(top: 20.0, bottom: 8.0, left: 16, right: 16),
+            const EdgeInsetsDirectional.only(top: 20.0, bottom: 8.0, start: 16, end: 16),
         child: Text(
           title,
           textAlign: TextAlign.center,
@@ -36,9 +36,9 @@ class SongsLibraryWidget extends StatelessWidget {
     final topPadding = context.isLandscape ? 30.0 : 70.0;
     final colorScheme = Theme.of(context).colorScheme;
     return Padding(
-      padding: EdgeInsets.only(
-        left: 16.0,
-        right: 16.0,
+      padding: EdgeInsetsDirectional.only(
+        start: 16.0,
+        end: 16.0,
         top: isBottomNavActive ? 18.0 : topPadding,
       ),
       child: Column(
@@ -81,7 +81,7 @@ class SongsLibraryWidget extends StatelessWidget {
               child: Row(
                 children: filters
                     .map((filter) => Padding(
-                          padding: const EdgeInsets.only(right: 8),
+                          padding: const EdgeInsetsDirectional.only(end: 8),
                           child: ChoiceChip(
                             avatar: Icon(filter.icon, size: 18),
                             label: Text(filter.label),
@@ -195,7 +195,7 @@ class PlaylistNAlbumLibraryWidget extends StatelessWidget {
     return Center(
       child: Padding(
         padding:
-            const EdgeInsets.only(top: 20.0, bottom: 8.0, left: 16, right: 16),
+            const EdgeInsetsDirectional.only(top: 20.0, bottom: 8.0, start: 16, end: 16),
         child: Text(
           title,
           textAlign: TextAlign.center,
@@ -220,9 +220,9 @@ class PlaylistNAlbumLibraryWidget extends StatelessWidget {
     final colorScheme = Theme.of(context).colorScheme;
 
     return Padding(
-      padding: EdgeInsets.only(
-        left: 16.0,
-        right: 16.0,
+      padding: EdgeInsetsDirectional.only(
+        start: 16.0,
+        end: 16.0,
         top: isBottomNavActive ? 18.0 : topPadding,
       ),
       child: Column(
@@ -263,7 +263,7 @@ class PlaylistNAlbumLibraryWidget extends StatelessWidget {
                 child: Row(
                   children: filters
                       .map((filter) => Padding(
-                            padding: const EdgeInsets.only(right: 8),
+                            padding: const EdgeInsetsDirectional.only(end: 8),
                             child: ChoiceChip(
                               avatar: Icon(filter.icon, size: 18),
                               label: Text(filter.label),
@@ -420,7 +420,7 @@ class LibraryArtistWidget extends StatelessWidget {
     return Center(
       child: Padding(
         padding:
-            const EdgeInsets.only(top: 20.0, bottom: 8.0, left: 16, right: 16),
+            const EdgeInsetsDirectional.only(top: 20.0, bottom: 8.0, start: 16, end: 16),
         child: Text(
           title,
           textAlign: TextAlign.center,
@@ -440,9 +440,9 @@ class LibraryArtistWidget extends StatelessWidget {
     final topPadding = context.isLandscape ? 30.0 : 70.0;
     final colorScheme = Theme.of(context).colorScheme;
     return Padding(
-      padding: EdgeInsets.only(
-        left: 16.0,
-        right: 16.0,
+      padding: EdgeInsetsDirectional.only(
+        start: 16.0,
+        end: 16.0,
         top: isBottomNavActive ? 18.0 : topPadding,
       ),
       child: Column(
@@ -474,7 +474,7 @@ class LibraryArtistWidget extends StatelessWidget {
               child: Row(
                 children: filters
                     .map((filter) => Padding(
-                          padding: const EdgeInsets.only(right: 8),
+                          padding: const EdgeInsetsDirectional.only(end: 8),
                           child: ChoiceChip(
                             avatar: Icon(filter.icon, size: 18),
                             label: Text(filter.label),

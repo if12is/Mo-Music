@@ -25,7 +25,7 @@ class ItunesMetadataProvider implements MusicMetadataSearchProvider {
   static const providerId = 'metadata.itunes';
   static const _endpoint = 'https://itunes.apple.com/search';
   static const _userAgent =
-      'EstrellaMusic/2.4.0 (https://github.com/josprox/Estrella-Music)';
+      'MoMusic/2.5.0 (https://github.com/if12is/Mo-Music)';
   static const _cacheLifetime = Duration(minutes: 30);
 
   final Dio _client;

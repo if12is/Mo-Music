@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'app_colors.dart';
 
-/// M3-compliant text theme using Inter via google_fonts.
+/// M3-compliant text theme using Cairo (Arabic + Latin) via google_fonts.
 abstract class AppTypography {
-  static TextTheme get darkTextTheme => GoogleFonts.interTextTheme(
+  static TextTheme get darkTextTheme => GoogleFonts.cairoTextTheme(
         const TextTheme(
           // Large display — hero headings
           displayLarge: TextStyle(
@@ -105,7 +105,7 @@ abstract class AppTypography {
         ),
       );
 
-  static TextTheme get lightTextTheme => GoogleFonts.interTextTheme(
+  static TextTheme get lightTextTheme => GoogleFonts.cairoTextTheme(
         const TextTheme(
           displayLarge: TextStyle(
               fontSize: 57,

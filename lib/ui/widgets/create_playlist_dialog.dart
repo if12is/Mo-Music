@@ -53,13 +53,13 @@ class _CreateNRenamePlaylistPopupState
     return CommonDialog(
       child: Container(
         padding:
-            const EdgeInsets.only(top: 24, left: 24, right: 24, bottom: 16),
+            const EdgeInsetsDirectional.only(top: 24, start: 24, end: 24, bottom: 16),
         child: SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               Align(
-                alignment: Alignment.centerLeft,
+                alignment: AlignmentDirectional.centerStart,
                 child: Marquee(
                   delay: const Duration(milliseconds: 300),
                   id: "createPlaylist",
@@ -79,7 +79,7 @@ class _CreateNRenamePlaylistPopupState
                 cursorColor: Theme.of(context).textTheme.titleSmall!.color,
                 controller: librPlstCntrller.textInputController,
                 decoration: const InputDecoration(
-                  contentPadding: EdgeInsets.only(left: 5),
+                  contentPadding: EdgeInsetsDirectional.only(start: 5),
                   focusColor: Colors.white,
                 ),
               ),

@@ -187,7 +187,7 @@ class ContentListItem extends StatelessWidget {
                           ),
                           if (content.isPipedPlaylist)
                             Align(
-                              alignment: Alignment.bottomRight,
+                              alignment: AlignmentDirectional.bottomEnd,
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Container(
@@ -211,7 +211,7 @@ class ContentListItem extends StatelessWidget {
                             ),
                           if (!content.isCloudPlaylist)
                             Align(
-                              alignment: Alignment.bottomRight,
+                              alignment: AlignmentDirectional.bottomEnd,
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Container(

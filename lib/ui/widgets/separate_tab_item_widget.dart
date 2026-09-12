@@ -36,7 +36,7 @@ class SeparateTabItemWidget extends StatelessWidget {
             ? Get.find<ArtistScreenController>(tag: artistControllerTag)
             : null;
     return Padding(
-      padding: EdgeInsets.only(top: topPadding, left: 5),
+      padding: EdgeInsetsDirectional.only(top: topPadding, start: 5),
       child: Column(
         children: [
           if (!hideTitle)

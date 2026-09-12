@@ -572,7 +572,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "permissionDenied": MessageLookupByLibrary.simpleMessage("权限被拒绝"),
     "permissionsAllow": MessageLookupByLibrary.simpleMessage("允许"),
     "permissionsConsentDescription": MessageLookupByLibrary.simpleMessage(
-      "Estrella Music 需要这些权限来管理您的音乐并提供所有播放功能。",
+      "Mo Music 需要这些权限来管理您的音乐并提供所有播放功能。",
     ),
     "permissionsConsentTitle": MessageLookupByLibrary.simpleMessage("开始的权限"),
     "permissionsContinueButton": MessageLookupByLibrary.simpleMessage(
@@ -834,7 +834,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "startRadio": MessageLookupByLibrary.simpleMessage("启动收音机"),
     "startupScreen": MessageLookupByLibrary.simpleMessage("启动时打开"),
     "startupScreenDescription": MessageLookupByLibrary.simpleMessage(
-      "选择 Estrella Music 首先打开的部分",
+      "选择 Mo Music 首先打开的部分",
     ),
     "status": MessageLookupByLibrary.simpleMessage("状态"),
     "stopMusicOnTaskClear": MessageLookupByLibrary.simpleMessage("关闭应用程序时停止音乐"),
@@ -958,7 +958,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "我们对我们的平台进行了现代化改造。旧的手动上传备份系统已被禁用。您现在有两种清晰的方式来管理您的音乐库。",
     ),
     "welcome_subtitle": MessageLookupByLibrary.simpleMessage(
-      "从现在开始选择您想要体验 Estrella Music 的方式。",
+      "从现在开始选择您想要体验 Mo Music 的方式。",
     ),
     "welcome_title": MessageLookupByLibrary.simpleMessage("你的音乐，你的方式"),
   };

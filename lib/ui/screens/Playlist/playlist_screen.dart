@@ -234,7 +234,7 @@ class PlaylistScreen extends StatelessWidget {
                 ),
                 Expanded(
                   child: Align(
-                    alignment: Alignment.centerLeft,
+                    alignment: AlignmentDirectional.centerStart,
                     child: ConstrainedBox(
                       constraints: const BoxConstraints(
                         maxWidth: 800,
@@ -244,7 +244,7 @@ class PlaylistScreen extends StatelessWidget {
                           if (index == 0) {
                             return Padding(
                               key: const ValueKey('header_0'),
-                              padding: const EdgeInsets.only(left: 15.0),
+                              padding: const EdgeInsetsDirectional.only(start: 15.0),
                               child: SizedBox(
                                 height: 40,
                                 child: SingleChildScrollView(
@@ -511,8 +511,8 @@ class PlaylistScreen extends StatelessWidget {
                                 );
                               },
                               child: Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 25.0, bottom: 10, right: 30),
+                                padding: const EdgeInsetsDirectional.only(
+                                    start: 25.0, bottom: 10, end: 30),
                                 child: SingleChildScrollView(
                                   physics: const NeverScrollableScrollPhysics(),
                                   child: Column(
@@ -603,8 +603,8 @@ class PlaylistScreen extends StatelessWidget {
                                     ? 60
                                     : 40,
                                 child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 15.0, right: 10),
+                                  padding: const EdgeInsetsDirectional.only(
+                                      start: 15.0, end: 10),
                                   child: Obx(
                                     () => SortWidget(
                                       tag: playlistController
@@ -674,7 +674,7 @@ class PlaylistScreen extends StatelessWidget {
                           final song = playlistController.songList[index - 3];
                           final child = Padding(
                             padding:
-                                const EdgeInsets.only(left: 20.0, right: 5),
+                                const EdgeInsetsDirectional.only(start: 20.0, end: 5),
                             child: SongListTile(
                               onTap: () {
                                 playerController.playPlayListSong(
@@ -700,8 +700,8 @@ class PlaylistScreen extends StatelessWidget {
                                   ReorderableDragStartListener(
                                     index: index,
                                     child: Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 10, right: 5),
+                                      padding: const EdgeInsetsDirectional.only(
+                                          start: 10, end: 5),
                                       child: Icon(Icons.drag_handle,
                                           color: Theme.of(context)
                                               .colorScheme

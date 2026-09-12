@@ -177,10 +177,10 @@ class MessageLookup extends MessageLookupByLibrary {
       "Акаунтът е създаден успешно.",
     ),
     "auth_welcome_subtitle": MessageLookupByLibrary.simpleMessage(
-      "Добре дошли в Estrella Music",
+      "Добре дошли в Mo Music",
     ),
     "auth_welcome_title": MessageLookupByLibrary.simpleMessage(
-      "Добре дошли в Estrella Music",
+      "Добре дошли в Mo Music",
     ),
     "autoDownFavSong": MessageLookupByLibrary.simpleMessage(
       "Автоматично изтегляне на любими песни",
@@ -801,7 +801,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "100% синхронизация с Joss Red, плейлисти с приятели и много други. Докоснете, за да видите какво е новото.",
     ),
     "news_card_title": MessageLookupByLibrary.simpleMessage(
-      "Estrella Music се разви!",
+      "Mo Music се разви!",
     ),
     "news_dialog_friends_desc": MessageLookupByLibrary.simpleMessage(
       "За да добавяте приятели, да приемате заявки или да управлявате профила си за сигурност, моля, използвайте Joss Red на неговите официални платформи:",
@@ -810,7 +810,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Приятели и управление на акаунти:",
     ),
     "news_dialog_title": MessageLookupByLibrary.simpleMessage(
-      "Estrella Music News",
+      "Mo Music News",
     ),
     "news_item_collab_desc": MessageLookupByLibrary.simpleMessage(
       "Създавайте плейлисти с приятелите си! Когато създавате списък за изпълнение, поставете отметка в квадратчето Collaborative и изберете вашите приятели, които да редактирате заедно.",
@@ -867,7 +867,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "permissionsAllow": MessageLookupByLibrary.simpleMessage("Разрешете"),
     "permissionsConsentDescription": MessageLookupByLibrary.simpleMessage(
-      "Estrella Music се нуждае от тези разрешения, за да управлява вашата музика и да предлага всички функции за възпроизвеждане.",
+      "Mo Music се нуждае от тези разрешения, за да управлява вашата музика и да предлага всички функции за възпроизвеждане.",
     ),
     "permissionsConsentTitle": MessageLookupByLibrary.simpleMessage(
       "Разрешения, за да започнете",
@@ -1108,7 +1108,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "settings": MessageLookupByLibrary.simpleMessage("Настройки"),
     "settings_about_desc": MessageLookupByLibrary.simpleMessage(
-      "Относно Estrella Music",
+      "Относно Mo Music",
     ),
     "settings_about_sub": MessageLookupByLibrary.simpleMessage(
       "Версия, проект с отворен код и GitHub.",
@@ -1245,7 +1245,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Отворете при стартиране",
     ),
     "startupScreenDescription": MessageLookupByLibrary.simpleMessage(
-      "Изберете секцията, която Estrella Music отваря първа",
+      "Изберете секцията, която Mo Music отваря първа",
     ),
     "status": MessageLookupByLibrary.simpleMessage("Статус"),
     "stopMusicOnTaskClear": MessageLookupByLibrary.simpleMessage(
@@ -1420,7 +1420,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Модернизирахме нашата платформа. Старата система за качване на ръчни архиви е деактивирана. Вече имате два ясни начина за управление на вашата музикална библиотека.",
     ),
     "welcome_subtitle": MessageLookupByLibrary.simpleMessage(
-      "Изберете как искате да изживеете Estrella Music от сега нататък.",
+      "Изберете как искате да изживеете Mo Music от сега нататък.",
     ),
     "welcome_title": MessageLookupByLibrary.simpleMessage(
       "Вашата музика, вашият начин",

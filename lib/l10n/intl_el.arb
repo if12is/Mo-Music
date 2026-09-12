@@ -196,11 +196,11 @@
   "@auth_register_success": {
     "description": "auth_register_success"
   },
-  "auth_welcome_subtitle": "Καλώς ήρθατε στο Estrella Music",
+  "auth_welcome_subtitle": "Καλώς ήρθατε στο Mo Music",
   "@auth_welcome_subtitle": {
     "description": "auth_welcome_subtitle"
   },
-  "auth_welcome_title": "Καλώς ήρθατε στο Estrella Music",
+  "auth_welcome_title": "Καλώς ήρθατε στο Mo Music",
   "@auth_welcome_title": {
     "description": "auth_welcome_title"
   },
@@ -1291,7 +1291,7 @@
   "@news_card_subtitle": {
     "description": "news_card_subtitle"
   },
-  "news_card_title": "Η Estrella Music έχει εξελιχθεί!",
+  "news_card_title": "Η Mo Music έχει εξελιχθεί!",
   "@news_card_title": {
     "description": "news_card_title"
   },
@@ -1303,7 +1303,7 @@
   "@news_dialog_section_friends": {
     "description": "news_dialog_section_friends"
   },
-  "news_dialog_title": "Estrella Music News",
+  "news_dialog_title": "Mo Music News",
   "@news_dialog_title": {
     "description": "news_dialog_title"
   },
@@ -1403,7 +1403,7 @@
   "@permissionsAllow": {
     "description": "permissionsAllow"
   },
-  "permissionsConsentDescription": "Η Estrella Music χρειάζεται αυτές τις άδειες για να διαχειριστεί τη μουσική σας και να προσφέρει όλες τις δυνατότητες αναπαραγωγής.",
+  "permissionsConsentDescription": "Η Mo Music χρειάζεται αυτές τις άδειες για να διαχειριστεί τη μουσική σας και να προσφέρει όλες τις δυνατότητες αναπαραγωγής.",
   "@permissionsConsentDescription": {
     "description": "permissionsConsentDescription"
   },
@@ -1831,7 +1831,7 @@
   "@settings": {
     "description": "settings"
   },
-  "settings_about_desc": "Σχετικά με την Estrella Music",
+  "settings_about_desc": "Σχετικά με την Mo Music",
   "@settings_about_desc": {
     "description": "settings_about_desc"
   },
@@ -2090,7 +2090,7 @@
   "@startupScreen": {
     "description": "startupScreen"
   },
-  "startupScreenDescription": "Επιλέξτε την ενότητα που ανοίγει πρώτα το Estrella Music",
+  "startupScreenDescription": "Επιλέξτε την ενότητα που ανοίγει πρώτα το Mo Music",
   "@startupScreenDescription": {
     "description": "startupScreenDescription"
   },
@@ -2361,7 +2361,7 @@
   "@welcome_intro": {
     "description": "welcome_intro"
   },
-  "welcome_subtitle": "Επιλέξτε πώς θέλετε να ζήσετε την εμπειρία της Estrella Music από τώρα και στο εξής.",
+  "welcome_subtitle": "Επιλέξτε πώς θέλετε να ζήσετε την εμπειρία της Mo Music από τώρα και στο εξής.",
   "@welcome_subtitle": {
     "description": "welcome_subtitle"
   },

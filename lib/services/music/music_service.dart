@@ -28,7 +28,7 @@ class MusicServices {
   MusicServices({
     required MusicCatalogRequest request,
     String? visitorData,
-    String languageCode = 'en',
+    String languageCode = 'ar',
     String? clientName,
   }) : _request = request {
     final date = DateTime.now();

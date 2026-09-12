@@ -52,7 +52,7 @@ class PlaylistExportDialog extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             Align(
-              alignment: Alignment.centerRight,
+              alignment: AlignmentDirectional.centerEnd,
               child: TextButton(
                 onPressed: () => Navigator.of(context).pop(),
                 child: Text(

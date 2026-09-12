@@ -15,7 +15,7 @@ class SongListShimmer extends StatelessWidget {
       highlightColor: Colors.grey[100]!,
       child: ListView.builder(
           itemCount: itemCount,
-          padding: EdgeInsets.only(top: topPadding, left: 0),
+          padding: EdgeInsetsDirectional.only(top: topPadding, start: 0),
           itemBuilder: (_, index) {
             return _listTile();
           }),

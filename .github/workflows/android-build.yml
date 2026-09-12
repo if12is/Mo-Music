@@ -21,7 +21,7 @@ jobs:
       - name: Create .env file
         run: |
           if [ -z "${{ secrets.ENV_FILE }}" ]; then
-            echo "API_URL=https://emusic.josprox.com" > .env
+            echo "UPDATE_CHECK_URL=https://raw.githubusercontent.com/if12is/Mo-Music/dev/distribution/update-check.json" > .env
           else
             echo "${{ secrets.ENV_FILE }}" > .env
           fi
@@ -49,7 +49,7 @@ jobs:
             echo "${{ secrets.GOOGLE_SERVICES_JSON_BASE64 }}" | base64 --decode > android/app/google-services.json
           else
             echo "No custom google-services.json secret found. Using dummy configuration..."
-            echo '{"project_info":{"project_number":"1234567890","project_id":"dummy-project","storage_bucket":"dummy-project.appspot.com"},"client":[{"client_info":{"mobilesdk_app_id":"1:1234567890:android:abc123def456","android_client_info":{"package_name":"com.josprox.emusic"}},"oauth_client":[],"api_key":[{"current_key":"dummy_api_key"}],"services":{"appinvite_service":{"other_platform_oauth_client":[]}}}],"configuration_version":"1"}' > android/app/google-services.json
+            echo '{"project_info":{"project_number":"1234567890","project_id":"dummy-project","storage_bucket":"dummy-project.appspot.com"},"client":[{"client_info":{"mobilesdk_app_id":"1:1234567890:android:abc123def456","android_client_info":{"package_name":"com.if12is.momusic"}},"oauth_client":[],"api_key":[{"current_key":"dummy_api_key"}],"services":{"appinvite_service":{"other_platform_oauth_client":[]}}}],"configuration_version":"1"}' > android/app/google-services.json
           fi
 
       - name: Setup Signing Keystore
@@ -73,11 +73,7 @@ jobs:
             -alias "$KEY_ALIAS" \
             -storepass "$KEYSTORE_PASSWORD" \
             | sed -n 's/.*SHA256: //p' | head -n 1 | tr -d ':' | tr '[:lower:]' '[:upper:]')
-          expected_sha256='DBF27FF8DB0F765CC1FC0762B37557AFFA53378AC14020E2FB588140B0A61945'
-          if [ "$signing_sha256" != "$expected_sha256" ]; then
-            echo "::error::KEYSTORE_BASE64 does not contain the Estrella Music release certificate."
-            exit 1
-          fi
+          echo "Using repository signing keystore for Mo Music."
 
           {
             echo "storeFile=jossestrada.keystore"

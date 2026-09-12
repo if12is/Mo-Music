@@ -71,12 +71,12 @@ class GesturePlayer extends StatelessWidget {
         Align(
           alignment: Alignment.bottomCenter,
           child: Padding(
-            padding: EdgeInsets.only(
+            padding: EdgeInsetsDirectional.only(
                 bottom: Get.mediaQuery.padding.bottom != 0
                     ? Get.mediaQuery.padding.bottom + 10
                     : 20,
-                left: 20,
-                right: 20),
+                start: 20,
+                end: 20),
             child: Container(
               decoration: BoxDecoration(
                   color: Theme.of(context).primaryColor.withValues(alpha: 0.3),

@@ -64,8 +64,8 @@ class SongInfoBottomSheet extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               ListTile(
-                contentPadding: const EdgeInsets.only(
-                    left: 15, top: 7, right: 10, bottom: 0),
+                contentPadding: const EdgeInsetsDirectional.only(
+                    start: 15, top: 7, end: 10, bottom: 0),
                 leading: ImageWidget(
                   song: song,
                   size: 50,
@@ -254,7 +254,7 @@ class SongInfoBottomSheet extends StatelessWidget {
                         (playlist?.playlistId != "SongDownloads" &&
                             playlist?.playlistId != "SongsCache"))
                     ? ListTile(
-                        contentPadding: const EdgeInsets.only(left: 15),
+                        contentPadding: const EdgeInsetsDirectional.only(start: 15),
                         visualDensity: const VisualDensity(vertical: -1),
                         leading: const Icon(Icons.delete),
                         title: Text(S.current.deleteDownloadData),
@@ -287,7 +287,7 @@ class SongInfoBottomSheet extends StatelessWidget {
               ),
               if (calledFromPlayer)
                 ListTile(
-                  contentPadding: const EdgeInsets.only(left: 15),
+                  contentPadding: const EdgeInsetsDirectional.only(start: 15),
                   visualDensity: const VisualDensity(vertical: -1),
                   leading: const Icon(Icons.timer),
                   title: Text(S.current.sleepTimer),
@@ -307,7 +307,7 @@ class SongInfoBottomSheet extends StatelessWidget {
                   },
                 ),
               ListTile(
-                contentPadding: const EdgeInsets.only(left: 15),
+                contentPadding: const EdgeInsetsDirectional.only(start: 15),
                 visualDensity: const VisualDensity(vertical: -1),
                 leading: const Icon(Icons.share),
                 title: Text(S.current.shareSong),

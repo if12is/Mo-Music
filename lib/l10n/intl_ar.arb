@@ -196,11 +196,11 @@
   "@auth_register_success": {
     "description": "auth_register_success"
   },
-  "auth_welcome_subtitle": "مرحبا بكم في استريلا الموسيقى",
+  "auth_welcome_subtitle": "مرحبًا بك في مو ميوزك",
   "@auth_welcome_subtitle": {
     "description": "auth_welcome_subtitle"
   },
-  "auth_welcome_title": "مرحبا بكم في استريلا الموسيقى",
+  "auth_welcome_title": "مرحبًا بك في مو ميوزك",
   "@auth_welcome_title": {
     "description": "auth_welcome_title"
   },
@@ -428,7 +428,7 @@
   "@content": {
     "description": "content"
   },
-  "copyrightNotice": "© 2026 جوسبروكس. ترخيص GPL v3.0",
+  "copyrightNotice": "© 2026 مو ميوزك. ترخيص GPL v3.0",
   "@copyrightNotice": {
     "description": "copyrightNotice"
   },
@@ -468,7 +468,7 @@
   "@deleteDownloadedDataAlert": {
     "description": "deleteDownloadedDataAlert"
   },
-  "developedBy": "تم تطويره وصيانته بواسطة جوس استرادا (JOSPROX)",
+  "developedBy": "طُوِّر ويُصان بواسطة أحمد السيد",
   "@developedBy": {
     "description": "developedBy"
   },
@@ -1291,7 +1291,7 @@
   "@news_card_subtitle": {
     "description": "news_card_subtitle"
   },
-  "news_card_title": "لقد تطورت موسيقى استريلا!",
+  "news_card_title": "مو ميوزك بين يديك!",
   "@news_card_title": {
     "description": "news_card_title"
   },
@@ -1303,7 +1303,7 @@
   "@news_dialog_section_friends": {
     "description": "news_dialog_section_friends"
   },
-  "news_dialog_title": "أخبار الموسيقى استريلا",
+  "news_dialog_title": "أخبار مو ميوزك",
   "@news_dialog_title": {
     "description": "news_dialog_title"
   },
@@ -1403,7 +1403,7 @@
   "@permissionsAllow": {
     "description": "permissionsAllow"
   },
-  "permissionsConsentDescription": "تحتاج Estrella Music إلى هذه الأذونات لإدارة الموسيقى الخاصة بك وتقديم جميع ميزات التشغيل.",
+  "permissionsConsentDescription": "يحتاج مو ميوزك إلى هذه الأذونات لإدارة الموسيقى وتقديم جميع ميزات التشغيل.",
   "@permissionsConsentDescription": {
     "description": "permissionsConsentDescription"
   },
@@ -1831,7 +1831,7 @@
   "@settings": {
     "description": "settings"
   },
-  "settings_about_desc": "حول موسيقى استريلا",
+  "settings_about_desc": "حول مو ميوزك",
   "@settings_about_desc": {
     "description": "settings_about_desc"
   },
@@ -2090,7 +2090,7 @@
   "@startupScreen": {
     "description": "startupScreen"
   },
-  "startupScreenDescription": "اختر القسم الذي تفتحه Estrella Music أولاً",
+  "startupScreenDescription": "اختر القسم الذي يفتحه مو ميوزك أولاً",
   "@startupScreenDescription": {
     "description": "startupScreenDescription"
   },
@@ -2361,12 +2361,122 @@
   "@welcome_intro": {
     "description": "welcome_intro"
   },
-  "welcome_subtitle": "اختر الطريقة التي تريد بها تجربة موسيقى Estrella من الآن فصاعدًا.",
+  "welcome_subtitle": "اختر الطريقة التي تريد بها تجربة مو ميوزك من الآن فصاعدًا.",
   "@welcome_subtitle": {
     "description": "welcome_subtitle"
   },
   "welcome_title": "الموسيقى الخاصة بك، طريقك",
   "@welcome_title": {
     "description": "welcome_title"
+  },
+  "updateCheckUnavailable": "تعذر التحقق من التحديثات من هذا المستودع.",
+  "@updateCheckUnavailable": {
+    "description": "updateCheckUnavailable"
+  },
+  "updateIosGuide": "دليل تثبيت iOS",
+  "@updateIosGuide": {
+    "description": "updateIosGuide"
+  },
+  "updateDownloadGithub": "تنزيل من GitHub",
+  "@updateDownloadGithub": {
+    "description": "updateDownloadGithub"
+  },
+  "updateAction": "تحديث",
+  "@updateAction": {
+    "description": "updateAction"
+  },
+  "updateDownloadUnavailable": "رابط التنزيل غير متاح.",
+  "@updateDownloadUnavailable": {
+    "description": "updateDownloadUnavailable"
+  },
+  "updateNetworkError": "خطأ في الشبكة: {message}",
+  "@updateNetworkError": {
+    "description": "updateNetworkError",
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+  "updateNotificationChannel": "تحديثات مو ميوزك",
+  "@updateNotificationChannel": {
+    "description": "updateNotificationChannel"
+  },
+  "updateNotificationChannelDes": "يُعلمك عندما يكون التحديث جاهزًا للتثبيت",
+  "@updateNotificationChannelDes": {
+    "description": "updateNotificationChannelDes"
+  },
+  "updateReadyTitle": "التحديث جاهز!",
+  "@updateReadyTitle": {
+    "description": "updateReadyTitle"
+  },
+  "updateReadyBody": "اضغط تثبيت داخل التطبيق لإكمال تحديث مو ميوزك.",
+  "@updateReadyBody": {
+    "description": "updateReadyBody"
+  },
+  "checkingUpdates": "جارٍ التحقق من التحديثات...",
+  "@checkingUpdates": {
+    "description": "checkingUpdates"
+  },
+  "validatingSession": "جارٍ التحقق من جلستك",
+  "@validatingSession": {
+    "description": "validatingSession"
+  },
+  "preparingApp": "لحظة واحدة، نجهّز مو ميوزك.",
+  "@preparingApp": {
+    "description": "preparingApp"
+  },
+  "welcomeSetupTitle": "مرحبًا بك في مو ميوزك",
+  "@welcomeSetupTitle": {
+    "description": "welcomeSetupTitle"
+  },
+  "welcomeSetupSubtitle": "جهّز تجربتك الموسيقية الأولى",
+  "@welcomeSetupSubtitle": {
+    "description": "welcomeSetupSubtitle"
+  },
+  "welcomeSelectHowToListen": "اختر كيف تريد الاستماع اليوم:",
+  "@welcomeSelectHowToListen": {
+    "description": "welcomeSelectHowToListen"
+  },
+  "welcomeLocalModeTitle": "الوضع المحلي (بدون إنترنت افتراضيًا)",
+  "@welcomeLocalModeTitle": {
+    "description": "welcomeLocalModeTitle"
+  },
+  "welcomeLocalModeSubtitle": "شغّل الموسيقى المخزّنة على هذا الجهاز. لا يحتاج إلى إنترنت أو خوادم خارجية.",
+  "@welcomeLocalModeSubtitle": {
+    "description": "welcomeLocalModeSubtitle"
+  },
+  "welcomeStreamingModeTitle": "تشغيل البث الخارجي",
+  "@welcomeStreamingModeTitle": {
+    "description": "welcomeStreamingModeTitle"
+  },
+  "welcomeStreamingModeSubtitle": "اربط خادم وصفات أو بث خارجي.",
+  "@welcomeStreamingModeSubtitle": {
+    "description": "welcomeStreamingModeSubtitle"
+  },
+  "welcomeDisclaimer": "تنبيه: البث الخارجي يُعدّه المستخدم. مو ميوزك يعمل افتراضيًا كمشغّل محلي دون إنترنت.",
+  "@welcomeDisclaimer": {
+    "description": "welcomeDisclaimer"
+  },
+  "backupMoMusic": "نسخة مو ميوزك الاحتياطية",
+  "@backupMoMusic": {
+    "description": "backupMoMusic"
+  },
+  "backupJossMusic": "نسخة Joss Music الاحتياطية",
+  "@backupJossMusic": {
+    "description": "backupJossMusic"
+  },
+  "backupDateLabel": "التاريخ: {date}",
+  "@backupDateLabel": {
+    "description": "backupDateLabel",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "unknownDate": "غير معروف",
+  "@unknownDate": {
+    "description": "unknownDate"
   }
 }

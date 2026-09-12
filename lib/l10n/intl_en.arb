@@ -196,11 +196,11 @@
   "@auth_register_success": {
     "description": "auth_register_success"
   },
-  "auth_welcome_subtitle": "Welcome to Estrella Music",
+  "auth_welcome_subtitle": "Welcome to Mo Music",
   "@auth_welcome_subtitle": {
     "description": "auth_welcome_subtitle"
   },
-  "auth_welcome_title": "Welcome to Estrella Music",
+  "auth_welcome_title": "Welcome to Mo Music",
   "@auth_welcome_title": {
     "description": "auth_welcome_title"
   },
@@ -428,7 +428,7 @@
   "@content": {
     "description": "content"
   },
-  "copyrightNotice": "© 2026 JOSPROX. License GPL v3.0",
+  "copyrightNotice": "© 2026 Mo Music. License GPL v3.0",
   "@copyrightNotice": {
     "description": "copyrightNotice"
   },
@@ -468,7 +468,7 @@
   "@deleteDownloadedDataAlert": {
     "description": "deleteDownloadedDataAlert"
   },
-  "developedBy": "Developed and Maintained by Joss Estrada (JOSPROX)",
+  "developedBy": "Developed and maintained by Ahmed Elsayed",
   "@developedBy": {
     "description": "developedBy"
   },
@@ -1291,7 +1291,7 @@
   "@news_card_subtitle": {
     "description": "news_card_subtitle"
   },
-  "news_card_title": "Estrella Music has evolved!",
+  "news_card_title": "Mo Music is here!",
   "@news_card_title": {
     "description": "news_card_title"
   },
@@ -1303,7 +1303,7 @@
   "@news_dialog_section_friends": {
     "description": "news_dialog_section_friends"
   },
-  "news_dialog_title": "Estrella Music News",
+  "news_dialog_title": "Mo Music News",
   "@news_dialog_title": {
     "description": "news_dialog_title"
   },
@@ -1403,7 +1403,7 @@
   "@permissionsAllow": {
     "description": "permissionsAllow"
   },
-  "permissionsConsentDescription": "Estrella Music needs these permissions to manage your music and offer all playback features.",
+  "permissionsConsentDescription": "Mo Music needs these permissions to manage your music and offer all playback features.",
   "@permissionsConsentDescription": {
     "description": "permissionsConsentDescription"
   },
@@ -1831,7 +1831,7 @@
   "@settings": {
     "description": "settings"
   },
-  "settings_about_desc": "About Estrella Music",
+  "settings_about_desc": "About Mo Music",
   "@settings_about_desc": {
     "description": "settings_about_desc"
   },
@@ -2090,7 +2090,7 @@
   "@startupScreen": {
     "description": "startupScreen"
   },
-  "startupScreenDescription": "Choose the section that Estrella Music opens first",
+  "startupScreenDescription": "Choose the section that Mo Music opens first",
   "@startupScreenDescription": {
     "description": "startupScreenDescription"
   },
@@ -2363,12 +2363,122 @@
   "@welcome_intro": {
     "description": "welcome_intro"
   },
-  "welcome_subtitle": "Choose how you want to experience Estrella Music from now on.",
+  "welcome_subtitle": "Choose how you want to experience Mo Music from now on.",
   "@welcome_subtitle": {
     "description": "welcome_subtitle"
   },
   "welcome_title": "Your music, your way",
   "@welcome_title": {
     "description": "welcome_title"
+  },
+  "updateCheckUnavailable": "Could not check for updates from this repository.",
+  "@updateCheckUnavailable": {
+    "description": "updateCheckUnavailable"
+  },
+  "updateIosGuide": "iOS installation guide",
+  "@updateIosGuide": {
+    "description": "updateIosGuide"
+  },
+  "updateDownloadGithub": "Download from GitHub",
+  "@updateDownloadGithub": {
+    "description": "updateDownloadGithub"
+  },
+  "updateAction": "Update",
+  "@updateAction": {
+    "description": "updateAction"
+  },
+  "updateDownloadUnavailable": "Download URL is not available.",
+  "@updateDownloadUnavailable": {
+    "description": "updateDownloadUnavailable"
+  },
+  "updateNetworkError": "Network error: {message}",
+  "@updateNetworkError": {
+    "description": "updateNetworkError",
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+  "updateNotificationChannel": "Mo Music updates",
+  "@updateNotificationChannel": {
+    "description": "updateNotificationChannel"
+  },
+  "updateNotificationChannelDes": "Notifies when an update is ready to install",
+  "@updateNotificationChannelDes": {
+    "description": "updateNotificationChannelDes"
+  },
+  "updateReadyTitle": "Update ready!",
+  "@updateReadyTitle": {
+    "description": "updateReadyTitle"
+  },
+  "updateReadyBody": "Tap Install in the app to finish updating Mo Music.",
+  "@updateReadyBody": {
+    "description": "updateReadyBody"
+  },
+  "checkingUpdates": "Checking for updates...",
+  "@checkingUpdates": {
+    "description": "checkingUpdates"
+  },
+  "validatingSession": "Validating your session",
+  "@validatingSession": {
+    "description": "validatingSession"
+  },
+  "preparingApp": "One moment, we are preparing Mo Music.",
+  "@preparingApp": {
+    "description": "preparingApp"
+  },
+  "welcomeSetupTitle": "Welcome to Mo Music",
+  "@welcomeSetupTitle": {
+    "description": "welcomeSetupTitle"
+  },
+  "welcomeSetupSubtitle": "Set up your starting music experience",
+  "@welcomeSetupSubtitle": {
+    "description": "welcomeSetupSubtitle"
+  },
+  "welcomeSelectHowToListen": "Choose how you want to listen today:",
+  "@welcomeSelectHowToListen": {
+    "description": "welcomeSelectHowToListen"
+  },
+  "welcomeLocalModeTitle": "Local mode (offline by default)",
+  "@welcomeLocalModeTitle": {
+    "description": "welcomeLocalModeTitle"
+  },
+  "welcomeLocalModeSubtitle": "Play music stored on this device. No internet or external servers required.",
+  "@welcomeLocalModeSubtitle": {
+    "description": "welcomeLocalModeSubtitle"
+  },
+  "welcomeStreamingModeTitle": "External streaming playback",
+  "@welcomeStreamingModeTitle": {
+    "description": "welcomeStreamingModeTitle"
+  },
+  "welcomeStreamingModeSubtitle": "Connect an external recipe or streaming server.",
+  "@welcomeStreamingModeSubtitle": {
+    "description": "welcomeStreamingModeSubtitle"
+  },
+  "welcomeDisclaimer": "Notice: External streaming is user-configured. Mo Music works by default as a local offline player.",
+  "@welcomeDisclaimer": {
+    "description": "welcomeDisclaimer"
+  },
+  "backupMoMusic": "Mo Music backup",
+  "@backupMoMusic": {
+    "description": "backupMoMusic"
+  },
+  "backupJossMusic": "Joss Music backup",
+  "@backupJossMusic": {
+    "description": "backupJossMusic"
+  },
+  "backupDateLabel": "Date: {date}",
+  "@backupDateLabel": {
+    "description": "backupDateLabel",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "unknownDate": "Unknown",
+  "@unknownDate": {
+    "description": "unknownDate"
   }
 }

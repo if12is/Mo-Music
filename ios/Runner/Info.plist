@@ -5,7 +5,7 @@
     <key>CFBundleDevelopmentRegion</key>
     <string>$(DEVELOPMENT_LANGUAGE)</string>
     <key>CFBundleDisplayName</key>
-    <string>Estrella Music</string>
+    <string>Mo Music</string>
     <key>CFBundleExecutable</key>
     <string>$(EXECUTABLE_NAME)</string>
     <key>CFBundleIdentifier</key>
@@ -13,7 +13,7 @@
     <key>CFBundleInfoDictionaryVersion</key>
     <string>6.0</string>
     <key>CFBundleName</key>
-    <string>Estrella Music</string>
+    <string>Mo Music</string>
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>CFBundleShortVersionString</key>
@@ -26,10 +26,10 @@
         <key>CFBundleTypeRole</key>
         <string>Editor</string>
         <key>CFBundleURLName</key>
-        <string>com.josprox.emusic.share</string>
+        <string>com.if12is.momusic.share</string>
         <key>CFBundleURLSchemes</key>
         <array>
-          <string>estrellamusic</string>
+          <string>momusic</string>
         </array>
       </dict>
     </array>
@@ -77,8 +77,8 @@
     <key>UIStatusBarHidden</key>
     <true/>
     <key>NSMicrophoneUsageDescription</key>
-    <string>Esta aplicación requiere acceso al micrófono para reconocer canciones mediante Shazam.</string>
+    <string>يحتاج مو ميوزك إلى الميكروفون للتعرف على الأغاني.</string>
     <key>NSAppleMusicUsageDescription</key>
-    <string>Esta aplicación requiere acceso a tu biblioteca de música para reproducir archivos locales.</string>
+    <string>يحتاج مو ميوزك إلى مكتبة الموسيقى لتشغيل الملفات المحلية.</string>
   </dict>
 </plist>

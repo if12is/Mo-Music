@@ -196,11 +196,11 @@
   "@auth_register_success": {
     "description": "auth_register_success"
   },
-  "auth_welcome_subtitle": "Estrella Music'e hoş geldiniz",
+  "auth_welcome_subtitle": "Mo Music'e hoş geldiniz",
   "@auth_welcome_subtitle": {
     "description": "auth_welcome_subtitle"
   },
-  "auth_welcome_title": "Estrella Music'e hoş geldiniz",
+  "auth_welcome_title": "Mo Music'e hoş geldiniz",
   "@auth_welcome_title": {
     "description": "auth_welcome_title"
   },
@@ -1291,7 +1291,7 @@
   "@news_card_subtitle": {
     "description": "news_card_subtitle"
   },
-  "news_card_title": "Estrella Müzik gelişti!",
+  "news_card_title": "Mo Music gelişti!",
   "@news_card_title": {
     "description": "news_card_title"
   },
@@ -1303,7 +1303,7 @@
   "@news_dialog_section_friends": {
     "description": "news_dialog_section_friends"
   },
-  "news_dialog_title": "Estrella Müzik Haberleri",
+  "news_dialog_title": "Mo Music Haberleri",
   "@news_dialog_title": {
     "description": "news_dialog_title"
   },
@@ -1403,7 +1403,7 @@
   "@permissionsAllow": {
     "description": "permissionsAllow"
   },
-  "permissionsConsentDescription": "Estrella Music, müziğinizi yönetmek ve tüm oynatma özelliklerini sunmak için bu izinlere ihtiyaç duyar.",
+  "permissionsConsentDescription": "Mo Music, müziğinizi yönetmek ve tüm oynatma özelliklerini sunmak için bu izinlere ihtiyaç duyar.",
   "@permissionsConsentDescription": {
     "description": "permissionsConsentDescription"
   },
@@ -1831,7 +1831,7 @@
   "@settings": {
     "description": "settings"
   },
-  "settings_about_desc": "Estrella Müzik Hakkında",
+  "settings_about_desc": "Mo Music Hakkında",
   "@settings_about_desc": {
     "description": "settings_about_desc"
   },
@@ -2090,7 +2090,7 @@
   "@startupScreen": {
     "description": "startupScreen"
   },
-  "startupScreenDescription": "Estrella Music'in ilk açacağı bölümü seçin",
+  "startupScreenDescription": "Mo Music'in ilk açacağı bölümü seçin",
   "@startupScreenDescription": {
     "description": "startupScreenDescription"
   },
@@ -2361,7 +2361,7 @@
   "@welcome_intro": {
     "description": "welcome_intro"
   },
-  "welcome_subtitle": "Artık Estrella Music'i nasıl deneyimlemek istediğinizi seçin.",
+  "welcome_subtitle": "Artık Mo Music'i nasıl deneyimlemek istediğinizi seçin.",
   "@welcome_subtitle": {
     "description": "welcome_subtitle"
   },

@@ -196,11 +196,11 @@
   "@auth_register_success": {
     "description": "auth_register_success"
   },
-  "auth_welcome_subtitle": "Estrella Music에 오신 것을 환영합니다.",
+  "auth_welcome_subtitle": "Mo Music에 오신 것을 환영합니다.",
   "@auth_welcome_subtitle": {
     "description": "auth_welcome_subtitle"
   },
-  "auth_welcome_title": "Estrella Music에 오신 것을 환영합니다.",
+  "auth_welcome_title": "Mo Music에 오신 것을 환영합니다.",
   "@auth_welcome_title": {
     "description": "auth_welcome_title"
   },
@@ -1291,7 +1291,7 @@
   "@news_card_subtitle": {
     "description": "news_card_subtitle"
   },
-  "news_card_title": "Estrella Music이 진화했습니다!",
+  "news_card_title": "Mo Music이 진화했습니다!",
   "@news_card_title": {
     "description": "news_card_title"
   },
@@ -1403,7 +1403,7 @@
   "@permissionsAllow": {
     "description": "permissionsAllow"
   },
-  "permissionsConsentDescription": "Estrella Music은 음악을 관리하고 모든 재생 기능을 제공하려면 이러한 권한이 필요합니다.",
+  "permissionsConsentDescription": "Mo Music은 음악을 관리하고 모든 재생 기능을 제공하려면 이러한 권한이 필요합니다.",
   "@permissionsConsentDescription": {
     "description": "permissionsConsentDescription"
   },
@@ -1831,7 +1831,7 @@
   "@settings": {
     "description": "settings"
   },
-  "settings_about_desc": "Estrella Music 소개",
+  "settings_about_desc": "Mo Music 소개",
   "@settings_about_desc": {
     "description": "settings_about_desc"
   },
@@ -2090,7 +2090,7 @@
   "@startupScreen": {
     "description": "startupScreen"
   },
-  "startupScreenDescription": "Estrella Music이 먼저 열리는 섹션을 선택하세요.",
+  "startupScreenDescription": "Mo Music이 먼저 열리는 섹션을 선택하세요.",
   "@startupScreenDescription": {
     "description": "startupScreenDescription"
   },
@@ -2361,7 +2361,7 @@
   "@welcome_intro": {
     "description": "welcome_intro"
   },
-  "welcome_subtitle": "지금부터 Estrella Music을 어떻게 경험하고 싶은지 선택하세요.",
+  "welcome_subtitle": "지금부터 Mo Music을 어떻게 경험하고 싶은지 선택하세요.",
   "@welcome_subtitle": {
     "description": "welcome_subtitle"
   },

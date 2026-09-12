@@ -1,10 +1,10 @@
 [Desktop Entry]
-Name=Estrella Music
-Comment=A cross platform app for music streaming
-Exec=estrellamusic %U
+Name=Mo Music
+Comment=Arabic-first cross-platform music player
+Exec=momusic %U
 Icon=com.josprox.EstrellaMusic
 Terminal=false
 Type=Application
 Categories=AudioVideo;Audio;Music;Player;
 MimeType=audio/mpeg;audio/flac;audio/ogg;audio/aac;audio/m4a;
-StartupWMClass=estrellamusic
+StartupWMClass=momusic

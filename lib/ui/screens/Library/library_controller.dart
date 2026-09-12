@@ -887,7 +887,7 @@ class LibraryAlbumsController extends GetxController {
     const unsupported = {'ia', 'ga', 'fj', 'eo'};
     final language =
         Get.find<SettingsScreenController>().currentAppLanguageCode.value;
-    return unsupported.contains(language) ? 'en' : language;
+    return unsupported.contains(language) ? 'ar' : language;
   }
 
   void _applySelectedCollection() {
@@ -1143,7 +1143,7 @@ class LibraryArtistsController extends GetxController {
       final currentLanguage =
           Get.find<SettingsScreenController>().currentAppLanguageCode.value;
       final lang =
-          unsupported.contains(currentLanguage) ? 'en' : currentLanguage;
+          unsupported.contains(currentLanguage) ? 'ar' : currentLanguage;
 
       for (final rawSong in favorites.take(4)) {
         final song = Map<dynamic, dynamic>.from(rawSong);

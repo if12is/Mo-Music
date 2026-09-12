@@ -20,7 +20,7 @@ class RestoreDialog extends StatelessWidget {
       child: Container(
         height: 300,
         padding:
-            const EdgeInsets.only(top: 20, bottom: 30, left: 20, right: 20),
+            const EdgeInsetsDirectional.only(top: 20, bottom: 30, start: 20, end: 20),
         child: Stack(
           children: [
             Column(crossAxisAlignment: CrossAxisAlignment.center, children: [

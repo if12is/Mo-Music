@@ -884,7 +884,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "permissionsAllow": MessageLookupByLibrary.simpleMessage("അനുവദിക്കുക"),
     "permissionsConsentDescription": MessageLookupByLibrary.simpleMessage(
-      "നിങ്ങളുടെ സംഗീതം നിയന്ത്രിക്കാനും എല്ലാ പ്ലേബാക്ക് ഫീച്ചറുകളും ഓഫർ ചെയ്യാനും Estrella Music-ന് ഈ അനുമതികൾ ആവശ്യമാണ്.",
+      "നിങ്ങളുടെ സംഗീതം നിയന്ത്രിക്കാനും എല്ലാ പ്ലേബാക്ക് ഫീച്ചറുകളും ഓഫർ ചെയ്യാനും Mo Music-ന് ഈ അനുമതികൾ ആവശ്യമാണ്.",
     ),
     "permissionsConsentTitle": MessageLookupByLibrary.simpleMessage(
       "ആരംഭിക്കുന്നതിനുള്ള അനുമതികൾ",

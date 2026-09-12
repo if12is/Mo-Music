@@ -1,12 +1,13 @@
-Estrella Music is a powerful, elegant, and modern music player designed for high-quality audio playback and library management.
+Mo Music is a powerful, elegant, and modern music player designed for high-quality audio playback and library management.
 
 Key Features:
 - Local-First Music Player: Seamlessly scans, indexes, and plays your local audio files (MP3, M4A, FLAC, OGG, OPUS).
+- Arabic-first interface with RTL support and a bilingual Cairo typeface.
 - Rich Metadata & ID3 Tag Extraction: Automatic artwork and tag display for tracks, albums, and artists.
 - Synced & Plain Lyrics: Sing along with real-time synchronized and translated lyrics.
 - Smart Audio Engine: Built-in equalizer, sleep timer, silence skipping, and smooth gapless playback.
 - Offline Downloads & Smart Caching: Keep your favorite tracks available on your device.
-- Multi-Profile & External Streaming: Configure your personal music streaming server and profiles.
-- Clean & Customizable UI: Dynamic Material You themes, bottom or side navigation bar, and dark mode support.
-- Android Auto Support: Enjoy your music safely while driving.
+- Clean & Customizable UI: Dynamic themes, bottom or side navigation, and dark mode support.
 - Privacy & Ad-Free: Pure music experience with no advertisements.
+
+Updates are published from https://github.com/if12is/Mo-Music

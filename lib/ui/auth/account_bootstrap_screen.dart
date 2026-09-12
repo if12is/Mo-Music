@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 import 'package:estrella_music/services/backup/cloud_backup_service.dart';
+import 'package:estrella_music/generated/l10n.dart';
 import 'package:estrella_music/services/auth/user_data_bootstrap_service.dart';
 import 'widgets/animated_auth_background.dart';
 
@@ -111,13 +112,13 @@ class AccountBootstrapScreen extends StatelessWidget {
                                   final formattedDate = date != null
                                       ? DateFormat('dd/MM/yyyy HH:mm')
                                           .format(date)
-                                      : 'Desconocida';
+                                      : S.current.unknownDate;
 
                                   return _BackupChoiceCard(
                                     title: isLegacy
-                                        ? 'Respaldo Joss Music'
-                                        : 'Respaldo Estrella Music',
-                                    subtitle: 'Fecha: $formattedDate',
+                                        ? S.current.backupJossMusic
+                                        : S.current.backupMoMusic,
+                                    subtitle: S.current.backupDateLabel(formattedDate),
                                     icon: isLegacy
                                         ? Icons.history_rounded
                                         : Icons.cloud_download_rounded,

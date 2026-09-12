@@ -23,7 +23,7 @@ class AdditionalOperationDialog extends StatelessWidget {
       maxWidth: 600,
       child: Container(
         height: MediaQuery.of(context).size.height * 0.7,
-        padding: const EdgeInsets.only(top: 20, bottom: 5, left: 10, right: 0),
+        padding: const EdgeInsetsDirectional.only(top: 20, bottom: 5, start: 10, end: 0),
         child: Column(
           children: [
             SizedBox(
@@ -48,7 +48,7 @@ class AdditionalOperationDialog extends StatelessWidget {
                     Row(
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(left: 5.0),
+                          padding: const EdgeInsetsDirectional.only(start: 5.0),
                           child: Obx(
                             () => Checkbox(
                               value: controller.isAllSelected.value,

@@ -25,9 +25,9 @@ class HomeShimmer extends StatelessWidget {
       child: Column(
         children: [
           const Align(
-            alignment: Alignment.centerLeft,
+            alignment: AlignmentDirectional.centerStart,
             child: Padding(
-              padding: EdgeInsets.only(left: 5),
+              padding: EdgeInsetsDirectional.only(start: 5),
               child: BasicShimmerContainer(Size(220, 30)),
             ),
           ),
@@ -62,7 +62,7 @@ class HomeShimmer extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Padding(
-          padding: EdgeInsets.only(left: 5),
+          padding: EdgeInsetsDirectional.only(start: 5),
           child: BasicShimmerContainer(Size(220, 30)),
         ),
         const SizedBox(height: 10),
@@ -75,7 +75,7 @@ class HomeShimmer extends StatelessWidget {
               itemBuilder: (_, index) {
                 return Container(
                   width: 140,
-                  padding: const EdgeInsets.only(left: 5.0),
+                  padding: const EdgeInsetsDirectional.only(start: 5.0),
                   child: const Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

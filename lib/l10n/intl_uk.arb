@@ -196,11 +196,11 @@
   "@auth_register_success": {
     "description": "auth_register_success"
   },
-  "auth_welcome_subtitle": "Ласкаво просимо до Estrella Music",
+  "auth_welcome_subtitle": "Ласкаво просимо до Mo Music",
   "@auth_welcome_subtitle": {
     "description": "auth_welcome_subtitle"
   },
-  "auth_welcome_title": "Ласкаво просимо до Estrella Music",
+  "auth_welcome_title": "Ласкаво просимо до Mo Music",
   "@auth_welcome_title": {
     "description": "auth_welcome_title"
   },
@@ -1291,7 +1291,7 @@
   "@news_card_subtitle": {
     "description": "news_card_subtitle"
   },
-  "news_card_title": "Estrella Music розвинулася!",
+  "news_card_title": "Mo Music розвинулася!",
   "@news_card_title": {
     "description": "news_card_title"
   },
@@ -1403,7 +1403,7 @@
   "@permissionsAllow": {
     "description": "permissionsAllow"
   },
-  "permissionsConsentDescription": "Estrella Music потрібні ці дозволи, щоб керувати вашою музикою та запропонувати всі функції відтворення.",
+  "permissionsConsentDescription": "Mo Music потрібні ці дозволи, щоб керувати вашою музикою та запропонувати всі функції відтворення.",
   "@permissionsConsentDescription": {
     "description": "permissionsConsentDescription"
   },
@@ -1831,7 +1831,7 @@
   "@settings": {
     "description": "settings"
   },
-  "settings_about_desc": "Про Estrella Music",
+  "settings_about_desc": "Про Mo Music",
   "@settings_about_desc": {
     "description": "settings_about_desc"
   },
@@ -2090,7 +2090,7 @@
   "@startupScreen": {
     "description": "startupScreen"
   },
-  "startupScreenDescription": "Виберіть розділ, який Estrella Music відкривається першим",
+  "startupScreenDescription": "Виберіть розділ, який Mo Music відкривається першим",
   "@startupScreenDescription": {
     "description": "startupScreenDescription"
   },
@@ -2361,7 +2361,7 @@
   "@welcome_intro": {
     "description": "welcome_intro"
   },
-  "welcome_subtitle": "Виберіть, як відтепер ви бажаєте слухати Estrella Music.",
+  "welcome_subtitle": "Виберіть, як відтепер ви бажаєте слухати Mo Music.",
   "@welcome_subtitle": {
     "description": "welcome_subtitle"
   },

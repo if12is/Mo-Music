@@ -105,7 +105,7 @@ class AlbumArtNLyrics extends StatelessWidget {
                   height: playerArtImageSize,
                   //color: Colors.green,
                   child: Align(
-                    alignment: Alignment.bottomRight,
+                    alignment: AlignmentDirectional.bottomEnd,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Container(

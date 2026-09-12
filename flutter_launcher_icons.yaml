@@ -5,8 +5,8 @@ flutter_launcher_icons:
   android: "launcher_icon"
   # image_path_android: "assets/icon/icon.png"
   min_sdk_android: 21 # android min sdk min:16, default 21
-  # adaptive_icon_background: "assets/icon/background.png"
-  # adaptive_icon_foreground: "assets/icon/foreground.png"
+  adaptive_icon_background: "#3332CE"
+  adaptive_icon_foreground: "assets/icons/icon.png"
   # adaptive_icon_foreground_inset: 16
   # adaptive_icon_monochrome: "assets/icon/monochrome.png"
 
@@ -21,8 +21,8 @@ flutter_launcher_icons:
   web:
     generate: true
     image_path: "assets/icons/icon.png"
-    background_color: "#hexcode"
-    theme_color: "#hexcode"
+    background_color: "#3332CE"
+    theme_color: "#3332CE"
 
   windows:
     generate: true

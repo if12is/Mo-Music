@@ -936,7 +936,7 @@ class LocalMusicProvider
           options: Options(
             headers: const {
               'Accept': 'application/json',
-              'User-Agent': 'EstrellaMusic/2.4.0',
+              'User-Agent': 'MoMusic/2.5.0',
             },
             sendTimeout: const Duration(seconds: 6),
             receiveTimeout: const Duration(seconds: 6),

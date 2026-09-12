@@ -60,7 +60,7 @@ class _MiniPlayerContent extends StatelessWidget {
           width: screenWidth,
           height: 105.0,
           padding:
-              const EdgeInsets.only(left: 24, right: 24, bottom: 16, top: 8),
+              const EdgeInsetsDirectional.only(start: 24, end: 24, bottom: 16, top: 8),
           color: Colors.transparent, // outer space transparent to float
           child: GestureDetector(
             behavior: HitTestBehavior.opaque,
@@ -109,7 +109,7 @@ class _MiniPlayerContent extends StatelessWidget {
                                     .withValues(alpha: 0.2),
                               ),
                               FractionallySizedBox(
-                                alignment: Alignment.centerLeft,
+                                alignment: AlignmentDirectional.centerStart,
                                 widthFactor: pct,
                                 child: DecoratedBox(
                                   decoration: BoxDecoration(
@@ -338,7 +338,7 @@ class _MiniPlayerContent extends StatelessWidget {
                                   .withValues(alpha: 0.2),
                             ),
                             FractionallySizedBox(
-                              alignment: Alignment.centerLeft,
+                              alignment: AlignmentDirectional.centerStart,
                               widthFactor: pct,
                               child: DecoratedBox(
                                 decoration: BoxDecoration(

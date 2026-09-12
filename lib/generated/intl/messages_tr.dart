@@ -166,10 +166,10 @@ class MessageLookup extends MessageLookupByLibrary {
       "Hesap başarıyla oluşturuldu.",
     ),
     "auth_welcome_subtitle": MessageLookupByLibrary.simpleMessage(
-      "Estrella Music\'e hoş geldiniz",
+      "Mo Music\'e hoş geldiniz",
     ),
     "auth_welcome_title": MessageLookupByLibrary.simpleMessage(
-      "Estrella Music\'e hoş geldiniz",
+      "Mo Music\'e hoş geldiniz",
     ),
     "autoDownFavSong": MessageLookupByLibrary.simpleMessage(
       "Favori şarkıları otomatik indir",
@@ -840,7 +840,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "permissionDenied": MessageLookupByLibrary.simpleMessage("İzin reddedildi"),
     "permissionsAllow": MessageLookupByLibrary.simpleMessage("İzin vermek"),
     "permissionsConsentDescription": MessageLookupByLibrary.simpleMessage(
-      "Estrella Music, müziğinizi yönetmek ve tüm oynatma özelliklerini sunmak için bu izinlere ihtiyaç duyar.",
+      "Mo Music, müziğinizi yönetmek ve tüm oynatma özelliklerini sunmak için bu izinlere ihtiyaç duyar.",
     ),
     "permissionsConsentTitle": MessageLookupByLibrary.simpleMessage(
       "Başlamak için izinler",
@@ -1210,7 +1210,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "startRadio": MessageLookupByLibrary.simpleMessage("Radyo başlat"),
     "startupScreen": MessageLookupByLibrary.simpleMessage("Başlangıçta aç"),
     "startupScreenDescription": MessageLookupByLibrary.simpleMessage(
-      "Estrella Music\'in ilk açacağı bölümü seçin",
+      "Mo Music\'in ilk açacağı bölümü seçin",
     ),
     "status": MessageLookupByLibrary.simpleMessage("Durum"),
     "stopMusicOnTaskClear": MessageLookupByLibrary.simpleMessage(
@@ -1379,7 +1379,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Platformumuzu modernleştirdik. Manuel yedeklemelerin yüklenmesine ilişkin eski sistem devre dışı bırakıldı. Artık müzik kitaplığınızı yönetmenin iki net yolu var.",
     ),
     "welcome_subtitle": MessageLookupByLibrary.simpleMessage(
-      "Artık Estrella Music\'i nasıl deneyimlemek istediğinizi seçin.",
+      "Artık Mo Music\'i nasıl deneyimlemek istediğinizi seçin.",
     ),
     "welcome_title": MessageLookupByLibrary.simpleMessage(
       "Sizin müziğiniz, sizin tarzınız",

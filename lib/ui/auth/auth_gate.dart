@@ -6,6 +6,8 @@ import 'package:estrella_music/services/system/update_service.dart';
 import 'package:estrella_music/services/auth/user_data_bootstrap_service.dart';
 import 'package:estrella_music/profiles/profile_manager.dart';
 import 'package:estrella_music/ui/home.dart';
+import 'package:estrella_music/app_identity.dart';
+import 'package:estrella_music/generated/l10n.dart';
 import 'package:estrella_music/ui/screens/Update/update_screen.dart';
 import 'package:estrella_music/services/storage/sqlite_store.dart';
 import 'account_bootstrap_screen.dart';
@@ -47,9 +49,9 @@ class _AuthGateState extends State<AuthGate> {
     final bootstrapService = Get.find<UserDataBootstrapService>();
     return Obx(() {
       if (isUpdateChecked.isFalse) {
-        return const AccountBootstrapScreen(
-          title: 'Estrella Music',
-          message: 'Buscando actualizaciones...',
+        return AccountBootstrapScreen(
+          title: AppIdentity.localizedName(),
+          message: S.current.checkingUpdates,
         );
       }
 
@@ -58,9 +60,9 @@ class _AuthGateState extends State<AuthGate> {
       }
 
       if (authService.isLoadingSession.isTrue) {
-        return const AccountBootstrapScreen(
-          title: 'Validando tu sesion',
-          message: 'Un momento, estamos preparando Estrella Music.',
+        return AccountBootstrapScreen(
+          title: S.current.validatingSession,
+          message: S.current.preparingApp,
         );
       }
 

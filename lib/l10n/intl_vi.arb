@@ -196,11 +196,11 @@
   "@auth_register_success": {
     "description": "auth_register_success"
   },
-  "auth_welcome_subtitle": "Chào mừng đến với Estrella Music",
+  "auth_welcome_subtitle": "Chào mừng đến với Mo Music",
   "@auth_welcome_subtitle": {
     "description": "auth_welcome_subtitle"
   },
-  "auth_welcome_title": "Chào mừng đến với Estrella Music",
+  "auth_welcome_title": "Chào mừng đến với Mo Music",
   "@auth_welcome_title": {
     "description": "auth_welcome_title"
   },
@@ -1403,7 +1403,7 @@
   "@permissionsAllow": {
     "description": "permissionsAllow"
   },
-  "permissionsConsentDescription": "Estrella Music cần những quyền này để quản lý nhạc của bạn và cung cấp tất cả các tính năng phát lại.",
+  "permissionsConsentDescription": "Mo Music cần những quyền này để quản lý nhạc của bạn và cung cấp tất cả các tính năng phát lại.",
   "@permissionsConsentDescription": {
     "description": "permissionsConsentDescription"
   },
@@ -1831,7 +1831,7 @@
   "@settings": {
     "description": "settings"
   },
-  "settings_about_desc": "Giới thiệu về Estrella Music",
+  "settings_about_desc": "Giới thiệu về Mo Music",
   "@settings_about_desc": {
     "description": "settings_about_desc"
   },
@@ -2090,7 +2090,7 @@
   "@startupScreen": {
     "description": "startupScreen"
   },
-  "startupScreenDescription": "Chọn phần Estrella Music mở đầu tiên",
+  "startupScreenDescription": "Chọn phần Mo Music mở đầu tiên",
   "@startupScreenDescription": {
     "description": "startupScreenDescription"
   },
@@ -2361,7 +2361,7 @@
   "@welcome_intro": {
     "description": "welcome_intro"
   },
-  "welcome_subtitle": "Chọn cách bạn muốn trải nghiệm Estrella Music kể từ bây giờ.",
+  "welcome_subtitle": "Chọn cách bạn muốn trải nghiệm Mo Music kể từ bây giờ.",
   "@welcome_subtitle": {
     "description": "welcome_subtitle"
   },

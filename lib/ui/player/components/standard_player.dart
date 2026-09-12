@@ -1032,7 +1032,7 @@ class _SecondaryActions extends StatelessWidget {
                                             .abs() <
                                         0.01;
                                 return Padding(
-                                  padding: const EdgeInsets.only(right: 8),
+                                  padding: const EdgeInsetsDirectional.only(end: 8),
                                   child: ChoiceChip(
                                     label: Text('${speed.toStringAsFixed(2)}x'),
                                     selected: isSelected,
@@ -1123,7 +1123,7 @@ class _SecondaryActions extends StatelessWidget {
                                               .abs() <
                                           0.01;
                                   return Padding(
-                                    padding: const EdgeInsets.only(right: 8),
+                                    padding: const EdgeInsetsDirectional.only(end: 8),
                                     child: ChoiceChip(
                                       label: Text(pitch.toStringAsFixed(2)),
                                       selected: isSelected,

@@ -99,7 +99,7 @@ class StreamingProvider
     _catalog = MusicServices(
       request: _catalogRequest,
       visitorData: playbackContext.visitorData,
-      languageCode: context.settings['languageCode']?.toString() ?? 'en',
+      languageCode: context.settings['languageCode']?.toString() ?? 'ar',
       clientName: (clientName != null && clientName.isNotEmpty) ? clientName : null,
     );
     try {

@@ -8,9 +8,9 @@ body:
       value: |
         ### 🌐 Idiomas Soportados / Supported Languages / Idiomas Suportados
         > [!NOTE]
-        > Recibimos y atendemos propuestas de funciones en **Español**, **English**, y **Português**.
-        > We accept feature requests in **Spanish**, **English**, and **Portuguese**.
-        > Aceitamos sugestões de recursos em **Espanhol**, **Inglês** e **Português**.
+        > نستقبل المقترحات بالعربية والإنجليزية والإسبانية والبرتغالية.
+        > We accept feature requests in **Arabic**, **English**, **Spanish**, and **Portuguese**.
+        > Recibimos propuestas en **Árabe**, **Español**, **English** y **Português**.
 
   - type: textarea
     id: problem

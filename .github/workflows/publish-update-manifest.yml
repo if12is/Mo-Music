@@ -1,0 +1,59 @@
+name: Publish update manifest
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publish-manifest:
+    name: Write update-check.json for this repo
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Resolve version
+        id: version
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ "${{ github.event_name }}" == "release" ]]; then
+            version="${{ github.event.release.tag_name }}"
+          else
+            version="$(sed -nE 's/^version:[[:space:]]*([^[:space:]+]+).*/\1/p' pubspec.yaml | head -n 1)"
+          fi
+          version="${version#v}"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+
+      - name: Write update-check.json
+        shell: bash
+        run: |
+          set -euo pipefail
+          repo="${{ github.repository }}"
+          version="${{ steps.version.outputs.version }}"
+          mkdir -p distribution
+          cat > distribution/update-check.json <<EOF
+          {
+            "Version": "${version}",
+            "Descarga": "https://github.com/${repo}/releases/latest/download/",
+            "Notas": "Mo Music ${version}"
+          }
+          EOF
+          cat distribution/update-check.json
+
+      - name: Upload manifest to the current release
+        if: github.event_name == 'release'
+        uses: softprops/action-gh-release@v2
+        with:
+          files: distribution/update-check.json
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload manifest artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: mo-music-update-check
+          path: distribution/update-check.json

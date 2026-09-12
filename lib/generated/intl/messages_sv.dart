@@ -163,10 +163,10 @@ class MessageLookup extends MessageLookupByLibrary {
       "Kontot har skapats.",
     ),
     "auth_welcome_subtitle": MessageLookupByLibrary.simpleMessage(
-      "Välkommen till Estrella Music",
+      "Välkommen till Mo Music",
     ),
     "auth_welcome_title": MessageLookupByLibrary.simpleMessage(
-      "Välkommen till Estrella Music",
+      "Välkommen till Mo Music",
     ),
     "autoDownFavSong": MessageLookupByLibrary.simpleMessage(
       "Automatisk nedladdning av favoritlåtar",
@@ -771,7 +771,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "100 % synkronisering med Joss Red, spellistor med vänner och mycket mer. Tryck för att se vad som är nytt.",
     ),
     "news_card_title": MessageLookupByLibrary.simpleMessage(
-      "Estrella Music har utvecklats!",
+      "Mo Music har utvecklats!",
     ),
     "news_dialog_friends_desc": MessageLookupByLibrary.simpleMessage(
       "För att lägga till vänner, acceptera förfrågningar eller hantera din säkerhetsprofil, använd Joss Red på dess officiella plattformar:",
@@ -833,7 +833,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "permissionDenied": MessageLookupByLibrary.simpleMessage("Tillstånd nekad"),
     "permissionsAllow": MessageLookupByLibrary.simpleMessage("Tillåta"),
     "permissionsConsentDescription": MessageLookupByLibrary.simpleMessage(
-      "Estrella Music behöver dessa behörigheter för att hantera din musik och erbjuda alla uppspelningsfunktioner.",
+      "Mo Music behöver dessa behörigheter för att hantera din musik och erbjuda alla uppspelningsfunktioner.",
     ),
     "permissionsConsentTitle": MessageLookupByLibrary.simpleMessage(
       "Behörigheter att komma igång",
@@ -1066,7 +1066,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "settings": MessageLookupByLibrary.simpleMessage("Inställningar"),
     "settings_about_desc": MessageLookupByLibrary.simpleMessage(
-      "Om Estrella Music",
+      "Om Mo Music",
     ),
     "settings_about_sub": MessageLookupByLibrary.simpleMessage(
       "Version, öppen källkodsprojekt och GitHub.",
@@ -1197,7 +1197,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "startRadio": MessageLookupByLibrary.simpleMessage("Starta radio"),
     "startupScreen": MessageLookupByLibrary.simpleMessage("Öppna vid start"),
     "startupScreenDescription": MessageLookupByLibrary.simpleMessage(
-      "Välj avsnittet som Estrella Music öppnar först",
+      "Välj avsnittet som Mo Music öppnar först",
     ),
     "status": MessageLookupByLibrary.simpleMessage("Status"),
     "stopMusicOnTaskClear": MessageLookupByLibrary.simpleMessage(
@@ -1364,7 +1364,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Vi har moderniserat vår plattform. Det gamla systemet för uppladdning av manuella säkerhetskopior har inaktiverats. Du har nu två tydliga sätt att hantera ditt musikbibliotek.",
     ),
     "welcome_subtitle": MessageLookupByLibrary.simpleMessage(
-      "Välj hur du vill uppleva Estrella Music från och med nu.",
+      "Välj hur du vill uppleva Mo Music från och med nu.",
     ),
     "welcome_title": MessageLookupByLibrary.simpleMessage(
       "Din musik, på ditt sätt",

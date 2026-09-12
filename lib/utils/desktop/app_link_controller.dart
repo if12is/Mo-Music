@@ -145,7 +145,8 @@ mixin ProcessLink {
         uri.host == "emusic.joss.red" &&
         uri.pathSegments.length == 3 &&
         uri.pathSegments[0] == "share";
-    final isCustomScheme = uri.scheme == "estrellamusic" &&
+    final isCustomScheme =
+        (uri.scheme == "momusic" || uri.scheme == "estrellamusic") &&
         uri.host == "share" &&
         uri.pathSegments.length == 2;
 
