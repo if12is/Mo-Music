@@ -176,11 +176,11 @@ class _VersionChip extends StatelessWidget {
         children: [
           if (from.isNotEmpty) _pill(from),
           if (from.isNotEmpty && to.isNotEmpty)
-            const Icon(
+            Icon(
               Icons.arrow_forward_rounded,
               size: 18,
               color: AppIdentity.brandBlueSoft,
-              matchTextDirection: true,
+              textDirection: Directionality.of(context),
             ),
           if (to.isNotEmpty) _pill(to, filled: true),
         ],
