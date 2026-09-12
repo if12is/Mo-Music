@@ -2750,5 +2750,13 @@
         "type": "String"
       }
     }
+  },
+  "updateFileNotReady": "This update is not ready yet. Try again in a few minutes.",
+  "@updateFileNotReady": {
+    "description": "updateFileNotReady"
+  },
+  "updateDownloadFailed": "Could not download the update. Check your connection and try again.",
+  "@updateDownloadFailed": {
+    "description": "updateDownloadFailed"
   }
 }

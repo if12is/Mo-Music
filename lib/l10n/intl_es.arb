@@ -2434,5 +2434,13 @@
         "type": "String"
       }
     }
+  },
+  "updateFileNotReady": "Esta actualización aún no está lista. Inténtalo de nuevo en unos minutos.",
+  "@updateFileNotReady": {
+    "description": "updateFileNotReady"
+  },
+  "updateDownloadFailed": "No se pudo descargar la actualización. Comprueba la conexión e inténtalo de nuevo.",
+  "@updateDownloadFailed": {
+    "description": "updateDownloadFailed"
   }
 }
