@@ -12,6 +12,8 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import 'package:estrella_music/app_identity.dart';
+import 'package:estrella_music/services/music/device_music_session.dart';
+import 'package:estrella_music/ui/widgets/snackbar.dart';
 import 'package:estrella_music/utils/helpers/update_check_flag_file.dart';
 import 'package:estrella_music/utils/helpers/helper.dart';
 import 'package:estrella_music/music_provider/music_catalog_service.dart';
@@ -363,6 +365,34 @@ class SettingsScreenController extends GetxController {
       return "$supportDirPath/db";
     } else {
       return (await getApplicationDocumentsDirectory()).path;
+    }
+  }
+
+  Future<void> refreshDeviceVisitorId() async {
+    try {
+      final id = await DeviceMusicSession.resolve().regenerateVisitorId();
+      if (id == null || id.isEmpty) {
+        ScaffoldMessenger.of(Get.context!).showSnackBar(snackbar(
+          Get.context!,
+          S.current.settings_visitor_error_desc,
+          size: SanckBarSize.BIG,
+        ));
+        return;
+      }
+      if (Get.isRegistered<MusicCatalogService>()) {
+        await Get.find<MusicCatalogService>().refresh();
+      }
+      ScaffoldMessenger.of(Get.context!).showSnackBar(snackbar(
+        Get.context!,
+        S.current.settings_visitor_updated_desc,
+        size: SanckBarSize.BIG,
+      ));
+    } catch (error) {
+      ScaffoldMessenger.of(Get.context!).showSnackBar(snackbar(
+        Get.context!,
+        S.current.settings_visitor_exception('$error'),
+        size: SanckBarSize.BIG,
+      ));
     }
   }
 

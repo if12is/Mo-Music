@@ -12,6 +12,7 @@ import '../music_download_provider.dart';
 import '../music_discovery_provider.dart';
 import '../music_source_cache_control.dart';
 import 'package:estrella_music/utils/helpers/helper.dart';
+import 'package:estrella_music/services/music/device_music_session.dart';
 import 'package:estrella_music/services/music/music_service.dart';
 import 'public_ip_resolver.dart';
 
@@ -93,15 +94,23 @@ class StreamingProvider
     _customServerUrl = (configuredUrl != null && configuredUrl.isNotEmpty)
         ? configuredUrl
         : null;
+    if (!await _hasRemoteBackend()) {
+      await DeviceMusicSession.resolve().ensureReady();
+    }
     final playbackContext = await _playbackContextLoader?.call() ??
         const StreamingPlaybackContext();
     final clientName = context.settings['clientName']?.toString().trim();
     _catalog = MusicServices(
       request: _catalogRequest,
-      visitorData: playbackContext.visitorData,
+      visitorData: playbackContext.visitorData ??
+          DeviceMusicSession.resolve().visitorId,
       languageCode: context.settings['languageCode']?.toString() ?? 'ar',
       clientName: (clientName != null && clientName.isNotEmpty) ? clientName : null,
     );
+    if (!await _hasRemoteBackend()) {
+      _capabilities = _deviceCapabilities;
+      return;
+    }
     try {
       final response = await _request('GET', 'capabilities');
       _capabilities = ProviderCapabilities.fromJson(
@@ -110,20 +119,23 @@ class StreamingProvider
     } on MusicProviderException catch (error) {
       if (error.cause is! DioException) rethrow;
       printINFO('[StreamingProvider] Starting offline: $error');
-      _capabilities = const ProviderCapabilities(
-        tracks: true,
-        artists: true,
-        albums: true,
-        artwork: true,
-        lyrics: true,
-        playlists: true,
-        favorites: true,
-        history: true,
-        sync: true,
-        home: true,
-      );
+      _capabilities = _deviceCapabilities;
     }
   }
+
+  static const _deviceCapabilities = ProviderCapabilities(
+    search: true,
+    playback: true,
+    tracks: true,
+    artists: true,
+    albums: true,
+    artwork: true,
+    lyrics: true,
+    playlists: true,
+    favorites: true,
+    history: true,
+    home: true,
+  );
 
   @override
   Future<void> refresh() async {
@@ -157,21 +169,30 @@ class StreamingProvider
     final playbackContext = await _playbackContextLoader?.call() ??
         const StreamingPlaybackContext();
 
-    final request = _request(
-      'POST',
-      'catalog',
-      body: {
-        'action': action,
-        'payload': payload,
-        'additionalParams': additionalParams,
-        if (playbackContext.visitorData != null &&
-            playbackContext.visitorData!.isNotEmpty)
-          'visitorData': playbackContext.visitorData,
-        if (playbackContext.clientIp != null &&
-            playbackContext.clientIp!.isNotEmpty)
-          'clientIp': playbackContext.clientIp,
-      },
-    );
+    final Future<Map<String, dynamic>> request;
+    if (!await _hasRemoteBackend()) {
+      request = DeviceMusicSession.resolve().request(
+        action,
+        payload,
+        additionalParams,
+      );
+    } else {
+      request = _request(
+        'POST',
+        'catalog',
+        body: {
+          'action': action,
+          'payload': payload,
+          'additionalParams': additionalParams,
+          if (playbackContext.visitorData != null &&
+              playbackContext.visitorData!.isNotEmpty)
+            'visitorData': playbackContext.visitorData,
+          if (playbackContext.clientIp != null &&
+              playbackContext.clientIp!.isNotEmpty)
+            'clientIp': playbackContext.clientIp,
+        },
+      );
+    }
     _catalogInFlight[cacheKey] = request;
     try {
       final raw = await request;
@@ -655,12 +676,23 @@ class StreamingProvider
     final playbackContext = await _playbackContextLoader?.call() ??
         const StreamingPlaybackContext();
 
+    if (!await _hasRemoteBackend()) {
+      final deviceSource = await _resolveViaDevicePlayer(track.identity.sourceId);
+      if (deviceSource != null) return deviceSource;
+    }
+
     final recipeSource = await _resolveViaRecipe(
       track.identity.sourceId,
       context: playbackContext,
     );
     if (recipeSource != null) {
       return recipeSource;
+    }
+
+    if (!await _hasRemoteBackend()) {
+      throw const MusicProviderException(
+        'Could not resolve an online playback URL for this track.',
+      );
     }
 
     var clientIp = playbackContext.clientIp;
@@ -739,6 +771,14 @@ class StreamingProvider
     final playbackContext = await _playbackContextLoader?.call() ??
         const StreamingPlaybackContext();
 
+    if (!await _hasRemoteBackend()) {
+      final deviceSource = await _resolveViaDevicePlayer(
+        track.identity.sourceId,
+        requestedFormat: format,
+      );
+      if (deviceSource != null) return deviceSource;
+    }
+
     final recipeSource = await _resolveViaRecipe(
       track.identity.sourceId,
       requestedFormat: format,
@@ -746,6 +786,12 @@ class StreamingProvider
     );
     if (recipeSource != null) {
       return recipeSource;
+    }
+
+    if (!await _hasRemoteBackend()) {
+      throw const MusicProviderException(
+        'Could not resolve an online download URL for this track.',
+      );
     }
 
     var clientIp = playbackContext.clientIp;
@@ -854,6 +900,91 @@ class StreamingProvider
         tracks: _list(json['tracks']).map(_track).toList(growable: false),
         albums: _list(json['albums']).map(_album).toList(growable: false),
       );
+
+  Future<bool> _hasRemoteBackend() async {
+    final base =
+        (_customServerUrl ?? _baseUrl()).replaceAll(RegExp(r'/+$'), '');
+    if (base.isEmpty) return false;
+    final token = await _tokenLoader();
+    return token != null && token.isNotEmpty;
+  }
+
+  Future<PlaybackSource?> _resolveViaDevicePlayer(
+    String sourceId, {
+    String? requestedFormat,
+  }) async {
+    try {
+      final response = await DeviceMusicSession.resolve().player(sourceId);
+      return _playbackSourceFromPlayerResponse(
+        response,
+        requestedFormat: requestedFormat,
+      );
+    } catch (error) {
+      printINFO('[StreamingProvider] Device player failed: $error');
+      return null;
+    }
+  }
+
+  PlaybackSource? _playbackSourceFromPlayerResponse(
+    Map<String, dynamic> response, {
+    String? requestedFormat,
+  }) {
+    final playability = _map(response['playabilityStatus']);
+    final status = playability['status']?.toString();
+    if (status != null && status != 'OK') return null;
+
+    final streamingData = _map(response['streamingData']);
+    final formats = _list(
+      streamingData['adaptiveFormats'] ??
+          streamingData['formats'] ??
+          response['adaptiveFormats'] ??
+          response['formats'],
+    );
+    if (formats.isEmpty) return null;
+
+    final requestedCodec = (requestedFormat == 'm4a') ? 'mp4a' : requestedFormat;
+    Map<String, dynamic>? selected;
+    Map<String, dynamic>? fallback;
+
+    for (final rawFmt in formats) {
+      final fmt = _map(rawFmt);
+      final fmtUrl = fmt['url']?.toString();
+      final mime = fmt['mimeType']?.toString() ?? '';
+      if (fmtUrl == null || fmtUrl.isEmpty || !mime.contains('audio/')) {
+        continue;
+      }
+      final bitrate = _int(fmt['bitrate']) ?? 0;
+      if (fallback == null || bitrate > (_int(fallback['bitrate']) ?? 0)) {
+        fallback = fmt;
+      }
+      if (requestedCodec != null && requestedCodec.isNotEmpty) {
+        final codec = mime.contains('opus') ? 'opus' : 'mp4a';
+        if (codec == requestedCodec) {
+          if (selected == null || bitrate > (_int(selected['bitrate']) ?? 0)) {
+            selected = fmt;
+          }
+        }
+      }
+    }
+
+    final targetFmt = selected ?? fallback;
+    final streamUrl = targetFmt?['url']?.toString();
+    if (targetFmt == null || streamUrl == null || streamUrl.isEmpty) {
+      return null;
+    }
+    final uri = Uri.parse(streamUrl);
+    final isOpus = (targetFmt['mimeType']?.toString() ?? '').contains('opus');
+    return PlaybackSource(
+      type: PlaybackSourceType.authorizedStream,
+      uri: uri,
+      mimeType: targetFmt['mimeType']?.toString() ??
+          (isOpus ? 'audio/webm' : 'audio/mp4'),
+      bitrate: _int(targetFmt['bitrate']),
+      contentLength: _int(targetFmt['contentLength'] ?? targetFmt['size']),
+      loudnessDb: _double(targetFmt['loudnessDb']) ?? 0,
+      expiresAt: _expiryFromUri(uri),
+    );
+  }
 
   Future<Map<String, dynamic>> _request(
     String method,

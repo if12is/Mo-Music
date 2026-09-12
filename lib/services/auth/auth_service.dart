@@ -48,7 +48,11 @@ class AuthService extends GetxService {
 
   String get displayName {
     final user = userProfile.value;
-    if (user == null) return 'Sin sesión';
+    if (user == null) {
+      return AppIdentity.requireRemoteAccount
+          ? 'Sin sesión'
+          : AppIdentity.localizedName();
+    }
     final firstName = user['first_name']?.toString().trim();
     final lastName = user['last_name']?.toString().trim();
     final fullName = [firstName, lastName]
@@ -62,10 +66,13 @@ class AuthService extends GetxService {
     return 'Usuario';
   }
 
-  String get emailLabel =>
-      userProfile.value?['email']?.toString().trim().isNotEmpty == true
-          ? userProfile.value!['email'].toString().trim()
-          : 'Sin correo visible';
+  String get emailLabel {
+    final email = userProfile.value?['email']?.toString().trim();
+    if (email != null && email.isNotEmpty) return email;
+    return AppIdentity.requireRemoteAccount
+        ? 'Sin correo visible'
+        : AppIdentity.appName;
+  }
 
   Uri _buildUri(String endpoint) {
     var base = baseUrl?.trim() ?? '';

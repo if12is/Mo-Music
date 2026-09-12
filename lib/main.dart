@@ -48,6 +48,7 @@ import 'ui/screens/Home/home_screen_controller.dart';
 import 'ui/screens/Library/library_controller.dart';
 import 'package:estrella_music/utils/desktop/system_tray.dart';
 import 'package:estrella_music/app_identity.dart';
+import 'package:estrella_music/services/music/device_music_session.dart';
 import 'package:estrella_music/utils/helpers/update_check_flag_file.dart';
 
 import 'package:workmanager/workmanager.dart';
@@ -62,10 +63,12 @@ Future<void> main() async {
   final authService = Get.put(AuthService(), permanent: true);
   // Provider restoration happens only after the global Joss Red session has
   // been restored, otherwise a saved eMusic profile would fail on every boot.
+  Get.put(DeviceMusicSession(), permanent: true);
   if (AppIdentity.requireRemoteAccount) {
     await authService.restoreSession();
   } else {
     authService.disableRemoteSession();
+    await Get.find<DeviceMusicSession>().ensureReady();
   }
   final providerManager = MusicProviderManager(
     localProviderId: LocalMusicProvider.providerId,
@@ -169,7 +172,7 @@ Future<StreamingPlaybackContext> _loadStreamingPlaybackContext() async {
 
   return StreamingPlaybackContext(
     clientIp: firstString(const ['clientIp', 'clientIP', 'streamClientIp']),
-    visitorData: visitorData,
+    visitorData: visitorData ?? DeviceMusicSession.resolve().visitorId,
   );
 }
 
@@ -250,8 +253,13 @@ class MyApp extends StatelessWidget {
               final mQuery = MediaQuery.of(context);
               final scale = mQuery.textScaler
                   .clamp(minScaleFactor: 1.0, maxScaleFactor: 1.1);
+              final locale = _resolveAppLocale();
+              final isRtl = const {'ar', 'fa', 'he', 'ur'}
+                  .contains(locale.languageCode);
 
-              return Stack(
+              return Directionality(
+                textDirection: isRtl ? TextDirection.rtl : TextDirection.ltr,
+                child: Stack(
                 children: [
                   GetX<ThemeController>(
                     builder: (controller) => MediaQuery(
@@ -273,6 +281,7 @@ class MyApp extends StatelessWidget {
                     ),
                   )
                 ],
+              ),
               );
             },
           );

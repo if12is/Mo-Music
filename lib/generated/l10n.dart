@@ -6207,6 +6207,33 @@ class S {
       args: [],
     );
   }
+
+  String get deviceAccountName {
+    return Intl.message(
+      'This device',
+      name: 'deviceAccountName',
+      desc: 'deviceAccountName',
+      args: [],
+    );
+  }
+
+  String get deviceAccountSubtitle {
+    return Intl.message(
+      'Online music on this device, no server login.',
+      name: 'deviceAccountSubtitle',
+      desc: 'deviceAccountSubtitle',
+      args: [],
+    );
+  }
+
+  String get deviceOnlineProfileName {
+    return Intl.message(
+      'Online music',
+      name: 'deviceOnlineProfileName',
+      desc: 'deviceOnlineProfileName',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -1553,5 +1553,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "bootstrapContinueLocalSubtitle": MessageLookupByLibrary.simpleMessage(
       "الاحتفاظ بالمكتبة المحلية دون تنزيل أي شيء.",
     ),
+    "deviceAccountName": MessageLookupByLibrary.simpleMessage("هذا الجهاز"),
+    "deviceAccountSubtitle": MessageLookupByLibrary.simpleMessage(
+      "موسيقى عبر الإنترنت على هذا الجهاز بدون تسجيل دخول.",
+    ),
+    "deviceOnlineProfileName": MessageLookupByLibrary.simpleMessage(
+      "موسيقى أونلاين",
+    ),
   };
 }

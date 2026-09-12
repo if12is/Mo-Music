@@ -1538,5 +1538,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "bootstrapContinueLocalSubtitle": MessageLookupByLibrary.simpleMessage(
       "Keep your local library without downloading anything.",
     ),
+    "deviceAccountName": MessageLookupByLibrary.simpleMessage("This device"),
+    "deviceAccountSubtitle": MessageLookupByLibrary.simpleMessage(
+      "Online music on this device, no server login.",
+    ),
+    "deviceOnlineProfileName": MessageLookupByLibrary.simpleMessage(
+      "Online music",
+    ),
   };
 }

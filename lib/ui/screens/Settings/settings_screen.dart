@@ -849,92 +849,110 @@ class SettingsAccountScreen extends StatelessWidget {
                           color: cs.onPrimaryContainer,
                           fontWeight: FontWeight.bold)),
                 ),
-                title: Text(auth.displayName,
+                title: Text(
+                    AppIdentity.requireRemoteAccount
+                        ? auth.displayName
+                        : S.current.deviceAccountName,
                     style: tt.bodyLarge?.copyWith(fontWeight: FontWeight.w600)),
-                subtitle: Text(auth.emailLabel,
+                subtitle: Text(
+                    AppIdentity.requireRemoteAccount
+                        ? auth.emailLabel
+                        : S.current.deviceAccountSubtitle,
                     style: tt.bodySmall?.copyWith(color: cs.onSurfaceVariant)),
-                trailing: FilledButton.tonal(
-                  onPressed: ctrl.logoutUser,
-                  child: Text(S.current.settings_logout,
-                      style: const TextStyle(fontWeight: FontWeight.bold)),
-                ),
+                trailing: AppIdentity.requireRemoteAccount
+                    ? FilledButton.tonal(
+                        onPressed: ctrl.logoutUser,
+                        child: Text(S.current.settings_logout,
+                            style: const TextStyle(fontWeight: FontWeight.bold)),
+                      )
+                    : null,
               )),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-            child: OutlinedButton.icon(
-              style: OutlinedButton.styleFrom(
-                foregroundColor: cs.error,
-                side: BorderSide(color: cs.error.withValues(alpha: 0.5)),
-              ),
-              icon: const Icon(Icons.delete_forever_rounded),
-              label: Text(S.current.settingsDeleteAccount),
-              onPressed: () => showDialog<void>(
-                context: context,
-                builder: (dialogCtx) => AlertDialog(
-                  title: Text(S.current.settingsDeleteAccount),
-                  content: Text(S.current.settingsDeleteAccountBody),
-                  actions: [
-                    TextButton(
-                      onPressed: () => Navigator.of(dialogCtx).pop(),
-                      child: Text(S.current.cancel),
-                    ),
-                    FilledButton(
-                      style: FilledButton.styleFrom(backgroundColor: cs.error),
-                      onPressed: () async {
-                        Navigator.of(dialogCtx).pop();
-                        final uri = Uri.parse('https://joss.red/profile');
-                        if (await canLaunchUrl(uri)) {
-                          await launchUrl(uri, mode: LaunchMode.externalApplication);
-                        }
-                      },
-                      child: Text(S.current.settingsContinueToPortal),
-                    ),
-                  ],
+          if (AppIdentity.requireRemoteAccount)
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+              child: OutlinedButton.icon(
+                style: OutlinedButton.styleFrom(
+                  foregroundColor: cs.error,
+                  side: BorderSide(color: cs.error.withValues(alpha: 0.5)),
+                ),
+                icon: const Icon(Icons.delete_forever_rounded),
+                label: Text(S.current.settingsDeleteAccount),
+                onPressed: () => showDialog<void>(
+                  context: context,
+                  builder: (dialogCtx) => AlertDialog(
+                    title: Text(S.current.settingsDeleteAccount),
+                    content: Text(S.current.settingsDeleteAccountBody),
+                    actions: [
+                      TextButton(
+                        onPressed: () => Navigator.of(dialogCtx).pop(),
+                        child: Text(S.current.cancel),
+                      ),
+                      FilledButton(
+                        style: FilledButton.styleFrom(backgroundColor: cs.error),
+                        onPressed: () async {
+                          Navigator.of(dialogCtx).pop();
+                          final uri = Uri.parse('https://joss.red/profile');
+                          if (await canLaunchUrl(uri)) {
+                            await launchUrl(uri,
+                                mode: LaunchMode.externalApplication);
+                          }
+                        },
+                        child: Text(S.current.settingsContinueToPortal),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             child: ProfileSwitcher(),
           ),
-          const Divider(height: 1, indent: 16, endIndent: 16),
           SettingsTile(
-            title: S.current.settings_cloud_backup,
-            subtitle: S.current.settings_cloud_backup_desc,
-            leadingIcon: Icons.cloud_sync_rounded,
-            onTap: () => showDialog(
-                    context: context, builder: (_) => const CloudBackupDialog())
-                .whenComplete(() => Get.delete<CloudBackupDialogController>()),
-            trailing: const Icon(Icons.chevron_right_rounded),
+            title: S.current.settings_refresh_visitor_title,
+            subtitle: S.current.settings_refresh_visitor_desc,
+            leadingIcon: Icons.refresh_rounded,
+            onTap: ctrl.refreshDeviceVisitorId,
           ),
-          SettingsTile(
-            title: S.current.settings_local_cloud_title,
-            subtitle: S.current.settings_local_cloud_desc,
-            leadingIcon: Icons.cloud_queue_rounded,
-            onTap: () => showDialog(
-                context: context,
-                builder: (_) => const CloudSyncStatusDialog()),
-            trailing: const Icon(Icons.chevron_right_rounded),
-          ),
-          SettingsTile(
-            title: S.current.settings_my_friends,
-            subtitle: S.current.settings_my_friends_desc,
-            leadingIcon: Icons.people_outline_rounded,
-            onTap: () => Get.to(() => const FriendsManagementScreen()),
-            trailing: const Icon(Icons.chevron_right_rounded),
-          ),
-          SettingsTile(
-            title: S.current.settings_migration_title,
-            subtitle: S.current.settings_migration_desc,
-            leadingIcon: Icons.move_to_inbox_rounded,
-            onTap: () => showDialog(
-                    context: context,
-                    builder: (_) => const LegacyMusicMigrationDialog())
-                .whenComplete(
-                    () => Get.delete<LegacyMusicMigrationDialogController>()),
-            trailing: const Icon(Icons.chevron_right_rounded),
-          ),
+          if (AppIdentity.requireRemoteAccount) ...[
+            const Divider(height: 1, indent: 16, endIndent: 16),
+            SettingsTile(
+              title: S.current.settings_cloud_backup,
+              subtitle: S.current.settings_cloud_backup_desc,
+              leadingIcon: Icons.cloud_sync_rounded,
+              onTap: () => showDialog(
+                      context: context, builder: (_) => const CloudBackupDialog())
+                  .whenComplete(() => Get.delete<CloudBackupDialogController>()),
+              trailing: const Icon(Icons.chevron_right_rounded),
+            ),
+            SettingsTile(
+              title: S.current.settings_local_cloud_title,
+              subtitle: S.current.settings_local_cloud_desc,
+              leadingIcon: Icons.cloud_queue_rounded,
+              onTap: () => showDialog(
+                  context: context,
+                  builder: (_) => const CloudSyncStatusDialog()),
+              trailing: const Icon(Icons.chevron_right_rounded),
+            ),
+            SettingsTile(
+              title: S.current.settings_my_friends,
+              subtitle: S.current.settings_my_friends_desc,
+              leadingIcon: Icons.people_outline_rounded,
+              onTap: () => Get.to(() => const FriendsManagementScreen()),
+              trailing: const Icon(Icons.chevron_right_rounded),
+            ),
+            SettingsTile(
+              title: S.current.settings_migration_title,
+              subtitle: S.current.settings_migration_desc,
+              leadingIcon: Icons.move_to_inbox_rounded,
+              onTap: () => showDialog(
+                      context: context,
+                      builder: (_) => const LegacyMusicMigrationDialog())
+                  .whenComplete(
+                      () => Get.delete<LegacyMusicMigrationDialogController>()),
+              trailing: const Icon(Icons.chevron_right_rounded),
+            ),
+          ],
           const Divider(height: 1, indent: 16, endIndent: 16),
           SettingsTile(
             title: S.current.backupAppData,

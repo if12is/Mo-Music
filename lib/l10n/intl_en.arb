@@ -2674,5 +2674,17 @@
   "bootstrapContinueLocalSubtitle": "Keep your local library without downloading anything.",
   "@bootstrapContinueLocalSubtitle": {
     "description": "bootstrapContinueLocalSubtitle"
+  },
+  "deviceAccountName": "This device",
+  "@deviceAccountName": {
+    "description": "deviceAccountName"
+  },
+  "deviceAccountSubtitle": "Online music on this device, no server login.",
+  "@deviceAccountSubtitle": {
+    "description": "deviceAccountSubtitle"
+  },
+  "deviceOnlineProfileName": "Online music",
+  "@deviceOnlineProfileName": {
+    "description": "deviceOnlineProfileName"
   }
 }
