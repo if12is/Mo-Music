@@ -290,30 +290,41 @@ class DeviceMusicSession extends GetxService {
     await ensureReady();
     final id = normalizeVideoId(videoId);
     Map<String, dynamic> last = {};
+    var sawLoginRequired = false;
     for (final client in _playerClients) {
-      for (final includeVisitor in const [true, false]) {
-        if (!includeVisitor && (visitorId == null || visitorId!.isEmpty)) {
-          continue;
+      try {
+        final result = await _playerWithClient(
+          id,
+          client,
+          languageCode: languageCode,
+          includeVisitor: true,
+        );
+        last = result;
+        if (hasPlayableAudio(result)) return result;
+        final status =
+            _asMap(result['playabilityStatus'])['status']?.toString();
+        sawLoginRequired = sawLoginRequired || status == 'LOGIN_REQUIRED';
+        printINFO('Device player ${client.name} status=$status for $id');
+        if (status == 'LOGIN_REQUIRED') {
+          // Later clients on the same IP will almost always fail the same way.
+          break;
         }
-        try {
-          final result = await _playerWithClient(
-            id,
-            client,
-            languageCode: languageCode,
-            includeVisitor: includeVisitor,
-          );
-          last = result;
-          if (hasPlayableAudio(result)) return result;
-          final status =
-              _asMap(result['playabilityStatus'])['status']?.toString();
-          printINFO(
-            'Device player ${client.name} '
-            '${includeVisitor ? 'with' : 'without'} visitor '
-            'status=$status for $id',
-          );
-        } catch (error) {
-          printINFO('Device player ${client.name} failed: $error');
-        }
+      } catch (error) {
+        printINFO('Device player ${client.name} failed: $error');
+      }
+    }
+    if (sawLoginRequired && visitorId != null && visitorId!.isNotEmpty) {
+      try {
+        final result = await _playerWithClient(
+          id,
+          _playerClients.first,
+          languageCode: languageCode,
+          includeVisitor: false,
+        );
+        last = result;
+        if (hasPlayableAudio(result)) return result;
+      } catch (error) {
+        printINFO('Device player ANDROID without visitor failed: $error');
       }
     }
     return last;

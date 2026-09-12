@@ -75,15 +75,25 @@ class DeviceStreamResolver extends GetxService {
   }) async {
     try {
       _explode ??= YoutubeExplode();
-      final manifest = await _explode!.videos.streamsClient.getManifest(
-        videoId,
-        ytClients: [
-          YoutubeApiClient.androidSdkless,
-          YoutubeApiClient.androidVr,
-          YoutubeApiClient.ios,
-        ],
-        requireWatchPage: true,
-      );
+      late final StreamManifest manifest;
+      try {
+        manifest = await _explode!.videos.streamsClient.getManifest(
+          videoId,
+          requireWatchPage: true,
+        );
+      } catch (error) {
+        printINFO(
+          '[DeviceStreamResolver] androidSdkless explode failed: $error',
+        );
+        manifest = await _explode!.videos.streamsClient.getManifest(
+          videoId,
+          ytClients: [
+            YoutubeApiClient.androidVr,
+            YoutubeApiClient.ios,
+          ],
+          requireWatchPage: true,
+        );
+      }
       final audio = manifest.audioOnly.toList();
       final StreamInfo chosen;
       if (audio.isNotEmpty) {

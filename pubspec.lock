@@ -1495,6 +1495,14 @@ packages:
       url: "https://github.com/anandnet/animated_side_bar.git"
     source: git
     version: "0.0.3"
+  simple_sparse_list:
+    dependency: transitive
+    description:
+      name: simple_sparse_list
+      sha256: aa648fd240fa39b49dcd11c19c266990006006de6699a412de485695910fbc1f
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.4"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -1676,6 +1684,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.0"
+  unicode:
+    dependency: "direct main"
+    description:
+      name: unicode
+      sha256: 48f8b6c50ed70ba61647f4987d56ec505923041956bbdb651db2838ce7b47b58
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.7"
   uri_parser:
     dependency: transitive
     description:
@@ -1884,6 +1900,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.5.0"
+  youtube_explode_dart:
+    dependency: "direct main"
+    description:
+      name: youtube_explode_dart
+      sha256: 10134a53989b2f3dc576121735aec8fc6d88784956f4a2ad1a2525b006373a76
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.1.0"
   yaml:
     dependency: transitive
     description:

@@ -105,6 +105,8 @@ dependencies:
   shared_preferences: ^2.5.5
   mobile_scanner: ^7.4.0
   youtube_explode_dart: ^3.1.0
+  # 1.1.8+ requires archive ^4, which conflicts with archive ^3 in this app.
+  unicode: 1.1.7
 
 dev_dependencies:
   intl_utils: ^2.8.12
