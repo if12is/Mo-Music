@@ -254,7 +254,7 @@ MediaItem parseSong(Map<String, dynamic> result) {
     // Artist popular tracks commonly expose the playable id only inside the
     // thumbnail overlay. A browseId identifies catalog navigation and cannot
     // be sent to the audio resolver as if it were a video id.
-    'videoId': playableVideoId ?? nav(result, navigation_browse_id),
+    'videoId': playableVideoId,
     'playlistId': nav(result, navigation_playlist_id,
         noneIfAbsent: true, funName: "parseSong"),
     'thumbnails': nav(result, thumbnail_renderer) ??
