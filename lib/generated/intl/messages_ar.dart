@@ -1560,5 +1560,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "deviceOnlineProfileName": MessageLookupByLibrary.simpleMessage(
       "موسيقى أونلاين",
     ),
+    "couldNotResolvePlayback": MessageLookupByLibrary.simpleMessage(
+      "تعذر تشغيل هذا المقطع أونلاين.",
+    ),
+    "couldNotResolveDownload": MessageLookupByLibrary.simpleMessage(
+      "تعذر تنزيل هذا المقطع.",
+    ),
   };
 }

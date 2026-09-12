@@ -2684,5 +2684,13 @@
   "deviceOnlineProfileName": "موسيقى أونلاين",
   "@deviceOnlineProfileName": {
     "description": "deviceOnlineProfileName"
+  },
+  "couldNotResolvePlayback": "تعذر تشغيل هذا المقطع أونلاين.",
+  "@couldNotResolvePlayback": {
+    "description": "couldNotResolvePlayback"
+  },
+  "couldNotResolveDownload": "تعذر تنزيل هذا المقطع.",
+  "@couldNotResolveDownload": {
+    "description": "couldNotResolveDownload"
   }
 }

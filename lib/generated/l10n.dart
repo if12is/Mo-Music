@@ -6234,6 +6234,24 @@ class S {
       args: [],
     );
   }
+
+  String get couldNotResolvePlayback {
+    return Intl.message(
+      'Could not play this track online.',
+      name: 'couldNotResolvePlayback',
+      desc: 'couldNotResolvePlayback',
+      args: [],
+    );
+  }
+
+  String get couldNotResolveDownload {
+    return Intl.message(
+      'Could not download this track.',
+      name: 'couldNotResolveDownload',
+      desc: 'couldNotResolveDownload',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

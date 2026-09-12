@@ -2370,5 +2370,13 @@
   "welcome_title": "Tu música, a tu manera",
   "@welcome_title": {
     "description": "welcome_title"
+  },
+  "couldNotResolvePlayback": "No se pudo reproducir esta pista en línea.",
+  "@couldNotResolvePlayback": {
+    "description": "couldNotResolvePlayback"
+  },
+  "couldNotResolveDownload": "No se pudo descargar esta pista.",
+  "@couldNotResolveDownload": {
+    "description": "couldNotResolveDownload"
   }
 }
