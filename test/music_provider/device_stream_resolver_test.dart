@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:estrella_music/services/music/device_music_session.dart';
+import 'package:estrella_music/services/music/device_stream_resolver.dart';
 
 void main() {
   test('strips Music prefixes and watch URLs down to a video id', () {
@@ -52,6 +53,29 @@ void main() {
           'hlsManifestUrl': 'https://manifest.googlevideo.com/api/manifest/hls',
         },
       }),
+      isTrue,
+    );
+  });
+
+  test('rejects HLS manifests that just_audio cannot start', () {
+    expect(
+      DeviceStreamResolver.isProgressiveAudioUri(
+        Uri.parse('https://manifest.googlevideo.com/api/manifest/hls_playlist'),
+        mimeType: 'application/x-mpegURL',
+      ),
+      isFalse,
+    );
+    expect(
+      DeviceStreamResolver.isProgressiveAudioUri(
+        Uri.parse('https://example.com/audio.m3u8'),
+      ),
+      isFalse,
+    );
+    expect(
+      DeviceStreamResolver.isProgressiveAudioUri(
+        Uri.parse('https://googlevideo.com/videoplayback?id=1'),
+        mimeType: 'audio/mp4',
+      ),
       isTrue,
     );
   });
