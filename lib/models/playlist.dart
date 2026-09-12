@@ -52,7 +52,7 @@ class Playlist {
   final String? profileId;
   final String sourceId;
   static const thumbPlaceholderUrl =
-      "https://raw.githubusercontent.com/if12is/Mo-Music/dev/assets/icons/song.png";
+      "https://raw.githubusercontent.com/if12is/Mo-Music/master/assets/icons/song.png";
 
   factory Playlist.fromJson(Map<dynamic, dynamic> json) {
     final thumbnailUrl = _thumbnailUrlFromJson(json);

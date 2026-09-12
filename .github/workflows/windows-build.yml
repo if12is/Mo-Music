@@ -22,7 +22,7 @@ jobs:
         shell: bash
         run: |
           if [ -z "${{ secrets.ENV_FILE }}" ]; then
-            echo "UPDATE_CHECK_URL=https://raw.githubusercontent.com/if12is/Mo-Music/dev/distribution/update-check.json" > .env
+            echo "UPDATE_CHECK_URL=https://raw.githubusercontent.com/if12is/Mo-Music/master/distribution/update-check.json" > .env
           else
             echo "${{ secrets.ENV_FILE }}" > .env
           fi

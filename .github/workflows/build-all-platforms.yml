@@ -73,7 +73,7 @@ jobs:
           if [[ -n "$ENV_FILE_CONTENT" ]]; then
             printf '%s' "$ENV_FILE_CONTENT" > .env
           else
-            printf '%s\n' 'UPDATE_CHECK_URL=https://raw.githubusercontent.com/if12is/Mo-Music/dev/distribution/update-check.json' > .env
+            printf '%s\n' 'UPDATE_CHECK_URL=https://raw.githubusercontent.com/if12is/Mo-Music/master/distribution/update-check.json' > .env
           fi
       - run: flutter pub get
       - run: dart analyze lib
@@ -98,7 +98,7 @@ jobs:
         env:
           ENV_FILE_CONTENT: ${{ secrets.ENV_FILE }}
         run: |
-          if [[ -n "$ENV_FILE_CONTENT" ]]; then printf '%s' "$ENV_FILE_CONTENT" > .env; else printf '%s\n' 'UPDATE_CHECK_URL=https://raw.githubusercontent.com/if12is/Mo-Music/dev/distribution/update-check.json' > .env; fi
+          if [[ -n "$ENV_FILE_CONTENT" ]]; then printf '%s' "$ENV_FILE_CONTENT" > .env; else printf '%s\n' 'UPDATE_CHECK_URL=https://raw.githubusercontent.com/if12is/Mo-Music/master/distribution/update-check.json' > .env; fi
       - name: Configure Firebase
         shell: bash
         env:
@@ -174,7 +174,7 @@ jobs:
         env:
           ENV_FILE_CONTENT: ${{ secrets.ENV_FILE }}
         run: |
-          if [[ -n "$ENV_FILE_CONTENT" ]]; then printf '%s' "$ENV_FILE_CONTENT" > .env; else printf '%s\n' 'UPDATE_CHECK_URL=https://raw.githubusercontent.com/if12is/Mo-Music/dev/distribution/update-check.json' > .env; fi
+          if [[ -n "$ENV_FILE_CONTENT" ]]; then printf '%s' "$ENV_FILE_CONTENT" > .env; else printf '%s\n' 'UPDATE_CHECK_URL=https://raw.githubusercontent.com/if12is/Mo-Music/master/distribution/update-check.json' > .env; fi
       - run: flutter pub get
       - name: Build Linux application
         run: flutter build linux --release
@@ -215,7 +215,7 @@ jobs:
         env:
           ENV_FILE_CONTENT: ${{ secrets.ENV_FILE }}
         run: |
-          if [[ -n "$ENV_FILE_CONTENT" ]]; then printf '%s' "$ENV_FILE_CONTENT" > .env; else printf '%s\n' 'UPDATE_CHECK_URL=https://raw.githubusercontent.com/if12is/Mo-Music/dev/distribution/update-check.json' > .env; fi
+          if [[ -n "$ENV_FILE_CONTENT" ]]; then printf '%s' "$ENV_FILE_CONTENT" > .env; else printf '%s\n' 'UPDATE_CHECK_URL=https://raw.githubusercontent.com/if12is/Mo-Music/master/distribution/update-check.json' > .env; fi
       - run: flutter pub get
       - name: Build Windows application
         run: flutter build windows --release
@@ -250,7 +250,7 @@ jobs:
         env:
           ENV_FILE_CONTENT: ${{ secrets.ENV_FILE }}
         run: |
-          if [[ -n "$ENV_FILE_CONTENT" ]]; then printf '%s' "$ENV_FILE_CONTENT" > .env; else printf '%s\n' 'UPDATE_CHECK_URL=https://raw.githubusercontent.com/if12is/Mo-Music/dev/distribution/update-check.json' > .env; fi
+          if [[ -n "$ENV_FILE_CONTENT" ]]; then printf '%s' "$ENV_FILE_CONTENT" > .env; else printf '%s\n' 'UPDATE_CHECK_URL=https://raw.githubusercontent.com/if12is/Mo-Music/master/distribution/update-check.json' > .env; fi
       - run: flutter pub get
       - name: Patch audiotags podspec
         shell: bash

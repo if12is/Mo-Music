@@ -18,8 +18,9 @@ class AppIdentity {
       'https://api.github.com/repos/$githubSlug/tags';
   static const String latestReleaseApiUrl =
       'https://api.github.com/repos/$githubSlug/releases/latest';
+  static const String defaultBranch = 'master';
   static const String updateManifestUrl =
-      'https://raw.githubusercontent.com/$githubSlug/dev/distribution/update-check.json';
+      'https://raw.githubusercontent.com/$githubSlug/$defaultBranch/distribution/update-check.json';
   static const String artifactPrefix = 'MoMusic';
   static const String androidApplicationId = 'com.if12is.momusic';
   static const String urlScheme = 'momusic';
