@@ -11,6 +11,7 @@ import 'package:estrella_music/music_provider/models/playback_source.dart';
 import 'package:estrella_music/music_provider/models/provider_capabilities.dart';
 import 'package:estrella_music/music_provider/models/provider_entities.dart';
 import 'package:estrella_music/profiles/profile_manager.dart';
+import 'package:estrella_music/services/music/device_music_session.dart';
 import 'package:estrella_music/services/music/device_stream_resolver.dart';
 import 'package:estrella_music/services/storage/sqlite_store.dart';
 
@@ -613,8 +614,12 @@ class MusicCatalogService extends GetxService {
         providerId: item.extras?['providerId']?.toString() ?? activeProviderId,
         profileId: item.extras?['profileId']?.toString() ?? activeProfileId,
         sourceId: _firstNonEmpty([
-          item.extras?['sourceId']?.toString(),
+          if (DeviceMusicSession.isVideoId(item.extras?['videoId']?.toString()))
+            item.extras?['videoId']?.toString(),
+          if (DeviceMusicSession.isVideoId(item.extras?['sourceId']?.toString()))
+            item.extras?['sourceId']?.toString(),
           item.extras?['videoId']?.toString(),
+          item.extras?['sourceId']?.toString(),
           item.id,
         ]),
       );

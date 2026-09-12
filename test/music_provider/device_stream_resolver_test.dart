@@ -23,6 +23,12 @@ void main() {
       DeviceMusicSession.normalizeVideoId('RDAMVMdQw4w9WgXcQ'),
       'dQw4w9WgXcQ',
     );
+    expect(
+      DeviceMusicSession.normalizeVideoId('MPREb_notAVideoId'),
+      'MPREb_notAVideoId',
+    );
+    expect(DeviceMusicSession.isVideoId('dQw4w9WgXcQ'), isTrue);
+    expect(DeviceMusicSession.isVideoId('MPREb_notAVideoId'), isFalse);
   });
 
   test('detects playable audio URLs in a player response', () {

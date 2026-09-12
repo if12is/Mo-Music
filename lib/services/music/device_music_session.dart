@@ -171,11 +171,25 @@ class DeviceMusicSession extends GetxService {
     };
   }
 
-  /// YouTube Music sometimes prefixes official-audio ids with MPED.
+  static final _videoIdPattern = RegExp(r'^[A-Za-z0-9_-]{11}$');
+
+  static bool isVideoId(String? raw) {
+    final id = raw?.trim() ?? '';
+    return _videoIdPattern.hasMatch(id);
+  }
+
+  /// YouTube Music sometimes prefixes official-audio ids with MPED / radio ids.
+  /// Do not slice arbitrary browse/playlist ids down to 11 characters.
   static String normalizeVideoId(String raw) {
     var id = raw.trim();
     if (id.toUpperCase().startsWith('MPED')) {
       id = id.substring(4);
+    }
+    for (final prefix in const ['RDAMVM', 'RDAMNM']) {
+      if (id.startsWith(prefix)) {
+        id = id.substring(prefix.length);
+        break;
+      }
     }
     final queryId = Uri.tryParse(id)?.queryParameters['v'];
     if (queryId != null && queryId.isNotEmpty) {
@@ -184,11 +198,7 @@ class DeviceMusicSession extends GetxService {
     final match = RegExp(r'(?:youtu\.be/|v=|/vi/|/embed/)([A-Za-z0-9_-]{11})')
         .firstMatch(id);
     if (match != null) return match.group(1)!;
-    if (RegExp(r'^[A-Za-z0-9_-]{11}$').hasMatch(id)) return id;
-    if (id.length > 11) {
-      final tail = id.substring(id.length - 11);
-      if (RegExp(r'^[A-Za-z0-9_-]{11}$').hasMatch(tail)) return tail;
-    }
+    if (_videoIdPattern.hasMatch(id)) return id;
     return id;
   }
 

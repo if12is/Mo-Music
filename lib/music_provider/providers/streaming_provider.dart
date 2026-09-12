@@ -679,7 +679,10 @@ class StreamingProvider
         const StreamingPlaybackContext();
 
     if (!await _hasRemoteBackend()) {
-      final deviceSource = await _resolveViaDevicePlayer(track.identity.sourceId);
+      final deviceSource = await _resolveViaDevicePlayer(
+        track.identity.sourceId,
+        metadata: track.metadata,
+      );
       if (deviceSource != null) return deviceSource;
     }
 
@@ -775,6 +778,7 @@ class StreamingProvider
       final deviceSource = await _resolveViaDevicePlayer(
         track.identity.sourceId,
         requestedFormat: format,
+        metadata: track.metadata,
       );
       if (deviceSource != null) return deviceSource;
     }
@@ -836,7 +840,7 @@ class StreamingProvider
 
   ProviderTrack _track(Map<String, dynamic> json) {
     final sourceId =
-        _first(json, const ['sourceId', 'trackId', 'videoId', 'id']);
+        _first(json, const ['videoId', 'sourceId', 'trackId', 'id']);
     final artists = _list(json['artists']);
     final artist = json['artist']?.toString() ??
         (artists.isEmpty
@@ -910,20 +914,28 @@ class StreamingProvider
   Future<PlaybackSource?> _resolveViaDevicePlayer(
     String sourceId, {
     String? requestedFormat,
+    Map<String, dynamic>? metadata,
   }) async {
-    try {
-      return await DeviceStreamResolver.resolve().resolveSource(
-        sourceId,
-        requestedFormat: requestedFormat,
-        parsePlayerResponse: (response) => _playbackSourceFromPlayerResponse(
-          response,
+    final candidates = <String>[
+      metadata?['videoId']?.toString() ?? '',
+      sourceId,
+    ].where((id) => id.isNotEmpty).toSet();
+    for (final candidate in candidates) {
+      try {
+        final source = await DeviceStreamResolver.resolve().resolveSource(
+          candidate,
           requestedFormat: requestedFormat,
-        ),
-      );
-    } catch (error) {
-      printINFO('[StreamingProvider] Device player failed: $error');
-      return null;
+          parsePlayerResponse: (response) => _playbackSourceFromPlayerResponse(
+            response,
+            requestedFormat: requestedFormat,
+          ),
+        );
+        if (source != null) return source;
+      } catch (error) {
+        printINFO('[StreamingProvider] Device player failed: $error');
+      }
     }
+    return null;
   }
 
   String _playbackResolveError() {
