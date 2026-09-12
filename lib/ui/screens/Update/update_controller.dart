@@ -4,38 +4,68 @@ import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
+import 'package:open_file/open_file.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:estrella_music/app_identity.dart';
 import 'package:estrella_music/generated/l10n.dart';
 import 'package:estrella_music/services/system/update_service.dart';
 
-/// Estados posibles del proceso de descarga/instalación.
 enum DownloadState { idle, downloading, done, installing, error }
 
 class UpdateController extends GetxController {
   final updateInfo = Rxn<Map<String, dynamic>>();
   final isLoading = true.obs;
   final error = ''.obs;
+  final currentVersion = ''.obs;
 
-  // — Descarga —
   final downloadProgress = 0.0.obs;
+  final downloadedBytes = 0.obs;
+  final totalBytes = 0.obs;
   final downloadState = DownloadState.idle.obs;
   final downloadError = ''.obs;
 
   String? _localFilePath;
+  CancelToken? _cancelToken;
 
   final _notifications = FlutterLocalNotificationsPlugin();
 
-  // ──────────────────────────────────────────────
-  // Ciclo de vida
-  // ──────────────────────────────────────────────
+  String get latestVersion =>
+      updateInfo.value?['Version']?.toString() ?? '';
+
+  String get notes {
+    final raw = updateInfo.value?['Notas']?.toString() ?? '';
+    return raw.trim();
+  }
+
+  bool get canInstallInApp =>
+      GetPlatform.isAndroid || GetPlatform.isWindows;
+
+  bool get canOpenDownloadedFile =>
+      _localFilePath != null && File(_localFilePath!).existsSync();
+
+  String get progressLabel {
+    if (totalBytes.value > 0) {
+      return '${_formatBytes(downloadedBytes.value)} / ${_formatBytes(totalBytes.value)}';
+    }
+    if (downloadedBytes.value > 0) {
+      return _formatBytes(downloadedBytes.value);
+    }
+    return '';
+  }
 
   @override
   void onInit() {
     super.onInit();
     _initNotifications();
     fetchUpdateInfo();
+  }
+
+  @override
+  void onClose() {
+    _cancelToken?.cancel();
+    super.onClose();
   }
 
   Future<void> _initNotifications() async {
@@ -48,12 +78,33 @@ class UpdateController extends GetxController {
     await _notifications.initialize(initSettings);
   }
 
-  // ──────────────────────────────────────────────
-  // Datos de actualización
-  // ──────────────────────────────────────────────
+  Future<void> fetchUpdateInfo() async {
+    try {
+      isLoading(true);
+      error('');
+      final package = await PackageInfo.fromPlatform();
+      currentVersion.value = package.version;
+
+      final info = await _loadUpdateInfo();
+      if (info == null) {
+        error(S.current.updateCheckUnavailable);
+        return;
+      }
+      updateInfo.value = info;
+    } catch (e) {
+      error(e.toString());
+    } finally {
+      isLoading(false);
+    }
+  }
 
   Future<Map<String, dynamic>?> _loadUpdateInfo() async {
-    final dio = Dio();
+    final dio = Dio(
+      BaseOptions(
+        followRedirects: true,
+        headers: {'user-agent': AppIdentity.userAgent},
+      ),
+    );
     final candidates = <String>{
       if ((dotenv.env['UPDATE_CHECK_URL'] ?? '').trim().isNotEmpty)
         dotenv.env['UPDATE_CHECK_URL']!.trim(),
@@ -76,7 +127,7 @@ class UpdateController extends GetxController {
           return {
             'Version': version.toString().replaceFirst(RegExp(r'^[vV]'), ''),
             'Descarga': map['Descarga'] ?? AppIdentity.latestDownloadBase,
-            'Notas': map['Notas'] ?? map['body'] ?? '',
+            'Notas': (map['Notas'] ?? map['body'] ?? '').toString(),
           };
         }
       } catch (_) {}
@@ -91,69 +142,54 @@ class UpdateController extends GetxController {
     };
   }
 
-  Future<void> fetchUpdateInfo() async {
-    try {
-      isLoading(true);
-      error('');
-
-      final info = await _loadUpdateInfo();
-      if (info == null) {
-        error(S.current.updateCheckUnavailable);
-        return;
-      }
-      updateInfo.value = info;
-    } catch (e) {
-      error(e.toString());
-    } finally {
-      isLoading(false);
-    }
-  }
-
-  // ──────────────────────────────────────────────
-  // URLs y nombres por plataforma
-  // ──────────────────────────────────────────────
-
-  /// Extrae la URL de descarga correcta según la plataforma actual.
-  /// Usa el campo [Descarga] de la API como base para derivar el path de releases.
-  String? get platformDownloadUrl {
+  List<String> get platformDownloadUrls {
     final data = updateInfo.value;
-    if (data == null) return null;
-
-    final baseUrl = _extractDownloadBase(data['Descarga'] as String?);
-    if (baseUrl == null) return null;
+    final baseUrl = _extractDownloadBase(data?['Descarga'] as String?);
+    if (baseUrl == null) return const [];
 
     if (GetPlatform.isAndroid) {
-      return '$baseUrl${AppIdentity.androidApkName()}';
+      return [
+        '$baseUrl${AppIdentity.androidApkName()}',
+        '${baseUrl}app-release.apk',
+        '$baseUrl${AppIdentity.androidApkName(universal: false)}',
+      ];
     }
     if (GetPlatform.isWindows) {
-      return '$baseUrl${AppIdentity.windowsInstallerName()}';
+      return [
+        '$baseUrl${AppIdentity.windowsInstallerName()}',
+        '${baseUrl}MoMusicInstaller.exe',
+      ];
     }
-    if (GetPlatform.isLinux) return '$baseUrl${AppIdentity.linuxTarballName()}';
-    if (GetPlatform.isMacOS) return '$baseUrl${AppIdentity.macosZipName()}';
-
-    return data['Descarga'] as String? ?? AppIdentity.latestReleaseUrl;
+    if (GetPlatform.isLinux) {
+      return [
+        '$baseUrl${AppIdentity.linuxTarballName()}',
+        '${baseUrl}MoMusic_Linux_Portable.tar.gz',
+      ];
+    }
+    if (GetPlatform.isMacOS) {
+      return [
+        '$baseUrl${AppIdentity.macosZipName()}',
+        '${baseUrl}MoMusic_macOS_Portable.zip',
+      ];
+    }
+    if (GetPlatform.isIOS) {
+      return [
+        '$baseUrl${AppIdentity.iosIpaName()}',
+        '${baseUrl}MoMusic.ipa',
+      ];
+    }
+    return const [];
   }
 
-  /// Nombre del archivo que se descargará en la plataforma actual.
   String get platformFileName {
     if (GetPlatform.isAndroid) return AppIdentity.androidApkName();
     if (GetPlatform.isWindows) return AppIdentity.windowsInstallerName();
     if (GetPlatform.isLinux) return AppIdentity.linuxTarballName();
     if (GetPlatform.isMacOS) return AppIdentity.macosZipName();
+    if (GetPlatform.isIOS) return AppIdentity.iosIpaName();
     return AppIdentity.artifactPrefix;
   }
 
-  /// Etiqueta legible del botón de acción principal según plataforma.
-  String get platformActionLabel {
-    if (GetPlatform.isIOS) return S.current.updateIosGuide;
-    if (GetPlatform.isLinux || GetPlatform.isMacOS) {
-      return S.current.updateDownloadGithub;
-    }
-    return S.current.updateAction;
-  }
-
-  /// Devuelve el directorio base de GitHub Releases terminado en '/'.
-  /// Ejemplo: https://github.com/if12is/Mo-Music/releases/latest/download/
   String? _extractDownloadBase(String? rawUrl) {
     if (rawUrl == null || rawUrl.trim().isEmpty) {
       return AppIdentity.latestDownloadBase;
@@ -175,126 +211,138 @@ class UpdateController extends GetxController {
     }
   }
 
-  // ──────────────────────────────────────────────
-  // Acción principal según plataforma
-  // ──────────────────────────────────────────────
-
   Future<void> startUpdate() async {
-    if (GetPlatform.isAndroid) {
-      final url = platformDownloadUrl ?? AppIdentity.latestReleaseUrl;
-      await _openBrowser(url);
-      return;
-    }
-
-    if (GetPlatform.isIOS) {
-      final data = updateInfo.value;
-      final url = data?['Descarga'] as String? ?? AppIdentity.latestReleaseUrl;
-      await _openBrowser(url);
-      return;
-    }
-
-    // Linux / macOS → descarga desde el navegador
-    if (GetPlatform.isLinux || GetPlatform.isMacOS) {
-      final url = platformDownloadUrl;
-      if (url != null) await _openBrowser(url);
-      return;
-    }
-
-    // Windows → descarga dentro de la app
     await _downloadInApp();
+    if (downloadState.value == DownloadState.done && canInstallInApp) {
+      await installUpdate();
+    }
   }
 
-  /// Lanza la instalación del archivo ya descargado (Windows).
   Future<void> installUpdate() async {
-    if (_localFilePath == null) return;
+    if (_localFilePath == null || !File(_localFilePath!).existsSync()) {
+      downloadError(S.current.updateInstallFailed);
+      downloadState.value = DownloadState.error;
+      return;
+    }
 
     try {
       downloadState.value = DownloadState.installing;
 
-      if (GetPlatform.isWindows) {
-        // En Windows ejecutamos directamente el .exe descargado
+      if (GetPlatform.isAndroid) {
+        final status = await Permission.requestInstallPackages.request();
+        if (status.isPermanentlyDenied) {
+          await openAppSettings();
+        }
+        final result = await OpenFile.open(
+          _localFilePath!,
+          type: 'application/vnd.android.package-archive',
+        );
+        if (result.type != ResultType.done) {
+          throw Exception(result.message);
+        }
+      } else if (GetPlatform.isWindows) {
         await Process.start(
           _localFilePath!,
-          [],
+          const [],
           runInShell: false,
           mode: ProcessStartMode.detached,
         );
-        downloadState.value = DownloadState.idle;
+      } else {
+        final result = await OpenFile.open(_localFilePath!);
+        if (result.type != ResultType.done) {
+          throw Exception(result.message);
+        }
       }
+      downloadState.value = DownloadState.done;
     } catch (e) {
-      downloadError(e.toString());
+      downloadError(S.current.updateInstallFailed);
       downloadState.value = DownloadState.error;
     }
   }
 
-  /// Reinicia el estado de descarga para permitir reintentar.
   void retryDownload() {
     downloadState.value = DownloadState.idle;
     downloadError('');
     downloadProgress.value = 0.0;
+    downloadedBytes.value = 0;
+    totalBytes.value = 0;
     _localFilePath = null;
   }
 
-  // ──────────────────────────────────────────────
-  // Descarga in-app (Android y Windows)
-  // ──────────────────────────────────────────────
-
   Future<void> _downloadInApp() async {
-    final url = platformDownloadUrl;
-    if (url == null) {
+    final urls = platformDownloadUrls;
+    if (urls.isEmpty) {
       downloadError(S.current.updateDownloadUnavailable);
       downloadState.value = DownloadState.error;
       return;
     }
 
-    try {
-      downloadState.value = DownloadState.downloading;
-      downloadProgress.value = 0.0;
-      downloadError('');
+    downloadState.value = DownloadState.downloading;
+    downloadProgress.value = 0.0;
+    downloadedBytes.value = 0;
+    totalBytes.value = 0;
+    downloadError('');
+    _cancelToken?.cancel();
+    _cancelToken = CancelToken();
 
-      // Elegir directorio de guardado
-      final Directory saveDir;
-      if (GetPlatform.isAndroid) {
-        // Android permite escribir aquí sin pedir almacenamiento: es el
-        // directorio externo privado de la app.
-        saveDir = await getExternalStorageDirectory() ??
-            await getApplicationDocumentsDirectory();
-      } else {
-        saveDir = await getApplicationDocumentsDirectory();
-      }
-
-      final filePath = '${saveDir.path}/$platformFileName';
-      _localFilePath = filePath;
-
-      final dio = Dio();
-      await dio.download(
-        url,
-        filePath,
-        onReceiveProgress: (received, total) {
-          if (total > 0) {
-            downloadProgress.value = received / total;
-          }
-        },
-      );
-
-      downloadState.value = DownloadState.done;
-
-      // Notificación al terminar en Android
-      if (GetPlatform.isAndroid) {
-        await _showDownloadCompleteNotification();
-      }
-    } on DioException catch (e) {
-      downloadError(S.current.updateNetworkError(e.message ?? ''));
-      downloadState.value = DownloadState.error;
-    } catch (e) {
-      downloadError(e.toString());
-      downloadState.value = DownloadState.error;
+    final Directory saveDir;
+    if (GetPlatform.isAndroid) {
+      saveDir = await getExternalStorageDirectory() ??
+          await getApplicationDocumentsDirectory();
+    } else {
+      saveDir = await getApplicationDocumentsDirectory();
     }
-  }
+    final filePath = '${saveDir.path}/$platformFileName';
+    _localFilePath = filePath;
 
-  // ──────────────────────────────────────────────
-  // Notificaciones
-  // ──────────────────────────────────────────────
+    Object? lastError;
+    for (final url in urls) {
+      try {
+        final dio = Dio(
+          BaseOptions(
+            followRedirects: true,
+            receiveTimeout: const Duration(minutes: 8),
+            headers: {
+              'user-agent': AppIdentity.userAgent,
+              'accept': '*/*',
+            },
+          ),
+        );
+        await dio.download(
+          url,
+          filePath,
+          cancelToken: _cancelToken,
+          onReceiveProgress: (received, total) {
+            downloadedBytes.value = received;
+            if (total > 0) {
+              totalBytes.value = total;
+              downloadProgress.value = received / total;
+            }
+          },
+        );
+        final file = File(filePath);
+        if (!file.existsSync() || file.lengthSync() < 2048) {
+          throw Exception('empty download');
+        }
+        downloadProgress.value = 1;
+        downloadState.value = DownloadState.done;
+        if (GetPlatform.isAndroid) {
+          await _showDownloadCompleteNotification();
+        }
+        return;
+      } on DioException catch (e) {
+        if (e.type == DioExceptionType.cancel) return;
+        lastError = e;
+      } catch (e) {
+        lastError = e;
+      }
+    }
+
+    downloadError(
+      S.current.updateNetworkError(lastError?.toString() ?? ''),
+    );
+    downloadState.value = DownloadState.error;
+  }
 
   Future<void> _showDownloadCompleteNotification() async {
     final androidDetails = AndroidNotificationDetails(
@@ -306,23 +354,20 @@ class UpdateController extends GetxController {
       icon: '@mipmap/ic_launcher',
       playSound: true,
     );
-    final notifDetails = NotificationDetails(android: androidDetails);
     await _notifications.show(
       1001,
       S.current.updateReadyTitle,
       S.current.updateReadyBody,
-      notifDetails,
+      NotificationDetails(android: androidDetails),
     );
   }
 
-  // ──────────────────────────────────────────────
-  // Helpers
-  // ──────────────────────────────────────────────
-
-  Future<void> _openBrowser(String url) async {
-    final uri = Uri.parse(url);
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri, mode: LaunchMode.externalApplication);
+  static String _formatBytes(int bytes) {
+    if (bytes <= 0) return '0 B';
+    if (bytes < 1024) return '$bytes B';
+    if (bytes < 1024 * 1024) {
+      return '${(bytes / 1024).toStringAsFixed(0)} KB';
     }
+    return '${(bytes / (1024 * 1024)).toStringAsFixed(1)} MB';
   }
 }

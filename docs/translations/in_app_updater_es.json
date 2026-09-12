@@ -1,0 +1,14 @@
+{
+  "updateNewVersionTitle": "Nueva versión",
+  "updateInAppSubtitle": "Descarga e instala dentro de la app. Sin navegador.",
+  "updateDownloadNow": "Descargar actualización",
+  "updateDownloading": "Descargando…",
+  "updateInstallNow": "Instalar ahora",
+  "updateInstalling": "Instalando…",
+  "updateLater": "Más tarde",
+  "updateWhatsNew": "Novedades",
+  "updateOpenFile": "Abrir archivo",
+  "updateInstallFailed": "No se pudo iniciar el instalador.",
+  "updateBannerSubtitle": "Descarga la actualización dentro de la app",
+  "updateFromTo": "{from} → {to}"
+}

@@ -16,7 +16,7 @@ import 'package:estrella_music/generated/l10n.dart';
 import '/models/quick_picks.dart';
 import 'package:estrella_music/music_provider/music_catalog_service.dart';
 import 'package:estrella_music/ui/screens/Settings/settings_screen_controller.dart';
-import '/ui/widgets/new_version_dialog.dart';
+import 'package:estrella_music/ui/screens/Update/update_screen.dart';
 
 class HomeScreenController extends GetxController {
   static const supportedStartupTabs = {0, 1, 3, 4, 5};
@@ -817,9 +817,7 @@ class HomeScreenController extends GetxController {
       newVersionCheck(Get.find<SettingsScreenController>().currentVersion.value)
           .then((value) {
         if (value) {
-          showDialog(
-              context: Get.context!,
-              builder: (context) => const NewVersionDialog());
+          UpdateScreen.open();
         }
       });
     }

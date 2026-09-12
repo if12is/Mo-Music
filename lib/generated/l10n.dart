@@ -6252,6 +6252,114 @@ class S {
       args: [],
     );
   }
+
+  String get updateNewVersionTitle {
+    return Intl.message(
+      'New version',
+      name: 'updateNewVersionTitle',
+      desc: 'updateNewVersionTitle',
+      args: [],
+    );
+  }
+
+  String get updateInAppSubtitle {
+    return Intl.message(
+      'Download and install inside the app. No browser needed.',
+      name: 'updateInAppSubtitle',
+      desc: 'updateInAppSubtitle',
+      args: [],
+    );
+  }
+
+  String get updateDownloadNow {
+    return Intl.message(
+      'Download update',
+      name: 'updateDownloadNow',
+      desc: 'updateDownloadNow',
+      args: [],
+    );
+  }
+
+  String get updateDownloading {
+    return Intl.message(
+      'Downloading…',
+      name: 'updateDownloading',
+      desc: 'updateDownloading',
+      args: [],
+    );
+  }
+
+  String get updateInstallNow {
+    return Intl.message(
+      'Install now',
+      name: 'updateInstallNow',
+      desc: 'updateInstallNow',
+      args: [],
+    );
+  }
+
+  String get updateInstalling {
+    return Intl.message(
+      'Installing…',
+      name: 'updateInstalling',
+      desc: 'updateInstalling',
+      args: [],
+    );
+  }
+
+  String get updateLater {
+    return Intl.message(
+      'Later',
+      name: 'updateLater',
+      desc: 'updateLater',
+      args: [],
+    );
+  }
+
+  String get updateWhatsNew {
+    return Intl.message(
+      "What's new",
+      name: 'updateWhatsNew',
+      desc: 'updateWhatsNew',
+      args: [],
+    );
+  }
+
+  String get updateOpenFile {
+    return Intl.message(
+      'Open file',
+      name: 'updateOpenFile',
+      desc: 'updateOpenFile',
+      args: [],
+    );
+  }
+
+  String get updateInstallFailed {
+    return Intl.message(
+      'Could not start the installer.',
+      name: 'updateInstallFailed',
+      desc: 'updateInstallFailed',
+      args: [],
+    );
+  }
+
+  String get updateBannerSubtitle {
+    return Intl.message(
+      'Download the update inside the app',
+      name: 'updateBannerSubtitle',
+      desc: 'updateBannerSubtitle',
+      args: [],
+    );
+  }
+
+  String updateFromTo(String from, String to) {
+    return Intl.message(
+      '$from → $to',
+      name: 'updateFromTo',
+      desc: 'updateFromTo',
+      args: [from, to],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

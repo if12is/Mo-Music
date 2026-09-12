@@ -2692,5 +2692,61 @@
   "couldNotResolveDownload": "تعذر تنزيل هذا المقطع.",
   "@couldNotResolveDownload": {
     "description": "couldNotResolveDownload"
+  },
+  "updateNewVersionTitle": "إصدار جديد",
+  "@updateNewVersionTitle": {
+    "description": "updateNewVersionTitle"
+  },
+  "updateInAppSubtitle": "نزّل وثبّت من داخل التطبيق. بدون متصفح.",
+  "@updateInAppSubtitle": {
+    "description": "updateInAppSubtitle"
+  },
+  "updateDownloadNow": "تنزيل التحديث",
+  "@updateDownloadNow": {
+    "description": "updateDownloadNow"
+  },
+  "updateDownloading": "جارٍ التنزيل…",
+  "@updateDownloading": {
+    "description": "updateDownloading"
+  },
+  "updateInstallNow": "تثبيت الآن",
+  "@updateInstallNow": {
+    "description": "updateInstallNow"
+  },
+  "updateInstalling": "جارٍ التثبيت…",
+  "@updateInstalling": {
+    "description": "updateInstalling"
+  },
+  "updateLater": "لاحقًا",
+  "@updateLater": {
+    "description": "updateLater"
+  },
+  "updateWhatsNew": "ما الجديد",
+  "@updateWhatsNew": {
+    "description": "updateWhatsNew"
+  },
+  "updateOpenFile": "فتح الملف",
+  "@updateOpenFile": {
+    "description": "updateOpenFile"
+  },
+  "updateInstallFailed": "تعذر بدء التثبيت.",
+  "@updateInstallFailed": {
+    "description": "updateInstallFailed"
+  },
+  "updateBannerSubtitle": "نزّل التحديث من داخل التطبيق",
+  "@updateBannerSubtitle": {
+    "description": "updateBannerSubtitle"
+  },
+  "updateFromTo": "من {from} إلى {to}",
+  "@updateFromTo": {
+    "description": "updateFromTo",
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      }
+    }
   }
 }

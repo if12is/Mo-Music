@@ -22,6 +22,7 @@ import 'components/custom_expansion_tile.dart';
 import 'settings_screen_controller.dart';
 import 'package:estrella_music/app_identity.dart';
 import 'package:estrella_music/generated/l10n.dart';
+import 'package:estrella_music/ui/screens/Update/update_screen.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key, this.isBottomNavActive = false});
@@ -141,21 +142,18 @@ class SettingsScreen extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(16)),
                       child: ListTile(
-                        onTap: () => launchUrl(
-                            Uri.parse(
-                                AppIdentity.latestReleaseUrl),
-                            mode: LaunchMode.externalApplication),
-                        leading: Icon(Icons.download_rounded,
+                        onTap: () => UpdateScreen.open(),
+                        leading: Icon(Icons.system_update_alt_rounded,
                             color: cs.onPrimaryContainer),
                         title: Text(S.current.newVersionAvailable,
                             style: TextStyle(
                                 color: cs.onPrimaryContainer,
                                 fontWeight: FontWeight.w600)),
-                        subtitle: Text(S.current.goToDownloadPage,
+                        subtitle: Text(S.current.updateBannerSubtitle,
                             style: TextStyle(
                                 color: cs.onPrimaryContainer
                                     .withValues(alpha: 0.7))),
-                        trailing: Icon(Icons.open_in_new_rounded,
+                        trailing: Icon(Icons.chevron_right_rounded,
                             color: cs.onPrimaryContainer),
                       ),
                     ),
