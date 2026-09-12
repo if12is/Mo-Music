@@ -65,6 +65,14 @@ class DeviceStreamResolver extends GetxService {
     final videoId = DeviceMusicSession.normalizeVideoId(sourceId);
     if (videoId.isEmpty) return null;
 
+    if (!DeviceMusicSession.isVideoId(videoId)) {
+      printINFO('[DeviceStreamResolver] Not a video id: $sourceId');
+      return _resolveViaPublicMirrors(
+        videoId,
+        requestedFormat: requestedFormat,
+      );
+    }
+
     final explodeSource = await _resolveViaExplode(
       videoId,
       requestedFormat: requestedFormat,
@@ -95,24 +103,24 @@ class DeviceStreamResolver extends GetxService {
     try {
       _explode ??= YoutubeExplode();
       StreamManifest? manifest;
+      // Same default clients as Harmony Music's explode fork:
+      // androidVr → android → ios → tv, no extra headers on the URL.
       final attempts = <Future<StreamManifest> Function()>[
         () => _explode!.videos.streamsClient.getManifest(videoId),
         () => _explode!.videos.streamsClient.getManifest(
               videoId,
+              requireWatchPage: false,
               ytClients: [
                 YoutubeApiClient.androidVr,
                 YoutubeApiClient.ios,
+                YoutubeApiClient.tv,
               ],
-            ),
-        () => _explode!.videos.streamsClient.getManifest(
-              videoId,
-              ytClients: [YoutubeApiClient.tv],
             ),
       ];
       for (final attempt in attempts) {
         try {
           final candidate = await attempt();
-          if (_hasProgressiveAudio(candidate)) {
+          if (candidate.audioOnly.isNotEmpty || candidate.muxed.isNotEmpty) {
             manifest = candidate;
             break;
           }
@@ -122,32 +130,17 @@ class DeviceStreamResolver extends GetxService {
       }
       if (manifest == null) return null;
 
-      final audio = manifest.audioOnly
-          .where(
-            (stream) => isProgressiveAudioUri(
-              stream.url,
-              mimeType: '${stream.codec}',
-            ),
-          )
-          .toList();
-      final muxed = manifest.muxed
-          .where(
-            (stream) => isProgressiveAudioUri(
-              stream.url,
-              mimeType: '${stream.codec}',
-            ),
-          )
-          .toList();
+      final audio = manifest.audioOnly.toList();
       final StreamInfo chosen;
       if (audio.isNotEmpty) {
         chosen = _chooseHarmonyAudio(audio, requestedFormat);
-      } else if (muxed.isNotEmpty) {
-        chosen = muxed.withHighestBitrate();
+      } else if (manifest.muxed.isNotEmpty) {
+        chosen = manifest.muxed.withHighestBitrate();
       } else {
         return null;
       }
       final uri = chosen.url;
-      if (!isProgressiveAudioUri(uri, mimeType: '${chosen.codec}')) {
+      if (uri.scheme != 'http' && uri.scheme != 'https') {
         return null;
       }
       final isOpus = '${chosen.codec}'.toLowerCase().contains('opus');
@@ -163,21 +156,6 @@ class DeviceStreamResolver extends GetxService {
       printINFO('[DeviceStreamResolver] youtube_explode failed: $error');
       return null;
     }
-  }
-
-  static bool _hasProgressiveAudio(StreamManifest manifest) {
-    return manifest.audioOnly.any(
-          (stream) => isProgressiveAudioUri(
-            stream.url,
-            mimeType: '${stream.codec}',
-          ),
-        ) ||
-        manifest.muxed.any(
-          (stream) => isProgressiveAudioUri(
-            stream.url,
-            mimeType: '${stream.codec}',
-          ),
-        );
   }
 
   /// Harmony's StreamProvider prefers itag 251/140 (high) and 249/139 (low).
