@@ -92,7 +92,7 @@ class UpdateController extends GetxController {
       }
       updateInfo.value = info;
     } catch (e) {
-      error(e.toString());
+      error(S.current.updateDownloadFailed);
     } finally {
       isLoading(false);
     }
@@ -142,43 +142,60 @@ class UpdateController extends GetxController {
     };
   }
 
-  List<String> get platformDownloadUrls {
-    final data = updateInfo.value;
-    final baseUrl = _extractDownloadBase(data?['Descarga'] as String?);
-    if (baseUrl == null) return const [];
-
+  List<String> get _wantedAssetNames {
     if (GetPlatform.isAndroid) {
       return [
-        '$baseUrl${AppIdentity.androidApkName()}',
-        '${baseUrl}app-release.apk',
-        '$baseUrl${AppIdentity.androidApkName(universal: false)}',
+        AppIdentity.androidApkName(),
+        'app-release.apk',
+        AppIdentity.androidApkName(universal: false),
       ];
     }
     if (GetPlatform.isWindows) {
       return [
-        '$baseUrl${AppIdentity.windowsInstallerName()}',
-        '${baseUrl}MoMusicInstaller.exe',
+        AppIdentity.windowsInstallerName(),
+        'MoMusicInstaller.exe',
       ];
     }
     if (GetPlatform.isLinux) {
       return [
-        '$baseUrl${AppIdentity.linuxTarballName()}',
-        '${baseUrl}MoMusic_Linux_Portable.tar.gz',
+        AppIdentity.linuxTarballName(),
+        'MoMusic_Linux_Portable.tar.gz',
       ];
     }
     if (GetPlatform.isMacOS) {
       return [
-        '$baseUrl${AppIdentity.macosZipName()}',
-        '${baseUrl}MoMusic_macOS_Portable.zip',
+        AppIdentity.macosZipName(),
+        'MoMusic_macOS_Portable.zip',
       ];
     }
     if (GetPlatform.isIOS) {
       return [
-        '$baseUrl${AppIdentity.iosIpaName()}',
-        '${baseUrl}MoMusic.ipa',
+        AppIdentity.iosIpaName(),
+        'MoMusic.ipa',
       ];
     }
     return const [];
+  }
+
+  List<String> get platformDownloadUrls {
+    final names = _wantedAssetNames;
+    if (names.isEmpty) return const [];
+
+    final bases = <String>{
+      if (latestVersion.isNotEmpty)
+        AppIdentity.releaseDownloadBase(latestVersion),
+      AppIdentity.latestDownloadBase,
+    };
+    final extracted =
+        _extractDownloadBase(updateInfo.value?['Descarga'] as String?);
+    if (extracted != null && extracted.isNotEmpty) {
+      bases.add(extracted);
+    }
+
+    return [
+      for (final base in bases)
+        for (final name in names) '$base$name',
+    ];
   }
 
   String get platformFileName {
@@ -270,13 +287,6 @@ class UpdateController extends GetxController {
   }
 
   Future<void> _downloadInApp() async {
-    final urls = platformDownloadUrls;
-    if (urls.isEmpty) {
-      downloadError(S.current.updateDownloadUnavailable);
-      downloadState.value = DownloadState.error;
-      return;
-    }
-
     downloadState.value = DownloadState.downloading;
     downloadProgress.value = 0.0;
     downloadedBytes.value = 0;
@@ -284,6 +294,13 @@ class UpdateController extends GetxController {
     downloadError('');
     _cancelToken?.cancel();
     _cancelToken = CancelToken();
+
+    final urls = await _resolveDownloadUrls();
+    if (urls.isEmpty) {
+      downloadError(S.current.updateFileNotReady);
+      downloadState.value = DownloadState.error;
+      return;
+    }
 
     final Directory saveDir;
     if (GetPlatform.isAndroid) {
@@ -295,13 +312,16 @@ class UpdateController extends GetxController {
     final filePath = '${saveDir.path}/$platformFileName';
     _localFilePath = filePath;
 
+    var sawNotFound = false;
     Object? lastError;
     for (final url in urls) {
       try {
         final dio = Dio(
           BaseOptions(
             followRedirects: true,
+            maxRedirects: 5,
             receiveTimeout: const Duration(minutes: 8),
+            validateStatus: (status) => status != null && status < 400,
             headers: {
               'user-agent': AppIdentity.userAgent,
               'accept': '*/*',
@@ -332,16 +352,84 @@ class UpdateController extends GetxController {
         return;
       } on DioException catch (e) {
         if (e.type == DioExceptionType.cancel) return;
+        if (e.response?.statusCode == 404) {
+          sawNotFound = true;
+        }
         lastError = e;
       } catch (e) {
         lastError = e;
       }
     }
 
-    downloadError(
-      S.current.updateNetworkError(lastError?.toString() ?? ''),
-    );
+    downloadError(_friendlyDownloadError(lastError, sawNotFound: sawNotFound));
     downloadState.value = DownloadState.error;
+  }
+
+  Future<List<String>> _resolveDownloadUrls() async {
+    final resolved = <String>[];
+    final seen = <String>{};
+
+    void addUrl(String? url) {
+      final value = url?.trim() ?? '';
+      if (value.isEmpty || !seen.add(value)) return;
+      resolved.add(value);
+    }
+
+    for (final url in await _assetUrlsFromGithub()) {
+      addUrl(url);
+    }
+    for (final url in platformDownloadUrls) {
+      addUrl(url);
+    }
+    return resolved;
+  }
+
+  Future<List<String>> _assetUrlsFromGithub() async {
+    final wanted = _wantedAssetNames.map((name) => name.toLowerCase()).toSet();
+    if (wanted.isEmpty) return const [];
+
+    final dio = Dio(
+      BaseOptions(
+        followRedirects: true,
+        headers: {
+          'user-agent': AppIdentity.userAgent,
+          'accept': 'application/vnd.github+json',
+        },
+        validateStatus: (status) => status != null && status < 500,
+      ),
+    );
+    final endpoints = <String>{
+      if (latestVersion.isNotEmpty) AppIdentity.releaseApiUrl(latestVersion),
+      AppIdentity.latestReleaseApiUrl,
+    };
+
+    final found = <String>[];
+    for (final endpoint in endpoints) {
+      try {
+        final response = await dio.get(endpoint);
+        if (response.statusCode != 200 || response.data is! Map) continue;
+        final assets = response.data['assets'];
+        if (assets is! List) continue;
+        for (final raw in assets) {
+          if (raw is! Map) continue;
+          final name = raw['name']?.toString().toLowerCase() ?? '';
+          final url = raw['browser_download_url']?.toString();
+          if (url != null && wanted.contains(name)) {
+            found.add(url);
+          }
+        }
+        if (found.isNotEmpty) return found;
+      } catch (_) {}
+    }
+    return found;
+  }
+
+  String _friendlyDownloadError(Object? error, {required bool sawNotFound}) {
+    if (sawNotFound ||
+        (error is DioException && error.response?.statusCode == 404)) {
+      return S.current.updateFileNotReady;
+    }
+    return S.current.updateDownloadFailed;
   }
 
   Future<void> _showDownloadCompleteNotification() async {

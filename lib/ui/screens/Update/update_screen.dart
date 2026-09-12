@@ -2,8 +2,10 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart' show Bidi;
 import 'package:estrella_music/app_identity.dart';
 import 'package:estrella_music/generated/l10n.dart';
+import 'package:estrella_music/ui/theme/app_colors.dart';
 import 'update_controller.dart';
 
 class UpdateScreen extends StatelessWidget {
@@ -24,7 +26,6 @@ class UpdateScreen extends StatelessWidget {
         ? Get.find<UpdateController>()
         : Get.put(UpdateController());
     final theme = Theme.of(context);
-    final colors = theme.colorScheme;
     final canPop = Navigator.of(context).canPop();
 
     return Scaffold(
@@ -70,7 +71,9 @@ class UpdateScreen extends StatelessWidget {
                           S.of(context).updateInAppSubtitle,
                           textAlign: TextAlign.center,
                           style: theme.textTheme.bodyMedium?.copyWith(
-                            color: colors.onSurface.withValues(alpha: 0.68),
+                            color: theme.brightness == Brightness.dark
+                                ? AppColors.textSecondaryDark
+                                : AppColors.textSecondaryLight,
                             height: 1.5,
                           ),
                         ),
@@ -112,6 +115,7 @@ class _TopBar extends StatelessWidget {
         style: TextButton.styleFrom(
           minimumSize: const Size(48, 48),
           padding: const EdgeInsets.symmetric(horizontal: 16),
+          foregroundColor: AppIdentity.brandBlueSoft,
         ),
         child: Text(S.of(context).updateLater),
       ),
@@ -126,20 +130,12 @@ class _HeroMark extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colors = Theme.of(context).colorScheme;
     final icon = switch (state) {
       DownloadState.done => Icons.check_rounded,
       DownloadState.error => Icons.refresh_rounded,
       DownloadState.installing => Icons.install_mobile_rounded,
       DownloadState.downloading => Icons.downloading_rounded,
       DownloadState.idle => Icons.system_update_alt_rounded,
-    };
-    final glow = switch (state) {
-      DownloadState.done => const Color(0xFF3DDC97),
-      DownloadState.error => colors.error,
-      DownloadState.installing => AppIdentity.brandBlueSoft,
-      DownloadState.downloading => AppIdentity.brandBlueSoft,
-      DownloadState.idle => AppIdentity.brandBlue,
     };
 
     return Center(
@@ -148,18 +144,10 @@ class _HeroMark extends StatelessWidget {
         height: 92,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              AppIdentity.brandBlueSoft,
-              AppIdentity.brandBlue,
-              AppIdentity.brandBlueDeep,
-            ],
-          ),
+          gradient: AppColors.primaryGradient,
           boxShadow: [
             BoxShadow(
-              color: glow.withValues(alpha: 0.35),
+              color: AppIdentity.brandBlue.withValues(alpha: 0.4),
               blurRadius: 28,
               offset: const Offset(0, 10),
             ),
@@ -179,23 +167,46 @@ class _VersionChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colors = Theme.of(context).colorScheme;
-    final label = from.isEmpty || to.isEmpty
-        ? to
-        : S.of(context).updateFromTo(from, to);
+    if (from.isEmpty && to.isEmpty) return const SizedBox.shrink();
     return Center(
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        decoration: BoxDecoration(
-          color: colors.primaryContainer.withValues(alpha: 0.55),
-          borderRadius: BorderRadius.circular(999),
+      child: Wrap(
+        alignment: WrapAlignment.center,
+        crossAxisAlignment: WrapCrossAlignment.center,
+        spacing: 10,
+        children: [
+          if (from.isNotEmpty) _pill(from),
+          if (from.isNotEmpty && to.isNotEmpty)
+            const Icon(
+              Icons.arrow_forward_rounded,
+              size: 18,
+              color: AppIdentity.brandBlueSoft,
+              matchTextDirection: true,
+            ),
+          if (to.isNotEmpty) _pill(to, filled: true),
+        ],
+      ),
+    );
+  }
+
+  Widget _pill(String version, {bool filled = false}) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+      decoration: BoxDecoration(
+        color: filled
+            ? AppIdentity.brandBlue
+            : AppIdentity.brandBlue.withValues(alpha: 0.16),
+        borderRadius: BorderRadius.circular(999),
+        border: Border.all(
+          color: AppIdentity.brandBlueSoft.withValues(alpha: 0.7),
         ),
-        child: Text(
-          label,
-          style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                color: colors.onPrimaryContainer,
-                fontWeight: FontWeight.w700,
-              ),
+      ),
+      child: Text(
+        version,
+        textDirection: TextDirection.ltr,
+        style: TextStyle(
+          color: filled ? Colors.white : AppIdentity.brandBlueSoft,
+          fontWeight: FontWeight.w800,
+          letterSpacing: 0.2,
         ),
       ),
     );
@@ -209,30 +220,37 @@ class _NotesCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colors = Theme.of(context).colorScheme;
+    final theme = Theme.of(context);
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.fromLTRB(18, 16, 18, 16),
       decoration: BoxDecoration(
-        color: colors.surfaceContainerHighest.withValues(alpha: 0.45),
+        color: AppIdentity.brandBlue.withValues(alpha: 0.12),
         borderRadius: BorderRadius.circular(20),
+        border: Border.all(
+          color: AppIdentity.brandBlueSoft.withValues(alpha: 0.35),
+        ),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             S.of(context).updateWhatsNew,
-            style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                  fontWeight: FontWeight.w700,
-                ),
+            style: theme.textTheme.titleSmall?.copyWith(
+              fontWeight: FontWeight.w700,
+              color: AppIdentity.brandBlueSoft,
+            ),
           ),
           const SizedBox(height: 8),
           Text(
             notes,
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  height: 1.5,
-                  color: colors.onSurface.withValues(alpha: 0.78),
-                ),
+            textDirection: Bidi.detectRtlDirectionality(notes)
+                ? TextDirection.rtl
+                : TextDirection.ltr,
+            style: theme.textTheme.bodyMedium?.copyWith(
+              height: 1.5,
+              color: theme.colorScheme.onSurface.withValues(alpha: 0.82),
+            ),
           ),
         ],
       ),
@@ -247,7 +265,6 @@ class _BottomBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colors = Theme.of(context).colorScheme;
     return SafeArea(
       top: false,
       child: Padding(
@@ -266,9 +283,14 @@ class _BottomBar extends StatelessWidget {
                 Text(
                   controller.downloadError.value,
                   textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: colors.error,
-                        height: 1.4,
+                  textDirection: Bidi.detectRtlDirectionality(
+                          controller.downloadError.value)
+                      ? TextDirection.rtl
+                      : TextDirection.ltr,
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        color: AppIdentity.brandBlueSoft,
+                        height: 1.45,
+                        fontWeight: FontWeight.w600,
                       ),
                 ),
                 const SizedBox(height: 12),
@@ -279,10 +301,11 @@ class _BottomBar extends StatelessWidget {
                 child: FilledButton(
                   onPressed: _onPressed(state),
                   style: FilledButton.styleFrom(
-                    backgroundColor: _color(state, colors),
+                    backgroundColor: AppIdentity.brandBlue,
                     foregroundColor: Colors.white,
                     disabledBackgroundColor:
                         AppIdentity.brandBlue.withValues(alpha: 0.45),
+                    disabledForegroundColor: Colors.white70,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(18),
                     ),
@@ -314,17 +337,6 @@ class _BottomBar extends StatelessWidget {
       case DownloadState.downloading:
       case DownloadState.installing:
         return null;
-    }
-  }
-
-  Color _color(DownloadState state, ColorScheme colors) {
-    switch (state) {
-      case DownloadState.error:
-        return colors.error;
-      case DownloadState.done:
-        return const Color(0xFF2BB673);
-      default:
-        return AppIdentity.brandBlue;
     }
   }
 
@@ -379,11 +391,14 @@ class _ProgressBlock extends StatelessWidget {
             Expanded(
               child: Text(
                 S.of(context).updateDownloading,
-                style: Theme.of(context).textTheme.labelLarge,
+                style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                      color: AppIdentity.brandBlueSoft,
+                    ),
               ),
             ),
             Text(
               '$pct%',
+              textDirection: TextDirection.ltr,
               style: Theme.of(context).textTheme.labelLarge?.copyWith(
                     fontWeight: FontWeight.w800,
                     color: AppIdentity.brandBlueSoft,
@@ -398,8 +413,7 @@ class _ProgressBlock extends StatelessWidget {
           child: LinearProgressIndicator(
             value: progress > 0 ? progress : null,
             minHeight: 8,
-            backgroundColor:
-                Theme.of(context).colorScheme.surfaceContainerHighest,
+            backgroundColor: AppIdentity.brandBlue.withValues(alpha: 0.18),
             color: AppIdentity.brandBlueSoft,
           ),
         ),
@@ -407,11 +421,9 @@ class _ProgressBlock extends StatelessWidget {
           const SizedBox(height: 8),
           Text(
             controller.progressLabel,
+            textDirection: TextDirection.ltr,
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: Theme.of(context)
-                      .colorScheme
-                      .onSurface
-                      .withValues(alpha: 0.6),
+                  color: AppColors.textSecondaryDark,
                   fontFeatures: const [FontFeature.tabularFigures()],
                 ),
           ),
@@ -426,15 +438,27 @@ class _UpdateLoading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return const Center(
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const CircularProgressIndicator(color: AppIdentity.brandBlueSoft),
-          const SizedBox(height: 16),
-          Text(S.of(context).checkingUpdates),
+          CircularProgressIndicator(color: AppIdentity.brandBlueSoft),
+          SizedBox(height: 16),
+          _CheckingLabel(),
         ],
       ),
+    );
+  }
+}
+
+class _CheckingLabel extends StatelessWidget {
+  const _CheckingLabel();
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      S.of(context).checkingUpdates,
+      style: const TextStyle(color: AppIdentity.brandBlueSoft),
     );
   }
 }
@@ -452,43 +476,82 @@ class _UpdateError extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final friendly = _friendlyCheckError(message);
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.all(32),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.wifi_off_rounded,
-                size: 48, color: Theme.of(context).colorScheme.error),
+            Container(
+              width: 72,
+              height: 72,
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                gradient: AppColors.primaryGradient,
+              ),
+              child: const Icon(Icons.refresh_rounded,
+                  size: 34, color: Colors.white),
+            ),
             const SizedBox(height: 16),
             Text(
               S.of(context).loadInfoUpdate,
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.titleMedium,
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.w800,
+                  ),
             ),
             const SizedBox(height: 8),
             Text(
-              message,
+              friendly,
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.bodySmall,
+              textDirection: Bidi.detectRtlDirectionality(friendly)
+                  ? TextDirection.rtl
+                  : TextDirection.ltr,
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    color: AppIdentity.brandBlueSoft,
+                    height: 1.45,
+                  ),
             ),
             const SizedBox(height: 24),
             FilledButton(
               onPressed: onRetry,
               style: FilledButton.styleFrom(
                 backgroundColor: AppIdentity.brandBlue,
+                foregroundColor: Colors.white,
                 minimumSize: const Size(160, 48),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(18),
+                ),
               ),
               child: Text(S.of(context).retry),
             ),
             if (onLater != null)
               TextButton(
                 onPressed: onLater,
+                style: TextButton.styleFrom(
+                  foregroundColor: AppIdentity.brandBlueSoft,
+                ),
                 child: Text(S.of(context).updateLater),
               ),
           ],
         ),
       ),
     );
+  }
+
+  String _friendlyCheckError(String message) {
+    final lower = message.toLowerCase();
+    if (lower.contains('404') ||
+        lower.contains('dioexception') ||
+        lower.contains('not found')) {
+      return S.current.updateFileNotReady;
+    }
+    if (lower.contains('socket') ||
+        lower.contains('network') ||
+        lower.contains('connection')) {
+      return S.current.updateDownloadFailed;
+    }
+    return message;
   }
 }

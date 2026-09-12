@@ -1575,5 +1575,11 @@ class MessageLookup extends MessageLookupByLibrary {
       "Download the update inside the app",
     ),
     "updateFromTo": m18,
+    "updateFileNotReady": MessageLookupByLibrary.simpleMessage(
+      "This update is not ready yet. Try again in a few minutes.",
+    ),
+    "updateDownloadFailed": MessageLookupByLibrary.simpleMessage(
+      "Could not download the update. Check your connection and try again.",
+    ),
   };
 }

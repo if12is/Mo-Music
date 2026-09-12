@@ -6360,6 +6360,24 @@ class S {
       args: [from, to],
     );
   }
+
+  String get updateFileNotReady {
+    return Intl.message(
+      'This update is not ready yet. Try again in a few minutes.',
+      name: 'updateFileNotReady',
+      desc: 'updateFileNotReady',
+      args: [],
+    );
+  }
+
+  String get updateDownloadFailed {
+    return Intl.message(
+      'Could not download the update. Check your connection and try again.',
+      name: 'updateDownloadFailed',
+      desc: 'updateDownloadFailed',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
