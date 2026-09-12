@@ -68,6 +68,10 @@ class _AuthGateState extends State<AuthGate> {
         return const UpdateScreen();
       }
 
+      if (LocalFirstBootstrap.isEnabled) {
+        return const Home();
+      }
+
       if (authService.isLoadingSession.isTrue) {
         return AccountBootstrapScreen(
           title: S.current.validatingSession,

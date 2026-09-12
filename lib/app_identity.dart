@@ -27,7 +27,7 @@ class AppIdentity {
   static const String artifactPrefix = 'MoMusic';
   static const String androidApplicationId = 'com.if12is.momusic';
   static const String urlScheme = 'momusic';
-  static const String userAgent = 'MoMusic/2.5.1';
+  static const String userAgent = 'MoMusic/2.5.2';
   static const String homepage = githubUrl;
   static const String developerName = 'Ahmed Elsayed';
 

@@ -128,9 +128,9 @@ class AccountBootstrapScreen extends StatelessWidget {
                                 }),
                                 const SizedBox(height: 12),
                                 _BackupChoiceCard(
-                                  title: 'Continuar con mis datos actuales',
+                                  title: S.current.bootstrapContinueLocalTitle,
                                   subtitle:
-                                      'Preserva tu biblioteca local sin descargar nada.',
+                                      S.current.bootstrapContinueLocalSubtitle,
                                   icon: Icons.check_circle_outline_rounded,
                                   isSecondary: true,
                                   onTap: () =>
@@ -153,17 +153,16 @@ class AccountBootstrapScreen extends StatelessWidget {
                                 ),
                               ),
                               const SizedBox(height: 20),
-                              const _InfoRow(
+                              _InfoRow(
                                 icon: Icons.verified_user_outlined,
-                                label:
-                                    'Cuenta validada y lista para sincronizar.',
+                                label: S.current.bootstrapAccountReady,
                               ),
                               const SizedBox(height: 10),
                               _InfoRow(
                                 icon: Icons.library_music_outlined,
                                 label: willReplaceLocalData
-                                    ? 'El respaldo remoto reemplazara tu biblioteca local.'
-                                    : 'Si encontramos un respaldo, lo cargaremos antes de entrar.',
+                                    ? S.current.bootstrapRemoteBackupWillReplace
+                                    : S.current.bootstrapRemoteBackupIfFound,
                               ),
                             ],
                           );

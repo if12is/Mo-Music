@@ -1523,5 +1523,20 @@ class MessageLookup extends MessageLookupByLibrary {
     "authValidationPasswordMismatch": MessageLookupByLibrary.simpleMessage(
       "Passwords do not match.",
     ),
+    "bootstrapAccountReady": MessageLookupByLibrary.simpleMessage(
+      "Account is ready for this device.",
+    ),
+    "bootstrapRemoteBackupWillReplace": MessageLookupByLibrary.simpleMessage(
+      "The remote backup will replace your local library.",
+    ),
+    "bootstrapRemoteBackupIfFound": MessageLookupByLibrary.simpleMessage(
+      "If a backup is found, it will be loaded before you enter.",
+    ),
+    "bootstrapContinueLocalTitle": MessageLookupByLibrary.simpleMessage(
+      "Continue with my current data",
+    ),
+    "bootstrapContinueLocalSubtitle": MessageLookupByLibrary.simpleMessage(
+      "Keep your local library without downloading anything.",
+    ),
   };
 }

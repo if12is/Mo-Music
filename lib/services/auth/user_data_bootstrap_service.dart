@@ -4,6 +4,7 @@ import 'package:estrella_music/services/storage/sqlite_store.dart';
 
 import 'package:estrella_music/utils/helpers/helper.dart';
 import 'package:estrella_music/services/backup/app_backup_service.dart';
+import 'package:estrella_music/app_identity.dart';
 import 'package:estrella_music/services/auth/auth_service.dart';
 import 'package:estrella_music/services/backup/cloud_backup_service.dart';
 import 'package:estrella_music/services/sync/legacy_music_migration_service.dart';
@@ -79,6 +80,10 @@ class UserDataBootstrapService extends GetxService {
   }
 
   Future<void> prepareForAuthenticatedUser() async {
+    if (!AppIdentity.requireRemoteAccount) {
+      isPreparing.value = false;
+      return;
+    }
     final userKey = currentUserKey;
     if (!_authService.isAuthenticated.value || userKey == null) {
       return;

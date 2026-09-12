@@ -5,6 +5,7 @@ import 'package:estrella_music/generated/l10n.dart';
 import 'package:estrella_music/music_provider/music_provider_manager.dart';
 import 'package:estrella_music/profiles/music_profile.dart';
 import 'package:estrella_music/profiles/profile_manager.dart';
+import 'package:estrella_music/services/auth/auth_service.dart';
 import 'package:estrella_music/services/storage/sqlite_store.dart';
 import 'package:estrella_music/ui/profiles/profile_switcher.dart';
 
@@ -22,6 +23,10 @@ class LocalFirstBootstrap {
 
   Future<void> ensureReady() async {
     if (!isEnabled) return;
+
+    if (Get.isRegistered<AuthService>()) {
+      Get.find<AuthService>().disableRemoteSession();
+    }
 
     final profileManager = Get.find<ProfileManager>();
     final providerManager = Get.find<MusicProviderManager>();

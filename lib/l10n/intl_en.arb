@@ -2654,5 +2654,25 @@
   "authValidationPasswordMismatch": "Passwords do not match.",
   "@authValidationPasswordMismatch": {
     "description": "authValidationPasswordMismatch"
+  },
+  "bootstrapAccountReady": "Account is ready for this device.",
+  "@bootstrapAccountReady": {
+    "description": "bootstrapAccountReady"
+  },
+  "bootstrapRemoteBackupWillReplace": "The remote backup will replace your local library.",
+  "@bootstrapRemoteBackupWillReplace": {
+    "description": "bootstrapRemoteBackupWillReplace"
+  },
+  "bootstrapRemoteBackupIfFound": "If a backup is found, it will be loaded before you enter.",
+  "@bootstrapRemoteBackupIfFound": {
+    "description": "bootstrapRemoteBackupIfFound"
+  },
+  "bootstrapContinueLocalTitle": "Continue with my current data",
+  "@bootstrapContinueLocalTitle": {
+    "description": "bootstrapContinueLocalTitle"
+  },
+  "bootstrapContinueLocalSubtitle": "Keep your local library without downloading anything.",
+  "@bootstrapContinueLocalSubtitle": {
+    "description": "bootstrapContinueLocalSubtitle"
   }
 }

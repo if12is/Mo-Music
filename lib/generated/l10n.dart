@@ -6162,6 +6162,51 @@ class S {
       args: [],
     );
   }
+
+  String get bootstrapAccountReady {
+    return Intl.message(
+      'Account is ready for this device.',
+      name: 'bootstrapAccountReady',
+      desc: 'bootstrapAccountReady',
+      args: [],
+    );
+  }
+
+  String get bootstrapRemoteBackupWillReplace {
+    return Intl.message(
+      'The remote backup will replace your local library.',
+      name: 'bootstrapRemoteBackupWillReplace',
+      desc: 'bootstrapRemoteBackupWillReplace',
+      args: [],
+    );
+  }
+
+  String get bootstrapRemoteBackupIfFound {
+    return Intl.message(
+      'If a backup is found, it will be loaded before you enter.',
+      name: 'bootstrapRemoteBackupIfFound',
+      desc: 'bootstrapRemoteBackupIfFound',
+      args: [],
+    );
+  }
+
+  String get bootstrapContinueLocalTitle {
+    return Intl.message(
+      'Continue with my current data',
+      name: 'bootstrapContinueLocalTitle',
+      desc: 'bootstrapContinueLocalTitle',
+      args: [],
+    );
+  }
+
+  String get bootstrapContinueLocalSubtitle {
+    return Intl.message(
+      'Keep your local library without downloading anything.',
+      name: 'bootstrapContinueLocalSubtitle',
+      desc: 'bootstrapContinueLocalSubtitle',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -64,6 +64,8 @@ Future<void> main() async {
   // been restored, otherwise a saved eMusic profile would fail on every boot.
   if (AppIdentity.requireRemoteAccount) {
     await authService.restoreSession();
+  } else {
+    authService.disableRemoteSession();
   }
   final providerManager = MusicProviderManager(
     localProviderId: LocalMusicProvider.providerId,
@@ -144,9 +146,11 @@ Future<void> main() async {
   WidgetsBinding.instance.addObserver(LifecycleHandler());
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
   runApp(const MyApp());
-  unawaited(NotificationService.initInboxSync(
-    mobile: GetPlatform.isAndroid || GetPlatform.isIOS,
-  ));
+  if (AppIdentity.requireRemoteAccount) {
+    unawaited(NotificationService.initInboxSync(
+      mobile: GetPlatform.isAndroid || GetPlatform.isIOS,
+    ));
+  }
 }
 
 Future<StreamingPlaybackContext> _loadStreamingPlaybackContext() async {
@@ -376,10 +380,12 @@ class LifecycleHandler extends WidgetsBindingObserver {
   void didChangeAppLifecycleState(AppLifecycleState state) async {
     if (state == AppLifecycleState.resumed) {
       SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
-      unawaited(NotificationService.syncMessagesOnResume());
-      NotificationService.resumeDesktopPolling();
-      if (Get.isRegistered<SyncService>()) {
-        unawaited(Get.find<SyncService>().pullRemoteChanges());
+      if (AppIdentity.requireRemoteAccount) {
+        unawaited(NotificationService.syncMessagesOnResume());
+        NotificationService.resumeDesktopPolling();
+        if (Get.isRegistered<SyncService>()) {
+          unawaited(Get.find<SyncService>().pullRemoteChanges());
+        }
       }
     } else if (state == AppLifecycleState.inactive ||
         state == AppLifecycleState.paused ||

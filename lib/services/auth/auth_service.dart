@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
+import 'package:estrella_music/app_identity.dart';
 import 'package:estrella_music/services/storage/safe_secure_storage.dart';
 import 'package:estrella_music/services/sync/cloud_sync_manager.dart';
 import 'package:estrella_music/services/system/fcm_notification_service.dart';
@@ -25,7 +26,7 @@ class AuthService extends GetxService {
   );
 
   final isAuthenticated = false.obs;
-  final isLoadingSession = true.obs;
+  final isLoadingSession = AppIdentity.requireRemoteAccount.obs;
   final userProfile = Rxn<Map<String, dynamic>>();
 
   String? get baseUrl {
@@ -184,6 +185,7 @@ class AuthService extends GetxService {
   }
 
   Future<String?> getAccessToken() async {
+    if (!AppIdentity.requireRemoteAccount) return null;
     final token = await SafeSecureStorage.read(_jwtTokenKey);
     if (token == null || token.isEmpty) return null;
 
@@ -197,7 +199,19 @@ class AuthService extends GetxService {
     return SafeSecureStorage.read(_jwtTokenKey);
   }
 
+  /// Stops any leftover Joss Red / Estrella session so the app stays local.
+  void disableRemoteSession() {
+    isAuthenticated.value = false;
+    userProfile.value = null;
+    isLoadingSession.value = false;
+  }
+
   Future<void> restoreSession() async {
+    if (!AppIdentity.requireRemoteAccount) {
+      disableRemoteSession();
+      return;
+    }
+
     isLoadingSession.value = true;
 
     if (!isConfigured) {

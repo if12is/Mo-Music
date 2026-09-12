@@ -1,0 +1,7 @@
+{
+  "bootstrapAccountReady": "Cuenta lista en este dispositivo.",
+  "bootstrapRemoteBackupWillReplace": "El respaldo remoto reemplazará tu biblioteca local.",
+  "bootstrapRemoteBackupIfFound": "Si encontramos un respaldo, lo cargaremos antes de entrar.",
+  "bootstrapContinueLocalTitle": "Continuar con mis datos actuales",
+  "bootstrapContinueLocalSubtitle": "Preserva tu biblioteca local sin descargar nada."
+}

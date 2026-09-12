@@ -1538,5 +1538,20 @@ class MessageLookup extends MessageLookupByLibrary {
     "authValidationPasswordMismatch": MessageLookupByLibrary.simpleMessage(
       "كلمتا المرور غير متطابقتين.",
     ),
+    "bootstrapAccountReady": MessageLookupByLibrary.simpleMessage(
+      "الحساب جاهز على هذا الجهاز.",
+    ),
+    "bootstrapRemoteBackupWillReplace": MessageLookupByLibrary.simpleMessage(
+      "ستستبدل النسخة الاحتياطية السحابية مكتبتك المحلية.",
+    ),
+    "bootstrapRemoteBackupIfFound": MessageLookupByLibrary.simpleMessage(
+      "إذا وُجدت نسخة احتياطية، سيتم تحميلها قبل الدخول.",
+    ),
+    "bootstrapContinueLocalTitle": MessageLookupByLibrary.simpleMessage(
+      "المتابعة ببياناتي الحالية",
+    ),
+    "bootstrapContinueLocalSubtitle": MessageLookupByLibrary.simpleMessage(
+      "الاحتفاظ بالمكتبة المحلية دون تنزيل أي شيء.",
+    ),
   };
 }

@@ -2652,5 +2652,25 @@
   "authValidationPasswordMismatch": "كلمتا المرور غير متطابقتين.",
   "@authValidationPasswordMismatch": {
     "description": "authValidationPasswordMismatch"
+  },
+  "bootstrapAccountReady": "الحساب جاهز على هذا الجهاز.",
+  "@bootstrapAccountReady": {
+    "description": "bootstrapAccountReady"
+  },
+  "bootstrapRemoteBackupWillReplace": "ستستبدل النسخة الاحتياطية السحابية مكتبتك المحلية.",
+  "@bootstrapRemoteBackupWillReplace": {
+    "description": "bootstrapRemoteBackupWillReplace"
+  },
+  "bootstrapRemoteBackupIfFound": "إذا وُجدت نسخة احتياطية، سيتم تحميلها قبل الدخول.",
+  "@bootstrapRemoteBackupIfFound": {
+    "description": "bootstrapRemoteBackupIfFound"
+  },
+  "bootstrapContinueLocalTitle": "المتابعة ببياناتي الحالية",
+  "@bootstrapContinueLocalTitle": {
+    "description": "bootstrapContinueLocalTitle"
+  },
+  "bootstrapContinueLocalSubtitle": "الاحتفاظ بالمكتبة المحلية دون تنزيل أي شيء.",
+  "@bootstrapContinueLocalSubtitle": {
+    "description": "bootstrapContinueLocalSubtitle"
   }
 }

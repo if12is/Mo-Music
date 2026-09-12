@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:get/get.dart';
 
+import 'package:estrella_music/app_identity.dart';
 import 'package:estrella_music/music_provider/music_provider_manager.dart';
 import 'package:estrella_music/services/sync/sync_service.dart';
 import 'package:estrella_music/ui/player/player_controller.dart';
@@ -289,6 +290,7 @@ class ProfileManager extends GetxService {
   }
 
   bool get activeProfileMaySync {
+    if (!AppIdentity.requireRemoteAccount) return false;
     final profile = activeProfile.value;
     if (profile == null) return false;
     return _providerManager.instanceForProfile(profile.id)?.mayUseJossRedSync ==

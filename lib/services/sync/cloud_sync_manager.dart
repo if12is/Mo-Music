@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
+import 'package:estrella_music/app_identity.dart';
 import 'package:estrella_music/generated/l10n.dart';
 import 'package:estrella_music/services/auth/auth_service.dart';
 import 'package:estrella_music/services/sync/sync_service.dart';
@@ -111,6 +112,13 @@ class CloudSyncManager extends GetxService {
   /// 2. Resolver conflictos de estado / versiones localmente.
   /// 3. Subir los cambios resueltos al servidor (push).
   Future<SyncResult> syncNow({bool force = false}) async {
+    if (!AppIdentity.requireRemoteAccount) {
+      currentMode.value = DataMode.local;
+      return SyncResult(
+        status: SyncStatus.skippedLocalMode,
+        message: S.current.syncLocalModeActive,
+      );
+    }
     if (isLocalMode && !force) {
       return SyncResult(
         status: SyncStatus.skippedLocalMode,

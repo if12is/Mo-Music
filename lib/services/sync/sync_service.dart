@@ -6,6 +6,7 @@ import 'dart:math';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
+import 'package:estrella_music/app_identity.dart';
 import 'package:estrella_music/services/storage/sqlite_store.dart';
 import 'package:estrella_music/generated/l10n.dart';
 
@@ -256,7 +257,9 @@ class SyncService extends GetxService {
     super.onClose();
   }
 
-  bool get isCloudMode => Get.find<ProfileManager>().activeProfileMaySync;
+  bool get isCloudMode =>
+      AppIdentity.requireRemoteAccount &&
+      Get.find<ProfileManager>().activeProfileMaySync;
 
   String? get syncBaseUrl {
     final active = Get.find<ProfileManager>().activeProfile.value;
