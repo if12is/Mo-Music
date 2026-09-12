@@ -2694,5 +2694,61 @@
   "couldNotResolveDownload": "Could not download this track.",
   "@couldNotResolveDownload": {
     "description": "couldNotResolveDownload"
+  },
+  "updateNewVersionTitle": "New version",
+  "@updateNewVersionTitle": {
+    "description": "updateNewVersionTitle"
+  },
+  "updateInAppSubtitle": "Download and install inside the app. No browser needed.",
+  "@updateInAppSubtitle": {
+    "description": "updateInAppSubtitle"
+  },
+  "updateDownloadNow": "Download update",
+  "@updateDownloadNow": {
+    "description": "updateDownloadNow"
+  },
+  "updateDownloading": "Downloading…",
+  "@updateDownloading": {
+    "description": "updateDownloading"
+  },
+  "updateInstallNow": "Install now",
+  "@updateInstallNow": {
+    "description": "updateInstallNow"
+  },
+  "updateInstalling": "Installing…",
+  "@updateInstalling": {
+    "description": "updateInstalling"
+  },
+  "updateLater": "Later",
+  "@updateLater": {
+    "description": "updateLater"
+  },
+  "updateWhatsNew": "What's new",
+  "@updateWhatsNew": {
+    "description": "updateWhatsNew"
+  },
+  "updateOpenFile": "Open file",
+  "@updateOpenFile": {
+    "description": "updateOpenFile"
+  },
+  "updateInstallFailed": "Could not start the installer.",
+  "@updateInstallFailed": {
+    "description": "updateInstallFailed"
+  },
+  "updateBannerSubtitle": "Download the update inside the app",
+  "@updateBannerSubtitle": {
+    "description": "updateBannerSubtitle"
+  },
+  "updateFromTo": "{from} → {to}",
+  "@updateFromTo": {
+    "description": "updateFromTo",
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      }
+    }
   }
 }

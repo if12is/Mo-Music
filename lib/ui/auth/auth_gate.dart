@@ -8,6 +8,7 @@ import 'package:estrella_music/profiles/profile_manager.dart';
 import 'package:estrella_music/ui/home.dart';
 import 'package:estrella_music/app_identity.dart';
 import 'package:estrella_music/generated/l10n.dart';
+import 'package:estrella_music/ui/screens/Update/update_controller.dart';
 import 'package:estrella_music/ui/screens/Update/update_screen.dart';
 import 'package:estrella_music/services/storage/sqlite_store.dart';
 import 'package:estrella_music/services/auth/local_first_bootstrap.dart';
@@ -65,7 +66,14 @@ class _AuthGateState extends State<AuthGate> {
       }
 
       if (updateRequired.isTrue) {
-        return const UpdateScreen();
+        return UpdateScreen(
+          onLater: () {
+            if (Get.isRegistered<UpdateController>()) {
+              Get.delete<UpdateController>(force: true);
+            }
+            updateRequired.value = false;
+          },
+        );
       }
 
       if (LocalFirstBootstrap.isEnabled) {

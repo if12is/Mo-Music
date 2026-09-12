@@ -1,291 +1,238 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:estrella_music/app_identity.dart';
 import 'package:estrella_music/generated/l10n.dart';
 import 'update_controller.dart';
 
 class UpdateScreen extends StatelessWidget {
-  const UpdateScreen({super.key});
+  const UpdateScreen({super.key, this.onLater});
 
-  static const Color accentColor = Color(0xFFFF719A);
-  static const Color backgroundColor = Color(0xFF0F0F12);
-  static const Color cardColor = Color(0xFF1A1A1E);
-  static const Color successColor = Color(0xFF4CAF7D);
-  static const Color errorColor = Color(0xFFFF5252);
+  final VoidCallback? onLater;
+
+  static void open({VoidCallback? onLater}) {
+    if (Get.isRegistered<UpdateController>()) {
+      Get.delete<UpdateController>(force: true);
+    }
+    Get.to(() => UpdateScreen(onLater: onLater));
+  }
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(UpdateController());
+    final controller = Get.isRegistered<UpdateController>()
+        ? Get.find<UpdateController>()
+        : Get.put(UpdateController());
     final theme = Theme.of(context);
+    final colors = theme.colorScheme;
+    final canPop = Navigator.of(context).canPop();
 
     return Scaffold(
-      backgroundColor: backgroundColor,
+      backgroundColor: theme.scaffoldBackgroundColor,
       body: Obx(() {
         if (controller.isLoading.isTrue) {
-          return const Center(
-            child: CircularProgressIndicator(color: accentColor),
-          );
+          return const _UpdateLoading();
         }
-
         if (controller.error.isNotEmpty) {
-          return _buildFetchErrorState(context, controller);
-        }
-
-        final data = controller.updateInfo.value;
-        if (data == null) {
-          return Center(
-            child: Text(
-              S.of(context).infoNotAvailable,
-              style: const TextStyle(color: Colors.white),
-            ),
+          return _UpdateError(
+            message: controller.error.value,
+            onRetry: controller.fetchUpdateInfo,
+            onLater: onLater ?? (canPop ? Get.back : null),
           );
         }
 
         return SafeArea(
           child: Column(
             children: [
+              _TopBar(
+                onLater: onLater ?? (canPop ? Get.back : null),
+              ),
               Expanded(
-                child: SingleChildScrollView(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 24.0,
-                    vertical: 60.0,
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      // ── Ícono de plataforma ───────────────────────
-                      _PlatformIconWidget(
-                        downloadState: controller.downloadState.value,
-                      ),
-                      const SizedBox(height: 32),
-
-                      // ── Título ────────────────────────────────────
-                      Text(
-                        data['Titulo'] ?? 'Nueva Versión',
-                        style: GoogleFonts.cairo(
-                          fontSize: 32,
-                          fontWeight: FontWeight.w900,
-                          color: Colors.white,
-                          letterSpacing: -1,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                      const SizedBox(height: 12),
-
-                      // ── Píldora de versión ────────────────────────
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 16,
-                          vertical: 6,
-                        ),
-                        decoration: BoxDecoration(
-                          color: Colors.white.withValues(alpha: 0.05),
-                          borderRadius: BorderRadius.circular(20),
-                          border: Border.all(color: Colors.white12),
-                        ),
-                        child: Text(
-                          data['Version'] ?? 'V-?',
-                          style: GoogleFonts.cairo(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.blueAccent.shade100,
+                child: Center(
+                  child: ConstrainedBox(
+                    constraints: const BoxConstraints(maxWidth: 420),
+                    child: ListView(
+                      padding: const EdgeInsets.fromLTRB(24, 8, 24, 24),
+                      children: [
+                        const SizedBox(height: 12),
+                        _HeroMark(state: controller.downloadState.value),
+                        const SizedBox(height: 28),
+                        Text(
+                          S.of(context).updateNewVersionTitle,
+                          textAlign: TextAlign.center,
+                          style: theme.textTheme.headlineSmall?.copyWith(
+                            fontWeight: FontWeight.w800,
+                            height: 1.2,
                           ),
                         ),
-                      ),
-                      const SizedBox(height: 20),
-
-                      // ── Etiqueta de archivo a descargar ───────────
-                      if (GetPlatform.isAndroid || GetPlatform.isWindows)
-                        _FileNameChip(fileName: controller.platformFileName),
-
-                      const SizedBox(height: 28),
-
-                      // ── Markdown con notas de versión ─────────────
-                      Container(
-                        width: double.infinity,
-                        padding: const EdgeInsets.all(20),
-                        decoration: BoxDecoration(
-                          color: cardColor,
-                          borderRadius: BorderRadius.circular(24),
-                        ),
-                        child: MarkdownBody(
-                          data: data['Descripcion'] ?? '',
-                          styleSheet:
-                              MarkdownStyleSheet.fromTheme(theme).copyWith(
-                            p: GoogleFonts.cairo(
-                              fontSize: 15,
-                              color: Colors.white70,
-                              height: 1.5,
-                            ),
-                            h1: GoogleFonts.cairo(
-                              fontSize: 22,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
-                            h2: GoogleFonts.cairo(
-                              fontSize: 19,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
-                            listBullet: const TextStyle(color: accentColor),
+                        const SizedBox(height: 8),
+                        Text(
+                          S.of(context).updateInAppSubtitle,
+                          textAlign: TextAlign.center,
+                          style: theme.textTheme.bodyMedium?.copyWith(
+                            color: colors.onSurface.withValues(alpha: 0.68),
+                            height: 1.5,
                           ),
                         ),
-                      ),
-                      const SizedBox(height: 32),
-                    ],
+                        const SizedBox(height: 20),
+                        _VersionChip(
+                          from: controller.currentVersion.value,
+                          to: controller.latestVersion,
+                        ),
+                        if (controller.notes.isNotEmpty) ...[
+                          const SizedBox(height: 20),
+                          _NotesCard(notes: controller.notes),
+                        ],
+                      ],
+                    ),
                   ),
                 ),
               ),
-
-              // ── Área inferior con progreso + botón ─────────────
-              _BottomActionArea(controller: controller),
+              _BottomBar(controller: controller),
             ],
           ),
         );
       }),
     );
   }
+}
 
-  // ──────────────────────────────────────────────
-  // Estado de error al cargar info
-  // ──────────────────────────────────────────────
+class _TopBar extends StatelessWidget {
+  const _TopBar({this.onLater});
 
-  Widget _buildFetchErrorState(
-    BuildContext context,
-    UpdateController controller,
-  ) {
+  final VoidCallback? onLater;
+
+  @override
+  Widget build(BuildContext context) {
+    if (onLater == null) return const SizedBox(height: 8);
+    return Align(
+      alignment: AlignmentDirectional.centerStart,
+      child: TextButton(
+        onPressed: onLater,
+        style: TextButton.styleFrom(
+          minimumSize: const Size(48, 48),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+        ),
+        child: Text(S.of(context).updateLater),
+      ),
+    );
+  }
+}
+
+class _HeroMark extends StatelessWidget {
+  const _HeroMark({required this.state});
+
+  final DownloadState state;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+    final icon = switch (state) {
+      DownloadState.done => Icons.check_rounded,
+      DownloadState.error => Icons.refresh_rounded,
+      DownloadState.installing => Icons.install_mobile_rounded,
+      DownloadState.downloading => Icons.downloading_rounded,
+      DownloadState.idle => Icons.system_update_alt_rounded,
+    };
+    final glow = switch (state) {
+      DownloadState.done => const Color(0xFF3DDC97),
+      DownloadState.error => colors.error,
+      DownloadState.installing => AppIdentity.brandBlueSoft,
+      DownloadState.downloading => AppIdentity.brandBlueSoft,
+      DownloadState.idle => AppIdentity.brandBlue,
+    };
+
     return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(32),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Icon(
-              Icons.error_outline,
-              size: 60,
-              color: errorColor,
-            ),
-            const SizedBox(height: 24),
-            Text(
-              S.of(context).loadInfoUpdate,
-              style: const TextStyle(color: Colors.white),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              controller.error.value,
-              style: const TextStyle(fontSize: 12, color: Colors.white54),
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 32),
-            ElevatedButton(
-              onPressed: controller.fetchUpdateInfo,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: accentColor,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(32),
-                ),
-              ),
-              child: Text(
-                S.of(context).retry,
-                style: const TextStyle(color: Colors.black),
-              ),
+      child: Container(
+        width: 92,
+        height: 92,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              AppIdentity.brandBlueSoft,
+              AppIdentity.brandBlue,
+              AppIdentity.brandBlueDeep,
+            ],
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: glow.withValues(alpha: 0.35),
+              blurRadius: 28,
+              offset: const Offset(0, 10),
             ),
           ],
+        ),
+        child: Icon(icon, size: 40, color: Colors.white),
+      ),
+    );
+  }
+}
+
+class _VersionChip extends StatelessWidget {
+  const _VersionChip({required this.from, required this.to});
+
+  final String from;
+  final String to;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+    final label = from.isEmpty || to.isEmpty
+        ? to
+        : S.of(context).updateFromTo(from, to);
+    return Center(
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        decoration: BoxDecoration(
+          color: colors.primaryContainer.withValues(alpha: 0.55),
+          borderRadius: BorderRadius.circular(999),
+        ),
+        child: Text(
+          label,
+          style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                color: colors.onPrimaryContainer,
+                fontWeight: FontWeight.w700,
+              ),
         ),
       ),
     );
   }
 }
 
-// ══════════════════════════════════════════════════════
-// Widget: ícono animado según plataforma / estado
-// ══════════════════════════════════════════════════════
+class _NotesCard extends StatelessWidget {
+  const _NotesCard({required this.notes});
 
-class _PlatformIconWidget extends StatelessWidget {
-  const _PlatformIconWidget({required this.downloadState});
-
-  final DownloadState downloadState;
+  final String notes;
 
   @override
   Widget build(BuildContext context) {
-    IconData icon;
-    Color iconColor = UpdateScreen.accentColor;
-
-    if (downloadState == DownloadState.done) {
-      icon = Icons.check_circle_rounded;
-      iconColor = UpdateScreen.successColor;
-    } else if (downloadState == DownloadState.error) {
-      icon = Icons.error_rounded;
-      iconColor = UpdateScreen.errorColor;
-    } else if (downloadState == DownloadState.installing) {
-      icon = Icons.install_mobile_rounded;
-    } else if (GetPlatform.isAndroid) {
-      icon = Icons.smartphone_rounded;
-    } else if (GetPlatform.isWindows) {
-      icon = Icons.laptop_windows_rounded;
-    } else if (GetPlatform.isLinux) {
-      icon = Icons.computer_rounded;
-    } else if (GetPlatform.isMacOS) {
-      icon = Icons.desktop_mac_rounded;
-    } else if (GetPlatform.isIOS) {
-      icon = Icons.phone_iphone_rounded;
-    } else {
-      icon = Icons.devices_rounded;
-    }
-
+    final colors = Theme.of(context).colorScheme;
     return Container(
-      width: 100,
-      height: 100,
+      width: double.infinity,
+      padding: const EdgeInsets.fromLTRB(18, 16, 18, 16),
       decoration: BoxDecoration(
-        color: UpdateScreen.cardColor,
-        borderRadius: BorderRadius.circular(28),
-        boxShadow: [
-          BoxShadow(
-            color: iconColor.withValues(alpha: 0.25),
-            blurRadius: 24,
-            spreadRadius: 4,
-          ),
-        ],
+        color: colors.surfaceContainerHighest.withValues(alpha: 0.45),
+        borderRadius: BorderRadius.circular(20),
       ),
-      child: Center(
-        child: Icon(icon, size: 50, color: iconColor),
-      ),
-    );
-  }
-}
-
-// ══════════════════════════════════════════════════════
-// Widget: chip con el nombre del archivo a descargar
-// ══════════════════════════════════════════════════════
-
-class _FileNameChip extends StatelessWidget {
-  const _FileNameChip({required this.fileName});
-
-  final String fileName;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 7),
-      decoration: BoxDecoration(
-        color: Colors.white.withValues(alpha: 0.04),
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Colors.white10),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Icon(Icons.insert_drive_file_rounded,
-              size: 14, color: Colors.white38),
-          const SizedBox(width: 6),
           Text(
-            fileName,
-            style: GoogleFonts.cairo(
-              fontSize: 12,
-              color: Colors.white38,
-              fontWeight: FontWeight.w500,
-            ),
+            S.of(context).updateWhatsNew,
+            style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                  fontWeight: FontWeight.w700,
+                ),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            notes,
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  height: 1.5,
+                  color: colors.onSurface.withValues(alpha: 0.78),
+                ),
           ),
         ],
       ),
@@ -293,273 +240,255 @@ class _FileNameChip extends StatelessWidget {
   }
 }
 
-// ══════════════════════════════════════════════════════
-// Widget: área inferior reactiva (progreso + botones)
-// ══════════════════════════════════════════════════════
-
-class _BottomActionArea extends StatelessWidget {
-  const _BottomActionArea({required this.controller});
+class _BottomBar extends StatelessWidget {
+  const _BottomBar({required this.controller});
 
   final UpdateController controller;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.fromLTRB(24, 16, 24, 40),
-      decoration: const BoxDecoration(
-        color: UpdateScreen.backgroundColor,
-        border: Border(
-          top: BorderSide(color: Colors.white10, width: 0.5),
-        ),
-      ),
-      child: Obx(() {
-        final state = controller.downloadState.value;
-
-        return Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            // ── Barra de progreso (solo durante descarga) ──────
-            if (state == DownloadState.downloading) ...[
-              _buildProgressBar(controller.downloadProgress.value),
-              const SizedBox(height: 16),
-            ],
-
-            // ── Mensaje de error de descarga ───────────────────
-            if (state == DownloadState.error) ...[
-              _buildDownloadError(context, controller.downloadError.value),
-              const SizedBox(height: 12),
-            ],
-
-            // ── Botón principal ────────────────────────────────
-            SizedBox(
-              width: double.infinity,
-              height: 64,
-              child: _buildMainButton(context, state),
-            ),
-
-            // ── Nota de plataforma (Linux / macOS / iOS) ───────
-            if (GetPlatform.isLinux || GetPlatform.isMacOS || GetPlatform.isIOS)
-              Padding(
-                padding: const EdgeInsets.only(top: 12),
-                child: Text(
-                  _platformNote,
-                  style: GoogleFonts.cairo(
-                    fontSize: 12,
-                    color: Colors.white38,
-                  ),
+    final colors = Theme.of(context).colorScheme;
+    return SafeArea(
+      top: false,
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(24, 8, 24, 20),
+        child: Obx(() {
+          final state = controller.downloadState.value;
+          return Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              if (state == DownloadState.downloading) ...[
+                _ProgressBlock(controller: controller),
+                const SizedBox(height: 16),
+              ],
+              if (state == DownloadState.error &&
+                  controller.downloadError.isNotEmpty) ...[
+                Text(
+                  controller.downloadError.value,
                   textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: colors.error,
+                        height: 1.4,
+                      ),
+                ),
+                const SizedBox(height: 12),
+              ],
+              SizedBox(
+                width: double.infinity,
+                height: 54,
+                child: FilledButton(
+                  onPressed: _onPressed(state),
+                  style: FilledButton.styleFrom(
+                    backgroundColor: _color(state, colors),
+                    foregroundColor: Colors.white,
+                    disabledBackgroundColor:
+                        AppIdentity.brandBlue.withValues(alpha: 0.45),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(18),
+                    ),
+                    textStyle: Theme.of(context).textTheme.titleMedium?.copyWith(
+                          fontWeight: FontWeight.w800,
+                        ),
+                  ),
+                  child: _label(context, state),
                 ),
               ),
-          ],
-        );
-      }),
+            ],
+          );
+        }),
+      ),
     );
   }
 
-  // ── Barra de progreso ─────────────────────────────
-  Widget _buildProgressBar(double progress) {
-    final pct = (progress * 100).toStringAsFixed(0);
+  VoidCallback? _onPressed(DownloadState state) {
+    switch (state) {
+      case DownloadState.idle:
+        return controller.startUpdate;
+      case DownloadState.done:
+        return controller.installUpdate;
+      case DownloadState.error:
+        return () {
+          controller.retryDownload();
+          controller.startUpdate();
+        };
+      case DownloadState.downloading:
+      case DownloadState.installing:
+        return null;
+    }
+  }
+
+  Color _color(DownloadState state, ColorScheme colors) {
+    switch (state) {
+      case DownloadState.error:
+        return colors.error;
+      case DownloadState.done:
+        return const Color(0xFF2BB673);
+      default:
+        return AppIdentity.brandBlue;
+    }
+  }
+
+  Widget _label(BuildContext context, DownloadState state) {
+    if (state == DownloadState.downloading ||
+        state == DownloadState.installing) {
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const SizedBox(
+            width: 18,
+            height: 18,
+            child: CircularProgressIndicator(
+              strokeWidth: 2.2,
+              color: Colors.white,
+            ),
+          ),
+          const SizedBox(width: 12),
+          Text(
+            state == DownloadState.installing
+                ? S.of(context).updateInstalling
+                : S.of(context).updateDownloading,
+          ),
+        ],
+      );
+    }
+
+    final text = switch (state) {
+      DownloadState.done => controller.canInstallInApp
+          ? S.of(context).updateInstallNow
+          : S.of(context).updateOpenFile,
+      DownloadState.error => S.of(context).retry,
+      _ => S.of(context).updateDownloadNow,
+    };
+    return Text(text);
+  }
+}
+
+class _ProgressBlock extends StatelessWidget {
+  const _ProgressBlock({required this.controller});
+
+  final UpdateController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    final progress = controller.downloadProgress.value;
+    final pct = (progress * 100).clamp(0, 100).toStringAsFixed(0);
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              'Descargando...',
-              style: GoogleFonts.cairo(
-                fontSize: 13,
-                color: Colors.white60,
+            Expanded(
+              child: Text(
+                S.of(context).updateDownloading,
+                style: Theme.of(context).textTheme.labelLarge,
               ),
             ),
             Text(
               '$pct%',
-              style: GoogleFonts.cairo(
-                fontSize: 13,
-                fontWeight: FontWeight.w700,
-                color: UpdateScreen.accentColor,
-              ),
+              style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                    fontWeight: FontWeight.w800,
+                    color: AppIdentity.brandBlueSoft,
+                    fontFeatures: const [FontFeature.tabularFigures()],
+                  ),
             ),
           ],
         ),
         const SizedBox(height: 8),
         ClipRRect(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(99),
           child: LinearProgressIndicator(
-            value: progress,
+            value: progress > 0 ? progress : null,
             minHeight: 8,
-            backgroundColor: Colors.white12,
-            valueColor: const AlwaysStoppedAnimation<Color>(
-              UpdateScreen.accentColor,
-            ),
+            backgroundColor:
+                Theme.of(context).colorScheme.surfaceContainerHighest,
+            color: AppIdentity.brandBlueSoft,
           ),
         ),
+        if (controller.progressLabel.isNotEmpty) ...[
+          const SizedBox(height: 8),
+          Text(
+            controller.progressLabel,
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  color: Theme.of(context)
+                      .colorScheme
+                      .onSurface
+                      .withValues(alpha: 0.6),
+                  fontFeatures: const [FontFeature.tabularFigures()],
+                ),
+          ),
+        ],
       ],
     );
   }
+}
 
-  // ── Error de descarga ─────────────────────────────
-  Widget _buildDownloadError(BuildContext context, String message) {
-    return Container(
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        color: UpdateScreen.errorColor.withValues(alpha: 0.1),
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: UpdateScreen.errorColor.withValues(alpha: 0.3),
-        ),
-      ),
-      child: Row(
+class _UpdateLoading extends StatelessWidget {
+  const _UpdateLoading();
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
-          const Icon(Icons.warning_amber_rounded,
-              color: UpdateScreen.errorColor, size: 18),
-          const SizedBox(width: 8),
-          Expanded(
-            child: Text(
-              message,
-              style: GoogleFonts.cairo(
-                fontSize: 12,
-                color: UpdateScreen.errorColor,
-              ),
-            ),
-          ),
+          const CircularProgressIndicator(color: AppIdentity.brandBlueSoft),
+          const SizedBox(height: 16),
+          Text(S.of(context).checkingUpdates),
         ],
       ),
     );
   }
+}
 
-  // ── Botón principal ───────────────────────────────
-  Widget _buildMainButton(BuildContext context, DownloadState state) {
-    // Estado: descargando → botón deshabilitado con spinner
-    if (state == DownloadState.downloading) {
-      return ElevatedButton.icon(
-        onPressed: null,
-        icon: const SizedBox(
-          width: 20,
-          height: 20,
-          child: CircularProgressIndicator(
-            color: Colors.black54,
-            strokeWidth: 2,
-          ),
-        ),
-        label: Text(
-          'DESCARGANDO...',
-          style: GoogleFonts.cairo(
-            fontSize: 16,
-            fontWeight: FontWeight.w900,
-            letterSpacing: 1.2,
-          ),
-        ),
-        style: _buttonStyle(UpdateScreen.accentColor.withValues(alpha: 0.5)),
-      );
-    }
+class _UpdateError extends StatelessWidget {
+  const _UpdateError({
+    required this.message,
+    required this.onRetry,
+    this.onLater,
+  });
 
-    // Estado: listo para instalar (Android / Windows)
-    if (state == DownloadState.done &&
-        (GetPlatform.isAndroid || GetPlatform.isWindows)) {
-      return ElevatedButton.icon(
-        onPressed: controller.installUpdate,
-        icon: const Icon(Icons.install_mobile_rounded, size: 24),
-        label: Text(
-          'INSTALAR AHORA',
-          style: GoogleFonts.cairo(
-            fontSize: 18,
-            fontWeight: FontWeight.w900,
-            letterSpacing: 1.2,
-          ),
-        ),
-        style: _buttonStyle(UpdateScreen.successColor),
-      );
-    }
+  final String message;
+  final VoidCallback onRetry;
+  final VoidCallback? onLater;
 
-    // Estado: instalando
-    if (state == DownloadState.installing) {
-      return ElevatedButton.icon(
-        onPressed: null,
-        icon: const SizedBox(
-          width: 20,
-          height: 20,
-          child: CircularProgressIndicator(
-            color: Colors.black54,
-            strokeWidth: 2,
-          ),
-        ),
-        label: Text(
-          'INSTALANDO...',
-          style: GoogleFonts.cairo(
-            fontSize: 16,
-            fontWeight: FontWeight.w900,
-            letterSpacing: 1.2,
-          ),
-        ),
-        style: _buttonStyle(UpdateScreen.successColor.withValues(alpha: 0.6)),
-      );
-    }
-
-    // Estado: error → reintentar
-    if (state == DownloadState.error) {
-      return ElevatedButton.icon(
-        onPressed: controller.retryDownload,
-        icon: const Icon(Icons.refresh_rounded, size: 24),
-        label: Text(
-          'REINTENTAR',
-          style: GoogleFonts.cairo(
-            fontSize: 18,
-            fontWeight: FontWeight.w900,
-            letterSpacing: 1.2,
-          ),
-        ),
-        style: _buttonStyle(UpdateScreen.errorColor),
-      );
-    }
-
-    // Estado: idle → botón de acción según plataforma
-    return ElevatedButton.icon(
-      onPressed: controller.startUpdate,
-      icon: Icon(_platformIcon, size: 24),
-      label: Text(
-        controller.platformActionLabel.toUpperCase(),
-        style: GoogleFonts.cairo(
-          fontSize: 18,
-          fontWeight: FontWeight.w900,
-          letterSpacing: 1.2,
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.all(32),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.wifi_off_rounded,
+                size: 48, color: Theme.of(context).colorScheme.error),
+            const SizedBox(height: 16),
+            Text(
+              S.of(context).loadInfoUpdate,
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+            const SizedBox(height: 8),
+            Text(
+              message,
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.bodySmall,
+            ),
+            const SizedBox(height: 24),
+            FilledButton(
+              onPressed: onRetry,
+              style: FilledButton.styleFrom(
+                backgroundColor: AppIdentity.brandBlue,
+                minimumSize: const Size(160, 48),
+              ),
+              child: Text(S.of(context).retry),
+            ),
+            if (onLater != null)
+              TextButton(
+                onPressed: onLater,
+                child: Text(S.of(context).updateLater),
+              ),
+          ],
         ),
       ),
-      style: _buttonStyle(UpdateScreen.accentColor),
     );
-  }
-
-  ButtonStyle _buttonStyle(Color color) {
-    return ElevatedButton.styleFrom(
-      backgroundColor: color,
-      foregroundColor: Colors.black87,
-      elevation: 0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(32),
-      ),
-    );
-  }
-
-  IconData get _platformIcon {
-    if (GetPlatform.isAndroid) return Icons.download_rounded;
-    if (GetPlatform.isWindows) return Icons.download_rounded;
-    if (GetPlatform.isLinux || GetPlatform.isMacOS) {
-      return Icons.open_in_browser_rounded;
-    }
-    if (GetPlatform.isIOS) return Icons.info_outline_rounded;
-    return Icons.download_rounded;
-  }
-
-  String get _platformNote {
-    if (GetPlatform.isLinux) {
-      return 'Se abrirá el navegador para descargar el archivo .tar.gz.\nExtrae y ejecuta el binario incluido.';
-    }
-    if (GetPlatform.isMacOS) {
-      return 'Se abrirá el navegador para descargar el .zip.\nExtrae la app y arrástrala a Aplicaciones.\nEs posible que necesites aprobarla en Preferencias → Seguridad.';
-    }
-    if (GetPlatform.isIOS) {
-      return 'Abre la guía para instalar con tu propio servidor de firmas.';
-    }
-    return '';
   }
 }
